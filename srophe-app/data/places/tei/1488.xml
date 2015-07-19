@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://syriaca.org/documentation/syriaca-tei-main.rnc" type="application/relax-ng-compact-syntax"?>
 <TEI xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns="http://www.tei-c.org/ns/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:syriaca="http://syriaca.org" xml:lang="en">
     <teiHeader>
         <fileDesc>
@@ -12,12 +12,12 @@
                 <funder>The National Endowment for the Humanities</funder>
                 <funder>The International Balzan Prize Foundation</funder>
                 <principal>David A. Michelson</principal>
-                <editor role="general" ref="http://syriaca.org/editors.xml#tcarlson">Thomas A. Carlson</editor>
-                <editor role="general" ref="http://syriaca.org/editors.xml#dmichelson">David A. Michelson</editor>
-                <editor role="creator" ref="http://syriaca.org/editors.xml#tcarlson">Thomas A. Carlson</editor>
+                <editor role="general" ref="http://syriaca.org/documentation/editors.xml#tcarlson">Thomas A. Carlson</editor>
+                <editor role="general" ref="http://syriaca.org/documentation/editors.xml#dmichelson">David A. Michelson</editor>
+                <editor role="creator" ref="http://syriaca.org/documentation/editors.xml#tcarlson">Thomas A. Carlson</editor>
                 <respStmt>
                     <resp>Data merging, Pleiades and Wikipedia linking, and XML by</resp>
-                    <name ref="http://syriaca.org/editors.xml#tcarlson">Thomas A. Carlson</name>
+                    <name ref="http://syriaca.org/documentation/editors.xml#tcarlson">Thomas A. Carlson</name>
                 </respStmt>
             </titleStmt>
             <editionStmt>
@@ -46,7 +46,7 @@
                         </p>
                     </licence>
                 </availability>
-                <date>2013-10-26-04:00</date>
+                <date>2014-03-26</date>
             </publicationStmt>
             <sourceDesc>
                 <p>Born digital.</p>
@@ -78,22 +78,24 @@
             </langUsage>
         </profileDesc>
         <revisionDesc>
-            <change who="http://syriaca.org/editors.xml#tcarlson" when="2013-10-26-04:00">CREATED: place</change>
+            <change who=" http://syriaca.org/documentation/editors.xml#tcarlson" when="2014-03-26">FIXED: type clarified to "diocese" rather than "unknown"</change>
+            <change who=" http://syriaca.org/documentation/editors.xml#wsalesky" when="2014-01-14">ADDED: syriaca-computed-start and syriaca-computed-end attributes for searching</change>
+            <change who=" http://syriaca.org/documentation/editors.xml#tcarlson" when="2013-12-18-05:00">CREATED: place</change>
         </revisionDesc>
     </teiHeader>
     <text>
         <body>
             <listPlace>
-                <place xml:id="place-1488" type="unknown">
+                <place xml:id="place-1488" type="diocese">
                     <placeName xml:id="name1488-1" xml:lang="en" syriaca-tags="#syriaca-headword">Shalabdīn</placeName>
                     <placeName xml:id="name1488-2" xml:lang="syr" syriaca-tags="#syriaca-headword">ܫܠܒܕܝܢ</placeName>
                     <placeName xml:id="name1488-3" xml:lang="syr-Syrj" source="#bib1488-1">ܝܠܒܕܺܝܢ</placeName>
                     <placeName xml:id="name1488-4" xml:lang="ar" source="#bib1488-2">شلبدين</placeName>
                     <placeName xml:id="name1488-5" xml:lang="en" source="#bib1488-3">Shalabdin</placeName>
                     <desc xml:id="abstract-en-1488" xml:lang="en">Seat of a bishop about 1174.</desc>
-                    <state type="existence" from="1179" to="1169">
-                        <precision match="@from" notAfter="1179"/>
-                        <precision match="@to" notBefore="1169"/>
+                    <state type="existence" from="1179" to="1169" syriaca-computed-end="1169-01-01" syriaca-computed-start="1179-01-01">
+                        <precision match="@from" notAfter="1179" syriaca-computed-end="1179-01-01"/>
+                        <precision match="@to" notBefore="1169" syriaca-computed-start="1169-01-01"/>
                     </state>
                     <note type="deprecation" xml:id="name1488-3-deprecation">Dolabani's printer misread his shin as a yod.</note>
                     <link target="#name1488-3 #name1488-3-deprecation"/>

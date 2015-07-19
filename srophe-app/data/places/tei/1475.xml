@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://syriaca.org/documentation/syriaca-tei-main.rnc" type="application/relax-ng-compact-syntax"?>
 <TEI xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns="http://www.tei-c.org/ns/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:syriaca="http://syriaca.org" xml:lang="en">
     <teiHeader>
         <fileDesc>
@@ -12,12 +12,12 @@
                 <funder>The National Endowment for the Humanities</funder>
                 <funder>The International Balzan Prize Foundation</funder>
                 <principal>David A. Michelson</principal>
-                <editor role="general" ref="http://syriaca.org/editors.xml#tcarlson">Thomas A. Carlson</editor>
-                <editor role="general" ref="http://syriaca.org/editors.xml#dmichelson">David A. Michelson</editor>
-                <editor role="creator" ref="http://syriaca.org/editors.xml#tcarlson">Thomas A. Carlson</editor>
+                <editor role="general" ref="http://syriaca.org/documentation/editors.xml#tcarlson">Thomas A. Carlson</editor>
+                <editor role="general" ref="http://syriaca.org/documentation/editors.xml#dmichelson">David A. Michelson</editor>
+                <editor role="creator" ref="http://syriaca.org/documentation/editors.xml#tcarlson">Thomas A. Carlson</editor>
                 <respStmt>
                     <resp>Data merging, Pleiades and Wikipedia linking, and XML by</resp>
-                    <name ref="http://syriaca.org/editors.xml#tcarlson">Thomas A. Carlson</name>
+                    <name ref="http://syriaca.org/documentation/editors.xml#tcarlson">Thomas A. Carlson</name>
                 </respStmt>
             </titleStmt>
             <editionStmt>
@@ -46,7 +46,7 @@
                         </p>
                     </licence>
                 </availability>
-                <date>2013-10-26-04:00</date>
+                <date>2014-01-14-05:00</date>
             </publicationStmt>
             <sourceDesc>
                 <p>Born digital.</p>
@@ -78,7 +78,9 @@
             </langUsage>
         </profileDesc>
         <revisionDesc>
-            <change who="http://syriaca.org/editors.xml#tcarlson" when="2013-10-26-04:00">CREATED: place</change>
+            <change who=" http://syriaca.org/documentation/editors.xml#wsalesky" when="2014-01-14">ADDED: latitude and longitude from Pleiades</change>
+            <change who=" http://syriaca.org/documentation/editors.xml#wsalesky" when="2014-01-14">ADDED: syriaca-computed-start and syriaca-computed-end attributes for searching</change>
+            <change who=" http://syriaca.org/documentation/editors.xml#tcarlson" when="2013-12-18-05:00">CREATED: place</change>
         </revisionDesc>
     </teiHeader>
     <text>
@@ -91,8 +93,11 @@
                     <placeName xml:id="name1475-4" xml:lang="ar" source="#bib1475-2">طاكايس</placeName>
                     <placeName xml:id="name1475-5" xml:lang="en" source="#bib1475-3">Tagais</placeName>
                     <desc xml:id="abstract-en-1475" xml:lang="en">A location with a monastery whose inhabitants received a letter from <persName ref="http://syriaca.org/person/51">Severus of Antioch</persName>.</desc>
-                    <state type="existence" from="0538">
-                        <precision match="@from" notAfter="0538"/>
+                    <location type="gps" source="#bib1475-4">
+                        <geo>36.424325 33.88707</geo>
+                    </location>
+                    <state type="existence" from="0538" syriaca-computed-start="0538-01-01">
+                        <precision match="@from" notAfter="0538" syriaca-computed-end="0538-01-01"/>
                     </state>
                     <idno type="URI">http://syriaca.org/place/1475</idno>
                     <idno type="URI">http://pleiades.stoa.org/places/648786</idno>
@@ -110,6 +115,10 @@
                         <title xml:lang="en">The Scattered Pearls: A History of Syriac Literature and Sciences</title>
                         <ptr target="http://syriaca.org/bibl/4"/>
                         <citedRange unit="pp">286</citedRange>
+                    </bibl>
+                    <bibl xml:id="bib1475-4">
+                        <title>http://pleiades.stoa.org/places/648786</title>
+                        <ptr target="http://pleiades.stoa.org/places/648786"/>
                     </bibl>
                 </place>
             </listPlace>

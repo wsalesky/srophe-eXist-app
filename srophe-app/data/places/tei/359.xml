@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://syriaca.org/documentation/syriaca-tei-main.rnc" type="application/relax-ng-compact-syntax"?>
 <TEI xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns="http://www.tei-c.org/ns/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:syriaca="http://syriaca.org" xml:lang="en">
     <teiHeader>
         <fileDesc>
@@ -12,21 +12,21 @@
                 <funder>The National Endowment for the Humanities</funder>
                 <funder>The International Balzan Prize Foundation</funder>
                 <principal>David A. Michelson</principal>
-                <editor role="general" ref="http://syriaca.org/editors.xml#tcarlson">Thomas A. Carlson</editor>
-                <editor role="general" ref="http://syriaca.org/editors.xml#dmichelson">David A. Michelson</editor>
-                <editor role="creator" ref="http://syriaca.org/editors.xml#tcarlson">Thomas A. Carlson</editor>
-                <editor role="creator" ref="http://syriaca.org/editors.xml#dmichelson">David A. Michelson</editor>
+                <editor role="general" ref="http://syriaca.org/documentation/editors.xml#tcarlson">Thomas A. Carlson</editor>
+                <editor role="general" ref="http://syriaca.org/documentation/editors.xml#dmichelson">David A. Michelson</editor>
+                <editor role="creator" ref="http://syriaca.org/documentation/editors.xml#tcarlson">Thomas A. Carlson</editor>
+                <editor role="creator" ref="http://syriaca.org/documentation/editors.xml#dmichelson">David A. Michelson</editor>
                 <respStmt>
                     <resp>Initial Barsoum entry creation by</resp>
-                    <name ref="http://syriaca.org/editors.xml#dmichelson">David A. Michelson</name>
+                    <name ref="http://syriaca.org/documentation/editors.xml#dmichelson">David A. Michelson</name>
                 </respStmt>
                 <respStmt>
                     <resp>Data merging, Pleiades and Wikipedia linking, and XML by</resp>
-                    <name ref="http://syriaca.org/editors.xml#tcarlson">Thomas A. Carlson</name>
+                    <name ref="http://syriaca.org/documentation/editors.xml#tcarlson">Thomas A. Carlson</name>
                 </respStmt>
                 <respStmt>
                     <resp>Syriac description entry by</resp>
-                    <name ref="http://syriaca.org/editors.xml#raydin">Robert Aydin</name>
+                    <name ref="http://syriaca.org/documentation/editors.xml#raydin">Robert Aydin</name>
                 </respStmt>
             </titleStmt>
             <editionStmt>
@@ -55,7 +55,7 @@
                         </p>
                     </licence>
                 </availability>
-                <date>2013-10-26-04:00</date>
+                <date>2014-02-06</date>
             </publicationStmt>
             <sourceDesc>
                 <p>Born digital.</p>
@@ -87,7 +87,9 @@
             </langUsage>
         </profileDesc>
         <revisionDesc>
-            <change who="http://syriaca.org/editors.xml#tcarlson" when="2013-10-26-04:00">CREATED: place</change>
+            <change who=" http://syriaca.org/documentation/editors.xml#tcarlson" when="2014-02-06">ADDED <gi>quote</gi> elements around Syriac text in <gi>note</gi> of type="corrigenda".</change>
+            <change who=" http://syriaca.org/documentation/editors.xml#wsalesky" when="2014-01-14">ADDED: syriaca-computed-start and syriaca-computed-end attributes for searching</change>
+            <change who=" http://syriaca.org/documentation/editors.xml#tcarlson" when="2013-12-18-05:00">CREATED: place</change>
         </revisionDesc>
     </teiHeader>
     <text>
@@ -109,10 +111,10 @@
                     <desc xml:lang="en">
                         <quote source="#bib359-3">of the Monastery of the Martyrs Sergius and Bacchus: its construction was begun by the monk Kiso Ashnawi of Azerbayjan Jubas in 958, but was not finished until 1001. One of the professors at its school was John, the pupil of Marun. From its founding until 1170, one Maphryono and ten bishops graduated from it.</quote>
                     </desc>
-                    <state type="existence" from="0958" to="1170">
-                        <precision match="@to" notBefore="1170"/>
+                    <state type="existence" from="0958" to="1170" syriaca-computed-end="1170-01-01" syriaca-computed-start="0958-01-01">
+                        <precision match="@to" notAfter="1943" notBefore="1170" syriaca-computed-end="1943-01-01" syriaca-computed-start="1170-01-01"/>
                     </state>
-                    <note type="errata">In Dolabani's translation of Barsoum's description ܣܗܳܕ̈ܐ should read ܣܳܗܕ̈ܐ.</note>
+                    <note type="corrigenda">In Dolabani's translation of Barsoum's description <quote xml:lang="syr-Syrj">ܣܗܳܕ̈ܐ</quote> should read <quote xml:lang="syr-Syrj">ܣܳܗܕ̈ܐ</quote>.</note>
                     <idno type="URI">http://syriaca.org/place/359</idno>
                     <bibl xml:id="bib359-1">
                         <title xml:lang="syr">ܒܪ̈ܘܠܐ ܒܕܝܪ̈ܐ ܕܥܠ ܡܪܕܘܬ ܝܘܠܦܢ̈ܐ ܣܘܪ̈ܝܝܐ ܗܕܝܪ̈ܐ</title>

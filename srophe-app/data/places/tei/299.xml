@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://syriaca.org/documentation/syriaca-tei-main.rnc" type="application/relax-ng-compact-syntax"?>
 <TEI xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns="http://www.tei-c.org/ns/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:syriaca="http://syriaca.org" xml:lang="en">
     <teiHeader>
         <fileDesc>
@@ -12,21 +12,21 @@
                 <funder>The National Endowment for the Humanities</funder>
                 <funder>The International Balzan Prize Foundation</funder>
                 <principal>David A. Michelson</principal>
-                <editor role="general" ref="http://syriaca.org/editors.xml#tcarlson">Thomas A. Carlson</editor>
-                <editor role="general" ref="http://syriaca.org/editors.xml#dmichelson">David A. Michelson</editor>
-                <editor role="creator" ref="http://syriaca.org/editors.xml#tcarlson">Thomas A. Carlson</editor>
-                <editor role="creator" ref="http://syriaca.org/editors.xml#dmichelson">David A. Michelson</editor>
+                <editor role="general" ref="http://syriaca.org/documentation/editors.xml#tcarlson">Thomas A. Carlson</editor>
+                <editor role="general" ref="http://syriaca.org/documentation/editors.xml#dmichelson">David A. Michelson</editor>
+                <editor role="creator" ref="http://syriaca.org/documentation/editors.xml#tcarlson">Thomas A. Carlson</editor>
+                <editor role="creator" ref="http://syriaca.org/documentation/editors.xml#dmichelson">David A. Michelson</editor>
                 <respStmt>
                     <resp>Initial Barsoum entry creation by</resp>
-                    <name ref="http://syriaca.org/editors.xml#dmichelson">David A. Michelson</name>
+                    <name ref="http://syriaca.org/documentation/editors.xml#dmichelson">David A. Michelson</name>
                 </respStmt>
                 <respStmt>
                     <resp>Data merging, Pleiades and Wikipedia linking, and XML by</resp>
-                    <name ref="http://syriaca.org/editors.xml#tcarlson">Thomas A. Carlson</name>
+                    <name ref="http://syriaca.org/documentation/editors.xml#tcarlson">Thomas A. Carlson</name>
                 </respStmt>
                 <respStmt>
                     <resp>Syriac description entry by</resp>
-                    <name ref="http://syriaca.org/editors.xml#raydin">Robert Aydin</name>
+                    <name ref="http://syriaca.org/documentation/editors.xml#raydin">Robert Aydin</name>
                 </respStmt>
             </titleStmt>
             <editionStmt>
@@ -55,7 +55,7 @@
                         </p>
                     </licence>
                 </availability>
-                <date>2013-10-26-04:00</date>
+                <date>2014-06-30-04:00</date>
             </publicationStmt>
             <sourceDesc>
                 <p>Born digital.</p>
@@ -87,7 +87,11 @@
             </langUsage>
         </profileDesc>
         <revisionDesc>
-            <change who="http://syriaca.org/editors.xml#tcarlson" when="2013-10-26-04:00">CREATED: place</change>
+            <change who=" http://syriaca.org/documentation/editors.xml#wsalesky" when="2014-06-30-04:00">CHANGED tei:author element to tei:persName under tei:event element.</change>
+            <change who=" http://syriaca.org/documentation/editors.xml#tcarlson" when="2014-06-12-05:00">ADDED: Yaqut citation and attestation</change>
+            <change who=" http://syriaca.org/documentation/editors.xml#wsalesky" when="2014-01-14">ADDED: latitude and longitude from Pleiades</change>
+            <change who=" http://syriaca.org/documentation/editors.xml#wsalesky" when="2014-01-14">ADDED: syriaca-computed-start and syriaca-computed-end attributes for searching</change>
+            <change who=" http://syriaca.org/documentation/editors.xml#tcarlson" when="2013-12-18-05:00">CREATED: place</change>
         </revisionDesc>
     </teiHeader>
     <text>
@@ -99,7 +103,7 @@
                     <placeName xml:id="name299-3" xml:lang="syr-Syrj" source="#bib299-1">ܒܳܐܠܫ</placeName>
                     <placeName xml:id="name299-4" xml:lang="syr-Syrj" source="#bib299-1">ܒܪܒܐܠܝܣܘܣ</placeName>
                     <placeName xml:id="name299-5" xml:lang="syr-Syrj" source="#bib299-1">ܡܰܣܟܢܗ</placeName>
-                    <placeName xml:id="name299-6" xml:lang="ar" source="#bib299-2">بالس</placeName>
+                    <placeName xml:id="name299-6" xml:lang="ar" source="#bib299-2 #bib299-5">بالس</placeName>
                     <placeName xml:id="name299-7" xml:lang="ar" source="#bib299-2">بالش</placeName>
                     <placeName xml:id="name299-8" xml:lang="ar" source="#bib299-2">برباليسوس</placeName>
                     <placeName xml:id="name299-9" xml:lang="ar" source="#bib299-2">مسكنة</placeName>
@@ -117,16 +121,23 @@
                     <desc xml:lang="en">
                         <quote source="#bib299-3">a town in Syria between Aleppo and al-Raqqa, known in antiquity as Perpalisos, it is now called Maskana.</quote>
                     </desc>
-                    <state type="existence" from="0253" to="1000">
-                        <precision match="@from" notAfter="0253"/>
-                        <precision match="@to" notBefore="1000"/>
+                    <location type="gps" source="#bib299-4">
+                        <geo>36.0021275 38.126807</geo>
+                    </location>
+                    <event type="attestation" xml:id="attestation299-1" notBefore="1224" notAfter="1228" source="#bib299-5" syriaca-computed-start="1224-01-01" syriaca-computed-end="1228-01-01">
+                        <p xml:lang="en">Attestation of name <foreign xml:lang="ar">بالس</foreign> in the <title xml:lang="en" level="m">Muʿjam al-buldān</title> of <persName>Yāqūt al-Ḥamawī</persName>.</p>
+                        <link target="#name299-6 #attestation299-1"/>
+                    </event>
+                    <state type="existence" from="0253" to="1000" syriaca-computed-end="1000-01-01" syriaca-computed-start="0253-01-01">
+                        <precision match="@from" notAfter="0253" syriaca-computed-end="0253-01-01"/>
+                        <precision match="@to" notBefore="1000" syriaca-computed-start="1000-01-01"/>
                     </state>
                     <note type="deprecation" xml:id="name299-12-deprecation">Moosa's transcription "Perpalisos" should be "Barbalissus".</note>
                     <link target="#name299-12 #name299-12-deprecation"/>
                     <idno type="URI">http://syriaca.org/place/299</idno>
                     <idno type="URI">http://pleiades.stoa.org/places/668208</idno>
-                    <idno type="URI">http://en.wikipedia.org/wiki/Maskanah</idno>
-                    <idno type="URI">http://dbpedia.org/resource/Maskanah</idno>
+                    <idno type="URI">http://en.wikipedia.org/wiki/Barbalissos</idno>
+                    <idno type="URI">http://dbpedia.org/resource/Barbalissos</idno>
                     <bibl xml:id="bib299-1">
                         <title xml:lang="syr">ܒܪ̈ܘܠܐ ܒܕܝܪ̈ܐ ܕܥܠ ܡܪܕܘܬ ܝܘܠܦܢ̈ܐ ܣܘܪ̈ܝܝܐ ܗܕܝܪ̈ܐ</title>
                         <ptr target="http://syriaca.org/bibl/3"/>
@@ -141,6 +152,16 @@
                         <title xml:lang="en">The Scattered Pearls: A History of Syriac Literature and Sciences</title>
                         <ptr target="http://syriaca.org/bibl/4"/>
                         <citedRange unit="pp">552</citedRange>
+                    </bibl>
+                    <bibl xml:id="bib299-4">
+                        <title>http://pleiades.stoa.org/places/668208</title>
+                        <ptr target="http://pleiades.stoa.org/places/668208"/>
+                    </bibl>
+                    <bibl xml:id="bib299-5">
+                        <title xml:lang="en" level="m">Muʿjam al-buldān</title>
+                        <author>Yāqūt al-Ḥamawī</author>
+                        <ptr target="http://syriaca.org/bibl/636"/>
+                        <citedRange unit="pp">I:390</citedRange>
                     </bibl>
                 </place>
             </listPlace>

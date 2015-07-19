@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://syriaca.org/documentation/syriaca-tei-main.rnc" type="application/relax-ng-compact-syntax"?>
 <TEI xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns="http://www.tei-c.org/ns/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:syriaca="http://syriaca.org" xml:lang="en">
     <teiHeader>
         <fileDesc>
@@ -12,21 +12,21 @@
                 <funder>The National Endowment for the Humanities</funder>
                 <funder>The International Balzan Prize Foundation</funder>
                 <principal>David A. Michelson</principal>
-                <editor role="general" ref="http://syriaca.org/editors.xml#tcarlson">Thomas A. Carlson</editor>
-                <editor role="general" ref="http://syriaca.org/editors.xml#dmichelson">David A. Michelson</editor>
-                <editor role="creator" ref="http://syriaca.org/editors.xml#tcarlson">Thomas A. Carlson</editor>
-                <editor role="creator" ref="http://syriaca.org/editors.xml#dmichelson">David A. Michelson</editor>
+                <editor role="general" ref="http://syriaca.org/documentation/editors.xml#tcarlson">Thomas A. Carlson</editor>
+                <editor role="general" ref="http://syriaca.org/documentation/editors.xml#dmichelson">David A. Michelson</editor>
+                <editor role="creator" ref="http://syriaca.org/documentation/editors.xml#tcarlson">Thomas A. Carlson</editor>
+                <editor role="creator" ref="http://syriaca.org/documentation/editors.xml#dmichelson">David A. Michelson</editor>
                 <respStmt>
                     <resp>Initial Barsoum entry creation by</resp>
-                    <name ref="http://syriaca.org/editors.xml#dmichelson">David A. Michelson</name>
+                    <name ref="http://syriaca.org/documentation/editors.xml#dmichelson">David A. Michelson</name>
                 </respStmt>
                 <respStmt>
                     <resp>Data merging, Pleiades and Wikipedia linking, and XML by</resp>
-                    <name ref="http://syriaca.org/editors.xml#tcarlson">Thomas A. Carlson</name>
+                    <name ref="http://syriaca.org/documentation/editors.xml#tcarlson">Thomas A. Carlson</name>
                 </respStmt>
                 <respStmt>
                     <resp>Syriac description entry by</resp>
-                    <name ref="http://syriaca.org/editors.xml#raydin">Robert Aydin</name>
+                    <name ref="http://syriaca.org/documentation/editors.xml#raydin">Robert Aydin</name>
                 </respStmt>
             </titleStmt>
             <editionStmt>
@@ -55,7 +55,7 @@
                         </p>
                     </licence>
                 </availability>
-                <date>2013-10-26-04:00</date>
+                <date>2014-06-30-04:00</date>
             </publicationStmt>
             <sourceDesc>
                 <p>Born digital.</p>
@@ -87,7 +87,10 @@
             </langUsage>
         </profileDesc>
         <revisionDesc>
-            <change who="http://syriaca.org/editors.xml#tcarlson" when="2013-10-26-04:00">CREATED: place</change>
+            <change who=" http://syriaca.org/documentation/editors.xml#wsalesky" when="2014-06-30-04:00">CHANGED tei:author element to tei:persName under tei:event element.</change>
+            <change who=" http://syriaca.org/documentation/editors.xml#tcarlson" when="2014-06-12-05:00">ADDED: Yaqut citation and attestation</change>
+            <change who=" http://syriaca.org/documentation/editors.xml#wsalesky" when="2014-01-14">ADDED: syriaca-computed-start and syriaca-computed-end attributes for searching</change>
+            <change who=" http://syriaca.org/documentation/editors.xml#tcarlson" when="2013-12-18-05:00">CREATED: place</change>
         </revisionDesc>
     </teiHeader>
     <text>
@@ -102,6 +105,7 @@
                     <placeName xml:id="name11-6" xml:lang="ar" source="#bib11-4">فامية</placeName>
                     <placeName xml:id="name11-7" xml:lang="ar" source="#bib11-4">قلعة المضيق</placeName>
                     <placeName xml:id="name11-8" xml:lang="en" source="#bib11-5">Qalʿat al-Madīq</placeName>
+                    <placeName xml:id="name11-9" xml:lang="ar" source="#bib11-7">أَفَامِيَة</placeName>
                     <desc xml:id="abstract-en-11" xml:lang="en">
                         <quote source="#bib11-1">One of the earliest Hellenistic city foundations in Syria, Apamea, situated on the Orontes ca. 90 km. south of Antioch, from the 2nd cent. onwards was an important center of Middle- and Neo-Platonist philosophy.</quote>
                     </desc>
@@ -120,9 +124,13 @@
                     <location type="gps" source="#bib11-2">
                         <geo>35.418 36.398</geo>
                     </location>
-                    <state type="existence" from="0200" to="0709">
-                        <precision match="@from" notAfter="0200"/>
-                        <precision match="@to" notBefore="0709"/>
+                    <event type="attestation" xml:id="attestation11-1" notBefore="1224" notAfter="1228" source="#bib11-7" syriaca-computed-start="1224-01-01" syriaca-computed-end="1228-01-01">
+                        <p xml:lang="en">Attestation of name <foreign xml:lang="ar">أَفَامِيَة</foreign> in the <title xml:lang="en" level="m">Muʿjam al-buldān</title> of <persName>Yāqūt al-Ḥamawī</persName>.</p>
+                        <link target="#name11-9 #attestation11-1"/>
+                    </event>
+                    <state type="existence" from="0200" to="0709" syriaca-computed-end="0709-01-01" syriaca-computed-start="0200-01-01">
+                        <precision match="@from" notAfter="0200" syriaca-computed-end="0200-01-01"/>
+                        <precision match="@to" notBefore="0709" syriaca-computed-start="0709-01-01"/>
                     </state>
                     <idno type="URI">http://syriaca.org/place/11</idno>
                     <idno type="URI">http://pleiades.stoa.org/places/668335</idno>
@@ -163,6 +171,12 @@
                         <title xml:lang="en">The Comprehensive Bibliography on Syriac Christianity</title>
                         <ptr target="http://syriaca.org/bibl/5"/>
                         <citedRange unit="entry" target="http://www.csc.org.il/db/browse.aspx?db=SB&amp;sL=A&amp;sK=Apamea&amp;sT=keywords">Apamea</citedRange>
+                    </bibl>
+                    <bibl xml:id="bib11-7">
+                        <title xml:lang="en" level="m">Muʿjam al-buldān</title>
+                        <author>Yāqūt al-Ḥamawī</author>
+                        <ptr target="http://syriaca.org/bibl/636"/>
+                        <citedRange unit="pp">I:269</citedRange>
                     </bibl>
                 </place>
             </listPlace>

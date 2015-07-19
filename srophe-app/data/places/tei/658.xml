@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://syriaca.org/documentation/syriaca-tei-main.rnc" type="application/relax-ng-compact-syntax"?>
 <TEI xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns="http://www.tei-c.org/ns/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:syriaca="http://syriaca.org" xml:lang="en">
     <teiHeader>
         <fileDesc>
@@ -11,12 +11,12 @@
                 <funder>The National Endowment for the Humanities</funder>
                 <funder>The International Balzan Prize Foundation</funder>
                 <principal>David A. Michelson</principal>
-                <editor role="general" ref="http://syriaca.org/editors.xml#tcarlson">Thomas A. Carlson</editor>
-                <editor role="general" ref="http://syriaca.org/editors.xml#dmichelson">David A. Michelson</editor>
-                <editor role="creator" ref="http://syriaca.org/editors.xml#tcarlson">Thomas A. Carlson</editor>
+                <editor role="general" ref="http://syriaca.org/documentation/editors.xml#tcarlson">Thomas A. Carlson</editor>
+                <editor role="general" ref="http://syriaca.org/documentation/editors.xml#dmichelson">David A. Michelson</editor>
+                <editor role="creator" ref="http://syriaca.org/documentation/editors.xml#tcarlson">Thomas A. Carlson</editor>
                 <respStmt>
                     <resp>Data merging, Pleiades and Wikipedia linking, and XML by</resp>
-                    <name ref="http://syriaca.org/editors.xml#tcarlson">Thomas A. Carlson</name>
+                    <name ref="http://syriaca.org/documentation/editors.xml#tcarlson">Thomas A. Carlson</name>
                 </respStmt>
             </titleStmt>
             <editionStmt>
@@ -42,7 +42,7 @@
                         </p>
                     </licence>
                 </availability>
-                <date>2013-07-31</date>
+                <date>2014-01-14-05:00</date>
             </publicationStmt>
             <sourceDesc>
                 <p>Born digital.</p>
@@ -74,15 +74,16 @@
             </langUsage>
         </profileDesc>
         <revisionDesc>
-            <change who="http://syriaca.org/editors.xml#tcarlson" when="2013-07-31">REMOVED: place type from <gi>title</gi>
+            <change who=" http://syriaca.org/documentation/editors.xml#wsalesky" when="2014-01-14">ADDED: syriaca-computed-start and syriaca-computed-end attributes for searching</change>
+            <change who=" http://syriaca.org/documentation/editors.xml#tcarlson" when="2013-07-31">REMOVED: place type from <gi>title</gi>
             </change>
-            <change who="http://syriaca.org/editors.xml#tcarlson" when="2013-07-28">ADDED: formattable markup to <gi>title</gi> and <gi>licence</gi>
+            <change who=" http://syriaca.org/documentation/editors.xml#tcarlson" when="2013-07-28">ADDED: formattable markup to <gi>title</gi> and <gi>licence</gi>
             </change>
-            <change who="http://syriaca.org/editors.xml#tcarlson" when="2013-07-24">ADDED: License for Barsoum data</change>
-            <change who="http://syriaca.org/editors.xml#tcarlson" when="2013-07-24">FIXED: document titles and source URI</change>
-            <change who="http://syriaca.org/editors.xml#tcarlson" when="2013-07-15">FIXED: <gi>precision</gi> element in <gi>state</gi> of @type="existence" </change>
-            <change who="http://syriaca.org/editors.xml#tcarlson" when="2013-07-11">ADDED: relative location and cross-reference in abstract</change>
-            <change who="http://syriaca.org/editors.xml#tcarlson" when="2013-07-11-04:00">CREATED: place</change>
+            <change who=" http://syriaca.org/documentation/editors.xml#tcarlson" when="2013-07-24">ADDED: License for Barsoum data</change>
+            <change who=" http://syriaca.org/documentation/editors.xml#tcarlson" when="2013-07-24">FIXED: document titles and source URI</change>
+            <change who=" http://syriaca.org/documentation/editors.xml#tcarlson" when="2013-07-15">FIXED: <gi>precision</gi> element in <gi>state</gi> of @type="existence" </change>
+            <change who=" http://syriaca.org/documentation/editors.xml#tcarlson" when="2013-07-11">ADDED: relative location and cross-reference in abstract</change>
+            <change who=" http://syriaca.org/documentation/editors.xml#tcarlson" when="2013-07-11-04:00">CREATED: place</change>
         </revisionDesc>
     </teiHeader>
     <text>
@@ -98,8 +99,8 @@
                         <placeName ref="http://syriaca.org/place/69">Dayr al-Zaʿfarān</placeName>
                     </location>
                     <desc xml:id="abstract-en-658" xml:lang="en">A hermitage in the hills above <placeName ref="http://syriaca.org/place/69">Dayr al-Zaʿfarān</placeName>.</desc>
-                    <state type="existence" to="1625">
-                        <precision match="@to" notAfter="1625"/>
+                    <state type="existence" to="1625" syriaca-computed-end="1625-01-01">
+                        <precision match="@to" notAfter="1625" syriaca-computed-end="1625-01-01"/>
                     </state>
                     <idno type="URI">http://syriaca.org/place/658</idno>
                     <bibl xml:id="bib658-1">

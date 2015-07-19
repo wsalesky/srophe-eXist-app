@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <meta xmlns="http://exist-db.org/xquery/repo">
-    <description>The Syriac Gazetteer</description>
+    <description>The Syriac Reference Portal</description>
     <author>Winona Salesky</author>
     <website>http://syriaca.org/</website>
     <status>beta</status>

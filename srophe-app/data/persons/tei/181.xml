@@ -1,68 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<TEI xmlns="http://www.tei-c.org/ns/1.0" xmlns:functx="http://www.functx.com" xmlns:saxon="http://saxon.sf.net/" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xml:lang="en">
+<?xml-model href="http://syriaca.org/documentation/syriaca-tei-main.rnc" type="application/relax-ng-compact-syntax"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xmlns:saxon="http://saxon.sf.net/" xmlns:functx="http://www.functx.com" xmlns:xd="http://www.oxygenxml.com/ns/doc/xsl" xml:lang="en">
     <teiHeader>
         <fileDesc>
             <titleStmt>
-                <title level="a" xml:lang="en">Athanasios of Qlisuro</title>
+                <title level="a" xml:lang="en">Athanasios of Qlisuro — <foreign xml:lang="syr">ܐܬܢܐܣܝܘܣ ܕܩܠܝܣܘܪܐ</foreign>
+                </title>
                 <title level="m" xml:lang="en">The Syriac Prosopography</title>
                 <sponsor>Syriaca.org: The Syriac Reference Portal</sponsor>
                 <funder>The Andrew W. Mellon Foundation</funder>
                 <funder>The National Endowment for the Humanities</funder>
                 <funder>The International Balzan Prize Foundation</funder>
                 <principal>David A. Michelson</principal>
-                <editor role="general" ref="http://syriaca.org/editors.xml#dmichelson">David A. Michelson</editor>
-                <editor role="general" ref="http://syriaca.org/editors.xml#ngibson">Nathan P. Gibson</editor>
-                <editor role="general" ref="http://syriaca.org/editors.xml#tcarlson">Thomas A. Carlson</editor>
-                <editor role="creator" ref="http://syriaca.org/editors.xml#jwalters">James E. Walters</editor>
-                <editor role="creator" ref="http://syriaca.org/editors.xml#dmichelson">David A. Michelson</editor>
-                <editor role="creator" ref="http://syriaca.org/editors.xml#ngibson">Nathan P. Gibson</editor>
+                <editor role="general" ref="http://syriaca.org/documentation/editors.xml#dmichelson">David A. Michelson</editor>
+                <editor role="general" ref="http://syriaca.org/documentation/editors.xml#ngibson">Nathan P. Gibson</editor>
+                <editor role="general" ref="http://syriaca.org/documentation/editors.xml#tcarlson">Thomas A. Carlson</editor>
+                <editor role="creator" ref="http://syriaca.org/documentation/editors.xml#jwalters">James E. Walters</editor>
+                <editor role="creator" ref="http://syriaca.org/documentation/editors.xml#dmichelson">David A. Michelson</editor>
+                <editor role="creator" ref="http://syriaca.org/documentation/editors.xml#tcarlson">Thomas A. Carlson</editor>
+                <editor role="creator" ref="http://syriaca.org/documentation/editors.xml#ngibson">Nathan P. Gibson</editor>
                 <respStmt>
                     <resp>Editing, document design, proofreading, data entry by</resp>
-                    <name type="person" ref="http://syriaca.org/editors.xml#dmichelson">David A. Michelson</name>
-                </respStmt>
-                <respStmt>
-                    <resp>Editing, proofreading, data entry by</resp>
-                    <name type="person" ref="http://syriaca.org/editors.xml#jnsaint-laurent">Jeanne-Nicole Saint-Laurent</name>
-                </respStmt>
-                <respStmt>
-                    <resp>English name entry, matching with viaf.org records by</resp>
-                    <name type="person" ref="http://syriaca.org/editors.xml#jwalters">James E. Walters</name>
+                    <name type="person" ref="http://syriaca.org/documentation/editors.xml#dmichelson">David A. Michelson</name>
                 </respStmt>
                 <respStmt>
                     <resp>Matching with viaf.org records, data entry, data transformation, conversion to XML by</resp>
-                    <name type="person" ref="http://syriaca.org/editors.xml#ngibson">Nathan P. Gibson</name>
+                    <name type="person" ref="http://syriaca.org/documentation/editors.xml#ngibson">Nathan P. Gibson</name>
                 </respStmt>
                 <respStmt>
-                    <resp>Editing, Syriac name entry, disambiguation research by</resp>
-                    <name type="person" ref="http://syriaca.org/editors.xml#tcarlson">Thomas A. Carlson</name>
+                    <resp>GEDSH and Barsoum English name entry, matching with viaf.org records by</resp>
+                    <name type="person" ref="http://syriaca.org/documentation/editors.xml#jwalters">James E. Walters</name>
+                </respStmt>
+                <respStmt>
+                    <resp>Editing, disambiguation research, conversion to XML by</resp>
+                    <name type="person" ref="http://syriaca.org/documentation/editors.xml#tcarlson">Thomas A. Carlson</name>
                 </respStmt>
                 <respStmt>
                     <resp>Syriac name entry by</resp>
-                    <name type="person" ref="http://syriaca.org/editors.xml#raydin">Robert Aydin</name>
+                    <name type="person" ref="http://syriaca.org/documentation/editors.xml#raydin">Robert Aydin</name>
                 </respStmt>
                 <respStmt>
                     <resp>Arabic name entry by</resp>
-                    <name type="person" ref="http://syriaca.org/editors.xml#pkirlles">Philemon Kirlles</name>
+                    <name type="person" ref="http://syriaca.org/documentation/editors.xml#jkaado">Jad Kaado</name>
                 </respStmt>
                 <respStmt>
-                    <resp>Arabic name entry by</resp>
-                    <name type="person" ref="http://syriaca.org/editors.xml#jkaado">Jad Kaado</name>
+                    <resp>Editorial oversight for GEDSH and Barsoum English text entry, and proofreading by</resp>
+                    <name type="person" ref="http://syriaca.org/documentation/editors.xml#cjohnson">Christopher Johnson</name>
                 </respStmt>
                 <respStmt>
-                    <resp>Normalization, matching with viaf.org records by</resp>
-                    <name type="person" ref="http://syriaca.org/editors.xml#avawter">Alex Vawter</name>
-                </respStmt>
-                <respStmt>
-                    <resp>Date entry by</resp>
-                    <name type="person" ref="http://syriaca.org/editors.xml#rsingh-bischofberger">Ralf Singh-Bischofberger</name>
-                </respStmt>
-                <respStmt>
-                    <resp>Project managament, English text entry, and proofreading by</resp>
-                    <name type="person" ref="http://syriaca.org/editors.xml#cjohnson">Christopher Johnson</name>
-                </respStmt>
-                <respStmt>
-                    <resp>English text entry and proofreading by</resp>
-                    <name type="org" ref="http://syriaca.org/editors.xml#uasyriacresearchgroup">the Syriac Research Group, University of Alabama</name>
+                    <resp>GEDSH and Barsoum English text entry and proofreading by</resp>
+                    <name type="org" ref="http://syriaca.org/documentation/editors.xml#uasyriacresearchgroup">the Syriac Research Group, University of Alabama</name>
                 </respStmt>
             </titleStmt>
             <editionStmt>
@@ -70,7 +57,7 @@
             </editionStmt>
             <publicationStmt>
                 <authority>Syriaca.org: The Syriac Reference Portal</authority>
-                <idno type="URI">http://syriaca.org/person/181/source</idno>
+                <idno type="URI">http://syriaca.org/person/181/tei</idno>
                 <availability>
                     <licence target="http://creativecommons.org/licenses/by/3.0/">
                         <p>Distributed under a Creative Commons Attribution 3.0 Unported License.</p>
@@ -88,7 +75,7 @@
                         </p>
                     </licence>
                 </availability>
-                <date>2013-08-12-04:00</date>
+                <date>2014-10-15-04:00</date>
             </publicationStmt>
             <sourceDesc>
                 <p>Born digital.</p>
@@ -100,12 +87,8 @@
                         Documentation available at: <ref target="http://syriaca.org/documentation">http://syriaca.org/documentation</ref>.</p>
                 <interpretation>
                     <p>Approximate dates described in terms of centuries or partial centuries
-                            have been interpreted as in the following example: 
-                            "4th cent." - notBefore="300" notAfter="399". 
-                            "Early 4th cent." - notBefore="300" notAfter="349". 
-                            "Late 4th cent." - notBefore="350" notAfter="399".
-                            "Mid-4th cent." - notBefore="325" notAfter="374". 
-                            Etc.</p>
+                            have been interpreted as documented in 
+                            <ref target="http://syriaca.org/documentation/dates.html">Syriaca.org Dates</ref>.</p>
                 </interpretation>
             </editorialDecl>
             <classDecl>
@@ -117,6 +100,14 @@
                     </category>
                     <category xml:id="syriaca-anglicized">
                         <catDesc>An anglicized version of a name, included to facilitate searching.</catDesc>
+                    </category>
+                </taxonomy>
+                <taxonomy>
+                    <category xml:id="syriaca-author">
+                        <catDesc>A person who is relevant to the Guide to Syriac Authors</catDesc>
+                    </category>
+                    <category xml:id="syriaca-saint">
+                        <catDesc>A person who is relevant to the Bibliotheca Hagiographica Syriaca.</catDesc>
                     </category>
                 </taxonomy>
             </classDecl>
@@ -136,69 +127,65 @@
             </langUsage>
         </profileDesc>
         <revisionDesc>
-            <change who="http://syriaca.org/editors.xml#ngibson" n="1.0" when="2013-08-12-04:00"> CREATED: person </change>
+            <change who="http://syriaca.org/documentation/editors.xml#wsalesky" when="2014-10-15-04:00">ADDED: Renumbered bibl xml:id attributes and source references to be sequential.</change>
+            <change who="http://syriaca.org/documentation/editors.xml#wsalesky" when="2014-10-15-04:00">ADDED: syriaca-computed-end for elements with date attributes</change>
+            <change who="http://syriaca.org/documentation/editors.xml#tcarlson" n="1.0" when="2014-07-31-05:00"> CREATED: person </change>
         </revisionDesc>
     </teiHeader>
     <text>
         <body>
             <listPerson>
-                <person xml:id="person-181">
-                    <persName xml:id="name181-1" corresp="#name181-2 #name181-3 #name181-4" xml:lang="en" source="#bib181-2">
+                <person xml:id="person-181" ana="#syriaca-author">
+                    <persName xml:id="name181-1" corresp="#name181-2 #name181-3 #name181-4" xml:lang="en" source="#bib181-1">
                         <forename sort="1">Athanasius</forename>, <roleName type="office" sort="2">bishop of <placeName ref="http://syriaca.org/place/438">Qallisura</placeName>
                         </roleName>
                     </persName>
-                    <persName xml:id="name181-2" corresp="#name181-1 #name181-3 #name181-4" xml:lang="ar" source="#bib181-3">
+                    <persName xml:id="name181-2" corresp="#name181-1 #name181-3 #name181-4" xml:lang="ar" source="#bib181-2">
                         <forename sort="1">اثناسيوس</forename>
                         <addName type="untagged-title" sort="2">اسقف قليسورا</addName>
                     </persName>
-                    <persName xml:id="name181-3" corresp="#name181-1 #name181-2 #name181-4" xml:lang="syr" source="#bib181-4">
+                    <persName xml:id="name181-3" corresp="#name181-1 #name181-2 #name181-4" xml:lang="syr" source="#bib181-3">
                         <forename sort="1">ܐܬܢܐܣܝܘܣ</forename>
                         <addName type="untagged-title" sort="2">ܐܦܝܣܩܘܦܐ ܕܩܠܝܣܘܪܐ</addName>
                     </persName>
-                    <persName xml:id="name181-4" corresp="#name181-1 #name181-2 #name181-3" xml:lang="syr-Syrj" source="#bib181-4">
+                    <persName xml:id="name181-4" corresp="#name181-1 #name181-2 #name181-3" xml:lang="syr-Syrj" source="#bib181-3">
                         <forename sort="1">ܐܰܬܰܢܐܣܝܘܣ</forename>
                         <addName type="untagged-title" sort="2">ܐܶܦܝܣܩܘܦܳܐ ܕܰܩܠܝܣܘܪܰܐ</addName>
                     </persName>
-                    <persName xml:id="name181-5" xml:lang="syr" syriaca-tags="#syriaca-headword">
+                    <persName xml:id="name181-5" xml:lang="syr" resp="http://syriaca.org" syriaca-tags="#syriaca-headword">
                         <forename sort="1">ܐܬܢܐܣܝܘܣ</forename>
                         <addName type="untagged-title" sort="2">ܕܩܠܝܣܘܪܐ</addName>
                     </persName>
-                    <persName xml:id="name181-6" xml:lang="en-x-gedsh" syriaca-tags="#syriaca-headword">
+                    <persName xml:id="name181-6" xml:lang="en-x-gedsh" resp="http://syriaca.org" syriaca-tags="#syriaca-headword">
                         <forename sort="1">Athanasios</forename>
                         <addName type="untagged-title" sort="2">of Qlisuro</addName>
                     </persName>
-                    <persName xml:id="name181-7" xml:lang="en">
+                    <persName xml:id="name181-7" xml:lang="en" resp="http://syriaca.org" syriaca-tags="#syriaca-anglicized">
                         <forename sort="1">Athanasius</forename>
                         <addName type="untagged-title" sort="2">of Qlisuro</addName>
                     </persName>
+                    <note type="abstract" xml:id="abstract-en-181"/>
                     <idno type="URI">http://syriaca.org/person/181</idno>
                     <idno type="URI">http://viaf.org/viaf/sourceID/SRP|181</idno>
-                    <death when="0982" source="#bib181-2">982</death>
-                    <state type="office" role="bishop" source="#bib181-2">
+                    <death when="0982" source="#bib181-1" syriaca-computed-start="0982-01-01">982</death>
+                    <state type="office" role="bishop" source="#bib181-1">
                         <desc xml:lang="en">Bishop of Qallisura</desc>
                     </state>
-                    <bibl xml:id="bib181-2">
+                    <bibl xml:id="bib181-1">
                         <title level="m" xml:lang="en">The Scattered Pearls: A History of Syriac Literature and Sciences</title>
                         <ptr target="http://syriaca.org/bibl/4"/>
                         <citedRange unit="entry">181</citedRange>
                         <citedRange unit="pp">407</citedRange>
                     </bibl>
-                    <bibl xml:id="bib181-3">
+                    <bibl xml:id="bib181-2">
                         <title level="m" xml:lang="ar">كتاب اللؤلؤ المنثور في تاريخ العلوم والأداب السريانية</title>
                         <ptr target="http://syriaca.org/bibl/2"/>
                         <citedRange unit="pp">538</citedRange>
                     </bibl>
-                    <bibl xml:id="bib181-4">
+                    <bibl xml:id="bib181-3">
                         <title level="m" xml:lang="syr">ܒܪ̈ܘܠܐ ܒܕܝܪ̈ܐ ܕܥܠ ܡܪܕܘܬ ܝܘܠܦܢ̈ܐ ܣܘܪ̈ܝܝܐ ܗܕܝܪ̈ܐ</title>
                         <ptr target="http://syriaca.org/bibl/3"/>
                         <citedRange unit="pp">386</citedRange>
-                    </bibl>
-                    <bibl xml:id="bib181-11">
-                        <title xml:lang="en">Virtual International Authority File</title>
-                        <abbr>VIAF</abbr>
-                        <ptr target="http://viaf.org"/>
-                        <span xml:lang="en">Information cited from VIAF may come from any library or agency participating
-                    with VIAF.</span>
                     </bibl>
                 </person>
                 <relation name="has-relation-to-place" active="#person-181" passive="http://syriaca.org/place/438" source="#bib181-2">

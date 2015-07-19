@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://syriaca.org/documentation/syriaca-tei-main.rnc" type="application/relax-ng-compact-syntax"?>
 <TEI xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns="http://www.tei-c.org/ns/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:syriaca="http://syriaca.org" xml:lang="en">
     <teiHeader>
         <fileDesc>
@@ -10,16 +10,16 @@
                 <funder>The National Endowment for the Humanities</funder>
                 <funder>The International Balzan Prize Foundation</funder>
                 <principal>David A. Michelson</principal>
-                <editor role="general" ref="http://syriaca.org/editors.xml#tcarlson">Thomas A. Carlson</editor>
-                <editor role="general" ref="http://syriaca.org/editors.xml#dmichelson">David A. Michelson</editor>
-                <editor role="creator" ref="http://syriaca.org/editors.xml#tcarlson">Thomas A. Carlson</editor>
+                <editor role="general" ref="http://syriaca.org/documentation/editors.xml#tcarlson">Thomas A. Carlson</editor>
+                <editor role="general" ref="http://syriaca.org/documentation/editors.xml#dmichelson">David A. Michelson</editor>
+                <editor role="creator" ref="http://syriaca.org/documentation/editors.xml#tcarlson">Thomas A. Carlson</editor>
                 <respStmt>
                     <resp>Data merging, Pleiades and Wikipedia linking, and XML by</resp>
-                    <name ref="http://syriaca.org/editors.xml#tcarlson">Thomas A. Carlson</name>
+                    <name ref="http://syriaca.org/documentation/editors.xml#tcarlson">Thomas A. Carlson</name>
                 </respStmt>
                 <respStmt>
                     <resp>Wilmshurst index information entry by</resp>
-                    <name ref="http://syriaca.org/editors.xml#adavis">Anthony Davis</name>
+                    <name ref="http://syriaca.org/documentation/editors.xml#adavis">Anthony Davis</name>
                 </respStmt>
             </titleStmt>
             <editionStmt>
@@ -33,7 +33,7 @@
                         <p>Distributed under a Creative Commons Attribution 3.0 Unported License.</p>
                     </licence>
                 </availability>
-                <date>2013-10-26-04:00</date>
+                <date>2014-06-30-04:00</date>
             </publicationStmt>
             <sourceDesc>
                 <p>Born digital.</p>
@@ -65,7 +65,12 @@
             </langUsage>
         </profileDesc>
         <revisionDesc>
-            <change who="http://syriaca.org/editors.xml#tcarlson" when="2013-10-26-04:00">CREATED: place</change>
+            <change who=" http://syriaca.org/documentation/editors.xml#wsalesky" when="2014-06-30-04:00">CHANGED tei:author element to tei:persName under tei:event element.</change>
+            <change who=" http://syriaca.org/documentation/editors.xml#tcarlson" when="2014-06-12-05:00">ADDED: Yaqut citation and attestation</change>
+            <change who=" http://syriaca.org/documentation/editors.xml#wsalesky" when="2014-01-14">ADDED: relation element with shares-name-with attribute for all place headwords that share names</change>
+            <change who=" http://syriaca.org/documentation/editors.xml#wsalesky" when="2014-01-14">ADDED: latitude and longitude from Pleiades</change>
+            <change who=" http://syriaca.org/documentation/editors.xml#wsalesky" when="2014-01-14">ADDED: syriaca-computed-start and syriaca-computed-end attributes for searching</change>
+            <change who=" http://syriaca.org/documentation/editors.xml#tcarlson" when="2013-12-18-05:00">CREATED: place</change>
         </revisionDesc>
     </teiHeader>
     <text>
@@ -76,8 +81,19 @@
                     <placeName xml:id="name123-2" xml:lang="en" source="#bib123-1 #bib123-2">Mesene</placeName>
                     <placeName xml:id="name123-3" xml:lang="en" source="#bib123-3">Maishān</placeName>
                     <placeName xml:id="name123-4" xml:lang="en" source="#bib123-3">Basra</placeName>
+                    <placeName xml:id="name123-5" xml:lang="ar" source="#bib123-5">مَيْسان</placeName>
                     <desc xml:id="abstract-en-123" xml:lang="en">A region of southern <placeName ref="http://syriaca.org/place/98">Iraq</placeName> south of <placeName ref="http://syriaca.org/place/111">Kashkar</placeName> and northwest of <placeName ref="http://syriaca.org/place/44">Baṣra</placeName>.</desc>
-                    <state type="existence"/>
+                    <location type="gps" source="#bib123-4">
+                        <geo>30.8093425 47.562804</geo>
+                    </location>
+                    <event type="attestation" xml:id="attestation123-1" notBefore="1224" notAfter="1228" source="#bib123-5" syriaca-computed-start="1224-01-01" syriaca-computed-end="1228-01-01">
+                        <p xml:lang="en">Attestation of name <foreign xml:lang="ar">مَيْسان</foreign> in the <title xml:lang="en" level="m">Muʿjam al-buldān</title> of <persName>Yāqūt al-Ḥamawī</persName>.</p>
+                        <link target="#name123-5 #attestation123-1"/>
+                    </event>
+                    <state type="existence" from="0226" to="0637" syriaca-computed-end="0637-01-01" syriaca-computed-start="0226-01-01">
+                        <precision match="@from" notAfter="0226" syriaca-computed-end="0226-01-01"/>
+                        <precision match="@to" notBefore="0637" syriaca-computed-start="0637-01-01"/>
+                    </state>
                     <idno type="URI">http://syriaca.org/place/123</idno>
                     <idno type="URI">http://pleiades.stoa.org/places/912905</idno>
                     <idno type="URI">http://en.wikipedia.org/wiki/Maishan</idno>
@@ -104,7 +120,18 @@
                         <citedRange unit="pp">17, 344</citedRange>
                         <ptr target="http://syriaca.org/bibl/9"/>
                     </bibl>
+                    <bibl xml:id="bib123-4">
+                        <title>http://pleiades.stoa.org/places/912905</title>
+                        <ptr target="http://pleiades.stoa.org/places/912905"/>
+                    </bibl>
+                    <bibl xml:id="bib123-5">
+                        <title xml:lang="en" level="m">Muʿjam al-buldān</title>
+                        <author>Yāqūt al-Ḥamawī</author>
+                        <ptr target="http://syriaca.org/bibl/636"/>
+                        <citedRange unit="pp">V:280</citedRange>
+                    </bibl>
                 </place>
+                <relation name="share-a-name" mutual="#place-123  http://syriaca.org/place/2339"/>
             </listPlace>
         </body>
     </text>

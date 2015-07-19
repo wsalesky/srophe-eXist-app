@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_all.rng" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<?xml-model href="http://syriaca.org/documentation/syriaca-tei-main.rnc" type="application/relax-ng-compact-syntax"?>
 <TEI xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns="http://www.tei-c.org/ns/1.0" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:syriaca="http://syriaca.org" xml:lang="en">
     <teiHeader>
         <fileDesc>
@@ -12,12 +12,12 @@
                 <funder>The National Endowment for the Humanities</funder>
                 <funder>The International Balzan Prize Foundation</funder>
                 <principal>David A. Michelson</principal>
-                <editor role="general" ref="http://syriaca.org/editors.xml#tcarlson">Thomas A. Carlson</editor>
-                <editor role="general" ref="http://syriaca.org/editors.xml#dmichelson">David A. Michelson</editor>
-                <editor role="creator" ref="http://syriaca.org/editors.xml#tcarlson">Thomas A. Carlson</editor>
+                <editor role="general" ref="http://syriaca.org/documentation/editors.xml#tcarlson">Thomas A. Carlson</editor>
+                <editor role="general" ref="http://syriaca.org/documentation/editors.xml#dmichelson">David A. Michelson</editor>
+                <editor role="creator" ref="http://syriaca.org/documentation/editors.xml#tcarlson">Thomas A. Carlson</editor>
                 <respStmt>
                     <resp>Data merging, Pleiades and Wikipedia linking, and XML by</resp>
-                    <name ref="http://syriaca.org/editors.xml#tcarlson">Thomas A. Carlson</name>
+                    <name ref="http://syriaca.org/documentation/editors.xml#tcarlson">Thomas A. Carlson</name>
                 </respStmt>
             </titleStmt>
             <editionStmt>
@@ -46,7 +46,7 @@
                         </p>
                     </licence>
                 </availability>
-                <date>2013-10-26-04:00</date>
+                <date>2014-06-30-04:00</date>
             </publicationStmt>
             <sourceDesc>
                 <p>Born digital.</p>
@@ -78,7 +78,11 @@
             </langUsage>
         </profileDesc>
         <revisionDesc>
-            <change who="http://syriaca.org/editors.xml#tcarlson" when="2013-10-26-04:00">CREATED: place</change>
+            <change who=" http://syriaca.org/documentation/editors.xml#wsalesky" when="2014-06-30-04:00">CHANGED tei:author element to tei:persName under tei:event element.</change>
+            <change who=" http://syriaca.org/documentation/editors.xml#tcarlson" when="2014-06-12-05:00">ADDED: Yaqut citation and attestation</change>
+            <change who=" http://syriaca.org/documentation/editors.xml#wsalesky" when="2014-01-14">ADDED: latitude and longitude from Pleiades</change>
+            <change who=" http://syriaca.org/documentation/editors.xml#wsalesky" when="2014-01-14">ADDED: syriaca-computed-start and syriaca-computed-end attributes for searching</change>
+            <change who=" http://syriaca.org/documentation/editors.xml#tcarlson" when="2013-12-18-05:00">CREATED: place</change>
         </revisionDesc>
     </teiHeader>
     <text>
@@ -89,8 +93,19 @@
                     <placeName xml:id="name514-2" xml:lang="syr" syriaca-tags="#syriaca-headword">ܣܟܢܗ</placeName>
                     <placeName xml:id="name514-3" xml:lang="syr-Syrj" source="#bib514-1">ܣܰܟܢܗ</placeName>
                     <placeName xml:id="name514-4" xml:lang="ar" source="#bib514-2">سخنة</placeName>
+                    <placeName xml:id="name514-5" xml:lang="ar" source="#bib514-5">سُخْنة</placeName>
                     <desc xml:id="abstract-en-514" xml:lang="en">A town on the desert road between <placeName ref="http://syriaca.org/place/153">Palmyra</placeName> and <placeName ref="http://syriaca.org/place/482">Dayr al-Zor</placeName>.</desc>
-                    <state type="existence"/>
+                    <location type="gps" source="#bib514-4">
+                        <geo>34.900877 38.882857</geo>
+                    </location>
+                    <event type="attestation" xml:id="attestation514-1" notBefore="1224" notAfter="1228" source="#bib514-5" syriaca-computed-start="1224-01-01" syriaca-computed-end="1228-01-01">
+                        <p xml:lang="en">Attestation of name <foreign xml:lang="ar">سُخْنة</foreign> in the <title xml:lang="en" level="m">Muʿjam al-buldān</title> of <persName>Yāqūt al-Ḥamawī</persName>.</p>
+                        <link target="#name514-5 #attestation514-1"/>
+                    </event>
+                    <state type="existence" from="0634" to="2013" syriaca-computed-end="2013-01-01" syriaca-computed-start="0634-01-01">
+                        <precision match="@from" notAfter="0634" syriaca-computed-end="0634-01-01"/>
+                        <precision match="@to" notBefore="2013" syriaca-computed-start="2013-01-01"/>
+                    </state>
                     <idno type="URI">http://syriaca.org/place/514</idno>
                     <idno type="URI">http://pleiades.stoa.org/places/668178</idno>
                     <idno type="URI">http://en.wikipedia.org/wiki/Al-Sukhnah</idno>
@@ -109,6 +124,16 @@
                         <title xml:lang="en">The Scattered Pearls: A History of Syriac Literature and Sciences</title>
                         <ptr target="http://syriaca.org/bibl/4"/>
                         <citedRange unit="pp">557</citedRange>
+                    </bibl>
+                    <bibl xml:id="bib514-4">
+                        <title>http://pleiades.stoa.org/places/668178</title>
+                        <ptr target="http://pleiades.stoa.org/places/668178"/>
+                    </bibl>
+                    <bibl xml:id="bib514-5">
+                        <title xml:lang="en" level="m">Muʿjam al-buldān</title>
+                        <author>Yāqūt al-Ḥamawī</author>
+                        <ptr target="http://syriaca.org/bibl/636"/>
+                        <citedRange unit="pp">III:221</citedRange>
                     </bibl>
                 </place>
             </listPlace>
