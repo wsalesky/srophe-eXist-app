@@ -15,11 +15,11 @@
         <!-- Web Site URL -->
         <url>http://syriaca.org/</url>
         <!-- Root of app for building dynamic links. Default is eXist app root -->
-        <nav-base>/exist/apps/srophe</nav-base>
+        <nav-base>/exist/apps/usaybia</nav-base>
         <!-- eXist app root for app deployment-->
-        <app-root>srophe</app-root>
+        <app-root>usaybia</app-root>
         <!-- eXist data app root for TEI application.  -->
-        <data-root>srophe-data</data-root>
+        <data-root>usaybia-data</data-root>
         <!-- Base URI for identifiers in app data -->
         <base_uri>http://syriaca.org</base_uri>
         <!-- 
