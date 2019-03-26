@@ -698,3 +698,21 @@ return
     else ()
 }; 
 
+
+(:~  
+ : Display all names and orgs in the editors.xml file.  
+:)
+declare function app:editors($node as node(), $model as map(*)){
+let $data := doc($config:app-root || '/documentation/editors.xml')
+return
+    <div>
+        <p>{$data/descendant::tei:encodingDesc//text()}</p>
+        <ul>{
+            for $name in $data/descendant::tei:body/tei:listPerson/child::*
+            return 
+                <li>{tei2html:tei2html($name)}</li>
+            }</ul>
+    </div>
+    
+    
+}; 

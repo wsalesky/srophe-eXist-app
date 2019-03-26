@@ -63,7 +63,13 @@ else if ($exist:path eq "/") then
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
         <redirect url="index.html"/>
     </dispatch>
-
+    
+else if($exist:resource = 'editors.xml') then
+    (: forward editors.xml to editors.html :)
+    <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
+        <redirect url="{concat($config:nav-base,'/documentation/editors.html')}"/>
+    </dispatch>
+    
 (: Passes any api requests to correct endpoint:)    
 else if (contains($exist:path,'/api/')) then
   if (ends-with($exist:path,"/")) then
