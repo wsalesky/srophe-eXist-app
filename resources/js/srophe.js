@@ -3,10 +3,8 @@ $(document).ready(function() {
 // validate contact forms
 $.validator.setDefaults({
 	submitHandler: function() {
-	   if($('input#url').val().length == 0)
-         { 
-       	//Ajax submit for contact form
-           $.ajax({
+         	//Ajax submit for contact form
+                $.ajax({
                    type:'POST', 
                    url: $('#email').attr('action'), 
                    data: $('#email').serializeArray(),
@@ -23,8 +21,7 @@ $.validator.setDefaults({
                        }
                       // $('div#modal-body').html(temp);
                }});
-        }
-        return false;
+          return false;
 	}
 });
 
