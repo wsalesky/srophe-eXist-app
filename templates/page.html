@@ -70,17 +70,18 @@
                     }
                 });
                 //Change fonts
+                /*
                 $('.swap-font').on('click', function(){
                     var selectedFont = $(this).data("font-id")
                     $('.selectableFont').not('.syr').css('font-family', selectedFont);
                     $("*:lang(syr)").css('font-family', selectedFont)
                 });
-
+                */
             })
         </script>
     </head>
     <body id="body">
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" data-template="app:fix-links">
+        <nav class="navbar bg-dark navbar-inverse navbar-fixed-top" role="navigation" data-template="app:fix-links">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span>
@@ -96,65 +97,27 @@
             <div class="navbar-collapse collapse pull-right" id="navbar-collapse-1">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="$nav-base/index.html" class="nav-text">Home</a>
+                        <a href="$nav-base/index.html" class="nav-text">About</a>
                     </li> 
-                </ul>
-                <form class="navbar-form navbar-left navbar-input-group" role="search" action="$nav-base/search.html" method="get">
-                    <div class="input-group">
-                        <input type="text" class="form-control keyboard" placeholder="search" name="keyword" id="keywordNav"/>
-                        <div class="input-group-btn">
-                            <button class="btn btn-default" type="submit" data-toggle="tooltip" title="Search">
-                                <span class="glyphicon glyphicon-search"/>
-                            </button>
-                        </div>
-                    </div>
-                </form>
-                <ul class="nav navbar-nav navbar-right keboard-btn">
-                    <li>
-                        <div class="btn-nav">
-                            <a href="#" class="btn btn-default navbar-btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Select Font"><b class="caret"/></a>
-                            <ul class="dropdown-menu" id="advanced-search">
-                                <li>
-                                    <a href="$nav-base/search.html">Advanced Search</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="btn-nav navbar-btn">
-                            <span data-template="app:keyboard-select-menu" data-template-input-id="keywordNav"/>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="btn-nav">
-                            <a href="#" class="btn btn-default navbar-btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Select Font">
-                                Font <span class="caret"/>
-                            </a>
-                            <ul class="dropdown-menu" id="swap-font">
-                                <li>
-                                    <a href="#" class="swap-font" id="DefaultSelect" data-font-id="EstrangeloEdessa">Default</a>
-                                </li>
-                                <li>
-                                    <a href="#" class="swap-font" id="EstrangeloEdessaSelect" data-font-id="EstrangeloEdessa">Estrangelo Edessa</a>
-                                </li>
-                                <li>
-                                    <a href="#" class="swap-font" id="EastSyriacAdiabeneSelect" data-font-id="EastSyriacAdiabene">East Syriac Adiabene</a>
-                                </li>
-                                <li>
-                                    <a href="#" class="swap-font" id="SertoBatnanSelect" data-font-id="SertoBatnan">Serto Batnan</a>
-                                </li>
-                                <li>
-                                    <a href="$nav-base/documentation/wiki.html?wiki-page=/How-to-view-Syriac-script&amp;wiki-uri=https://github.com/srophe/srophe-app-data/wiki">Help <span class="glyphicon glyphicon-question-sign"/>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li><div class="btn-nav"><a class="btn btn-default  navbar-btn" href="#">en</a></div></li>
-                    <li><div class="btn-nav"><a class="btn btn-default  navbar-btn" href="de/index.html">de</a></div></li>
+                    <li><div class="btn-nav"><a class="btn btn-dark navbar-btn" href="#">en</a></div> </li>
+                    <li><div class="btn-nav"><a class="btn btn-dark navbar-btn" href="de/index.html">de</a></div></li>
                 </ul>
             </div>
         </nav>
+        <div class="search-bar" data-template="app:fix-links">
+                <form class="inline-form" role="search" action="$nav-base/search.html" method="get">
+                    <div class="input-group">
+                        <input type="text" class="form-control keyboard" placeholder="search" name="keyword" id="keywordNav"/>
+                        <div class="input-group-btn">
+                            <button class="btn btn-default search-btn" type="submit" data-toggle="tooltip" title="Search">
+                                <span class="glyphicon glyphicon-search"/>
+                            </button>
+                            <span data-template="app:keyboard-select-menu" data-template-input-id="keywordNav"/>
+                            <a class="btn btn-link" href="$nav-base/search.html">Advanced Search</a>
+                        </div>
+                    </div>
+                </form>
+        </div>
         <div id="content" class="text"/>
         <!-- Footer -->
         <footer data-template="app:shared-content" data-template-path="/templates/footer.html"/>
