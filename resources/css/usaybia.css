@@ -12,11 +12,11 @@
 }
 
 body {font-family: Arsenal-Regular; background-color:white;}
-#content {margin-top: 54px;}
+#content {margin-top: 54px; border-bottom:2px solid #87B59C;}
 
 h5 {font-size: 1.25em;}
 
-footer {border:none; border-top:3px solid #87B59C;}
+footer {border:none; }
 
 .bg-light {
   background-color: rgb(248,249,250, .85);
@@ -170,6 +170,8 @@ button.btn-dark:focus {
     }
 
 .home .col-flex { margin:.5em; padding:2em;}
+.overall {background:url('../images/overall.svg') center no-repeat;min-height:75px;}
+.vs {background:url('../images/vs.svg') center no-repeat; min-height:75px;}
 
 /*
  * Dummy devices (replace them with your own or something else entirely!)
