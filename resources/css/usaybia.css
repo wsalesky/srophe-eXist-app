@@ -92,6 +92,7 @@ footer {border:none; }
     height:50px;
     border:none;
     text-align:center;
+    z-index: 300;
 /*    border-bottom:1px solid #87B59C;*/
 }
 
