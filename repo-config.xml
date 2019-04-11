@@ -1,24 +1,25 @@
 <meta xmlns="http://exist-db.org/xquery/repo">
     <!-- 
-        Application configuration file for the Usaybia.net application. 
+        Application configuration file for the Srophe application. 
     -->
     <config>
         <!-- Application title -->
-        <title>Usaybia.net</title>
+        <title>Syriaca.org</title>
         <!-- App description -->
-        <description>Communities of Knowledge: Interreligious Networks of Scholars in Ibn Abi Usaybiʿa’s History of the Physicians</description>
+        <description>A collaborative research project publishling online reference works concerning the
+            culture, history, and literature of Syriac communities from antiquity to the present.</description>
         <!-- Contact email -->
         <contact>info@syriaca.org</contact>
         <!-- Logo name (assumes path to logo is $nav-base/resources/images/) -->
-        <logo/>
+        <logo>srophe.svg</logo>
         <!-- Web Site URL -->
-        <url>https://usaybia.net/</url>
+        <url>http://syriaca.org/</url>
         <!-- Root of app for building dynamic links. Default is eXist app root -->
-        <nav-base>/exist/apps/usaybia</nav-base>
+        <nav-base>/exist/apps/srophe</nav-base>
         <!-- eXist app root for app deployment-->
-        <app-root>usaybia</app-root>
+        <app-root>srophe</app-root>
         <!-- eXist data app root for TEI application.  -->
-        <data-root>usaybia-data</data-root>
+        <data-root>srophe-data</data-root>
         <!-- Base URI for identifiers in app data -->
         <base_uri>http://syriaca.org</base_uri>
         <!-- 
