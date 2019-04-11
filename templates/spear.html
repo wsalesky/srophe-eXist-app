@@ -1,18 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <html xmlns="http://www.w3.org/1999/xhtml" data-template="app:get-work">
     <head>
-        <title data-template="app:record-title">App Title</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <title data-template="app:record-title" data-template-collection="spear">App Title</title>
+        <link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"/>
+        <link rel="schema.DCTERMS" href="http://purl.org/dc/terms/"/>
+        <!--<meta name="DC.subject" property="dc.subject" content="Geography, Ancient"/>-->
+        <meta name="DC.type" property="dc.type" content="Text"/>
+        <meta name="DC.isPartOf" property="dc.ispartof" content="SPEAR"/>
         <link data-template="app:metadata"/>
-        <link rel="shortcut icon" href="$nav-base/resources/images/fav-icons/syriaca-favicon.ico"/>
+        <link rel="shortcut icon" href="$nav-base/resources/images/fav-icons/spear-favicon.ico"/>
         <!-- Bootstrap 3 -->
         <link rel="stylesheet" type="text/css" href="$nav-base/resources/bootstrap/css/bootstrap.min.css"/>
+        <!-- Smart menus -->
         <link rel="stylesheet" type="text/css" href="$nav-base/resources/css/sm-core-css.css"/>
         <!-- Srophe styles -->
         <link rel="stylesheet" type="text/css" href="$nav-base/resources/css/syr-icon-fonts.css"/>
         <link rel="stylesheet" type="text/css" href="$nav-base/resources/css/style.css"/>
+        <!-- Syriaca.org, Geo -->
         <link rel="stylesheet" type="text/css" href="$nav-base/resources/css/main.css"/>
-        <link rel="stylesheet" type="text/css" href="$nav-base/resources/css/slider.css"/>
-        <link rel="stylesheet" type="text/css" href="$nav-base/resources/css/lightslider.css"/>
+        <link rel="stylesheet" type="text/css" href="$nav-base/resources/css/spear.css"/>
         <link rel="stylesheet" type="text/css" media="print" href="$nav-base/resources/css/print.css"/>
         <!-- Leaflet -->
         <link rel="stylesheet" href="$nav-base/resources/leaflet/leaflet.css"/>
@@ -88,63 +97,30 @@
                     <span class="icon-bar"/>
                     <span class="icon-bar"/>
                 </button>
-                <a class="navbar-brand banner-container" href="$nav-base/index.html"> 
-                    <span class="syriaca-icon syriaca-syriaca banner-icon">
+                <a class="navbar-brand banner-container" href="$nav-base/spear/index.html">
+                    <span class="syriaca-icon syriaca-spear banner-icon">
                         <span class="path1"/><span class="path2"/><span class="path3"/><span class="path4"/>
                     </span>
-                    <span class="banner-text">Syriaca.org</span>
+                    <span class="banner-text" data-template="config:collection-title" data-template-collection="spear">SPEAR: Syriac Persons Events and Relations</span>
                 </a>
             </div>
             <div class="navbar-collapse collapse pull-right" id="navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                    <li  class="dropdown">
-                        <a href="$nav-base/index.html" style="margin-top:.5em;">
-                            <span class="icon-text">Publications</span>
-                        </a>
+                    <li>
+                        <a href="$nav-base/spear/browse.html" class="nav-text">Browse</a>
                     </li>
+                    <li class="dropdown">
+                        <a href="$nav-base/index.html" class="icon-container">
+                            <span class="syriaca-icon syriaca-syriaca icon-nav">
+                                <span class="path1"/><span class="path2"/><span class="path3"/><span class="path4"/>
+                            </span>
+                            <span class="icon-text">Syriaca.org</span>
+                        </a>
+                    </li>                        
                     <!-- Shared drop-down menu of all submodules -->
                     <li data-template="app:shared-content" data-template-path="/templates/shared-links.html"/>
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown"> About <b class="caret"/></a>
-                        <ul class="dropdown-menu pull-right">
-                            <li>
-                                <a href="$nav-base/about-syriac.html">What is Syriac?</a>
-                            </li>
-                            <li role="presentation" class="divider"/>
-                            <li>
-                                <a href="$nav-base/about-srophe.html">Project Overview</a>
-                            </li>
-                            <li role="presentation" class="divider"/>
-                            <li>
-                                <a href="$nav-base/project-team.html">Project Team</a>
-                            </li>
-                            <li role="presentation" class="divider"/>
-                            <li>
-                                <a href="$nav-base/project-partners.html">Project Partners</a>
-                            </li>
-                            <li role="presentation" class="divider"/>
-                            <li>
-                                <a href="$nav-base/media-releases.html">Media Releases</a>
-                            </li>
-                            <li role="presentation" class="divider"/>
-                            <li>
-                                <a href="http://vu.edu/syriac">Support Our Work</a>
-                            </li>
-                            <li role="presentation" class="divider"/>
-                            <li>
-                                <a href="$nav-base/contact-us.html">Contact Us</a>
-                            </li>
-                            <li role="presentation" class="divider"/>
-                            <li>
-                                <a href="$nav-base/documentation/index.html">
-                                    <span class="syriaca-icon syriaca-book icon-nav" style="color:red;"/>
-                                    <span class="icon-text">Documentation</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
                 </ul>
-                <form class="navbar-form navbar-left navbar-input-group" role="search" action="$nav-base/search.html" method="get">
+                <form class="navbar-form navbar-left navbar-input-group" role="search" action="$nav-base/spear/search.html" method="get">
                     <div class="input-group">
                         <input type="text" class="form-control keyboard" placeholder="search" name="keyword" id="keywordNav"/>
                         <div class="input-group-btn">
@@ -160,7 +136,7 @@
                             <a href="#" class="btn btn-default navbar-btn dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" title="Select Font"><b class="caret"/></a>
                             <ul class="dropdown-menu" id="advanced-search">
                                 <li>
-                                    <a href="$nav-base/search.html">Advanced Search</a>
+                                    <a href="$nav-base/spear/search.html">Advanced Search</a>
                                 </li>
                             </ul>
                         </div>
@@ -206,7 +182,5 @@
     <script type="text/javascript" src="$nav-base/resources/js/jquery.validate.min.js"/>
     <script type="text/javascript" src="$nav-base/resources/js/require.min.js"/>
     <script type="text/javascript" src="$nav-base/resources/js/srophe.js"/>
-    <script type="text/javascript" src="$nav-base/resources/js/lightslider.min.js"/>
-    <script type="text/javascript" src="$nav-base/resources/js/lightslider-functions.js"/>
     <script data-template="app:google-analytics"/>
 </html>
