@@ -45,12 +45,17 @@ declare function local:content-negotiation($exist:path, $exist:resource){
                        else if(request:get-parameter('format', '') != '') then request:get-parameter('format', '')                            
                        else fn:tokenize($exist:resource, '\.')[fn:last()]
         return 
-            <dispatch xmlns="http://exist.sourceforge.net/NS/exist">        
-                <forward url="{$exist:controller}/modules/content-negotiation/content-negotiation.xql">
-                    <add-parameter name="id" value="{$id}"/>
-                    <add-parameter name="format" value="{$format}"/>
-                </forward>
-            </dispatch>
+            if($config:get-config//repo:collection[ends-with(@record-URI-pattern, $record-uri-root)]) then 
+                <dispatch xmlns="http://exist.sourceforge.net/NS/exist">        
+                    <forward url="{$exist:controller}/modules/content-negotiation/content-negotiation.xql">
+                        <add-parameter name="id" value="{$id}"/>
+                        <add-parameter name="format" value="{$format}"/>
+                    </forward>
+                </dispatch>
+            else 
+                <dispatch xmlns="http://exist.sourceforge.net/NS/exist">        
+                    <forward url="{$exist:root}/{$exist:path}"/>
+                </dispatch>
 };
 
 if ($exist:path eq '') then
