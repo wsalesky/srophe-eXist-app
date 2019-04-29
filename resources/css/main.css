@@ -565,3 +565,10 @@ select.keyboardSelect {display:none;}
 button.bibl-show {margin: .5em -1em;}
 .slide {font-weight:400;}
 .more-info a {font-weight:600; color:white;}
+
+@media screen and (max-width: 1170px) {
+#content {
+    background-color: white;
+    padding-top: 100px;
+ }
+}
