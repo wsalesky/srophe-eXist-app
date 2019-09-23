@@ -137,9 +137,10 @@
           <constraintSpec ident="titleInTitleStmt" scheme="schematron">
             <constraint>
               <sch:rule context="//tei:titleStmt/tei:title[1]">
-                <sch:assert test="@level='m'">
+                <sch:assert test="@level='m' or @level='a'">
                   The first &lt;title&gt; element under a &lt;titleStmt&gt; element must have 
-                  @level attribute with a value of "m".
+                  @level attribute with a value of "m" indicating "monographic" or "a" indicating
+                  analytic.
                 </sch:assert>
                 <sch:assert test="@type='main'">
                   The first &lt;title&gt; element under a &lt;titleStmt&gt; element must have 
@@ -338,12 +339,14 @@
         
         
         <elementSpec ident="seriesStmt" module="header" mode="change">
+          <!-- Consider supplementing this with the seriesStmt from the Gazetteer. -->
           <content>
-            <sequence minOccurs="0" maxOccurs="unbounded">
+            <sequence minOccurs="1" maxOccurs="unbounded">
               <elementRef key="title" minOccurs="1" maxOccurs="2"/>
               <elementRef key="editor" minOccurs="1" maxOccurs="unbounded"/>
               <elementRef key="respStmt" minOccurs="0" maxOccurs="unbounded"/>
               <elementRef key="idno" minOccurs="1" maxOccurs="1"/>
+              <elementRef key="biblScope" minOccurs="0" maxOccurs="1"/>
             </sequence>  
           </content>
           <constraintSpec ident="titleInSeriesStmt" scheme="schematron">
