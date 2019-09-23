@@ -35,6 +35,10 @@
                <name ref="http://syriaca.org/documentation/editors.xml#dschwartz">Daniel L.
                   Schwartz</name>
             </respStmt>
+            <respStmt>
+               <resp>List expanded by</resp>
+               <name ref="http://syriaca.org/documentation/editors.xml#wpotter">William L. Potter</name>
+            </respStmt>
          </titleStmt>
          <editionStmt>
             <edition n="1.0"/>
@@ -69,6 +73,7 @@
       <revisionDesc>
          <change type="reminder">Please be sure to update the publication date when changes are made
             here!</change>
+         <change when="2019-09-20" who="http://syriaca.org/documentation/editors.xml#wpotter">ADDED: William L. Potter, Lindsay Ruth, Jessica Pagan, and Anna Kelly.</change>
          <change when="2019-09-23" who="http://syriaca.org/documentation/editors.xml#dschwartz">
             ADDED: Baillargeon, McNeir, Young
          </change>
@@ -77,7 +82,7 @@
             surname.</change>
          <change when="2017-08-08" who="http://syriaca.org/documentation/editors.xml#tcarlson"
             >ADDED: Mario Kozah, Haya Al Thani, Saif al-Murikhi, Abdul Rahman Chamseddine,
-            Abdulrahim Abu-Husayn, and resp statements for other editors who ahve modified this
+            Abdulrahim Abu-Husayn, and resp statements for other editors who have modified this
             file</change>
          <change when="2017-06-23" who="http://syriaca.org/documentation/editors.xml#ngibson">ADDED:
             André Binggeli, Françoise Briquel-Chatonnet, Alain Desreumaux, Emilie Villey, Youssef
@@ -377,6 +382,12 @@
                   <surname>Kaado</surname>
                </persName>
             </person>
+            <person xml:id="akelly">
+               <persName xml:lang="en">
+                  <forename>Anna</forename>
+                  <surname>Kelly</surname>
+               </persName>
+            </person>
             <person xml:id="ekeogh">
                <persName xml:lang="en">
                   <forename>Edward</forename>
@@ -471,16 +482,35 @@
                   <surname>Nations-Quiroz</surname>
                </persName>
             </person>
+            <person xml:id="jpagan">
+               <persName xml:lang="en">
+                  <forename>Jessica</forename>
+                  <surname>Pagan</surname>
+               </persName>
+            </person>
             <person xml:id="upossekel">
                <persName xml:lang="en">
                   <forename>Ute</forename>
                   <surname>Possekel</surname>
                </persName>
             </person>
+            <person xml:id="wpotter">
+               <persName xml:lang="en">
+                  <forename>William</forename>
+                  <addName type="middle-initial">L.</addName>
+                  <surname>Potter</surname>
+               </persName>
+            </person>
             <person xml:id="fruani">
                <persName xml:lang="en">
                   <forename>Flavia</forename>
                   <surname>Ruani</surname>
+               </persName>
+            </person>
+            <person xml:id="lruth">
+               <persName xml:lang="en">
+                  <forename>Lindsay</forename>
+                  <surname>Ruth</surname>
                </persName>
             </person>
             <person xml:id="dsalem">
