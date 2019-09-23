@@ -74,6 +74,9 @@
          <change type="reminder">Please be sure to update the publication date when changes are made
             here!</change>
          <change when="2019-09-20" who="http://syriaca.org/documentation/editors.xml#wpotter">ADDED: William L. Potter, Lindsay Ruth, Jessica Pagan, and Anna Kelly.</change>
+         <change when="2019-09-23" who="http://syriaca.org/documentation/editors.xml#dschwartz">
+            ADDED: Baillargeon, McNeir, Young
+         </change>
          <change when="2019-05-17" who="http://syriaca.org/documentation/editors.xml#dmichelson"
             >ADDED: Revised prose description, added Michelle M. Taylor, alphabetized the entries by
             surname.</change>
@@ -154,6 +157,12 @@
                <persName xml:lang="en">
                   <forename>Robert</forename>
                   <surname>Aydin</surname>
+               </persName>
+            </person>
+            <person xml:id="tbaillargeon">
+               <persName xml:lang="en">
+                  <forename>Tara</forename>
+                  <surname>Baillargeon</surname>
                </persName>
             </person>
             <person xml:id="nbamballi">
@@ -434,6 +443,12 @@
                   <surname>McManaway</surname>
                </persName>
             </person>
+            <person xml:id="tmcneir">
+               <persName xml:lang="en">
+                  <forename>Taylor</forename>
+                  <surname>McNeir</surname>
+               </persName>
+            </person>
             <person xml:id="jnsaint-laurent">
                <persName xml:lang="en">
                   <forename>Jeanne-Nicole</forename>
@@ -583,6 +598,12 @@
                <persName xml:lang="en">
                   <forename>Luke</forename>
                   <surname>Yarbrough</surname>
+               </persName>
+            </person>
+            <person xml:id="syoung">
+               <persName xml:lang="en">
+                  <forename>Samuel</forename>
+                  <surname>Young</surname>
                </persName>
             </person>
             <person xml:id="ayousif">
