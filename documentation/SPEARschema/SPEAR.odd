@@ -394,7 +394,7 @@
                   This &lt;editor&gt; element must have a @role attribute with a value of "creator".
                 </sch:assert>
               </sch:rule>
-              <sch:rule context="tei:seriesStmt[child::tei:title level='m']/tei:editor">
+              <sch:rule context="tei:seriesStmt[child::tei:title @level='m']/tei:editor">
                 <sch:report test="@role='creator'">
                   This &lt;editor&gt; element cannot have a @role attribute with a value of "creator".
                 </sch:report>
