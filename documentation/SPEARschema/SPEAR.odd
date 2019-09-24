@@ -411,10 +411,40 @@
                 </sch:assert>
               </sch:rule>
               <sch:rule context="tei:seriesStmt[2]/tei:idno[preceding-sibling::tei:title = 'The Lives of the Eastern Saints']">
-                <sch:assert test=". = 'http://syriaca.org/spear/lives-eastern-saints'"></sch:assert>
+                <sch:assert test=". = 'http://syriaca.org/spear/lives-eastern-saints'">
+                  This &lt;idno&gt; must be "http://syriaca.org/spear/lives-eastern-saints".
+                </sch:assert>
               </sch:rule>
               <sch:rule context="tei:seriesStmt[2]/tei:idno[preceding-sibling::tei:title = 'The Letters of Severus']">
-                <sch:assert test=". = 'http://syriaca.org/spear/letters-severus'"></sch:assert>
+                <sch:assert test=". = 'http://syriaca.org/spear/letters-severus'">
+                  This &lt;idno&gt; must be "http://syriaca.org/spear/letters-severus".
+                </sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+          <constraintSpec ident="biblScopeInSeriesStmt" scheme="schematron">
+            <constraint>
+              <sch:rule context="tei:seriesStmt[2]">
+                <sch:assert test="tei:biblScope">
+                  This &lt;seriesStmt&gt; requires a &lt;biblScope&gt;.
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:seriesStmt[2]/tei:biblScope">
+                <sch:assert test="@unit='volume'">
+                  This &lt;biblScope&gt; element requires a a @unit
+                  attribute having a value of "volume".
+                </sch:assert>
+                <sch:assert test="tei:title">
+                  This &lt;biblScope&gt; element requires a child &lt;title&gt; element.
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:seriesStmt[2]/tei:biblScope/tei:title">
+                <sch:assert test="@level='s'">
+                  This &lt;title&gt; element requires a @level attribute with a value of "s".
+                </sch:assert>
+                <sch:assert test=". = 'SPEAR: Syriac Persons, Events, and Relations'">
+                  This &lt;title&gt; element must contain "SPEAR: Syriac Persons, Events, and Relations".
+                </sch:assert>
               </sch:rule>
             </constraint>
           </constraintSpec>
