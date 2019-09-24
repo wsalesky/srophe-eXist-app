@@ -389,6 +389,11 @@
                   This &lt;editor&gt; element must have a @role attribute with a value of "general".
                 </sch:assert>
               </sch:rule>
+              <sch:rule context="tei:seriesStmt[1]">
+                <sch:assert test="tei:editor[2]">
+                  This &lt;seriesStmt&gt; element must have two &lt;editor&gt; elements.
+                </sch:assert>
+              </sch:rule>
               <sch:rule context="tei:seriesStmt[1]/tei:editor[2]">
                 <sch:assert test="@role='creator'">
                   This &lt;editor&gt; element must have a @role attribute with a value of "creator".
