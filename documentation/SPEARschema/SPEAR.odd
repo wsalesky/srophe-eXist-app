@@ -384,22 +384,17 @@
           </constraintSpec>
           <constraintSpec ident="editorInSeriesStmt" scheme="schematron">
             <constraint>
-              <sch:rule context="tei:seriesStmt/tei:editor[1]">
+              <sch:rule context="tei:seriesStmt/tei:editor">
                 <sch:assert test="@role='general'">
                   This &lt;editor&gt; element must have a @role attribute with a value of "general".
                 </sch:assert>
               </sch:rule>
               <sch:rule context="tei:seriesStmt[1]">
-                <sch:assert test="tei:editor[2]">
-                  This &lt;seriesStmt&gt; element must have two &lt;editor&gt; elements.
-                </sch:assert>
+                <sch:report test="tei:editor[2]">
+                  This &lt;seriesStmt&gt; element may only have one child &lt;editor&gt; element.
+                </sch:report>
               </sch:rule>
-              <sch:rule context="tei:seriesStmt[1]/tei:editor[2]">
-                <sch:assert test="@role='creator'">
-                  This &lt;editor&gt; element must have a @role attribute with a value of "creator".
-                </sch:assert>
-              </sch:rule>
-              <sch:rule context="tei:seriesStmt[child::tei:title/@level='m']/tei:editor">
+              <sch:rule context="tei:seriesStmt/tei:editor">
                 <sch:report test="@role='creator'">
                   This &lt;editor&gt; element cannot have a @role attribute with a value of "creator".
                 </sch:report>
@@ -961,8 +956,12 @@
                 <dataRef key="teidata.enumerated"/>
               </datatype>
               <valList type="semi">
-                <valItem ident="creator"/>
-                <valItem ident="general"/>
+                <valItem ident="creator">
+                  <desc>A person involved in the creation of this xml file</desc>
+                </valItem>
+                <valItem ident="general">
+                  <desc>A person responsible for this xml file or collection of xml files</desc>
+                </valItem>
                 <valItem ident="translator"/>
               </valList>
             </attDef>
