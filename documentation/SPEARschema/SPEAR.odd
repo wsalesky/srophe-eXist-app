@@ -349,6 +349,7 @@
               <elementRef key="biblScope" minOccurs="0" maxOccurs="1"/>
             </sequence>  
           </content>
+          <!-- Test the following constraintSpecs further. They don't seem to be working correctly. May need to move them close to parent elements. -->
           <constraintSpec ident="titleInSeriesStmt" scheme="schematron">
             <constraint>
               <sch:rule context="tei:seriesStmt[1]/tei:title[1]">
@@ -365,10 +366,10 @@
                 </sch:assert>
                 <sch:assert test="
                   . = 'The Lives of the Eastern Saints' or 
-                  . = 'The Letters of Severus'
+                  . = 'The Letters of Severus of Antioch'
                   ">
                   This &lt;title&gt; element must be "The Lives of the Eastern Saints"
-                  or "The Letters of Severus".
+                  or "The Letters of Severus of Antioch".
                 </sch:assert>
               </sch:rule>
               <sch:rule context="tei:seriesStmt[2]/tei:title[2]">
@@ -420,7 +421,7 @@
                   This &lt;idno&gt; must be "http://syriaca.org/spear/lives-eastern-saints".
                 </sch:assert>
               </sch:rule>
-              <sch:rule context="tei:seriesStmt[2]/tei:idno[preceding-sibling::tei:title = 'The Letters of Severus']">
+              <sch:rule context="tei:seriesStmt[2]/tei:idno[preceding-sibling::tei:title = 'The Letters of Severus of Antioch']">
                 <sch:assert test=". = 'http://syriaca.org/spear/letters-severus'">
                   This &lt;idno&gt; must be "http://syriaca.org/spear/letters-severus".
                 </sch:assert>
@@ -1172,7 +1173,7 @@
                 <sch:let name="eds" value="$edsDoc//tei:text/tei:body/tei:listPerson/tei:person/@xml:id"/>
                 <sch:let name="respValues" value="for $i in $eds return concat('#', $i)"/>
                 <sch:assert test="
-                  every $i in .
+                  every $i in (tokenize(., ' '))
                   satisfies $i = $respValues">
                   Acceptable values for this @resp attribute include: 
                   <sch:value-of select="string-join($respValues, ' | ')"/>.
