@@ -3,10 +3,10 @@
          xmlns:xlink="http://www.w3.org/1999/xlink"
          xmlns:tei="http://www.tei-c.org/ns/1.0"
          xmlns:teix="http://www.tei-c.org/ns/Examples"
-         xmlns:srophe="https://srophe.app"
+         xmlns:srophe="http://srophe.app"
          datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
          ns="http://www.tei-c.org/ns/1.0"><!--
-Schema generated from ODD source 2019-09-24T21:53:33Z. .
+Schema generated from ODD source 2019-09-24T21:59:20Z. .
 TEI Edition: Version 3.5.0a. Last updated on
 	11th September 2018, revision 364b150
 TEI Edition Location: http://www.tei-c.org/Vault/P5/Version 3.5.0a./
@@ -3095,19 +3095,6 @@ Suggested values include: 1] volume; 2] issue; 3] page; 4] line; 5] chapter; 6] 
                       xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
-                      context="tei:seriesStmt[1]">
-                <sch:report test="tei:editor[2]">
-                  This &lt;seriesStmt&gt; element may only have one child &lt;editor&gt; element.
-                </sch:report>
-              </sch:rule>
-         </pattern>
-         <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="SPEAR-seriesStmt-editorInSeriesStmt-constraint-rule-53">
-            <sch:rule xmlns:rng="http://relaxng.org/ns/structure/1.0"
-                      xmlns:xi="http://www.w3.org/2001/XInclude"
-                      xmlns="http://www.tei-c.org/ns/1.0"
-                      xmlns:sch="http://purl.oclc.org/dsdl/schematron"
-                      xmlns:srophe="https://srophe.app"
                       context="tei:seriesStmt/tei:editor">
                 <sch:report test="@role='creator'">
                   This &lt;editor&gt; element cannot have a @role attribute with a value of "creator".
@@ -3115,7 +3102,7 @@ Suggested values include: 1] volume; 2] issue; 3] page; 4] line; 5] chapter; 6] 
               </sch:rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="SPEAR-seriesStmt-editorInSeriesStmt-constraint-rule-54">
+                  id="SPEAR-seriesStmt-editorInSeriesStmt-constraint-rule-53">
             <sch:rule xmlns:rng="http://relaxng.org/ns/structure/1.0"
                       xmlns:xi="http://www.w3.org/2001/XInclude"
                       xmlns="http://www.tei-c.org/ns/1.0"
@@ -3131,7 +3118,7 @@ Suggested values include: 1] volume; 2] issue; 3] page; 4] line; 5] chapter; 6] 
               </sch:rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="SPEAR-seriesStmt-uriInSeriesStmt-constraint-rule-55">
+                  id="SPEAR-seriesStmt-uriInSeriesStmt-constraint-rule-54">
             <sch:rule xmlns:rng="http://relaxng.org/ns/structure/1.0"
                       xmlns:xi="http://www.w3.org/2001/XInclude"
                       xmlns="http://www.tei-c.org/ns/1.0"
@@ -3144,7 +3131,7 @@ Suggested values include: 1] volume; 2] issue; 3] page; 4] line; 5] chapter; 6] 
               </sch:rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="SPEAR-seriesStmt-uriInSeriesStmt-constraint-rule-56">
+                  id="SPEAR-seriesStmt-uriInSeriesStmt-constraint-rule-55">
             <sch:rule xmlns:rng="http://relaxng.org/ns/structure/1.0"
                       xmlns:xi="http://www.w3.org/2001/XInclude"
                       xmlns="http://www.tei-c.org/ns/1.0"
@@ -3157,7 +3144,7 @@ Suggested values include: 1] volume; 2] issue; 3] page; 4] line; 5] chapter; 6] 
               </sch:rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="SPEAR-seriesStmt-uriInSeriesStmt-constraint-rule-57">
+                  id="SPEAR-seriesStmt-uriInSeriesStmt-constraint-rule-56">
             <sch:rule xmlns:rng="http://relaxng.org/ns/structure/1.0"
                       xmlns:xi="http://www.w3.org/2001/XInclude"
                       xmlns="http://www.tei-c.org/ns/1.0"
@@ -3170,7 +3157,7 @@ Suggested values include: 1] volume; 2] issue; 3] page; 4] line; 5] chapter; 6] 
               </sch:rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="SPEAR-seriesStmt-biblScopeInSeriesStmt-constraint-rule-58">
+                  id="SPEAR-seriesStmt-biblScopeInSeriesStmt-constraint-rule-57">
             <sch:rule xmlns:rng="http://relaxng.org/ns/structure/1.0"
                       xmlns:xi="http://www.w3.org/2001/XInclude"
                       xmlns="http://www.tei-c.org/ns/1.0"
@@ -3183,7 +3170,7 @@ Suggested values include: 1] volume; 2] issue; 3] page; 4] line; 5] chapter; 6] 
               </sch:rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="SPEAR-seriesStmt-biblScopeInSeriesStmt-constraint-rule-59">
+                  id="SPEAR-seriesStmt-biblScopeInSeriesStmt-constraint-rule-58">
             <sch:rule xmlns:rng="http://relaxng.org/ns/structure/1.0"
                       xmlns:xi="http://www.w3.org/2001/XInclude"
                       xmlns="http://www.tei-c.org/ns/1.0"
@@ -3196,7 +3183,7 @@ Suggested values include: 1] volume; 2] issue; 3] page; 4] line; 5] chapter; 6] 
               </sch:rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="SPEAR-seriesStmt-biblScopeInSeriesStmt-constraint-rule-60">
+                  id="SPEAR-seriesStmt-biblScopeInSeriesStmt-constraint-rule-59">
             <sch:rule xmlns:rng="http://relaxng.org/ns/structure/1.0"
                       xmlns:xi="http://www.w3.org/2001/XInclude"
                       xmlns="http://www.tei-c.org/ns/1.0"
@@ -3213,7 +3200,7 @@ Suggested values include: 1] volume; 2] issue; 3] page; 4] line; 5] chapter; 6] 
               </sch:rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="SPEAR-seriesStmt-biblScopeInSeriesStmt-constraint-rule-61">
+                  id="SPEAR-seriesStmt-biblScopeInSeriesStmt-constraint-rule-60">
             <sch:rule xmlns:rng="http://relaxng.org/ns/structure/1.0"
                       xmlns:xi="http://www.w3.org/2001/XInclude"
                       xmlns="http://www.tei-c.org/ns/1.0"
@@ -3946,7 +3933,7 @@ Sample values include: 1] approved; 2] candidate; 3] cleared; 4] deprecated; 5] 
             </group>
          </choice>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="SPEAR-div-atts-on-factoidDiv-constraint-rule-62">
+                  id="SPEAR-div-atts-on-factoidDiv-constraint-rule-61">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -3960,7 +3947,7 @@ Sample values include: 1] approved; 2] candidate; 3] cleared; 4] deprecated; 5] 
               </sch:rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="SPEAR-div-atts-on-factoidDiv-constraint-rule-63">
+                  id="SPEAR-div-atts-on-factoidDiv-constraint-rule-62">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -3977,7 +3964,7 @@ Sample values include: 1] approved; 2] candidate; 3] cleared; 4] deprecated; 5] 
               </sch:rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="SPEAR-div-abstractModel-structure-l-constraint-report-14">
+                  id="SPEAR-div-abstractModel-structure-l-constraint-report-13">
             <rule context="tei:div">
                <report xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                        xmlns:srophe="https://srophe.app"
@@ -3987,7 +3974,7 @@ Sample values include: 1] approved; 2] candidate; 3] cleared; 4] deprecated; 5] 
             </rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="SPEAR-div-abstractModel-structure-p-constraint-report-15">
+                  id="SPEAR-div-abstractModel-structure-p-constraint-report-14">
             <rule context="tei:div">
                <report xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                        xmlns:srophe="https://srophe.app"
@@ -4011,7 +3998,7 @@ Sample values include: 1] approved; 2] candidate; 3] cleared; 4] deprecated; 5] 
             </rule>
          </pattern> 
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="SPEAR-div-xmlid-divFactoid-ids-constraint-report-16">
+                  id="SPEAR-div-xmlid-divFactoid-ids-constraint-report-15">
             <rule context="tei:div/@xml:id">
                <sch:report xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                            test="matches(substring-after(., '-'), '\D')">A properly formatted
@@ -4316,7 +4303,7 @@ Sample values include: 1] approved; 2] candidate; 3] cleared; 4] deprecated; 5] 
             </rule>
          </pattern> 
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="SPEAR-persName-ref-ref-on-persName-constraint-report-17">
+                  id="SPEAR-persName-ref-ref-on-persName-constraint-report-16">
             <rule context="tei:persName/@ref">
                <sch:report xmlns="http://www.tei-c.org/ns/1.0"
                            xmlns:sch="http://purl.oclc.org/dsdl/schematron"
@@ -4359,7 +4346,7 @@ Sample values include: 1] approved; 2] candidate; 3] cleared; 4] deprecated; 5] 
             </rule>
          </pattern> 
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="SPEAR-placeName-ref-ref-on-placeName-constraint-report-18">
+                  id="SPEAR-placeName-ref-ref-on-placeName-constraint-report-17">
             <rule context="tei:placeName/@ref">
                <sch:report xmlns="http://www.tei-c.org/ns/1.0"
                            xmlns:sch="http://purl.oclc.org/dsdl/schematron"
@@ -4456,7 +4443,7 @@ Sample values include: 1] approved; 2] candidate; 3] cleared; 4] deprecated; 5] 
             </rule>
          </pattern> 
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="SPEAR-education-ana-ref-in-education-constraint-rule-64">
+                  id="SPEAR-education-ana-ref-in-education-constraint-rule-63">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -4480,7 +4467,7 @@ Sample values include: 1] approved; 2] candidate; 3] cleared; 4] deprecated; 5] 
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains data relating to any kind of significant event associated with a person, place, or organization. [13.3.1. Basic Principles]</a:documentation>
          <ref name="tei_desc"/>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="SPEAR-event-ana-on-event-constraint-rule-65">
+                  id="SPEAR-event-ana-on-event-constraint-rule-64">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -4492,7 +4479,7 @@ Sample values include: 1] approved; 2] candidate; 3] cleared; 4] deprecated; 5] 
               </sch:rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="SPEAR-event-ana-on-event-constraint-rule-66">
+                  id="SPEAR-event-ana-on-event-constraint-rule-65">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -4537,7 +4524,7 @@ Sample values include: 1] approved; 2] candidate; 3] cleared; 4] deprecated; 5] 
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(language known) summarizes the state of a person's linguistic competence, i.e., knowledge of a single language. [15.2.2. The Participant Description]</a:documentation>
          <ref name="tei_macro.phraseSeq.limited"/>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="SPEAR-langKnown-ana-in-langKnown-constraint-rule-67">
+                  id="SPEAR-langKnown-ana-in-langKnown-constraint-rule-66">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -4630,7 +4617,7 @@ Sample values include: 1] approved; 2] candidate; 3] cleared; 4] deprecated; 5] 
             </rule>
          </pattern> 
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="SPEAR-occupation-ana-ana-in-occupation-constraint-rule-68">
+                  id="SPEAR-occupation-ana-ana-in-occupation-constraint-rule-67">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -4815,7 +4802,7 @@ Sample values include: 1] approved; 2] candidate; 3] cleared; 4] deprecated; 5] 
             <ref name="tei_desc"/>
          </optional>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="SPEAR-relation-ref-mutual-act-pass-in-relation-constraint-rule-69">
+                  id="SPEAR-relation-ref-mutual-act-pass-in-relation-constraint-rule-68">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -4841,7 +4828,7 @@ Sample values include: 1] approved; 2] candidate; 3] cleared; 4] deprecated; 5] 
               </sch:rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="SPEAR-relation-ref-mutual-act-pass-in-relation-constraint-rule-70">
+                  id="SPEAR-relation-ref-mutual-act-pass-in-relation-constraint-rule-69">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -4863,7 +4850,7 @@ Sample values include: 1] approved; 2] candidate; 3] cleared; 4] deprecated; 5] 
             </rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="SPEAR-relation-activemutual-constraint-report-23">
+                  id="SPEAR-relation-activemutual-constraint-report-22">
             <rule context="tei:relation">
                <report xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                        xmlns:srophe="https://srophe.app"
@@ -4871,7 +4858,7 @@ Sample values include: 1] approved; 2] candidate; 3] cleared; 4] deprecated; 5] 
             </rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="SPEAR-relation-activepassive-constraint-report-24">
+                  id="SPEAR-relation-activepassive-constraint-report-23">
             <rule context="tei:relation">
                <report xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                        xmlns:srophe="https://srophe.app"
@@ -4891,7 +4878,7 @@ Sample values include: 1] approved; 2] candidate; 3] cleared; 4] deprecated; 5] 
             </attribute>
          </optional>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="SPEAR-relation-type-type-on-relation-constraint-rule-71">
+                  id="SPEAR-relation-type-type-on-relation-constraint-rule-70">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -4901,7 +4888,7 @@ Sample values include: 1] approved; 2] candidate; 3] cleared; 4] deprecated; 5] 
                   </sch:rule>
          </pattern> 
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="SPEAR-relation-type-type-on-relation-constraint-rule-72">
+                  id="SPEAR-relation-type-type-on-relation-constraint-rule-71">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -4915,7 +4902,7 @@ Sample values include: 1] approved; 2] candidate; 3] cleared; 4] deprecated; 5] 
                   </sch:rule>
          </pattern> 
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="SPEAR-relation-type-type-on-relation-constraint-rule-73">
+                  id="SPEAR-relation-type-type-on-relation-constraint-rule-72">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -4937,7 +4924,7 @@ Sample values include: 1] approved; 2] candidate; 3] cleared; 4] deprecated; 5] 
             </attribute>
          </optional>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="SPEAR-relation-ana-ana-on-event-relation-constraint-rule-74">
+                  id="SPEAR-relation-ana-ana-on-event-relation-constraint-rule-73">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -4947,7 +4934,7 @@ Sample values include: 1] approved; 2] candidate; 3] cleared; 4] deprecated; 5] 
                   </sch:rule>
          </pattern> 
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="SPEAR-relation-ana-ana-on-event-relation-constraint-rule-75">
+                  id="SPEAR-relation-ana-ana-on-event-relation-constraint-rule-74">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -4957,7 +4944,7 @@ Sample values include: 1] approved; 2] candidate; 3] cleared; 4] deprecated; 5] 
                   </sch:rule>
          </pattern> 
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="SPEAR-relation-ana-ana-on-event-relation-constraint-rule-76">
+                  id="SPEAR-relation-ana-ana-on-event-relation-constraint-rule-75">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -4974,7 +4961,7 @@ Sample values include: 1] approved; 2] candidate; 3] cleared; 4] deprecated; 5] 
             </data>
          </attribute>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="SPEAR-relation-ref-refs-in-context-constraint-rule-77">
+                  id="SPEAR-relation-ref-refs-in-context-constraint-rule-76">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -4986,7 +4973,7 @@ Sample values include: 1] approved; 2] candidate; 3] cleared; 4] deprecated; 5] 
                   </sch:rule>
          </pattern> 
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="SPEAR-relation-ref-refs-in-context-constraint-rule-78">
+                  id="SPEAR-relation-ref-refs-in-context-constraint-rule-77">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -4998,7 +4985,7 @@ Sample values include: 1] approved; 2] candidate; 3] cleared; 4] deprecated; 5] 
                   </sch:rule>
          </pattern> 
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="SPEAR-relation-ref-refs-in-context-constraint-rule-79">
+                  id="SPEAR-relation-ref-refs-in-context-constraint-rule-78">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -5020,7 +5007,7 @@ Sample values include: 1] approved; 2] candidate; 3] cleared; 4] deprecated; 5] 
                </attribute>
             </optional>
             <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                     id="SPEAR-relation-active-active-on-relation-in-context-constraint-rule-80">
+                     id="SPEAR-relation-active-active-on-relation-in-context-constraint-rule-79">
                <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                          context="tei:div/tei:listRelation/tei:relation/@active">
                     <sch:assert test="every $i in (tokenize(., ' ')) satisfies starts-with($i, 'http://syriaca.org/person/')">@active attributes on &lt;relation&gt; elements of relation factoids must
@@ -5033,7 +5020,7 @@ Sample values include: 1] approved; 2] candidate; 3] cleared; 4] deprecated; 5] 
                   </sch:rule>
             </pattern> 
             <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                     id="SPEAR-relation-active-active-on-relation-in-context-constraint-rule-81">
+                     id="SPEAR-relation-active-active-on-relation-in-context-constraint-rule-80">
                <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                          context="//tei:sourceDesc/tei:listRelation/tei:relation/@active">
                     <sch:let name="docURIno"
@@ -5054,7 +5041,7 @@ Sample values include: 1] approved; 2] candidate; 3] cleared; 4] deprecated; 5] 
                </attribute>
             </optional>
             <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                     id="SPEAR-relation-mutual-mutual-on-relation-in-eventFactoid-constraint-rule-82">
+                     id="SPEAR-relation-mutual-mutual-on-relation-in-eventFactoid-constraint-rule-81">
                <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                          context="tei:div/tei:listRelation/tei:relation/@mutual">
                     <sch:assert test="every $i in (tokenize(., ' ')) satisfies starts-with($i, 'http://syriaca.org/person/')">@mutual attributes on &lt;relation&gt; elements of relation factoids must
@@ -5094,7 +5081,7 @@ Sample values include: 1] approved; 2] candidate; 3] cleared; 4] deprecated; 5] 
             </attribute>
          </optional>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="SPEAR-relation-passive-passive-on-relation-in-context-constraint-rule-83">
+                  id="SPEAR-relation-passive-passive-on-relation-in-context-constraint-rule-82">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -5109,7 +5096,7 @@ Sample values include: 1] approved; 2] candidate; 3] cleared; 4] deprecated; 5] 
                   </sch:rule>
          </pattern> 
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="SPEAR-relation-passive-passive-on-relation-in-context-constraint-rule-84">
+                  id="SPEAR-relation-passive-passive-on-relation-in-context-constraint-rule-83">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -5120,7 +5107,7 @@ Sample values include: 1] approved; 2] candidate; 3] cleared; 4] deprecated; 5] 
                   </sch:rule>
          </pattern> 
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="SPEAR-relation-passive-passive-on-relation-in-context-constraint-rule-85">
+                  id="SPEAR-relation-passive-passive-on-relation-in-context-constraint-rule-84">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -5172,7 +5159,7 @@ Sample values include: 1] approved; 2] candidate; 3] cleared; 4] deprecated; 5] 
             </rule>
          </pattern> 
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="SPEAR-socecStatus-ana-ana-in-socecStatus-constraint-rule-86">
+                  id="SPEAR-socecStatus-ana-ana-in-socecStatus-constraint-rule-85">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -5215,7 +5202,7 @@ Sample values include: 1] approved; 2] candidate; 3] cleared; 4] deprecated; 5] 
             </rule>
          </pattern> 
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="SPEAR-state-ana-ana-in-state-constraint-rule-87">
+                  id="SPEAR-state-ana-ana-in-state-constraint-rule-86">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -5232,7 +5219,7 @@ Sample values include: 1] approved; 2] candidate; 3] cleared; 4] deprecated; 5] 
                   </sch:rule>
          </pattern> 
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="SPEAR-state-ana-ana-in-state-constraint-rule-88">
+                  id="SPEAR-state-ana-ana-in-state-constraint-rule-87">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -5295,7 +5282,7 @@ Sample values include: 1] approved; 2] candidate; 3] cleared; 4] deprecated; 5] 
             </rule>
          </pattern> 
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="SPEAR-trait-ana-ana-in-trait-constraint-rule-89">
+                  id="SPEAR-trait-ana-ana-in-trait-constraint-rule-88">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -5312,7 +5299,7 @@ Sample values include: 1] approved; 2] candidate; 3] cleared; 4] deprecated; 5] 
                   </sch:rule>
          </pattern> 
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="SPEAR-trait-ana-ana-in-trait-constraint-rule-90">
+                  id="SPEAR-trait-ana-ana-in-trait-constraint-rule-89">
             <sch:rule xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
