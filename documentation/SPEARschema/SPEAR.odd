@@ -351,7 +351,7 @@
           </content>
           <constraintSpec ident="titleInSeriesStmt" scheme="schematron">
             <constraint>
-              <sch:rule context="tei:seriesStmt/tei:title">
+              <sch:rule context="tei:seriesStmt[1]/tei:title[1]">
                 <sch:assert test="@level='s'">
                   The &lt;title&gt; element requires a @level attribute with a value of "s".
                 </sch:assert>
@@ -359,21 +359,41 @@
                   This &lt;title&gt; element must be "SPEAR: Syriac Persons, Events, and Relations".
                 </sch:assert>
               </sch:rule>
+              <sch:rule context="tei:seriesStmt[2]/tei:title[1]">
+                <sch:assert test="@level='m'">
+                  The &lt;title&gt; element requires a @level attribute with a value of "m".
+                </sch:assert>
+                <sch:assert test="
+                  . = 'The Lives of the Eastern Saints' or 
+                  . = 'The Letters of Severus'
+                  ">
+                  This &lt;title&gt; element must be "The Lives of the Eastern Saints"
+                  or "The Letters of Severus".
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:seriesStmt[2]/tei:title[2]">
+                <sch:assert test="@type='sub'">
+                  The &lt;title&gt; element requires a @level attribute with a value of "m".
+                </sch:assert>
+                <sch:assert test=". = 'A SPEAR Prosopography'">
+                  This &lt;title&gt; element must be "A SPEAR Prosopography".
+                </sch:assert>
+              </sch:rule>
             </constraint>
           </constraintSpec>
           <constraintSpec ident="editorInSeriesStmt" scheme="schematron">
             <constraint>
-              <sch:rule context="tei:seriesStmt/tei:editor[1]">
+              <sch:rule context="tei:seriesStmt[1]/tei:editor[1]">
                 <sch:assert test="@role='general'">
                   This &lt;editor&gt; element must have a @role attribute with a value of "general".
                 </sch:assert>
               </sch:rule>
-              <sch:rule context="tei:seriesStmt/tei:editor[2]">
+              <sch:rule context="tei:seriesStmt[1]/tei:editor[2]">
                 <sch:assert test="@role='creator'">
                   This &lt;editor&gt; element must have a @role attribute with a value of "creator".
                 </sch:assert>
               </sch:rule>
-              <sch:rule context="tei:seriesStmt/tei:editor">
+              <sch:rule context="tei:seriesStmt[1]/tei:editor">
                 <sch:assert test="@ref='http://syriaca.org/documentation/editors.xml#dschwartz'">
                   This &lt;editor&gt; element must have a @ref attribute with a value of "http://syriaca.org/documentation/editors.xml#dschwartz".
                 </sch:assert>
@@ -385,10 +405,16 @@
           </constraintSpec>
           <constraintSpec ident="uriInSeriesStmt" scheme="schematron">
             <constraint>
-              <sch:rule context="tei:seriesStmt/tei:idno">
+              <sch:rule context="tei:seriesStmt[1]/tei:idno">
                 <sch:assert test=". = 'http://syriaca.org/spear'">
                   This &lt;idno&gt; element must be "http://syriaca.org/spear".
                 </sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:seriesStmt[2]/tei:idno[preceding-sibling::tei:title = 'The Lives of the Eastern Saints']">
+                <sch:assert test=". = 'http://syriaca.org/spear/lives-eastern-saints'"></sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:seriesStmt[2]/tei:idno[preceding-sibling::tei:title = 'The Letters of Severus']">
+                <sch:assert test=". = 'http://syriaca.org/spear/letters-severus'"></sch:assert>
               </sch:rule>
             </constraint>
           </constraintSpec>
