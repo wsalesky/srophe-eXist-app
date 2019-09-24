@@ -373,7 +373,7 @@
               </sch:rule>
               <sch:rule context="tei:seriesStmt[2]/tei:title[2]">
                 <sch:assert test="@type='sub'">
-                  The &lt;title&gt; element requires a @level attribute with a value of "m".
+                  The &lt;title&gt; element requires a @type attribute with a value of "sub".
                 </sch:assert>
                 <sch:assert test=". = 'A SPEAR Prosopography'">
                   This &lt;title&gt; element must be "A SPEAR Prosopography".
@@ -383,7 +383,7 @@
           </constraintSpec>
           <constraintSpec ident="editorInSeriesStmt" scheme="schematron">
             <constraint>
-              <sch:rule context="tei:seriesStmt[1]/tei:editor[1]">
+              <sch:rule context="tei:seriesStmt/tei:editor[1]">
                 <sch:assert test="@role='general'">
                   This &lt;editor&gt; element must have a @role attribute with a value of "general".
                 </sch:assert>
@@ -392,6 +392,11 @@
                 <sch:assert test="@role='creator'">
                   This &lt;editor&gt; element must have a @role attribute with a value of "creator".
                 </sch:assert>
+              </sch:rule>
+              <sch:rule context="tei:seriesStmt[child::tei:title level='m']/tei:editor">
+                <sch:report test="@role='creator'">
+                  This &lt;editor&gt; element cannot have a @role attribute with a value of "creator".
+                </sch:report>
               </sch:rule>
               <sch:rule context="tei:seriesStmt[1]/tei:editor">
                 <sch:assert test="@ref='http://syriaca.org/documentation/editors.xml#dschwartz'">
@@ -424,6 +429,11 @@
           </constraintSpec>
           <constraintSpec ident="biblScopeInSeriesStmt" scheme="schematron">
             <constraint>
+              <sch:rule context="tei:seriesStmt[1]">
+                <sch:report test="tei:biblScope">
+                  This &lt;seriesStmt&gt; cannot contain a &lt;biblScope&gt;.
+                </sch:report>
+              </sch:rule>
               <sch:rule context="tei:seriesStmt[2]">
                 <sch:assert test="tei:biblScope">
                   This &lt;seriesStmt&gt; requires a &lt;biblScope&gt;.
