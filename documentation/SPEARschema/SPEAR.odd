@@ -158,6 +158,23 @@
               </sch:rule>
             </constraint>
           </constraintSpec>
+          <exemplum>
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <titleStmt>
+                <title level="m" type="main">Chronicle of Edessa</title>
+                <title type="sub">A SPEAR Prosopography</title>
+                <sponsor>Syriaca.org: The Syriac Reference Portal</sponsor>
+                <editor role="creator" ref="http://syriaca.org/documentation/editors.xml#dschwartz"
+                  >Daniel L. Schwartz</editor>
+                <respStmt>
+                  <resp>Data architecture, data entry, editing, proofreading, and revision
+                    by</resp>
+                  <name ref="http://syriaca.org/documentation/editors.xml#dschwartz">Daniel L.
+                    Schwartz</name>
+                </respStmt>
+              </titleStmt>
+            </egXML>
+          </exemplum>
         </elementSpec>
         
         <elementSpec ident="sponsor" module="header" mode="change"><!-- text node should not validate if blank -->
@@ -225,9 +242,19 @@
               </sch:rule>
             </constraint>
           </constraintSpec>
+          <exemplum>
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <respStmt>
+                <resp>Data architecture, data entry, editing, proofreading, and revision
+                  by</resp>
+                <name ref="http://syriaca.org/documentation/editors.xml#dschwartz">Daniel L.
+                  Schwartz</name>
+              </respStmt>
+            </egXML>
+          </exemplum>
           <remarks>
-            <p>This customization limits the attributes available to the &lt;name&gt; element to the
-              @ref attribute.</p>
+            <p>This customization limits the vaules of @ref attributes on a <gi>name</gi> element inside the <gi>titleStmt</gi> 
+            to a Syriaca.org URI for project contributors.</p>
           </remarks>
         </elementSpec>
         
@@ -247,9 +274,9 @@
             </egXML>
           </exemplum>
           <remarks>
-            <p> Next within the <gi>titleStmt</gi> the funding bodies are identified by use of the
+            <p> Within the <gi>titleStmt</gi>, funding bodies are identified by use of the
               <gi>funder</gi> element. If multiple funding bodies are relevant, then each one gets
-              a separate <gi>funder</gi> element, which are simply listed. </p>
+              a separate <gi>funder</gi> element. </p>
           </remarks>
         </elementSpec>
         
@@ -281,6 +308,20 @@
               <elementRef key="date" minOccurs="1"/>
             </sequence>
           </content>
+          <exemplum>
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <publicationStmt>
+                <authority>Syriaca.org: The Syriac Reference Portal</authority>
+                <idno type="URI">http://syriaca.org/spear/847/tei</idno>
+                <availability>
+                  <licence target="http://creativecommons.org/licenses/by/3.0/"><p
+                    >Distributed under a Creative Commons Attribution 3.0 Unported
+                    License.</p></licence>
+                </availability>
+                <date when="2019-09-30">30 September 2019</date>
+              </publicationStmt>
+            </egXML>
+          </exemplum>
           <remarks>
             <p>The <gi>publicationStmt</gi> is where we identify Syriaca.org as the entity responsible for publishing this information, 
               indicate the date of the most recent edit, and identify the use license (Creative Commons CC-BY).</p>
@@ -302,7 +343,16 @@
           </constraintSpec>
           <exemplum>
             <egXML xmlns="http://www.tei-c.org/ns/Examples">
-              <authority>Syriaca.org: The Syriac Reference Portal</authority>
+              <publicationStmt>
+                <authority>Syriaca.org: The Syriac Reference Portal</authority>
+                <idno type="URI">http://syriaca.org/spear/847/tei</idno>
+                <availability>
+                  <licence target="http://creativecommons.org/licenses/by/3.0/"><p
+                    >Distributed under a Creative Commons Attribution 3.0 Unported
+                    License.</p></licence>
+                </availability>
+                <date when="2019-09-30">30 September 2019</date>
+              </publicationStmt>
             </egXML>
           </exemplum>
           <remarks>
@@ -325,9 +375,16 @@
           </constraintSpec>
           <exemplum>
             <egXML xmlns="http://www.tei-c.org/ns/Examples">
-              <license target="http://creativecommons.org/licenses/by/3.0/">
-                <p>Distributed under a Creative Commons Attribution 3.0 Unported License.</p>
-              </license>
+              <publicationStmt>
+                <authority>Syriaca.org: The Syriac Reference Portal</authority>
+                <idno type="URI">http://syriaca.org/spear/847/tei</idno>
+                <availability>
+                  <licence target="http://creativecommons.org/licenses/by/3.0/"><p
+                    >Distributed under a Creative Commons Attribution 3.0 Unported
+                    License.</p></licence>
+                </availability>
+                <date when="2019-09-30">30 September 2019</date>
+              </publicationStmt>
             </egXML>
           </exemplum>
           <remarks>
@@ -454,6 +511,32 @@
               </sch:rule>
             </constraint>
           </constraintSpec>
+          <exemplum>
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <seriesStmt>
+                <title level="s">SPEAR: Syriac Persons, Events, and Relations</title>
+                <editor role="general" ref="http://syriaca.org/documentation/editors.xml#dschwartz"
+                  >Daniel L. Schwartz</editor>
+                <idno type="URI">http://syriaca.org/spear</idno>
+              </seriesStmt>
+            </egXML>
+          </exemplum>
+          <exemplum>
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <seriesStmt>
+                <title level="m" xml:lang="en">The Lives of the Eastern Saints</title>
+                <title type="sub">A SPEAR Prosopography</title>
+                <editor role="general" ref="http://syriaca.org/documentation/editors.xml#dschwartz"
+                  >Daniel L. Schwartz</editor>
+                <idno type="URI">http://syriaca.org/spear/lives-eastern-saints</idno>
+                <biblScope unit="volume">
+                  <title level="s">SPEAR: Syriac Persons, Events, and Relations</title>
+                  <idno type="URI">http://syriaca.org/spear</idno>
+                </biblScope>
+              </seriesStmt>
+            </egXML>
+          </exemplum>
+          <!-- remarks needed -->
         </elementSpec>
         
         <elementSpec ident="sourceDesc" module="header" mode="change">
@@ -463,6 +546,30 @@
               <elementRef key="listRelation" minOccurs="0" maxOccurs="unbounded"/>
             </sequence>
           </content>
+          <exemplum>
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <sourceDesc>
+                <listBibl>
+                  <head>Sources for the Data in this Born Digital Prosopography</head>
+                  <bibl type="primary"><title>Lives of the Eastern Saints III</title><title>Peter
+                    and Photius</title><author><persName ref="http://syriaca.org/person/74"
+                      >John of Ephesus</persName></author><editor><persName
+                        ref="http://syriaca.org/person/403">E. W.
+                        Brooks</persName></editor><ptr target="http://syriaca.org/bibl/2033"
+                        /></bibl>
+                  <bibl type="primary"><title>Peter and Photius</title><author><persName
+                    ref="http://syriaca.org/person/74">John of
+                    Ephesus</persName></author><ptr target="http://syriaca.org/work/847"
+                    /></bibl>
+                </listBibl>
+                <listRelation>
+                  <relation type="part" active="http://syriaca.org/work/847"
+                    ref="dcterms:isPartOf" passive="http://syriaca.org/work/9501"/>
+                </listRelation>
+              </sourceDesc>
+            </egXML>
+          </exemplum>
+          <!-- remarks needed -->
         </elementSpec>
         
         <elementSpec ident="encodingDesc" module="header" mode="change">
@@ -484,12 +591,36 @@
           <content>
             <elementRef key="taxonomy" minOccurs="1" maxOccurs="1"/>
           </content>
+          <exemplum>
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <classDecl>
+                <taxonomy>
+                  <category xml:id="calculated">
+                    <catDesc> Used to denote a date calculated by the editor from a regnal year
+                      or some other dating method given in the text. </catDesc>
+                  </category>
+                </taxonomy>
+              </classDecl>
+            </egXML>
+          </exemplum>
         </elementSpec>
         
         <elementSpec ident="taxonomy" module="header" mode="change">
           <content>
             <elementRef key="category" minOccurs="1" maxOccurs="1"/>
           </content>
+          <exemplum>
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <classDecl>
+                <taxonomy>
+                  <category xml:id="calculated">
+                    <catDesc> Used to denote a date calculated by the editor from a regnal year
+                      or some other dating method given in the text. </catDesc>
+                  </category>
+                </taxonomy>
+              </classDecl>
+            </egXML>
+          </exemplum>
         </elementSpec>
         
         <elementSpec ident="category" module="header" mode="change">
@@ -523,6 +654,18 @@
               </valList>
             </attDef>
           </attList>
+          <exemplum>
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <revisionDesc status="draft">
+                <change
+                  who="http://syriaca.org/documentation/editors.xml#dmichelson http://syriaca.org/documentation/editors.xml#ekeogh http://syriaca.org/documentation/editors.xml#egarret http://syriaca.org/documentation/editors.xml#egibes http://syriaca.org/documentation/editors.xml#mdebie http://syriaca.org/documentation/editors.xml#sgross http://syriaca.org/documentation/editors.xml #upossekel"
+                  status="draft">Initial data collected by David A. Michelson, Muriel Debie, Eric
+                  Garret, Elizabeth Gibes, Simcha Gross, and Ute Possekel at "Mapping Ancient Lives
+                  &amp; Social Networks: A Digital Workshop," held at Marquette University, 23-24 May
+                  2017.</change>
+              </revisionDesc>
+            </egXML>
+          </exemplum>
         </elementSpec>
         
         <elementSpec ident="body" module="textstructure" mode="change">
@@ -530,8 +673,8 @@
             <elementRef key="div" minOccurs="1" maxOccurs="unbounded"/>
           </content>
           <remarks>
-            <p>The customization allows &lt;div&gt; elements as the only acceptable child element of
-              the &lt;body&gt; element.</p>
+            <p>The customization allows <gi>div</gi> elements as the only acceptable child element of
+              the <gi>body</gi> element.</p>
           </remarks>
         </elementSpec>
 
@@ -541,24 +684,28 @@
           </content>
           <exemplum>
             <egXML xmlns="http://www.tei-c.org/ns/Examples">
-              <div uri="http://syriaca.org/spear/119-233" resp="#dschwartz">
+              <div type="factoid" xml:id="factoid-9" resp="#upossekel #mdebie #egarret">
+                <idno type="URI">http://syriaca.org/spear/847-9</idno>
                 <listRelation>
-                  <relation ana="family" name="snap:ChildOf" active="http://syriaca.org/person/16"
-                    passive="http://syriaca.org/person/2234"/>
+                  <relation ref="syriaca:FellowMonastics"
+                    mutual="http://syriaca.org/person/2011 http://syriaca.org/person/3014 http://syriaca.org/person/3693"
+                  />
                 </listRelation>
-                <bibl> .... </bibl>
+                <bibl>
+                  ...
+                </bibl>
               </div>
             </egXML>
           </exemplum>
           <remarks>
-            <p>SPEAR has three basic types of data located in &lt;listPerson&gt;, &lt;listEvent&gt;,
-              and &lt;listRelation&gt; elements. The first two are allowed to nest inside a
-              &lt;div&gt; element while the last one is not. For uniformity and ease of encoding,
-              this customization makes the &lt;listRelation&gt; element a part of the model class
+            <p>SPEAR has three basic types of data located in <gi>listPerson</gi>, <gi>listEvent</gi>,
+              and <gi>listRelation</gi> elements. The first two are allowed to nest inside a
+              <gi>div</gi> element while the last one is not. For uniformity and ease of encoding,
+              this customization makes the <gi>listRelation</gi> element a part of the model class
               model.listLike so that it can function like other list elements and nest directly
-              under the &lt;div&gt; element. This customization also removes all attributes from the
-              &lt;listRelation&gt; element and restricts the child elements to &lt;relation&gt; and
-              &lt;desc&gt;.</p>
+              under the <gi>div</gi> element. This customization also removes all attributes from the
+              <gi>listRelation</gi> element and restricts the child elements to <gi>relation</gi> and
+              <gi>desc</gi>.</p>
           </remarks>
         </elementSpec>
 
@@ -628,12 +775,12 @@
             </egXML>
           </exemplum>
           <remarks>
-            <p>SPEAR only uses @xml:id and @type attributes on the &lt;bibl&gt; element. This
-              customization keeps &lt;bibl&gt; in its model classes but removes it from its
-              attribite classes. It then allows the &lt;bibl&gt; element to have only @xml:id and
+            <p>SPEAR only uses @xml:id and @type attributes on the <gi>bibl</gi> element. This
+              customization keeps <gi>bibl</gi> in its model classes but removes it from its
+              attribite classes. It then allows the <gi>bibl</gi> element to have only @xml:id and
               @type attributes and provides a closed list of attribute values for the @type
-              attribute when applied to the &lt;bibl&gt; element. It also allows a &lt;bibl&gt;
-              element that contains only a &lt;ptr&gt; element which is used for encoding references
+              attribute when applied to the <gi>bibl</gi> element. It also allows a <gi>bibl</gi>
+              element that contains only a <gi>ptr</gi> element which is used for encoding references
               to CTS URNs.</p>
           </remarks>
         </elementSpec>
@@ -695,7 +842,7 @@
             </attDef>
           </attList>
           <remarks>
-            <p>This customization removes the &lt;citedRange&gt; element from all member classes,
+            <p>This customization removes the <gi>citedRange</gi> element from all member classes,
               only allow text content, and requires the use of a @unit attribute with a closed list.
               SPEAR prefers that encoders use the part value and cite ancient texts according to
               section numbers.</p>
@@ -734,7 +881,7 @@
             </egXML>
           </exemplum>
           <remarks>
-            <p>This customization does not allow attributes on the &lt;choice&gt; element.</p>
+            <p>This customization does not allow attributes on the <gi>choice</gi> element.</p>
           </remarks>
         </elementSpec>
 
@@ -878,7 +1025,7 @@
             </egXML>
           </exemplum>
           <remarks>
-            <p>The customization limits the attributes used on the &lt;date&gt; element by only
+            <p>The customization limits the attributes used on the <gi>date</gi> element by only
               making it a part of the att.datable.custom and att.datable.w3c attribute classes and
               by suggesting attribute values for the @calendar and @datingMethod attributes.</p>
             <!-- I need to deal with an inconsistency in my encoding. Calendar and datingMethod currently offer two different ways to refer to something like the Seleucid Calendar. -->
@@ -911,9 +1058,9 @@
             </constraint>
           </constraintSpec>
           <remarks>
-            <p>This customization does not allow attributes on the &lt;desc&gt; element. It also
-              restricts child elements to &lt;choice&gt;, &lt;date&gt;, &lt;persName&gt;, and
-              &lt;placeName&gt;.</p>
+            <p>This customization does not allow attributes on the <gi>desc</gi> element. It also
+              restricts child elements to <gi>choice</gi>, <gi>date</gi>, <gi>persName</gi>, and
+              <gi>placeName</gi>.</p>
           </remarks>
         </elementSpec>
 
@@ -967,7 +1114,7 @@
             </attDef>
           </attList>
           <remarks>
-            <p>This customization limits the attributes available to the &lt;desc&gt; element to
+            <p>This customization limits the attributes available to the <gi>desc</gi> element to
               @role and @ref and suggests values for @role.</p>
           </remarks>
         </elementSpec>
@@ -1011,7 +1158,7 @@
             </egXML>
           </exemplum>
           <remarks>
-            <p>This customization removes all attributes from the &lt;corr&gt; element.</p>
+            <p>This customization removes all attributes from the <gi>corr</gi> element.</p>
           </remarks>
         </elementSpec>
 
@@ -1021,10 +1168,10 @@
             <elementRef key="listRelation" minOccurs="0" maxOccurs="1"/>
           </content>
           <remarks>
-            <p>This customization removes the &lt;listEvent&gt; element from all attribute and model
-              classes. It requires &lt;listEvent&gt; to have a child &lt;event&gt; element. It also
-              makes the &lt;listRelation&gt; element available as a child element of
-              &lt;listEvent&gt; which SPEAR uses when the event factoid has a relationship to
+            <p>This customization removes the <gi>listEvent</gi> element from all attribute and model
+              classes. It requires <gi>listEvent</gi> to have a child <gi>event</gi> element. It also
+              makes the <gi>listRelation</gi> element available as a child element of
+              <gi>listEvent</gi> which SPEAR uses when the event factoid has a relationship to
               another event factoid in SPEAR.</p>
           </remarks>
         </elementSpec>
@@ -1037,9 +1184,9 @@
             </alternate>
           </content>
           <remarks>
-            <p>This customization removes the &lt;listPerson&gt; element from all attribute and
-              model classes and makes the &lt;person&gt; and &lt;personGrp&gt; elements the only
-              acceptable children of &lt;listEvent&gt;.</p>
+            <p>This customization removes the <gi>listPerson</gi> element from all attribute and
+              model classes and makes the <gi>person</gi> and <gi>personGrp</gi> elements the only
+              acceptable children of <gi>listEvent</gi>.</p>
           </remarks>
         </elementSpec>
 
@@ -1049,7 +1196,7 @@
             <memberOf key="model.pPart.transcriptional"/>
           </classes>
           <remarks>
-            <p>This customization removes all attributes from the &lt;orig&gt; element.</p>
+            <p>This customization removes all attributes from the <gi>orig</gi> element.</p>
           </remarks>
         </elementSpec>
 
@@ -1103,7 +1250,7 @@
             <attDef ident="size" mode="delete"/>
           </attList>
           <remarks>
-            <p>This customization removes all attributes from the &lt;personGrp&gt; element. And
+            <p>This customization removes all attributes from the <gi>personGrp</gi> element. And
               limits the child elements to the prescribed options.</p>
           </remarks>
         </elementSpec>
@@ -1114,7 +1261,7 @@
             <memberOf key="model.pPart.transcriptional"/>
           </classes>
           <remarks>
-            <p>This customization removes all attributes from the &lt;reg&gt; element.</p>
+            <p>This customization removes all attributes from the <gi>reg</gi> element.</p>
           </remarks>
         </elementSpec>
 
@@ -1124,7 +1271,7 @@
             <memberOf key="model.pPart.transcriptional"/>
           </classes>
           <remarks>
-            <p>This customization removes all attributes from the &lt;sic&gt; element.</p>
+            <p>This customization removes all attributes from the <gi>sic</gi> element.</p>
           </remarks>
         </elementSpec>
 
@@ -1216,14 +1363,14 @@
             <p>
               <!-- Rewrite -->
               This customization requires the basic pattern of SPEAR to be encoded correctly. Each
-              factoid is encoded in a &lt;div&gt; element. Since each factoid contains data of type
-              Person, Event, or Relation, the schema requires that a &lt;div&gt; must then contain a
-              &lt;listPerson&gt;, &lt;listEvent&gt;, or &lt;listRelation&gt; element. Since every
-              factoid requires a bibliographic reference, every &lt;div&gt; must contain one or more
-              &lt;bibl&gt; elements. The encoder then has the option of adding a &lt;note&gt;
+              factoid is encoded in a <gi>div</gi> element. Since each factoid contains data of type
+              Person, Event, or Relation, the schema requires that a <gi>div</gi> must then contain a
+              <gi>listPerson</gi>, <gi>listEvent</gi>, or <gi>listRelation</gi> element. Since every
+              factoid requires a bibliographic reference, every <gi>div</gi> must contain one or more
+              <gi>bibl</gi> elements. The encoder then has the option of adding a <gi>note</gi>
               element to the factoid as well. This customization also requires that every
-              &lt;div&gt; element receives a @uri attribute that identifies the content of the
-              &lt;div&gt; as a SPEAR factoid.</p>
+              <gi>div</gi> element receives a @uri attribute that identifies the content of the
+              <gi>div</gi> as a SPEAR factoid.</p>
           </remarks>
         </elementSpec>
         
@@ -1350,8 +1497,8 @@
             </egXML>
           </exemplum>
           <remarks>
-            <p>This customization removes the &lt;event&gt; element from all model and attribute
-              classes. It removes the @where attribute and makes the &lt;desc&gt; element the only
+            <p>This customization removes the <gi>event</gi> element from all model and attribute
+              classes. It removes the @where attribute and makes the <gi>desc</gi> element the only
               acceptable child element.</p>
           </remarks>
         </elementSpec>
@@ -1590,7 +1737,7 @@
             </egXML>
           </exemplum>
           <remarks>
-            <p>This customization limits the attributes available to the &lt;note&gt; element to
+            <p>This customization limits the attributes available to the <gi>note</gi> element to
               @type and @ana, and provides closed lists for them both.</p>
           </remarks>
         </elementSpec>
@@ -1666,7 +1813,7 @@
             </egXML>
           </exemplum>
           <remarks>
-            <p>This customization makes @ref a required attribute for the &lt;persName&gt; element
+            <p>This customization makes @ref a required attribute for the <gi>persName</gi> element
               and also the only allowed attribute.</p>
           </remarks>
         </elementSpec>
@@ -1696,7 +1843,7 @@
             </attDef>
           </attList>
           <remarks>
-            <p>This customization makes ref a required attribute for the &lt;placeName&gt; element
+            <p>This customization makes ref a required attribute for the <gi>placeName</gi> element
               and also the only allowed attribute.</p>
           </remarks>
         </elementSpec>
@@ -1756,7 +1903,7 @@
             </attDef>
           </attList>
           <remarks>
-            <p>This customization requires a @target attribute for the &lt;ptr&gt; element and also
+            <p>This customization requires a @target attribute for the <gi>ptr</gi> element and also
               makes it the only attribute allowed.</p>
           </remarks>
         </elementSpec>
@@ -2082,7 +2229,7 @@
             </egXML>
           </exemplum>
           <remarks>
-            <p>This customization removes from the &lt;relation&gt; element all attributes except
+            <p>This customization removes from the <gi>relation</gi> element all attributes except
               @name, @type, @ana, @mutual, @passive, and @active. It also restricts values for the
               @name, @type, and @ana attributes and requires the encoder to use the @name and @ana
               attributes.</p>
@@ -2139,7 +2286,7 @@
             </alternate>
           </content>
           <remarks>
-            <p>This customization removes all attributes from the &lt;person&gt; element except for
+            <p>This customization removes all attributes from the <gi>person</gi> element except for
               the @ref attribute.</p>
           </remarks>
         </elementSpec>
@@ -2210,9 +2357,9 @@
             </egXML>
           </exemplum>
           <remarks>
-            <p>This customization restricts the attribute classes of the &lt;birth&gt; element to
+            <p>This customization restricts the attribute classes of the <gi>birth</gi> element to
               att.datable.w3c but excludes the @to and @from attributes. If more precise dating is
-              required for a SPEAR factoid, encoder should use the &lt;date&gt; element.</p>
+              required for a SPEAR factoid, encoder should use the <gi>date</gi> element.</p>
           </remarks>
         </elementSpec>
 
@@ -2244,9 +2391,9 @@
             <attDef ident="to" mode="delete"/>
           </attList>
           <remarks>
-            <p>This customization restricts the attribute classes of the &lt;birth&gt; element to
+            <p>This customization restricts the attribute classes of the <gi>birth</gi> element to
               att.datable.w3c but excludes the @to and @from attributes. If more precise dating is
-              required for a SPEAR factoid, encoder should use the &lt;date&gt; element.</p>
+              required for a SPEAR factoid, encoder should use the <gi>date</gi> element.</p>
           </remarks>
         </elementSpec>
 
@@ -2288,9 +2435,9 @@
             </attDef>
           </attList>
           <remarks>
-            <p>This customization restricts the attribute classes of the &lt;education&gt; element
+            <p>This customization restricts the attribute classes of the <gi>education</gi> element
               to att.datable.w3c and the @ana attribute. If more precise dating is required for a
-              SPEAR factoid, encoder should use the &lt;date&gt; element.</p>
+              SPEAR factoid, encoder should use the <gi>date</gi> element.</p>
           </remarks>
         </elementSpec>
 
@@ -2325,14 +2472,14 @@
             </egXML>
           </exemplum>
           <remarks>
-            <p>The TEI name for the &lt;nationality&gt; element is highly problematic from a
+            <p>The TEI name for the <gi>nationality</gi> element is highly problematic from a
               pre-Modern perspective. Citizenship would be preferable in one sense, yet could in
               many instances exclude subaltern people such as slaves. SPEAR uses the
-              &lt;nationality&gt; element as a general category for living under a particular
+              <gi>nationality</gi> element as a general category for living under a particular
               jurisdiction. This customization limits the attribute classes of the
-              &lt;nationality&gt; element to att.datable.custom and att.datable.w3c and removes the
-              &lt;nationality&gt; element from all model classes. It also requires exactly one
-              &lt;placeName&gt; element.</p>
+              <gi>nationality</gi> element to att.datable.custom and att.datable.w3c and removes the
+              <gi>nationality</gi> element from all model classes. It also requires exactly one
+              <gi>placeName</gi> element.</p>
           </remarks>
         </elementSpec>
 
@@ -2367,9 +2514,9 @@
             </egXML>
           </exemplum>
           <remarks>
-            <p>This customization limits the attribute classes of the &lt;residence&gt; element to
-              att.datable.custom and att.datable.w3c and removes the &lt;residence&gt; element from
-              all model classes. It also requires exactly one &lt;placeName&gt; element..</p>
+            <p>This customization limits the attribute classes of the <gi>residence</gi> element to
+              att.datable.custom and att.datable.w3c and removes the <gi>residence</gi> element from
+              all model classes. It also requires exactly one <gi>placeName</gi> element..</p>
           </remarks>
         </elementSpec>
 
@@ -2458,10 +2605,10 @@
             </egXML>
           </exemplum>
           <remarks>
-            <p>This customization removes the &lt;occupation&gt; element from all attribute and
-              member classes. It makes the &lt;note&gt; element the only acceptable child of the
-              &lt;occupation&gt; element. It also requires a @ref attribute on the
-              &lt;occupation&gt; element.</p>
+            <p>This customization removes the <gi>occupation</gi> element from all attribute and
+              member classes. It makes the <gi>note</gi> element the only acceptable child of the
+              <gi>occupation</gi> element. It also requires a @ref attribute on the
+              <gi>occupation</gi> element.</p>
           </remarks>
         </elementSpec>
 
@@ -2473,9 +2620,9 @@
             </sequence>
           </content>
           <remarks>
-            <p>This customization removes the &lt;langKnowledge&gt; element from all attribute and
-              member classes. It makes the &lt;langKnown&gt; element the only acceptable child of
-              the &lt;langKnowledge&gt; element. </p>
+            <p>This customization removes the <gi>langKnowledge</gi> element from all attribute and
+              member classes. It makes the <gi>langKnown</gi> element the only acceptable child of
+              the <gi>langKnowledge</gi> element. </p>
           </remarks>
         </elementSpec>
 
@@ -2535,7 +2682,7 @@
             </egXML>
           </exemplum>
           <remarks>
-            <p>This customization removes the &lt;langKnown&gt; element from all model and attribute
+            <p>This customization removes the <gi>langKnown</gi> element from all model and attribute
               classes. It also provides a semi closed value list for the required @tag attribute and
               a closed list for the optional @level attribute. </p>
           </remarks>
@@ -2591,10 +2738,10 @@
             </egXML>
           </exemplum>
           <remarks>
-            <p>This customization removes the &lt;socecStatus&gt; element from all attribute and
-              member classes. It makes the &lt;note&gt; element the only acceptable child of the
-              &lt;socecStatus&gt; element. It also requires a @ref attribute on the
-              &lt;socecStatus&gt; element.</p>
+            <p>This customization removes the <gi>socecStatus</gi> element from all attribute and
+              member classes. It makes the <gi>note</gi> element the only acceptable child of the
+              <gi>socecStatus</gi> element. It also requires a @ref attribute on the
+              <gi>socecStatus</gi> element.</p>
           </remarks>
         </elementSpec>
 
@@ -2701,10 +2848,10 @@
           </exemplum>
 
           <remarks>
-            <p>This customization removes the &lt;trait&gt; element from all attribute and member
-              classes. It makes the &lt;note&gt; element the only acceptable child of the
-              &lt;trait&gt; element. It also requires a @type attribute with closed list of values
-              on the &lt;trait&gt; element and limits the attribute values on the &lt;trait&gt;
+            <p>This customization removes the <gi>trait</gi> element from all attribute and member
+              classes. It makes the <gi>note</gi> element the only acceptable child of the
+              <gi>trait</gi> element. It also requires a @type attribute with closed list of values
+              on the <gi>trait</gi> element and limits the attribute values on the <gi>trait</gi>
               element to @type and @ref.</p>
           </remarks>
         </elementSpec>
