@@ -39,10 +39,11 @@
       <schemaSpec ident="SPEAR" start="TEI">
 
         <desc/>
+        <!-- Use @include on all moduleRef elemtents and include only those in use. -->
         <moduleRef key="core"
           include="author bibl biblScope choice citedRange corr date desc editor head listBibl name note num orig p ptr publisher pubPlace ref reg resp respStmt sic title"/>
         <moduleRef key="tei"/>
-        <moduleRef key="header"/>
+        <moduleRef key="header" include="authority catDesc category classDecl editionStmt editorialDecl encodingDesc fileDesc funder idno licence publicationStmt revisionDesc seriesStmt sponsor taxonomy teiHeader titleStmt"/>
         <moduleRef key="textstructure" include="back body div TEI text"/>
         <moduleRef key="namesdates"
           include="birth death education event langKnowledge langKnown listEvent listPerson listRelation nationality occupation orgName persName person personGrp placeName relation residence socecStatus state trait"/>
@@ -634,12 +635,36 @@
               </valList>
             </attDef>
           </attList>
+          <exemplum>
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <classDecl>
+                <taxonomy>
+                  <category xml:id="calculated">
+                    <catDesc> Used to denote a date calculated by the editor from a regnal year
+                      or some other dating method given in the text. </catDesc>
+                  </category>
+                </taxonomy>
+              </classDecl>
+            </egXML>
+          </exemplum>
         </elementSpec>
         
         <elementSpec ident="catDesc" module="header" mode="change">
           <content>
             <textNode/>
           </content>
+          <exemplum>
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <classDecl>
+                <taxonomy>
+                  <category xml:id="calculated">
+                    <catDesc> Used to denote a date calculated by the editor from a regnal year
+                      or some other dating method given in the text. </catDesc>
+                  </category>
+                </taxonomy>
+              </classDecl>
+            </egXML>
+          </exemplum>
         </elementSpec>
         
         <elementSpec ident="revisionDesc" module="header" mode="change">
@@ -673,8 +698,8 @@
             <elementRef key="div" minOccurs="1" maxOccurs="unbounded"/>
           </content>
           <remarks>
-            <p>The customization allows <gi>div</gi> elements as the only acceptable child element of
-              the <gi>body</gi> element.</p>
+            <p>The body of a SPEAR file contains factoids, each of which appears in a separate <gi>div</gi> element. 
+              As such,  <gi>div</gi> is the only acceptable child element of <gi>body</gi>.</p>
           </remarks>
         </elementSpec>
 
@@ -701,11 +726,10 @@
             <p>SPEAR has three basic types of data located in <gi>listPerson</gi>, <gi>listEvent</gi>,
               and <gi>listRelation</gi> elements. The first two are allowed to nest inside a
               <gi>div</gi> element while the last one is not. For uniformity and ease of encoding,
-              this customization makes the <gi>listRelation</gi> element a part of the model class
+              SPEAR makes the <gi>listRelation</gi> element a part of the model class
               model.listLike so that it can function like other list elements and nest directly
-              under the <gi>div</gi> element. This customization also removes all attributes from the
-              <gi>listRelation</gi> element and restricts the child elements to <gi>relation</gi> and
-              <gi>desc</gi>.</p>
+              under the <gi>div</gi> element. SPEAR removes all attributes from the
+              <gi>listRelation</gi> element and restricts the child elements to <gi>relation</gi>.</p>
           </remarks>
         </elementSpec>
 
@@ -757,14 +781,37 @@
           </attList>
           <exemplum>
             <egXML xmlns="http://www.tei-c.org/ns/Examples">
-              <bibl type="primary">
-                <ptr target="http://syriaca.org/work/796"/>
-                <citedRange unit="pp">56</citedRange>
-              </bibl>
-              <bibl type="primary">
-                <ptr target="http://syriaca.org/bibl/1409"/>
-                <citedRange unit="pp">56</citedRange>
-              </bibl>
+              <div type="factoid" xml:id="factoid-10" resp="#dschwartz">
+                <idno type="URI">http://syriaca.org/spear/8559-10</idno>
+                <listRelation>
+                  ...
+                </listRelation>
+                <bibl type="primary">
+                  <ptr target="http://syriaca.org/bibl/633"/>
+                  <citedRange unit="pp">1</citedRange>
+                </bibl>
+                <bibl type="urn">
+                  <ptr target="urn:cts:syriacLit:nhsl8559.syriacCorpus57:1"/>
+                </bibl>
+                <bibl type="primary">
+                  <ptr target="http://syriaca.org/bibl/657"/>
+                  <citedRange unit="part">8</citedRange>
+                </bibl>
+              </div>
+            </egXML>
+          </exemplum>
+          <exemplum>
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <div type="factoid" xml:id="factoid-5" resp="#ktorabi">
+                <idno type="URI">http://syriaca.org/spear/10510-5</idno>
+                <listPerson>
+                  ...
+                </listPerson>
+                <bibl type="primary"><ptr target="http://syriaca.org/work/10510"/><citedRange
+                  unit="pp">552</citedRange></bibl>
+                <bibl type="primary"><ptr target="http://syriaca.org/bibl/2033"/><citedRange
+                  unit="pp">206</citedRange></bibl>
+              </div>
             </egXML>
           </exemplum>
           <exemplum>
@@ -775,13 +822,13 @@
             </egXML>
           </exemplum>
           <remarks>
-            <p>SPEAR only uses @xml:id and @type attributes on the <gi>bibl</gi> element. This
-              customization keeps <gi>bibl</gi> in its model classes but removes it from its
-              attribite classes. It then allows the <gi>bibl</gi> element to have only @xml:id and
-              @type attributes and provides a closed list of attribute values for the @type
-              attribute when applied to the <gi>bibl</gi> element. It also allows a <gi>bibl</gi>
-              element that contains only a <gi>ptr</gi> element which is used for encoding references
-              to CTS URNs.</p>
+            <p>SPEAR only uses @xml:id and @type attributes on the <gi>bibl</gi> element. SPEAR uses
+              <gi>bibl</gi> elements with an @xml:id only in the <gi>back</gi> of the TEI file. The 
+              @type attribute indicates whether the <gi>bibl</gi> is "primary", "secondary", or a "urn". 
+              Since SPEAR relies on the Linked Data infrastructure of Syriaca.org, a <gi>bibl</gi>
+              element only requires a <gi>ptr</gi> element indicating the Syriaca.org URI or CTS URN for 
+              the bibliographic reference. When indicating a CTS URNs no other additional information 
+              is required. When indicating a Syriaca.org URI, a <gi>citedRange</gi> is needed.</p>
           </remarks>
         </elementSpec>
 
@@ -813,6 +860,20 @@
               </valList>
             </attDef>
           </attList>
+          <exemplum>
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <bibl type="primary" xml:id="bibl8559-2">
+                <title xml:lang="en" level="a">The Chronicle of Edessa</title>
+                <title level="j">The Journal of Sacred Literature, New Series [=Series
+                  4]</title>
+                <editor role="translator">B. Cowper</editor>
+                <date when="1865" srophe:computed-start="1865-01-01">1865</date>
+                <biblScope unit="vol">5</biblScope>
+                <biblScope unit="pp">28-45</biblScope>
+                <ptr target="http://syriaca.org/bibl/657"/>
+              </bibl>
+            </egXML>
+          </exemplum>
         </elementSpec>
 
         <elementSpec ident="citedRange" module="core" mode="replace">
@@ -841,9 +902,22 @@
               </valList>
             </attDef>
           </attList>
+          <exemplum>
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <div type="factoid" xml:id="factoid-4" resp="#ktorabi">
+                <idno type="URI">http://syriaca.org/spear/10510-4</idno>
+                <listPerson>
+                  ...
+                </listPerson>
+                <bibl type="primary"><ptr target="http://syriaca.org/work/10510"/><citedRange
+                  unit="pp">552</citedRange></bibl>
+                <bibl type="primary"><ptr target="http://syriaca.org/bibl/2033"/><citedRange
+                  unit="pp">206</citedRange></bibl>
+              </div>
+            </egXML>
+          </exemplum>
           <remarks>
-            <p>This customization removes the <gi>citedRange</gi> element from all member classes,
-              only allow text content, and requires the use of a @unit attribute with a closed list.
+            <p>SPEAR only allows text in a <gi>citedRange</gi> element and requires the use of a @unit attribute with a closed list.
               SPEAR prefers that encoders use the part value and cite ancient texts according to
               section numbers.</p>
           </remarks>
@@ -856,33 +930,45 @@
           </classes>
           <exemplum>
             <egXML xmlns="http://www.tei-c.org/ns/Examples">
-              <div uri="http://syriaca.org/spear/119-52" resp="#dschwartz">
+              <event ana="http://syriaca.org/keyword/monasteries">
+                <desc> The<placeName ref="http://syriaca.org/place/399">Convent of John
+                  Urtaya</placeName>was founded in <choice>
+                    <reg><date notBefore="0388-10" notAfter="0389-09"
+                      calendar="Gregorian" srophe:computed-end="0388-09-01"
+                      srophe:computed-start="0389-10-01">388/9</date></reg>
+                    <orig><date when-custom="0700" datingMethod="Seleucid">A. Gr.
+                      700</date></orig>
+                  </choice></desc>
+              </event>
+            </egXML>
+          </exemplum>
+          <exemplum>
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <div type="factoid" xml:id="factoid-147" resp="#dschwartz">
+                <idno type="URI">http://syriaca.org/spear/8559-147</idno>
                 <listEvent>
                   <event
-                    ref="http://syriaca.org/keyword/accession http://syriaca.org/keyword/emperor">
+                    ana="http://syriaca.org/keyword/emperors http://syriaca.org/keyword/accession">
                     <desc> In <choice>
-                        <corr>
-                          <date when="-0044" calendar="Gregorian">44 B.C.</date>
-                        </corr>
-                        <sic>
-                          <date notBefore="-0046-10" notAfter="-0045-09" calendar="Gregorian">46/5
-                            B.C.</date>
-                        </sic>
-                        <orig>
-                          <date when-custom="0266" datingMethod="Seleucid">A. Gr. 266</date>
-                        </orig>
-                      </choice>
-                      <persName ref="http://syriaca.org/person/2238"> Augustus </persName> became
-                      King. </desc>
+                      <corr><date when="0364-03" calendar="Gregorian"
+                        srophe:computed-start="0364-03-01">March 364</date></corr>
+                      <sic><date when="0364-02" calendar="Gregorian"
+                        srophe:computed-start="0364-02-01">February A. D.
+                        364</date></sic>
+                      <orig><date when-custom="0675-05"
+                        datingMethod="Seleucid-SyriacMonths">Shebāṭ A. Gr.
+                        675</date></orig>
+                    </choice><persName ref="http://syriaca.org/person/2309"> Valens
+                    </persName> became King of <placeName ref="http://syriaca.org/place/166"
+                      > Rome </placeName>. </desc>
                   </event>
                 </listEvent>
-                <bibl> .... </bibl>
+                <bibl>...</bibl>
+                <note type="errata"> The author mistakenly asserts that Valens became emperor the
+                  same month as Valentinian. </note>
               </div>
             </egXML>
           </exemplum>
-          <remarks>
-            <p>This customization does not allow attributes on the <gi>choice</gi> element.</p>
-          </remarks>
         </elementSpec>
 
         <elementSpec ident="date" module="core" mode="change">
@@ -936,98 +1022,78 @@
           </attList>
           <exemplum>
             <egXML xmlns="http://www.tei-c.org/ns/Examples">
-              <div uri="http://syriaca.org/spear/119-185" resp="#dschwartz">
-                <listPerson>
-                  <person>
-                    <persName ref="http://syriaca.org/person/1718"/>
-                    <death>
-                      <date when="0387-04-23" calendar="Gregorian"> 23 April A. D. 387 </date>
-                      <note type="desc">
-                        <persName ref="http://syriaca.org/person/1718">Eulogios</persName> died on
-                        23 April A. D. 387 </note>
-                    </death>
-                  </person>
-                </listPerson>
-                <bibl> .... </bibl>
-              </div>
+              <event ana="http://syriaca.org/keyword/monasteries">
+                <desc> The<placeName ref="http://syriaca.org/place/399">Convent of John
+                  Urtaya</placeName>was founded in <choice>
+                    <reg><date notBefore="0388-10" notAfter="0389-09"
+                      calendar="Gregorian" srophe:computed-end="0388-09-01"
+                      srophe:computed-start="0389-10-01">388/9</date></reg>
+                    <orig><date when-custom="0700" datingMethod="Seleucid">A. Gr.
+                      700</date></orig>
+                  </choice></desc>
+              </event>
             </egXML>
           </exemplum>
           <exemplum>
             <egXML xmlns="http://www.tei-c.org/ns/Examples">
-              <div uri="http://syriaca.org/spear/3029-6" resp="#ktorabi #dschwartz">
-                <listPerson>
-                  <personGrp>
-                    <persName ref="http://syriaca.org/person/3035"> The sacred virgins under the
-                      authority of <persName ref="http://syriaca.org/person/2780"> Valeriana
-                      </persName> sometime <date notBefore="0513" notAfter="0518"> between A.D.
-                        513-518 </date>
-                    </persName>
-                  </personGrp>
-                </listPerson>
-                <bibl> .... </bibl>
-              </div>
+              <event ana="http://syriaca.org/keyword/prayer http://syriaca.org/keyword/canon-law">
+                <desc><date notBefore="0513" notAfter="0518" calendar="Gregorian"> Sometime
+                  between 513 and 518 </date>, <persName
+                    ref="http://syriaca.org/person/3075"> prominent men in <placeName
+                      ref="http://syriaca.org/place/10"> Antioch
+                    </placeName></persName> petitioned <persName
+                      ref="http://syriaca.org/person/51"> Severus </persName> to allow
+                  <persName ref="http://syriaca.org/person/2575"> Romulus </persName>
+                  to conduct prayers in <placeName ref="http://syriaca.org/place/10">
+                    Antioch </placeName> even though he was under the authority of
+                  <persName ref="http://syriaca.org/person/2574"> Philoxenus
+                  </persName>, bishop of <placeName ref="http://syriaca.org/place/2661">
+                    Doliche </placeName>. </desc>
+              </event>
             </egXML>
           </exemplum>
           <exemplum>
             <egXML xmlns="http://www.tei-c.org/ns/Examples">
-              <div uri="http://syriaca.org/spear/119-12" resp="#dschwartz">
-                <listEvent>
-                  <event>
-                    <desc> In <choice>
-                        <reg>
-                          <date when="0201-11" calendar="Gregorian">November A. D. 201</date>
-                        </reg>
-                        <orig>
-                          <date when-custom="0513-02" datingMethod="Seleucid-SyriacMonths">Teshri II
-                            A. Gr. 513</date>
-                        </orig>
-                      </choice> during the reign of <persName ref="http://syriaca.org/person/2201">
-                        Abgar the Great </persName>, <placeName ref="http://syriaca.org/place/191">
-                        the Daisan river </placeName> flooded <placeName
-                        ref="http://syriaca.org/place/78"> Edessa </placeName> destroying the
-                      western wall of the city, <placeName ref="http://syriaca.org/place/2579"> the
-                        Great Palace </placeName>, and <placeName
-                        ref="http://syriaca.org/place/2580"> the Church of the Christians
-                      </placeName>. </desc>
-                    <ptr target="http://syriaca.org/keyword/naturalDisaster"/>
-                  </event>
-                </listEvent>
-                <bibl> .... </bibl>
-              </div>
+              <event
+                ana="http://syriaca.org/keyword/bishops http://syriaca.org/keyword/accession">
+                <desc> In <choice>
+                  <reg><date notBefore="0511-04-11" notAfter="0512-04-10"
+                    calendar="Gregorian" srophe:computed-end="0512-04-10"
+                    srophe:computed-start="0511-04-11">511/2</date><note
+                      ana="calculated">This regularized date was calculated by the
+                      SPEAR editor from a non-calendrical dating system such as
+                      regnal years, etc.</note></reg>
+                  <orig><date datingMethod="regnalYear">the 21st year of the reign of
+                    Anastasios</date></orig>
+                </choice><persName ref="http://syriaca.org/person/790"> Timotheos
+                </persName> became Bishop of <placeName
+                  ref="http://syriaca.org/place/2290"> Constantinople </placeName>.
+                </desc>
+              </event>
             </egXML>
           </exemplum>
           <exemplum>
             <egXML xmlns="http://www.tei-c.org/ns/Examples">
-              <div uri="http://syriaca.org/spear/119-434" resp="#dschwartz">
-                <listPerson>
-                  <personGrp>
-                    <persName ref="http://syriaca.org/person/2219"> Those struck by fire in <choice>
-                        <reg>
-                          <date notBefore="0511-04-11" notAfter="0512-04-10" calendar="Gregorian">A.
-                            D. 511/2</date>
-                          <note ana="calculated">This date was calculated from a regnal year.</note>
-                        </reg>
-                        <orig>
-                          <date datingMethod="regnalYear">the 21st year of the reign of
-                            Anastasios</date>
-                        </orig>
-                      </choice> because they wanted to remove the book placed in the coffin of
-                        <persName ref="http://syriaca.org/person/479"> Euphemia the martyr
-                      </persName> by the <ref target="http://syriaca.org/keyword/councilChalcedon">
-                        Council of <placeName ref="http://syriaca.org/place/622"> Chalcedon
-                        </placeName>
-                      </ref>. </persName>
-                    <ptr target="http://syriaca.org/keyword/councilChalcedon"/>
-                  </personGrp>
-                </listPerson>
-                <bibl> .... </bibl>
-              </div>
+              <event
+                ana="http://syriaca.org/keyword/bishops http://syriaca.org/keyword/accession">
+                <desc> In <choice>
+                  <reg><date notBefore="0511-04-11" notAfter="0512-04-10"
+                    calendar="Gregorian" srophe:computed-end="0512-04-10"
+                    srophe:computed-start="0511-04-11">511/2</date><note
+                      ana="calculated">This regularized date was calculated by the
+                      SPEAR editor from a non-calendrical dating system such as
+                      regnal years, etc.</note></reg>
+                  <orig><date datingMethod="regnalYear">the 21st year of the reign of
+                    Anastasios</date></orig>
+                </choice><persName ref="http://syriaca.org/person/790"> Timotheos
+                </persName> became Bishop of <placeName
+                  ref="http://syriaca.org/place/2290"> Constantinople </placeName>.
+                </desc>
+              </event>
             </egXML>
           </exemplum>
           <remarks>
-            <p>The customization limits the attributes used on the <gi>date</gi> element by only
-              making it a part of the att.datable.custom and att.datable.w3c attribute classes and
-              by suggesting attribute values for the @calendar and @datingMethod attributes.</p>
+            <p></p>
             <!-- I need to deal with an inconsistency in my encoding. Calendar and datingMethod currently offer two different ways to refer to something like the Seleucid Calendar. -->
           </remarks>
         </elementSpec>
@@ -1128,37 +1194,33 @@
           </classes>
           <exemplum>
             <egXML xmlns="http://www.tei-c.org/ns/Examples">
-              <div uri="http://syriaca.org/spear/119-52" resp="#dschwartz">
+              <div type="factoid" xml:id="factoid-147" resp="#dschwartz">
+                <idno type="URI">http://syriaca.org/spear/8559-147</idno>
                 <listEvent>
                   <event
-                    ref="http://syriaca.org/keyword/accession http://syriaca.org/keyword/emperor">
+                    ana="http://syriaca.org/keyword/emperors http://syriaca.org/keyword/accession">
                     <desc> In <choice>
-                        <corr>
-                          <date when="-0044" calendar="Gregorian">44 B.C.</date>
-                        </corr>
-                        <sic>
-                          <date notBefore="-0046-10" notAfter="-0045-09" calendar="Gregorian">46/5
-                            B.C.</date>
-                        </sic>
-                        <orig>
-                          <date when-custom="0266" datingMethod="Seleucid">A. Gr. 266</date>
-                        </orig>
-                      </choice>
-                      <persName ref="http://syriaca.org/person/2238"> Augustus </persName> became
-                      King. </desc>
+                      <corr><date when="0364-03" calendar="Gregorian"
+                        srophe:computed-start="0364-03-01">March 364</date></corr>
+                      <sic><date when="0364-02" calendar="Gregorian"
+                        srophe:computed-start="0364-02-01">February A. D.
+                        364</date></sic>
+                      <orig><date when-custom="0675-05"
+                        datingMethod="Seleucid-SyriacMonths">Shebāṭ A. Gr.
+                        675</date></orig>
+                    </choice><persName ref="http://syriaca.org/person/2309"> Valens
+                    </persName> became King of <placeName ref="http://syriaca.org/place/166"
+                      > Rome </placeName>. </desc>
                   </event>
                 </listEvent>
-                <bibl type="primary">
-                  <biblScope unit="pp">
-                    <ptr target="#bibl633-1"/>3</biblScope>
-                </bibl>
-                <note type="errata"> The author has apparently mistaken the date of Augustus'
-                  accession. </note>
+                <bibl>...</bibl>
+                <note type="errata"> The author mistakenly asserts that Valens became emperor the
+                  same month as Valentinian. </note>
               </div>
             </egXML>
           </exemplum>
           <remarks>
-            <p>This customization removes all attributes from the <gi>corr</gi> element.</p>
+            <p></p>
           </remarks>
         </elementSpec>
 
@@ -1168,11 +1230,7 @@
             <elementRef key="listRelation" minOccurs="0" maxOccurs="1"/>
           </content>
           <remarks>
-            <p>This customization removes the <gi>listEvent</gi> element from all attribute and model
-              classes. It requires <gi>listEvent</gi> to have a child <gi>event</gi> element. It also
-              makes the <gi>listRelation</gi> element available as a child element of
-              <gi>listEvent</gi> which SPEAR uses when the event factoid has a relationship to
-              another event factoid in SPEAR.</p>
+            <p></p>
           </remarks>
         </elementSpec>
 
@@ -1184,9 +1242,7 @@
             </alternate>
           </content>
           <remarks>
-            <p>This customization removes the <gi>listPerson</gi> element from all attribute and
-              model classes and makes the <gi>person</gi> and <gi>personGrp</gi> elements the only
-              acceptable children of <gi>listEvent</gi>.</p>
+            <p></p>
           </remarks>
         </elementSpec>
 
@@ -1196,7 +1252,7 @@
             <memberOf key="model.pPart.transcriptional"/>
           </classes>
           <remarks>
-            <p>This customization removes all attributes from the <gi>orig</gi> element.</p>
+            <p></p>
           </remarks>
         </elementSpec>
 
