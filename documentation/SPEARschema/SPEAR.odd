@@ -3054,34 +3054,36 @@
           </exemplum>
           <exemplum>
             <egXML xmlns="http://www.tei-c.org/ns/Examples">
-              <div uri="http://syriaca.org/spear/3042-3" resp="#ktorabi #dschwartz">
+              <div type="factoid" xml:id="factoid-3" resp="#ktorabi #dschwartz">
+                <idno type="URI">http://syriaca.org/spear/3020-3</idno>
                 <listPerson>
                   <person>
-                    <persName ref="http://syriaca.org/person/2558"/>
-                    <occupation ref="http://syriaca.org/keyword/chamberlain">
-                      <note type="desc"><persName ref="http://syriaca.org/person/2558"
-                          >Misael</persName> was a chamberlain.</note>
-                    </occupation>
+                    <persName ref="http://syriaca.org/person/2606"/>
+                    <occupation ana="http://syriaca.org/keyword/readers"><note type="desc"
+                      ><persName ref="http://syriaca.org/person/2606"
+                        >Archelaus</persName> was a reader in <placeName
+                          ref="http://syriaca.org/place/195"
+                          >Tyre</placeName>.</note></occupation>
                   </person>
                 </listPerson>
-                <bibl> .... </bibl>
+                <bibl> ... </bibl>
               </div>
             </egXML>
           </exemplum>
           <exemplum>
             <egXML xmlns="http://www.tei-c.org/ns/Examples">
-              <div uri="http://syriaca.org/spear/3053-3" resp="#ktorabi #dschwartz">
+              <div type="factoid" xml:id="factoid-3" resp="#ktorabi #dschwartz">
+                <idno type="URI">http://syriaca.org/spear/3053-3</idno>
                 <listPerson>
                   <person>
                     <persName ref="http://syriaca.org/person/2568"/>
-                    <occupation ref="http://syriaca.org/keyword/physician">
-                      <note type="desc">
-                        <persName ref="http://syriaca.org/person/2568">Theotecnus</persName> was an
-                        archiatros or chief physician. </note>
-                    </occupation>
+                    <occupation ana="http://syriaca.org/keyword/physicians"><note type="desc"
+                      ><persName ref="http://syriaca.org/person/2568"
+                        >Theotecnus</persName> was an archiatros or chief
+                      physician.</note></occupation>
                   </person>
                 </listPerson>
-                <bibl> .... </bibl>
+                <bibl> ... </bibl>
               </div>
             </egXML>
           </exemplum>
