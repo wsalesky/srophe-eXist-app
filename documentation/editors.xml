@@ -74,9 +74,14 @@
          <change type="reminder">Please be sure to update the publication date when changes are made
             here!</change>
          <change when="2019-11-01" who="http://syriaca.org/documentation/editors.xml#wpotter">ADDED: Tobias Scheunchen</change>
-         <change when="2019-09-20" who="http://syriaca.org/documentation/editors.xml#wpotter">ADDED: William L. Potter, Lindsay Ruth, Jessica Pagan, and Anna Kelly.</change>
+         <change when="2019-09-24" who="http://syriaca.org/documentation/editors.xml#dschwartz">
+            ADDED: Gibes and Kowalik
+         </change>
          <change when="2019-09-23" who="http://syriaca.org/documentation/editors.xml#dschwartz">
             ADDED: Baillargeon, McNeir, Young
+         </change>
+         <change when="2019-09-20" who="http://syriaca.org/documentation/editors.xml#wpotter">
+            ADDED: William L. Potter, Lindsay Ruth, Jessica Pagan, and Anna Kelly.
          </change>
          <change when="2019-05-17" who="http://syriaca.org/documentation/editors.xml#dmichelson"
             >ADDED: Revised prose description, added Michelle M. Taylor, alphabetized the entries by
@@ -332,6 +337,12 @@
                   <surname>Garret</surname>
                </persName>
             </person>
+            <person xml:id="egibes">
+               <persName xml:lang="en">
+                  <forename>Elizabeth</forename>
+                  <surname>Gibes</surname>
+               </persName>
+            </person>
             <person xml:id="kgibson">
                <persName xml:lang="en">
                   <forename>Kelli</forename>
@@ -417,6 +428,12 @@
                <persName xml:lang="en">
                   <forename>David</forename>
                   <surname>Kiger</surname>
+               </persName>
+            </person>
+            <person xml:id="ekowalik">
+               <persName xml:lang="en">
+                  <forename>Eric</forename>
+                  <surname>Kowalik</surname>
                </persName>
             </person>
             <person xml:id="mkozah">
