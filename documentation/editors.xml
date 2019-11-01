@@ -50,7 +50,7 @@
                <licence target="http://creativecommons.org/licenses/by/3.0/"> Distributed under a
                   Creative Commons Attribution 3.0 Unported License </licence>
             </availability>
-            <date>2017-08-08</date>
+            <date>2019-11-01</date>
          </publicationStmt>
          <sourceDesc>
             <p>Born digital.</p>
@@ -73,6 +73,7 @@
       <revisionDesc>
          <change type="reminder">Please be sure to update the publication date when changes are made
             here!</change>
+         <change when="2019-11-01" who="http://syriaca.org/documentation/editors.xml#wpotter">ADDED: Tobias Scheunchen</change>
          <change when="2019-09-20" who="http://syriaca.org/documentation/editors.xml#wpotter">ADDED: William L. Potter, Lindsay Ruth, Jessica Pagan, and Anna Kelly.</change>
          <change when="2019-09-23" who="http://syriaca.org/documentation/editors.xml#dschwartz">
             ADDED: Baillargeon, McNeir, Young
@@ -523,6 +524,12 @@
                <persName xml:lang="en">
                   <forename>Winona</forename>
                   <surname>Salesky</surname>
+               </persName>
+            </person>
+            <person xml:id="tscheunchen">
+               <persName xml:lang="en">
+                  <forename>Tobias</forename>
+                  <surname>Scheunchen</surname>
                </persName>
             </person>
             <person xml:id="aschmidt">
