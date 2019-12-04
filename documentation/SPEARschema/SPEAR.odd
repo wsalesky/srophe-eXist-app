@@ -91,6 +91,79 @@
           </attList>
         </classSpec>
         
+        <classSpec type="atts" ident="att.typed" mode="change">
+          <attList>
+            <attDef ident="subtype" mode="change">
+              <valList type="closed">
+                <valItem ident="birthDate">
+                  <gloss>birth date</gloss>
+                  <desc>Used to designate person factoids that encode birth dates</desc>
+                </valItem>
+                <valItem ident="birthPlace">
+                  <gloss>birth place</gloss>
+                  <desc>Used to designate person factoids that encode birth places</desc>
+                </valItem>
+                <valItem ident="citizenship">
+                  <gloss>citizenship</gloss>
+                  <desc>Used to designate person factoids that encode citizenship</desc>
+                </valItem>
+                <valItem ident="deathDate">
+                  <gloss>death date</gloss>
+                  <desc>Used to designate person factoids that encode death dates</desc>
+                </valItem>
+                <valItem ident="deathPlace">
+                  <gloss>death place</gloss>
+                  <desc>Used to designate person factoids that encode death places</desc>
+                </valItem>
+                <valItem ident="education">
+                  <gloss>education</gloss>
+                  <desc>Used to designate person factoids that encode education</desc>
+                </valItem>
+                <valItem ident="ethnicLabel">
+                  <gloss>ethnic label</gloss>
+                  <desc>Used to designate person factoids that encode ethnic labels</desc>
+                </valItem>
+                <valItem ident="event">
+                  <gloss>event</gloss>
+                  <desc>Used to designate event factoids</desc>
+                </valItem>
+                <valItem ident="gender">
+                  <gloss>gender</gloss>
+                  <desc>Used to designate person factoids that encode gender</desc>
+                </valItem>
+                <valItem ident="langKnown">
+                  <gloss>language known</gloss>
+                  <desc>Used to designate person factoids that encode language knowledge</desc>
+                </valItem>
+                <valItem ident="mentalState">
+                  <gloss>mental state</gloss>
+                  <desc>Used to designate person factoids that encode mental state</desc>
+                </valItem>
+                <valItem ident="nameVariant">
+                  <gloss>name variant</gloss>
+                  <desc>Used to designate person factoids that encode name variants</desc>
+                </valItem>
+                <valItem ident="physicalTrait">
+                  <gloss>physical trait</gloss>
+                  <desc>Used to designate person factoids that encode physical traits</desc>
+                </valItem>
+                <valItem ident="relation">
+                  <gloss>relation</gloss>
+                  <desc>Used to designate relation factoids</desc>
+                </valItem>
+                <valItem ident="sanctity">
+                  <gloss>sanctity</gloss>
+                  <desc>Used to designate person factoids that encode sanctity</desc>
+                </valItem>
+                <valItem ident="socecStatus">
+                  <gloss>socio-economic status</gloss>
+                  <desc>Used to designate person factoids that encode socio-econimic status</desc>
+                </valItem>
+              </valList>
+            </attDef>
+          </attList>
+        </classSpec>
+        
         
 
         <elementSpec ident="teiHeader" module="header" mode="change">
