@@ -1368,8 +1368,6 @@
                   require a @resp attribute.</sch:assert>
                 <sch:assert test="@type='factoid'">Elements of type &lt;div&gt; within the body element
                 require a @type attribute with the value "factoid".</sch:assert>
-                <sch:assert test="@subtype">Elements of type &lt;div&gt; within the body element
-                  require a @subtype attribute.</sch:assert>
               </sch:rule>
               <sch:rule context="tei:div[ancestor::tei:body]/@resp">
                 <sch:let name="edsDoc"
@@ -1415,7 +1413,7 @@
                 <dataRef key="teidata.enumerated"/>
               </datatype>
             </attDef>
-            <attDef ident="subtype" mode="change" usage="req">
+            <attDef ident="subtype" mode="add" usage="req">
               <valList type="closed">
                 <valItem ident="birthDate">
                   <gloss>birth date</gloss>

@@ -6,7 +6,7 @@
          xmlns:srophe="https://srophe.app"
          datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
          ns="http://www.tei-c.org/ns/1.0"><!--
-Schema generated from ODD source 2019-12-04T22:44:11Z. .
+Schema generated from ODD source 2019-12-04T22:50:07Z. .
 TEI Edition: Version 3.5.0. Last updated on
 	29th January 2019, revision 3c0c64ec4
 TEI Edition Location: http://www.tei-c.org/Vault/P5/Version 3.5.0/
@@ -3073,8 +3073,6 @@ Sample values include: 1] approved; 2] candidate; 3] cleared; 4] deprecated; 5] 
                   require a @resp attribute.</sch:assert>
                 <sch:assert test="@type='factoid'">Elements of type &lt;div&gt; within the body element
                 require a @type attribute with the value "factoid".</sch:assert>
-                <sch:assert test="@subtype">Elements of type &lt;div&gt; within the body element
-                  require a @subtype attribute.</sch:assert>
               </sch:rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
@@ -3121,7 +3119,7 @@ Sample values include: 1] approved; 2] candidate; 3] cleared; 4] deprecated; 5] 
             </attribute>
          </optional>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="SPEAR-div-xmlid-divFactoid-ids-constraint-assert-74">
+                  id="SPEAR-div-xmlid-divFactoid-ids-constraint-assert-73">
             <rule context="tei:div/@xml:id">
                <sch:assert xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                            test="starts-with(., 'factoid-')">An @xml:id attribute
@@ -3137,7 +3135,7 @@ Sample values include: 1] approved; 2] candidate; 3] cleared; 4] deprecated; 5] 
             </rule>
          </pattern> 
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="SPEAR-div-xmlid-divFactoid-ids-constraint-assert-75">
+                  id="SPEAR-div-xmlid-divFactoid-ids-constraint-assert-74">
             <rule context="tei:div/@xml:id">
                <sch:assert xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                            test="matches(substring-after(., '-'), '\d')">A properly formatted
@@ -3145,7 +3143,7 @@ Sample values include: 1] approved; 2] candidate; 3] cleared; 4] deprecated; 5] 
             </rule>
          </pattern> 
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="SPEAR-div-xmlid-divFactoid-ids-constraint-assert-76">
+                  id="SPEAR-div-xmlid-divFactoid-ids-constraint-assert-75">
             <rule context="tei:div/@xml:id">
                <sch:assert xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                            test="count(distinct-values(//tei:div/@xml:id)) eq count(//tei:div/@xml:id)">Each &lt;div&gt; element @uri attribute must end with a unique number following
@@ -3170,6 +3168,43 @@ Sample values include: 1] approved; 2] candidate; 3] cleared; 4] deprecated; 5] 
                </data>
             </attribute>
          </optional>
+         <attribute name="subtype">
+            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+            <choice>
+               <value>birthDate</value>
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(birth date) Used to designate person factoids that encode birth dates</a:documentation>
+               <value>birthPlace</value>
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(birth place) Used to designate person factoids that encode birth places</a:documentation>
+               <value>citizenship</value>
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(citizenship) Used to designate person factoids that encode citizenship</a:documentation>
+               <value>deathDate</value>
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(death date) Used to designate person factoids that encode death dates</a:documentation>
+               <value>deathPlace</value>
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(death place) Used to designate person factoids that encode death places</a:documentation>
+               <value>education</value>
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(education) Used to designate person factoids that encode education</a:documentation>
+               <value>ethnicLabel</value>
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(ethnic label) Used to designate person factoids that encode ethnic labels</a:documentation>
+               <value>event</value>
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(event) Used to designate event factoids</a:documentation>
+               <value>gender</value>
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(gender) Used to designate person factoids that encode gender</a:documentation>
+               <value>langKnown</value>
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(language known) Used to designate person factoids that encode language knowledge</a:documentation>
+               <value>mentalState</value>
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(mental state) Used to designate person factoids that encode mental state</a:documentation>
+               <value>nameVariant</value>
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(name variant) Used to designate person factoids that encode name variants</a:documentation>
+               <value>physicalTrait</value>
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(physical trait) Used to designate person factoids that encode physical traits</a:documentation>
+               <value>relation</value>
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(relation) Used to designate relation factoids</a:documentation>
+               <value>sanctity</value>
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(sanctity) Used to designate person factoids that encode sanctity</a:documentation>
+               <value>socecStatus</value>
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(socio-economic status) Used to designate person factoids that encode socio-econimic status</a:documentation>
+            </choice>
+         </attribute>
          <empty/>
       </element>
    </define>
@@ -3423,7 +3458,7 @@ Sample values include: 1] approved; 2] candidate; 3] cleared; 4] deprecated; 5] 
             <data type="anyURI"/>
          </attribute>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="SPEAR-persName-ref-ref-on-persName-constraint-assert-77">
+                  id="SPEAR-persName-ref-ref-on-persName-constraint-assert-76">
             <rule context="tei:persName/@ref">
                <sch:assert xmlns="http://www.tei-c.org/ns/1.0"
                            xmlns:sch="http://purl.oclc.org/dsdl/schematron"
@@ -3445,7 +3480,7 @@ Sample values include: 1] approved; 2] candidate; 3] cleared; 4] deprecated; 5] 
             </rule>
          </pattern> 
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="SPEAR-persName-ref-ref-on-persName-constraint-assert-78">
+                  id="SPEAR-persName-ref-ref-on-persName-constraint-assert-77">
             <rule context="tei:persName/@ref">
                <sch:assert xmlns="http://www.tei-c.org/ns/1.0"
                            xmlns:sch="http://purl.oclc.org/dsdl/schematron"
@@ -3466,7 +3501,7 @@ Sample values include: 1] approved; 2] candidate; 3] cleared; 4] deprecated; 5] 
             <data type="anyURI"/>
          </attribute>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="SPEAR-placeName-ref-ref-on-placeName-constraint-assert-79">
+                  id="SPEAR-placeName-ref-ref-on-placeName-constraint-assert-78">
             <rule context="tei:placeName/@ref">
                <sch:assert xmlns="http://www.tei-c.org/ns/1.0"
                            xmlns:sch="http://purl.oclc.org/dsdl/schematron"
@@ -3487,7 +3522,7 @@ Sample values include: 1] approved; 2] candidate; 3] cleared; 4] deprecated; 5] 
             </rule>
          </pattern> 
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="SPEAR-placeName-ref-ref-on-placeName-constraint-assert-80">
+                  id="SPEAR-placeName-ref-ref-on-placeName-constraint-assert-79">
             <rule context="tei:placeName/@ref">
                <sch:assert xmlns="http://www.tei-c.org/ns/1.0"
                            xmlns:sch="http://purl.oclc.org/dsdl/schematron"
@@ -3563,7 +3598,7 @@ Sample values include: 1] approved; 2] candidate; 3] cleared; 4] deprecated; 5] 
             </list>
          </attribute>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="SPEAR-education-ana-ref-in-education-constraint-assert-81">
+                  id="SPEAR-education-ana-ref-in-education-constraint-assert-80">
             <rule context="tei:education/@ana">
                <sch:assert xmlns="http://www.tei-c.org/ns/1.0"
                            xmlns:sch="http://purl.oclc.org/dsdl/schematron"
@@ -3737,7 +3772,7 @@ Sample values include: 1] approved; 2] candidate; 3] cleared; 4] deprecated; 5] 
             </list>
          </attribute>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="SPEAR-occupation-ana-ana-in-occupation-constraint-assert-88">
+                  id="SPEAR-occupation-ana-ana-in-occupation-constraint-assert-87">
             <rule context="tei:occupation/@ana">
                <sch:assert xmlns="http://www.tei-c.org/ns/1.0"
                            xmlns:sch="http://purl.oclc.org/dsdl/schematron"
@@ -3973,7 +4008,7 @@ Sample values include: 1] approved; 2] candidate; 3] cleared; 4] deprecated; 5] 
               </sch:rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="SPEAR-relation-reforkeyorname-constraint-assert-93">
+                  id="SPEAR-relation-reforkeyorname-constraint-assert-92">
             <rule context="tei:relation">
                <assert xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                        xmlns:srophe="https://srophe.app"
@@ -4185,7 +4220,7 @@ Sample values include: 1] approved; 2] candidate; 3] cleared; 4] deprecated; 5] 
                   </sch:rule>
             </pattern> 
             <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                     id="SPEAR-relation-mutual-mutual-on-relation-in-eventFactoid-constraint-assert-106">
+                     id="SPEAR-relation-mutual-mutual-on-relation-in-eventFactoid-constraint-assert-105">
                <rule context="tei:relation/@mutual">
                   <sch:assert xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                               test="count(distinct-values(tokenize(., ' '))) = count(tokenize(., ' '))">
@@ -4279,7 +4314,7 @@ Sample values include: 1] approved; 2] candidate; 3] cleared; 4] deprecated; 5] 
             <data type="anyURI"/>
          </attribute>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="SPEAR-socecStatus-ana-ana-in-socecStatus-constraint-assert-111">
+                  id="SPEAR-socecStatus-ana-ana-in-socecStatus-constraint-assert-110">
             <rule context="tei:socecStatus/@ana">
                <sch:assert xmlns="http://www.tei-c.org/ns/1.0"
                            xmlns:sch="http://purl.oclc.org/dsdl/schematron"
@@ -4322,7 +4357,7 @@ Sample values include: 1] approved; 2] candidate; 3] cleared; 4] deprecated; 5] 
             </list>
          </attribute>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="SPEAR-state-ana-ana-in-state-constraint-assert-113">
+                  id="SPEAR-state-ana-ana-in-state-constraint-assert-112">
             <rule context="tei:state/@ana">
                <sch:assert xmlns="http://www.tei-c.org/ns/1.0"
                            xmlns:sch="http://purl.oclc.org/dsdl/schematron"
@@ -4402,7 +4437,7 @@ Sample values include: 1] approved; 2] candidate; 3] cleared; 4] deprecated; 5] 
             </list>
          </attribute>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="SPEAR-trait-ana-ana-in-trait-constraint-assert-116">
+                  id="SPEAR-trait-ana-ana-in-trait-constraint-assert-115">
             <rule context="tei:trait/@ana">
                <sch:assert xmlns="http://www.tei-c.org/ns/1.0"
                            xmlns:sch="http://purl.oclc.org/dsdl/schematron"
