@@ -1772,14 +1772,6 @@
                 <sch:assert test="tei:placeName">The &lt;note&gt; element in a citizenship factoid
                   must contain a &lt;placeName&gt; element.</sch:assert>
               </sch:rule>
-              <sch:rule
-                context="tei:note[parent::tei:nationality and preceding-sibling::tei:date]">
-                <sch:assert test=".//tei:date">The &lt;note&gt; element in this citizenship factoid must
-                  contain a &lt;date&gt; element. If you wish to encode a non-Gregorian date, this 
-                  &lt;date&gt; element may appear inside a &lt;choice&gt; element with &lt;reg&gt; 
-                  and &lt;orig&gt; for the different dating systems.
-                </sch:assert>
-              </sch:rule>
               <sch:rule context="tei:note[parent::tei:death and preceding-sibling::tei:placeName]">
                 <sch:assert test="tei:persName">The &lt;note&gt; element in a death place factoid
                   must contain a &lt;persName&gt; element.</sch:assert>
@@ -1804,14 +1796,6 @@
                   contain a &lt;persName&gt; element.</sch:assert>
                 <sch:assert test="tei:placeName">The &lt;note&gt; element in a residence factoid
                   must contain a &lt;placeName&gt; element.</sch:assert>
-              </sch:rule>
-              <sch:rule
-                context="tei:note[parent::tei:residence and preceding-sibling::tei:date]">
-                <sch:assert test=".//tei:date">The &lt;note&gt; element in this residence factoid must
-                  contain a &lt;date&gt; element. If you wish to encode a non-Gregorian date, this 
-                  &lt;date&gt; element may appear inside a &lt;choice&gt; element with &lt;reg&gt; 
-                  and &lt;orig&gt; for the different dating systems.
-                </sch:assert>
               </sch:rule>
               <sch:rule context="tei:note[parent::tei:socecStatus]">
                 <sch:assert test="tei:persName">The &lt;note&gt; element in a socioeconomic status
