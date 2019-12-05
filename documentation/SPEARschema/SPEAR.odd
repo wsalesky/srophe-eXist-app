@@ -1797,6 +1797,11 @@
                 <sch:assert test="tei:placeName">The &lt;note&gt; element in a residence factoid
                   must contain a &lt;placeName&gt; element.</sch:assert>
               </sch:rule>
+              <sch:rule
+                context="tei:note[parent::tei:residence and preceding-sibling::tei:date]">
+                <sch:assert test=".//tei:date">The &lt;note&gt; element in a residence factoid must
+                  contain a &lt;persName&gt; element.</sch:assert>
+              </sch:rule>
               <sch:rule context="tei:note[parent::tei:socecStatus]">
                 <sch:assert test="tei:persName">The &lt;note&gt; element in a socioeconomic status
                   factoid must contain a &lt;persName&gt; element.</sch:assert>
@@ -3047,6 +3052,7 @@
           <content>
             <sequence preserveOrder="true">
               <elementRef key="placeName" minOccurs="1" maxOccurs="1"/>
+              <elementRef key="date" minOccurs="0" maxOccurs="1"/>
               <elementRef key="note" minOccurs="1" maxOccurs="1"/>
             </sequence>
           </content>
