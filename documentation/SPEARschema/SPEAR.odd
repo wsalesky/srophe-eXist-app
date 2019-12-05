@@ -44,7 +44,7 @@
         <moduleRef key="core"
           include="author bibl biblScope choice citedRange corr date desc editor head listBibl name note num orig p ptr publisher pubPlace ref reg resp respStmt sic title"/>
         <moduleRef key="tei"/>
-        <moduleRef key="header" include="authority catDesc category classDecl editionStmt editorialDecl encodingDesc fileDesc funder idno licence publicationStmt revisionDesc seriesStmt sponsor taxonomy teiHeader titleStmt"/>
+        <moduleRef key="header" include="authority availability catDesc category change classDecl edition editionStmt editorialDecl encodingDesc fileDesc funder idno licence profileDesc publicationStmt revisionDesc seriesStmt sourceDesc sponsor taxonomy teiHeader titleStmt"/>
         <moduleRef key="textstructure" include="back body div TEI text"/>
         <moduleRef key="namesdates"
           include="birth death education event langKnowledge langKnown listEvent listPerson listRelation nationality occupation orgName persName person personGrp placeName relation residence socecStatus state trait"/>
@@ -1457,11 +1457,15 @@
                 </valItem>
                 <valItem ident="mentalState">
                   <gloss>mental state</gloss>
-                  <desc>Used to designate person factoids that encode mental state</desc>
+                  <desc>Used to designate person factoids that encode mental states</desc>
                 </valItem>
                 <valItem ident="nameVariant">
                   <gloss>name variant</gloss>
                   <desc>Used to designate person factoids that encode name variants</desc>
+                </valItem>
+                <valItem ident="occupation">
+                  <gloss>occupation</gloss>
+                  <desc>Used to designate person factoids that encode occupations</desc>
                 </valItem>
                 <valItem ident="physicalTrait">
                   <gloss>physical trait</gloss>
@@ -1470,6 +1474,10 @@
                 <valItem ident="relation">
                   <gloss>relation</gloss>
                   <desc>Used to designate relation factoids</desc>
+                </valItem>
+                <valItem ident="residence">
+                  <gloss>residence</gloss>
+                  <desc>Used to designate person factoids that encode places and dates of residence</desc>
                 </valItem>
                 <valItem ident="sanctity">
                   <gloss>sanctity</gloss>
