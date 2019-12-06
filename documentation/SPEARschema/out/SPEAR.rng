@@ -6,7 +6,7 @@
          xmlns:srophe="https://srophe.app"
          datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
          ns="http://www.tei-c.org/ns/1.0"><!--
-Schema generated from ODD source 2019-12-05T23:07:15Z. .
+Schema generated from ODD source 2019-12-06T21:56:29Z. .
 TEI Edition: Version 3.5.0. Last updated on
 	29th January 2019, revision 3c0c64ec4
 TEI Edition Location: http://www.tei-c.org/Vault/P5/Version 3.5.0/
@@ -3217,14 +3217,12 @@ Sample values include: 1] approved; 2] candidate; 3] cleared; 4] deprecated; 5] 
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
                       context="tei:div[ancestor::tei:body]/@resp">
-                <sch:let name="edsDoc"
-                        value="doc('https://raw.githubusercontent.com/srophe/srophe-eXist-app/master/documentation/editors.xml')"/>
-                <sch:let name="eds"
-                        value="$edsDoc//tei:text/tei:body/tei:listPerson/tei:person/@xml:id"/>
-                <sch:let name="respValues" value="for $i in $eds return concat('#', $i)"/>
-                <sch:assert test="                   every $i in (tokenize(., ' '))                   satisfies $i = $respValues">
+                <sch:let name="contributorRefs" value="//tei:name[ancestor::tei:respStmt]/@ref"/>
+                <sch:let name="respPtrs"
+                        value="for $i in $contributorRefs return substring-after($i, '.xml')"/>
+                <sch:assert test="                   every $i in (tokenize(., ' '))                   satisfies $i = $respPtrs">
                   Acceptable values for this @resp attribute include: 
-                  <sch:value-of select="string-join($respValues, ' | ')"/>.
+                  <sch:value-of select="string-join($respPtrs, '; ')"/>.
                 </sch:assert>
               </sch:rule>
          </pattern>

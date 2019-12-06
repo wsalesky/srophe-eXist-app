@@ -1370,15 +1370,13 @@
                 require a @type attribute with the value "factoid".</sch:assert>
               </sch:rule>
               <sch:rule context="tei:div[ancestor::tei:body]/@resp">
-                <sch:let name="edsDoc"
-                  value="doc('https://raw.githubusercontent.com/srophe/srophe-eXist-app/master/documentation/editors.xml')"/>
-                <sch:let name="eds" value="$edsDoc//tei:text/tei:body/tei:listPerson/tei:person/@xml:id"/>
-                <sch:let name="respValues" value="for $i in $eds return concat('#', $i)"/>
+                <sch:let name="contributorRefs" value="//tei:name[ancestor::tei:respStmt]/@ref"/>
+                <sch:let name="respPtrs" value="for $i in $contributorRefs return substring-after($i, '.xml')"/>
                 <sch:assert test="
                   every $i in (tokenize(., ' '))
-                  satisfies $i = $respValues">
+                  satisfies $i = $respPtrs">
                   Acceptable values for this @resp attribute include: 
-                  <sch:value-of select="string-join($respValues, ' | ')"/>.
+                  <sch:value-of select="string-join($respPtrs, '; ')"/>.
                 </sch:assert>
               </sch:rule>
             </constraint>
