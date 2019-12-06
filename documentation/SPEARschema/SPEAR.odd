@@ -1692,10 +1692,23 @@
           <constraintSpec ident="ana-on-event" scheme="schematron">
             <constraint>
               <sch:rule context="tei:event/@ana">
-                <sch:assert test="count(distinct-values(tokenize(., ' '))) = count(tokenize(., ' '))">
+                <sch:let name="anaValues" value="tokenize(., ' ')"/>
+                <sch:assert test="
+                  every $i in $anaValues
+                  satisfies starts-with($i, 'http://syriaca.org/keyword/')">
+                  Each @ana attribute value must start with "http://syriaca.org/keyword/" and multiple 
+                  values must be space separated.
+                </sch:assert>
+                <sch:assert test="count(distinct-values($anaValues)) = count($anaValues)">
                   The same keyword URI may not appear twice as the value of the @ana attribute. </sch:assert>
-                <sch:assert test="starts-with(., 'http://syriaca.org/keyword/')">An @ana attribute
-                  must start with "http://syriaca.org/keyword/".</sch:assert>
+                <sch:report test="contains(., ',') or contains(., ';')">
+                  Multiple @ana attributes should be separated with one blank space
+                </sch:report>
+                <sch:report test="
+                  every $i in $anaValues
+                  satisfies contains(substring-after($i, 'http://syriaca.org/keyword'), 'http:')">
+                  Multiple @ana attributes should be separated with one blank space
+                </sch:report>
               </sch:rule>
               <sch:rule context="tei:event/@ana" role="warning">
                 <sch:let name="ti"
@@ -2947,9 +2960,25 @@
               </datatype>
               <constraintSpec ident="ref-in-education" scheme="schematron">
                 <constraint>
-                  <sch:assert test="starts-with(., 'http://syriaca.org/keyword/')">An @ana attribute
-                    on the &lt;education&gt; element must point to a Syriaca.org keyword beginning
-                    with "http://syriaca.org/keyword/".</sch:assert>
+                  <sch:rule context="//tei:education/@ana">
+                    <sch:let name="anaValues" value="tokenize(., ' ')"/>
+                    <sch:assert test="
+                      every $i in $anaValues
+                      satisfies starts-with($i, 'http://syriaca.org/keyword/')">
+                      Each @ana attribute value must start with "http://syriaca.org/keyword/" and multiple 
+                      values must be space separated.
+                    </sch:assert>
+                    <sch:assert test="count(distinct-values($anaValues)) = count($anaValues)">
+                      The same keyword URI may not appear twice as the value of the @ana attribute. </sch:assert>
+                    <sch:report test="contains(., ',') or contains(., ';')">
+                      Multiple @ana attributes should be separated with one blank space
+                    </sch:report>
+                    <sch:report test="
+                      every $i in $anaValues
+                      satisfies contains(substring-after($i, 'http://syriaca.org/keyword'), 'http:')">
+                      Multiple @ana attributes should be separated with one blank space
+                    </sch:report>
+                  </sch:rule>
                   <sch:rule context="tei:education/@ana" role="warning">
                     <sch:let name="ti"
                       value="doc('https://raw.githubusercontent.com/srophe/srophe-app-data/dev/data/subjects/taxonomyIndex.xml')"/>
@@ -3087,9 +3116,25 @@
               </datatype>
               <constraintSpec ident="ana-in-occupation" scheme="schematron">
                 <constraint>
-                  <sch:assert test="starts-with(., 'http://syriaca.org/keyword/')">An @ana attribute
-                    on the &lt;education&gt; element must point to a Syriaca.org keyword beginning
-                    with "http://syriaca.org/keyword/".</sch:assert>
+                  <sch:rule context="//tei:occupation/@ana">
+                    <sch:let name="anaValues" value="tokenize(., ' ')"/>
+                    <sch:assert test="
+                      every $i in $anaValues
+                      satisfies starts-with($i, 'http://syriaca.org/keyword/')">
+                      Each @ana attribute value must start with "http://syriaca.org/keyword/" and multiple 
+                      values must be space separated.
+                    </sch:assert>
+                    <sch:assert test="count(distinct-values($anaValues)) = count($anaValues)">
+                      The same keyword URI may not appear twice as the value of the @ana attribute. </sch:assert>
+                    <sch:report test="contains(., ',') or contains(., ';')">
+                      Multiple @ana attributes should be separated with one blank space
+                    </sch:report>
+                    <sch:report test="
+                      every $i in $anaValues
+                      satisfies contains(substring-after($i, 'http://syriaca.org/keyword'), 'http:')">
+                      Multiple @ana attributes should be separated with one blank space
+                    </sch:report>
+                  </sch:rule>
                   <sch:rule context="tei:occupation/@ana" role="warning">
                     <sch:let name="ti"
                       value="doc('https://raw.githubusercontent.com/srophe/srophe-app-data/dev/data/subjects/taxonomyIndex.xml')"/>
@@ -3205,6 +3250,25 @@
         <elementSpec ident="langKnown" module="namesdates" mode="change">
           <constraintSpec ident="ana-in-langKnown" scheme="schematron">
             <constraint>
+              <sch:rule context="//tei:langKnown/@ana">
+                <sch:let name="anaValues" value="tokenize(., ' ')"/>
+                <sch:assert test="
+                  every $i in $anaValues
+                  satisfies starts-with($i, 'http://syriaca.org/keyword/')">
+                  Each @ana attribute value must start with "http://syriaca.org/keyword/" and multiple 
+                  values must be space separated.
+                </sch:assert>
+                <sch:assert test="count(distinct-values($anaValues)) = count($anaValues)">
+                  The same keyword URI may not appear twice as the value of the @ana attribute. </sch:assert>
+                <sch:report test="contains(., ',') or contains(., ';')">
+                  Multiple @ana attributes should be separated with one blank space
+                </sch:report>
+                <sch:report test="
+                  every $i in $anaValues
+                  satisfies contains(substring-after($i, 'http://syriaca.org/keyword'), 'http:')">
+                  Multiple @ana attributes should be separated with one blank space
+                </sch:report>
+              </sch:rule>
               <sch:rule context="tei:langKnown/@ana" role="warning">
                 <sch:let name="ti"
                   value="doc('https://raw.githubusercontent.com/srophe/srophe-app-data/dev/data/subjects/taxonomyIndex.xml')"/>
@@ -3220,9 +3284,6 @@
                   preferred descriptive term: <sch:value-of
                     select="string-join($languages, ';  ')"/>.
                 </sch:assert>
-                <sch:assert test="starts-with(., 'http://syriaca.org/keyword/')">An @ana attribute
-                  on the &lt;langKnown&gt; element must point to a Syriaca.org keyword beginning
-                  with "http://syriaca.org/keyword/".</sch:assert>
               </sch:rule>
             </constraint>
           </constraintSpec>
@@ -3275,9 +3336,25 @@
               </datatype>
               <constraintSpec ident="ana-in-socecStatus" scheme="schematron">
                 <constraint>
-                  <sch:assert test="starts-with(., 'http://syriaca.org/keyword/')">An @ana attribute
-                    on the &lt;education&gt; element must point to a Syriaca.org keyword beginning
-                    with "http://syriaca.org/keyword/".</sch:assert>
+                  <sch:rule context="tei:socecStatus/@ana">
+                    <sch:let name="anaValues" value="tokenize(., ' ')"/>
+                    <sch:assert test="
+                      every $i in $anaValues
+                      satisfies starts-with($i, 'http://syriaca.org/keyword/')">
+                      Each @ana attribute value must start with "http://syriaca.org/keyword/" and multiple 
+                      values must be space separated.
+                    </sch:assert>
+                    <sch:assert test="count(distinct-values($anaValues)) = count($anaValues)">
+                      The same keyword URI may not appear twice as the value of the @ana attribute. </sch:assert>
+                    <sch:report test="contains(., ',') or contains(., ';')">
+                      Multiple @ana attributes should be separated with one blank space
+                    </sch:report>
+                    <sch:report test="
+                      every $i in $anaValues
+                      satisfies contains(substring-after($i, 'http://syriaca.org/keyword'), 'http:')">
+                      Multiple @ana attributes should be separated with one blank space
+                    </sch:report>
+                  </sch:rule>
                   <sch:rule context="tei:socecStatus/@ana" role="warning">
                     <sch:let name="ti"
                       value="doc('https://raw.githubusercontent.com/srophe/srophe-app-data/dev/data/subjects/taxonomyIndex.xml')"/>
@@ -3356,9 +3433,25 @@
               </datatype>
               <constraintSpec ident="ana-in-trait" scheme="schematron">
                 <constraint>
-                  <sch:assert test="starts-with(., 'http://syriaca.org/keyword/')">An @ana attribute
-                    on the &lt;trait&gt; element must point to a Syriaca.org keyword starting with
-                    "http://syriaca.org/keyword/".</sch:assert>
+                  <sch:rule context="tei:trait/@ana">
+                    <sch:let name="anaValues" value="tokenize(., ' ')"/>
+                    <sch:assert test="
+                      every $i in $anaValues
+                      satisfies starts-with($i, 'http://syriaca.org/keyword/')">
+                      Each @ana attribute value must start with "http://syriaca.org/keyword/" and multiple 
+                      values must be space separated.
+                    </sch:assert>
+                    <sch:assert test="count(distinct-values($anaValues)) = count($anaValues)">
+                      The same keyword URI may not appear twice as the value of the @ana attribute. </sch:assert>
+                    <sch:report test="contains(., ',') or contains(., ';')">
+                      Multiple @ana attributes should be separated with one blank space
+                    </sch:report>
+                    <sch:report test="
+                      every $i in $anaValues
+                      satisfies contains(substring-after($i, 'http://syriaca.org/keyword'), 'http:')">
+                      Multiple @ana attributes should be separated with one blank space
+                    </sch:report>
+                  </sch:rule>
                   <sch:rule context="tei:trait[@type = 'ethnicLabel']/@ana" role="warning">
                     <sch:let name="ti"
                       value="doc('https://raw.githubusercontent.com/srophe/srophe-app-data/dev/data/subjects/taxonomyIndex.xml')"/>
@@ -3533,9 +3626,25 @@
               </datatype>
               <constraintSpec ident="ana-in-state" scheme="schematron">
                 <constraint>
-                  <sch:assert test="starts-with(., 'http://syriaca.org/keyword/')">An @ana attribute
-                    on the &lt;state&gt; element must point to a Syriaca.org keyword beginning with
-                    "http://syriaca.org/keyword/".</sch:assert>
+                  <sch:rule context="tei:state/@ana">
+                    <sch:let name="anaValues" value="tokenize(., ' ')"/>
+                    <sch:assert test="
+                      every $i in $anaValues
+                      satisfies starts-with($i, 'http://syriaca.org/keyword/')">
+                      Each @ana attribute value must start with "http://syriaca.org/keyword/" and multiple 
+                      values must be space separated.
+                    </sch:assert>
+                    <sch:assert test="count(distinct-values($anaValues)) = count($anaValues)">
+                      The same keyword URI may not appear twice as the value of the @ana attribute. </sch:assert>
+                    <sch:report test="contains(., ',') or contains(., ';')">
+                      Multiple @ana attributes should be separated with one blank space
+                    </sch:report>
+                    <sch:report test="
+                      every $i in $anaValues
+                      satisfies contains(substring-after($i, 'http://syriaca.org/keyword'), 'http:')">
+                      Multiple @ana attributes should be separated with one blank space
+                    </sch:report>
+                  </sch:rule>
                   <sch:rule context="tei:state[@type = 'mental']/@ana" role="warning">
                     <sch:let name="ti"
                       value="doc('https://raw.githubusercontent.com/srophe/srophe-app-data/dev/data/subjects/taxonomyIndex.xml')"/>
