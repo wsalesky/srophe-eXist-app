@@ -1167,7 +1167,7 @@
                 <sch:let name="SameEventURIs" value="tokenize(ancestor::tei:relation/@mutual, ' ')"/>
                 <sch:let name="countMutual" value="for $i in $SameEventURIs return count($i)"/>
                 <sch:assert test=". = $SameEventURIs">
-                  <sch:value-of select="$SameEventURIs"/>
+                  Acceptable values: <sch:value-of select="string-join($SameEventURIs, '; ')"/>
                 </sch:assert>
               </sch:rule>
               <sch:rule context="//tei:div//tei:rs">
