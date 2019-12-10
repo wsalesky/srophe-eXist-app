@@ -42,7 +42,7 @@
 
         <desc/>
         <moduleRef key="core"
-          include="author bibl biblScope choice citedRange corr date desc editor head listBibl name note num orig p ptr publisher pubPlace ref reg resp respStmt sic title"/>
+          include="author bibl biblScope choice citedRange corr date desc editor head listBibl name note num orig p ptr publisher pubPlace ref reg resp respStmt rs sic title"/>
         <moduleRef key="tei"/>
         <moduleRef key="header" include="authority availability catDesc category change classDecl edition editionStmt editorialDecl encodingDesc fileDesc funder idno licence profileDesc publicationStmt revisionDesc seriesStmt sourceDesc sponsor taxonomy teiHeader titleStmt"/>
         <moduleRef key="textstructure" include="back body div TEI text"/>
@@ -1107,6 +1107,7 @@
               <elementRef key="persName" minOccurs="0" maxOccurs="unbounded"/>
               <elementRef key="placeName" minOccurs="0" maxOccurs="unbounded"/>
               <elementRef key="orgName" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="rs" minOccurs="0" maxOccurs="unbounded"/>
             </sequence>
           </content>
           <constraintSpec ident="desc-content" scheme="schematron">
@@ -1123,11 +1124,54 @@
               </sch:rule>
             </constraint>
           </constraintSpec>
+          <constraintSpec ident="descInRelation" scheme="schematron">
+            <constraint>
+              <sch:rule context="//tei:div/tei:listEvent/tei:listRelation/tei:relation/tei:desc">
+                <sch:let name="SameEventURIs" value="tokenize(parent::tei:relation/@mutual, ' ')"/>
+                <sch:assert test="count(child::tei:rs) = count($SameEventURIs)">
+                  This &lt;desc&gt; element must contain <sch:value-of select="count($SameEventURIs)"/> &lt;rs&gt; elements, one for each values in the @mutual attribute on &lt;relation&gt;.
+                </sch:assert>
+                <sch:assert test="count(distinct-values(tei:rs/@ref)) = count(tei:rs)">
+                  The &lt;desc&gt; element requires &lt;rs&gt; elements with unique @ref attribute values. 
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="//tei:div/tei:listEvent/tei:listRelation/tei:relation[@ref='syriaca:SameEvent']/tei:desc">
+                <sch:let name="SameEventURIs" value="tokenize(parent::tei:relation/@mutual, ' ')"/>
+                <sch:assert test="starts-with(normalize-space(.), 'The following factoids deal with the same event: ')">
+                  This &lt;desc&gt; must begin with "The following factoids deal with the same event: " 
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="//tei:div/tei:listEvent/tei:listRelation/tei:relation[@ref='syriaca:ProxmiateEvent']/tei:desc">
+                <sch:let name="SameEventURIs" value="tokenize(parent::tei:relation/@mutual, ' ')"/>
+                <sch:assert test="starts-with(normalize-space(.), 'The following factoids deal with closely related events: ')">
+                  This &lt;desc&gt; must begin with "The following factoids deal with related events: " 
+                </sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
           <remarks>
             <p>This customization does not allow attributes on the <gi>desc</gi> element. It also
               restricts child elements to <gi>choice</gi>, <gi>date</gi>, <gi>persName</gi>, and
               <gi>placeName</gi>.</p>
           </remarks>
+        </elementSpec>
+        
+        <elementSpec ident="rs" module="core" mode="change">
+          <content>
+            <textNode/>
+          </content>
+          <constraintSpec ident="rsInRelationDesc" scheme="schematron">
+            <!-- I need to rewrite this rule to include @ref on rs in all types of relations or I will need a rule that accomplishes the same for div/listRelation. -->
+            <constraint>
+              <sch:rule context="//tei:div/tei:listEvent/tei:listRelation/tei:relation/tei:desc/tei:rs/@ref">
+                <sch:let name="SameEventURIs" value="tokenize(ancestor::tei:relation/@mutual, ' ')"/>
+                <sch:let name="countMutual" value="for $i in $SameEventURIs return count($i)"/>
+                <sch:assert test=". = $SameEventURIs">
+                  <sch:value-of select="$SameEventURIs"/>
+                </sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
         </elementSpec>
 
         <elementSpec ident="editor" module="core" mode="change">
@@ -2239,6 +2283,9 @@
           <classes mode="replace">
             <memberOf/>
           </classes>
+          <content>
+            <elementRef key="desc" minOccurs="1" maxOccurs="1"/>
+          </content>
           <constraintSpec ident="ref-mutual-act-pass-in-relation" scheme="schematron">
             <constraint>
               <sch:rule context="tei:div/tei:listRelation/tei:relation">
