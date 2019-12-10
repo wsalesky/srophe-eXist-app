@@ -1110,13 +1110,13 @@
               <elementRef key="rs" minOccurs="0" maxOccurs="unbounded"/>
             </sequence>
           </content>
-          <constraintSpec ident="desc-content" scheme="schematron">
+          <constraintSpec ident="descContent" scheme="schematron">
             <constraint>
-              <sch:rule context="tei:desc">
+              <sch:rule context="//tei:div//tei:desc">
                 <sch:report test="not(*) and string-length(normalize-space(.)) eq 0">Element of type
                   &lt;desc&gt; cannot be empty.</sch:report>
               </sch:rule>
-              <sch:rule context="tei:desc" role="warning">
+              <sch:rule context="tei:div/tei:listEvent/tei:event/tei:desc" role="warning">
                 <sch:assert test="./tei:persName or tei:placeName">The &lt;desc&gt; element should
                   generally contain either a &lt;persName&gt; or a &lt;placeName&gt; element. SPEAR
                   encourages a liberal use of &lt;persName&gt;, &lt;placeName&gt;, and &lt;date&gt;
