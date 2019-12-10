@@ -1161,13 +1161,19 @@
             <textNode/>
           </content>
           <constraintSpec ident="rsInRelationDesc" scheme="schematron">
-            <!-- I need to rewrite this rule to include @ref on rs in all types of relations or I will need a rule that accomplishes the same for div/listRelation. -->
+            <!-- I need to rewrite a rule that will do this this @active, @passive, and @mutual in div/listRelation. -->
             <constraint>
               <sch:rule context="//tei:div/tei:listEvent/tei:listRelation/tei:relation/tei:desc/tei:rs/@ref">
                 <sch:let name="SameEventURIs" value="tokenize(ancestor::tei:relation/@mutual, ' ')"/>
                 <sch:let name="countMutual" value="for $i in $SameEventURIs return count($i)"/>
                 <sch:assert test=". = $SameEventURIs">
                   <sch:value-of select="$SameEventURIs"/>
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="//tei:div//tei:rs">
+                <sch:let name="URIno" value="substring-after(@ref, 'spear/')"/>
+                <sch:assert test=". = $URIno">
+                  The text node of this &lt;rs&gt; element must be <sch:value-of select="$URIno"/>.
                 </sch:assert>
               </sch:rule>
             </constraint>
