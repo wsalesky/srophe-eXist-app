@@ -2290,8 +2290,22 @@
             <memberOf/>
           </classes>
           <content>
-            <elementRef key="desc" minOccurs="1" maxOccurs="1"/>
+            <elementRef key="desc" minOccurs="0" maxOccurs="1"/>
           </content>
+          <constraintSpec ident="descInRelation" scheme="schematron">
+            <constraint>
+              <sch:rule context="//tei:body//tei:relation">
+                <sch:assert test="tei:desc">
+                  The &lt;relation&gt; element require a &lt;desc&gt;.
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="//tei:sourceDesc//tei:relation">
+                <sch:report test="tei:desc">
+                  The &lt;desc&gt; element may not appear here.
+                </sch:report>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
           <constraintSpec ident="ref-mutual-act-pass-in-relation" scheme="schematron">
             <constraint>
               <sch:rule context="tei:div/tei:listRelation/tei:relation">
@@ -2325,6 +2339,21 @@
                   elements in event factoids.</sch:report>
                 <sch:report test="@passive">@passive attributes are not allowed on &lt;relation&gt;
                   elements in event factoids.</sch:report>
+              </sch:rule>
+              <sch:rule context="//tei:relation/@active">
+                <sch:report test="contains(., ',') or contains(., ';')">
+                  Multiple attribute values should appear separated by a blank space.
+                </sch:report>
+              </sch:rule>
+              <sch:rule context="//tei:relation/@mutual">
+                <sch:report test="contains(., ',') or contains(., ';')">
+                  Multiple attribute values should appear separated by a blank space.
+                </sch:report>
+              </sch:rule>
+              <sch:rule context="//tei:relation/@passive">
+                <sch:report test="contains(., ',') or contains(., ';')">
+                  Multiple attribute values should appear separated by a blank space.
+                </sch:report>
               </sch:rule>
             </constraint>
           </constraintSpec>
