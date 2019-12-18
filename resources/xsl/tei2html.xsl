@@ -58,6 +58,8 @@
     <xsl:import href="collations.xsl"/>
     <!-- Syriaca.org stylesheets -->
     <xsl:import href="link-icons.xsl"/>
+    <!-- SPEAR -->
+    <xsl:import href="spear.xsl"/>
     
  <!-- =================================================================== -->
  <!-- set output so we get (mostly) indented HTML -->
@@ -103,7 +105,7 @@
                         <xsl:value-of select="$config//*:collection[@name=$collection]/@title"/>
                     </xsl:when>
                     <xsl:when test="$config//*:collection[@title=$collection]">
-                        <xsl:value-of select="$config//*:collection[@title=$collection]/@title"></xsl:value-of>
+                        <xsl:value-of select="$config//*:collection[@title=$collection]/@title"/>
                     </xsl:when>
                     <xsl:otherwise><xsl:value-of select="$repository-title"/></xsl:otherwise>
                 </xsl:choose>
@@ -421,18 +423,20 @@
             </xsl:when>
             <!-- Adds definition list for depreciated names -->
             <xsl:when test="@type='deprecation'">
-                <li>
+                <div class="tei-note">
                     <span>
-                        <xsl:apply-templates select="../t:link[contains(@target,$xmlid)]"/>:
+                        <xsl:if test="../t:link[contains(@target,$xmlid)]">
+                            <xsl:apply-templates select="../t:link[contains(@target,$xmlid)]"/>:
+                        </xsl:if>
                         <xsl:apply-templates/>
                         <!-- Check for ending punctuation, if none, add . -->
                         <!-- NOTE not working -->
                     </span>
                     <xsl:sequence select="local:add-footnotes(@source,.)"/>
-                </li>
+                </div>
             </xsl:when>
             <xsl:when test="@type='ancientVersion'">
-                <li class="note">
+                <div class="tei-note">
                     <xsl:if test="descendant::t:lang/text()">
                         <span class="srp-label">
                             <xsl:value-of select="local:expand-lang(descendant::t:lang[1]/text(),'ancientVersion')"/>:
@@ -443,7 +447,7 @@
                         <xsl:apply-templates/>
                     </span>
                     <xsl:sequence select="local:add-footnotes(@source,.)"/>
-                </li>
+                </div>
             </xsl:when>
             <xsl:when test="@type='modernTranslation'">
                 <li>
@@ -460,7 +464,7 @@
                 </li>
             </xsl:when>
             <xsl:when test="@type='editions'">
-                <li>
+                <div class="tei-note">
                     <span>
                         <xsl:sequence select="local:attributes(.)"/>
                         <xsl:apply-templates/>
@@ -499,7 +503,7 @@
                         </xsl:if>
                     </span>
                     <xsl:sequence select="local:add-footnotes(@source,.)"/>
-                </li>
+                </div>
             </xsl:when>
             <xsl:otherwise>
                 <div class="tei-note">  
@@ -876,13 +880,13 @@
                 <h3>
                     <xsl:value-of select="concat(upper-case(substring($label,1,1)),substring($label,2))"/>
                 </h3>
-                <ol>
+                <div class="indent">
                     <xsl:for-each select="current-group()">
                         <xsl:sort select="if(current-grouping-key() = 'MSS') then substring-after(t:bibl/@xml:id,'-') = '' else if(current-grouping-key() = 'editions') then substring-after(t:bibl/@corresp,'-') = '' else if(@xml:lang) then local:expand-lang(@xml:lang,$label) else ." order="ascending"/>
                         <xsl:sort select="if(current-grouping-key() = 'MSS' and (substring-after(t:bibl/@xml:id,'-') castable as xs:integer)) then xs:integer(substring-after(t:bibl/@xml:id,'-')) else if(@xml:lang) then local:expand-lang(@xml:lang,$label) else ()" order="ascending"/>
                         <xsl:apply-templates select="self::*"/>
                     </xsl:for-each>
-                </ol>
+                </div>
             </xsl:for-each-group>
             <xsl:for-each select="t:note[not(exists(@type))]">
                 <h3>Note</h3>
