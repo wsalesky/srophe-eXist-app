@@ -2,7 +2,7 @@
 
  <!-- ================================================================== 
        Copyright 2013 New York University  
-       
+         
        This file is part of the Syriac Reference Portal Places Application.
        
        The Syriac Reference Portal Places Application is free software: 
