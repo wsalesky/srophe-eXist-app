@@ -1136,6 +1136,7 @@
                         </xsl:when>
                     </xsl:choose>
                 </xsl:attribute>
+                <xsl:sequence select="local:attributes(.)"/>
                 <xsl:for-each select="./node()">
                     <xsl:apply-templates select="."/>
                 </xsl:for-each>
