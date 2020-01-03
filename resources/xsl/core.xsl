@@ -18,7 +18,14 @@
             <xsl:call-template name="rend"/>
         </td>
     </xsl:template> 
-    
+    <xsl:template match="t:choice">
+        <span class="tei-choice">
+            <xsl:apply-templates select="t:reg"/>
+            <xsl:if test="t:orig">
+                (<xsl:value-of select="t:orig"/>)
+            </xsl:if>
+        </span>
+    </xsl:template>
     <!-- G -->
     <xsl:template match="t:graphic">
         <img src="{string(@url)}"/>
