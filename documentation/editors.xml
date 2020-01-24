@@ -73,6 +73,7 @@
       <revisionDesc>
          <change type="reminder">Please be sure to update the publication date when changes are made
             here!</change>
+         <change when="2020-01-24" who="http://syriaca.org/documentation/editors.xml#dschwartz">ADDED: Rose Trupiano</change>
          <change when="2019-11-01" who="http://syriaca.org/documentation/editors.xml#wpotter">ADDED: Tobias Scheunchen</change>
          <change when="2019-09-24" who="http://syriaca.org/documentation/editors.xml#dschwartz">
             ADDED: Gibes and Kowalik
@@ -640,6 +641,12 @@
                <persName xml:lang="en">
                   <forename>Ugo</forename>
                   <surname>Zanetti</surname>
+               </persName>
+            </person>
+            <person xml:id="rtrupiano">
+               <persName>
+                  <forename>Rose</forename>
+                  <surname>Trupiano</surname>
                </persName>
             </person>
             <org xml:id="uasyriacresearchgroup">
