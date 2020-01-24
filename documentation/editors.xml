@@ -588,6 +588,12 @@
                   <surname>Torabi</surname>
                </persName>
             </person>
+            <person xml:id="rtrupiano">
+               <persName>
+                  <forename>Rose</forename>
+                  <surname>Trupiano</surname>
+               </persName>
+            </person>
             <person xml:id="avawter">
                <persName xml:lang="en">
                   <forename>Alex</forename>
@@ -641,12 +647,6 @@
                <persName xml:lang="en">
                   <forename>Ugo</forename>
                   <surname>Zanetti</surname>
-               </persName>
-            </person>
-            <person xml:id="rtrupiano">
-               <persName>
-                  <forename>Rose</forename>
-                  <surname>Trupiano</surname>
                </persName>
             </person>
             <org xml:id="uasyriacresearchgroup">
