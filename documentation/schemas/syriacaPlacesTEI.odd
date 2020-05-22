@@ -269,6 +269,8 @@
           </constraint>
         </constraintSpec>
         
+        <!-- The index lets in the following rules need to point to the raw GitHub file.
+          Once that becomes available, use those links and un-comment these rules.
         <constraintSpec ident="ref-on-person" scheme="schematron">
           <constraint>
             <sch:rule context="//tei:text//tei:persName/@ref">
@@ -297,7 +299,7 @@
               <sch:report test="contains(., ' ')">This @ref may contain only one URI.</sch:report>
             </sch:rule>
           </constraint>
-        </constraintSpec>
+        </constraintSpec>-->
         
         <elementSpec ident="teiHeader" module="header" mode="change">
           <content>
