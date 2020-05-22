@@ -1,0 +1,2176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_customization.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" 
+  xmlns:sch="http://purl.oclc.org/dsdl/schematron" 
+  xmlns:srophe="https://srophe.app">
+  <teiHeader>
+    <fileDesc>
+      <titleStmt>
+        <title>Title</title>
+      </titleStmt>
+      <publicationStmt>
+        <p>Publication Information</p>
+      </publicationStmt>
+      <sourceDesc>
+        <p>Information about the source</p>
+      </sourceDesc>
+    </fileDesc>
+  </teiHeader>
+  <text>
+    <body>
+
+      
+      <schemaSpec ident="syriacaPlacesTEI" start="TEI">
+        <desc/>
+        <moduleRef key="tei"/>
+        <moduleRef key="certainty" include="precision"/>
+        <moduleRef key="core"
+          include="abbr author bibl biblScope choice citedRange corr date desc editor expan foreign label listBibl measure name note orig p ptr quote reg ref resp respStmt sic title"/>
+        <moduleRef key="header"
+          include="authority availability catDesc category change classDecl edition editionStmt editorialDecl encodingDesc fileDesc funder idno langUsage licence principal profileDesc publicationStmt revisionDesc seriesStmt sourceDesc sponsor taxonomy teiHeader titleStmt"/>
+        <moduleRef key="linking" include="link"/>
+        <moduleRef key="namesdates" include="bloc country district event geo listPlace listRelation location offset persName place placeName region relation settlement state"/>
+        <moduleRef key="tagdocs" include="gi"/>
+        <moduleRef key="textstructure" include="TEI body text"/>
+        
+
+        
+        <classSpec ident="att.global" mode="change" module="tei" type="atts">
+          <attList>
+            <attDef ident="srophe:computed-start" ns="https://srophe.app" mode="add">
+              <desc>Start date</desc>
+              <datatype maxOccurs="unbounded" minOccurs="1">
+                <rng:text xmlns:rng="http://relaxng.org/ns/structure/1.0"/>
+              </datatype>
+            </attDef>
+            <attDef ident="srophe:computed-end" ns="https://srophe.app" mode="add">
+              <desc>End date</desc>
+              <datatype maxOccurs="unbounded" minOccurs="1">
+                <rng:text xmlns:rng="http://relaxng.org/ns/structure/1.0"/>
+              </datatype>
+            </attDef>
+            <attDef ident="srophe:tags" ns="https://srophe.app" mode="add">
+              <desc>tags usable</desc>
+              <datatype maxOccurs="unbounded" minOccurs="1">
+                <rng:text xmlns:rng="http://relaxng.org/ns/structure/1.0"/>
+              </datatype>
+              <valList mode="change" type="semi">
+                <valItem ident="#syriaca-headword">
+                  <desc>The name used by Syriaca.org for document titles, citation, and
+                    disambiguation. These names have been created according to the Syriaca.org
+                    guidelines for headwords: <ref
+                      target="http://syriaca.org/documentation/headwords.html"
+                      >http://syriaca.org/documentation/headwords.html</ref>.</desc>
+                </valItem>
+                <valItem ident="#syriaca-anglicized">
+                  <desc>An anglicized version of a name created by Syriaca.org used to facilitate
+                    searching in English.</desc>
+                </valItem>
+                <valItem ident="#ektobe-headword">
+                  <desc>The name used by e-Ktobe as a standardized name form.</desc>
+                </valItem>
+              </valList>
+            </attDef>
+            <attDef ident="xml:lang" mode="change">
+              <!-- Should this be ingested into the Taxonomy? We could we use keyword URIs instead of these. -->
+              <valList mode="replace" type="closed">
+                <valItem ident="ar">
+                  <gloss>Arabic</gloss>
+                  <desc>Arabic of any variety or period</desc>
+                </valItem>
+                <valItem ident="ar-Syrc">
+                  <gloss>Arabic—Garshuni</gloss>
+                  <desc>Arabic Garshuni in unvocalized or undetermined Syriac script</desc>
+                </valItem>
+                <valItem ident="ar-Syre">
+                  <gloss>Arabic—Garshuni—Estrangela</gloss>
+                  <desc>Arabic Garshuni in Estrangela Syriac script</desc>
+                </valItem>
+                <valItem ident="ar-Syrj">
+                  <gloss>Arabic—Garshuni—West Syriac</gloss>
+                  <desc>Arabic Garshuni in vocalized West Syriac script</desc>
+                </valItem>
+                <valItem ident="ar-Syrn">
+                  <gloss>Arabic—Garshuni—East Syriac</gloss>
+                  <desc>Arabic Garshuni in vocalized East Syriac script</desc>
+                </valItem>
+                <valItem ident="cop">
+                  <gloss>Coptic</gloss>
+                  <desc>Coptic of any variety or period</desc>
+                </valItem>
+                <valItem ident="cu">
+                  <gloss>Slavonic—Old Church</gloss>
+                  <desc>Old Church Slavonic</desc>
+                </valItem>
+                <valItem ident="de">
+                  <gloss>German</gloss>
+                  <desc>German of any variety or period</desc>
+                </valItem>
+                <valItem ident="de-x-baumstrk">
+                  <gloss>German—Baumstark Romanization</gloss>
+                  <desc>Names or terms Romanized into German according to the standards adopted by
+                    Anton Baumstark's Geschichte der syrischen Literatur.</desc>
+                </valItem>
+                <valItem ident="el">
+                  <gloss>Greek—Modern</gloss>
+                  <desc>Modern Greek after A.D. 1453</desc>
+                </valItem>
+                <valItem ident="en">
+                  <gloss>English</gloss>
+                  <desc>English of any variety or period</desc>
+                </valItem>
+                <valItem ident="en-x-gedsh">
+                  <gloss>English—GEDSH Romanization</gloss>
+                  <desc>Names or terms Romanized into English according to the standards adopted by
+                    the Gorgias Encyclopedic Dictionary of the Syriac Heritage</desc>
+                </valItem>
+                <valItem ident="en-x-lah">
+                  <gloss>English—LAH Romanization</gloss>
+                  <desc>Names or terms Romanized into English according to the standards adopted by
+                    the Late Antique Historiography project.</desc>
+                </valItem>
+                <valItem ident="en-x-srp1">
+                  <gloss>English—Syriaca.org Alternate Romanization</gloss>
+                  <desc>Names or terms Romanized into English by Syriaca.org using alternate methods
+                    for indexing purposes.</desc>
+                </valItem>
+                <valItem ident="es">
+                  <gloss>Spanish</gloss>
+                  <desc>Spanish</desc>
+                </valItem>
+                <valItem ident="fr">
+                  <gloss>French</gloss>
+                  <desc>French of any variety or period</desc>
+                </valItem>
+                <valItem ident="fr-x-bhs">
+                  <gloss>French—BHS Romanization</gloss>
+                  <desc>Names or terms Romanized into French according to the standards adopted by
+                    the Bibliotheca Hagiographica Syriaca</desc>
+                </valItem>
+                <valItem ident="fr-x-fiey">
+                  <gloss>French—Fiey Romanization</gloss>
+                  <desc>Names or terms Romanized into French according to the standards adopted by
+                    Fiey, Saints Syriaques</desc>
+                </valItem>
+                <valItem ident="gez">
+                  <gloss>Ge'ez</gloss>
+                  <desc>Ge'ez</desc>
+                </valItem>
+                <valItem ident="grc">
+                  <gloss>Greek—Ancient</gloss>
+                  <desc>Ancient Greek to A.D. 1453</desc>
+                </valItem>
+                <valItem ident="hy">
+                  <gloss>Armenian</gloss>
+                  <desc>Classical or Modern Armenian</desc>
+                </valItem>
+                <valItem ident="it">
+                  <gloss>Italian</gloss>
+                  <desc>Italian</desc>
+                </valItem>
+                <valItem ident="ka">
+                  <gloss>Georgian</gloss>
+                  <desc>Classical or Modern Georgian</desc>
+                </valItem>
+                <valItem ident="la">
+                  <gloss>Latin</gloss>
+                  <desc>Latin of any variety or period</desc>
+                </valItem>
+                <valItem ident="mal">
+                  <gloss>Malayalam</gloss>
+                  <desc>Malayalam of any variety or period</desc>
+                </valItem>
+                <valItem ident="mal-Syrc">
+                  <gloss>Malayalam—Garshuni</gloss>
+                  <desc>Malayalam Garshuni in unvocalized or undetermined Syriac script</desc>
+                </valItem>
+                <valItem ident="mal-Syre">
+                  <gloss>Malayalam—Garshuni—Estrangela</gloss>
+                  <desc>Malayalam Garshuni in Estrangela Syriac script</desc>
+                </valItem>
+                <valItem ident="mal-Syrj">
+                  <gloss>Malayalam—Garshuni—West Syriac</gloss>
+                  <desc>Malayalam Garshuni in vocalized West Syriac script</desc>
+                </valItem>
+                <valItem ident="mal-Syrn">
+                  <gloss>Malayalam—Garshuni—East Syriac</gloss>
+                  <desc>Malayalam Garshuni in vocalized East Syriac script</desc>
+                </valItem>
+                <valItem ident="nl">
+                  <gloss>Dutch</gloss>
+                  <desc>Dutch</desc>
+                </valItem>
+                <valItem ident="pt">
+                  <gloss>Portuguese</gloss>
+                  <desc>Portuguese</desc>
+                </valItem>
+                <valItem ident="ru">
+                  <gloss>Russian</gloss>
+                  <desc>Russian</desc>
+                </valItem>
+                <valItem ident="syr">
+                  <gloss>Syriac</gloss>
+                  <desc>Syriac of any variety or period</desc>
+                </valItem>
+                <valItem ident="syr-Syre">
+                  <gloss>Syriac—Estrangela script</gloss>
+                  <desc>Syriac in Estrangela script</desc>
+                </valItem>
+                <valItem ident="syr-Syrj">
+                  <gloss>Syriac—West</gloss>
+                  <desc>Syriac in vocalized West Syriac script</desc>
+                </valItem>
+                <valItem ident="syr-Syrn">
+                  <gloss>Syriac—East</gloss>
+                  <desc>Syriac in vocalized East Syriac script</desc>
+                </valItem>
+                <valItem ident="syr-x-syrm">
+                  <gloss>Syriac—Melkite script</gloss>
+                  <desc>Syriac in Melkite script. Note: This is not an ISO code but a private use
+                    code for Melkite employed by Syriaca.org until an ISO code is created</desc>
+                </valItem>
+                <valItem ident="sog">
+                  <gloss>Sogdian</gloss>
+                  <desc>Sogdian</desc>
+                </valItem>
+                <valItem ident="tr">
+                  <gloss>Turkish</gloss>
+                  <desc>Turkish</desc>
+                </valItem>
+              </valList>
+              <remarks versionDate="2016-12-07">
+                <p>All elements should have an <att>xml:lang</att> value, either inherited from an
+                  ancestor element or declared explicitly. See the <ref
+                    target="http://syriaca.org/documentation/isostandards.html">Syriaca.org
+                    documentation</ref> for more information on the usage of particular tags. Note
+                  that <att>xml:lang</att> describes the language of the content of the node. For
+                  indicating the language of a work or bibliographic resource, see the documentation
+                  about the <gi>textLang</gi> and <gi>lang</gi> elements.</p>
+              </remarks>
+            </attDef>
+          </attList>
+        </classSpec>
+        
+        <constraintSpec ident="source-att" scheme="schematron">
+          <constraint>
+            <sch:rule context="//tei:body//@source">
+              <sch:let name="biblIDs" value="//tei:body//tei:bibl/@xml:id"/>
+              <sch:let name="sourceValues" value="for $i in $biblIDs return concat('#', $i)"/>
+              <sch:assert
+                test="
+                every $i in (tokenize(., ' '))
+                satisfies $i = $sourceValues"
+                >
+                A @source attribute must point to an @xml:id attribute on a &lt;bibl&gt; element. 
+                Multiple values are allowed and must be separated by a blank space. Acceptable values include: 
+                <sch:value-of select="string-join($sourceValues, ' | ')"/>.
+              </sch:assert>
+            </sch:rule>
+          </constraint>
+        </constraintSpec>
+        
+        <constraintSpec ident="ref-on-person" scheme="schematron">
+          <constraint>
+            <sch:rule context="//tei:text//tei:persName/@ref">
+              <sch:let name="personIndex" value="doc('http://wwwb.library.vanderbilt.edu/exist/apps/srophe/documentation/indexes/persons.xml')"></sch:let>
+              <sch:let name="personURIs" value="$personIndex//tei:person/@ref"/>
+              <sch:assert test="
+                every $i in .
+                satisfies $i = $personURIs">
+                This @ref attribute is not a person URI in use in Syriaca.org data. Note that all person URIs take the form 'http://syriaca.org/person/{\d+}' (where {\d+} is a number).
+              </sch:assert>
+              <sch:report test="contains(., ' ')">This @ref may contain only one URI.</sch:report>
+            </sch:rule>
+          </constraint>
+        </constraintSpec>
+        
+        <constraintSpec ident="ref-on-place" scheme="schematron">
+          <constraint>
+            <sch:rule context="//tei:text//tei:placeName/@ref  | tei:district/@ref  | tei:settlement/@ref  | tei:region/@ref  | tei:country/@ref | tei:bloc/@ref">
+              <sch:let name="placeIndex" value="doc('http://wwwb.library.vanderbilt.edu/exist/apps/srophe/documentation/indexes/places.xml')"/>
+              <sch:let name="placeURIs" value="$placeIndex//tei:place/@ref"/>
+              <sch:assert test="
+                every $i in .
+                satisfies $i = $placeURIs">
+                This @ref attribute is not a place URI in use in Syriaca.org data. Note that all place URIs take the form 'http://syriaca.org/place/{\d+}' (where {\d+} is a number).
+              </sch:assert>
+              <sch:report test="contains(., ' ')">This @ref may contain only one URI.</sch:report>
+            </sch:rule>
+          </constraint>
+        </constraintSpec>
+        
+        <elementSpec ident="teiHeader" module="header" mode="change">
+          <content>
+            <sequence minOccurs="1" maxOccurs="1" preserveOrder="true">
+              <elementRef key="fileDesc" minOccurs="1" maxOccurs="1"/>
+              <elementRef key="encodingDesc" minOccurs="1" maxOccurs="1"/>
+              <elementRef key="profileDesc" minOccurs="1" maxOccurs="1"/>
+              <elementRef key="revisionDesc" minOccurs="1" maxOccurs="1"/>
+            </sequence>
+          </content>
+          <remarks>
+            <p> Every <gi>teiHeader</gi> element contains a <gi>fileDesc</gi> element (information
+              about the creation of a file), an <gi>encodingDesc</gi> element (editorial rules), a
+                <gi>profileDesc</gi>> element (non-bibliographic aspects of a text), and a
+                <gi>revisionDesc</gi> element (history of revisions). </p>
+          </remarks>
+        </elementSpec>
+
+        <elementSpec ident="fileDesc" module="header" mode="change">
+          <content>
+            <sequence preserveOrder="true">
+              <elementRef key="titleStmt" minOccurs="1" maxOccurs="1"/>
+              <elementRef key="editionStmt" minOccurs="1" maxOccurs="1"/>
+              <elementRef key="publicationStmt" minOccurs="1" maxOccurs="1"/>
+              <elementRef key="seriesStmt" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="sourceDesc" minOccurs="1" maxOccurs="1"/>
+            </sequence>
+          </content>
+          <remarks>
+            <p> Each <gi>fileDesc</gi> element contains (in order) a <gi>titleStmt</gi>, an
+                <gi>editionStmt</gi>, a <gi>publicationStmt</gi>, an optional <gi>seriesStmt</gi>, and a <gi>sourceDesc</gi>. </p>
+          </remarks>
+        </elementSpec>
+
+        <elementSpec ident="titleStmt" module="header" mode="change">
+          <content>
+            <alternate>
+              <sequence minOccurs="1" maxOccurs="1" preserveOrder="true">
+                <elementRef key="title" minOccurs="1" maxOccurs="unbounded"/>
+                <elementRef key="sponsor" minOccurs="1" maxOccurs="unbounded"/>
+                <elementRef key="funder" minOccurs="0" maxOccurs="unbounded"/>
+                <elementRef key="editor" minOccurs="1" maxOccurs="unbounded"/>
+                <elementRef key="respStmt" minOccurs="1" maxOccurs="unbounded"/>
+              </sequence>
+            </alternate>
+          </content>
+        </elementSpec>
+
+        <elementSpec ident="sponsor" module="header" mode="change">
+          <exemplum>
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <titleStmt> 
+                ... 
+                <sponsor>Syriaca.org: The Syriac Reference Portal</sponsor> 
+                ...
+              </titleStmt>
+            </egXML>
+          </exemplum>
+          <remarks>
+            <p> The TEI guidelines recommend that the <gi>titleStmt</gi> element also indicate who
+              is responsible for this TEI file. Since <gi>author</gi> is typically used for the
+              author of a print or manuscript text which was then encoded in TEI, we avoid the use
+              of the <gi>author</gi> element. Instead, we identify Syriaca.org as the sponsoring
+              institution, </p>
+          </remarks>
+        </elementSpec>
+
+        <elementSpec ident="funder" module="header" mode="change">
+          <exemplum>
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <titleStmt> 
+                ... 
+                <funder>The National Endowment for the Humanities</funder>
+                <funder>The International Balzan Prize Foundation</funder> 
+                ... 
+              </titleStmt>
+            </egXML>
+          </exemplum>
+          <remarks>
+            <p> Next within the <gi>titleStmt</gi> the funding bodies are identified by use of the
+                <gi>funder</gi> element. If multiple funding bodies are relevant, then each one gets
+              a separate <gi>funder</gi> element, which are simply listed. </p>
+          </remarks>
+        </elementSpec>
+
+        <elementSpec ident="principal" module="header" mode="change">
+          <exemplum>
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <titleStmt> 
+                ... 
+                <principal>David A. Michelson</principal> 
+                ... 
+              </titleStmt>
+            </egXML>
+          </exemplum>
+          <remarks>
+            <p> Next within the <gi>titleStmt</gi> the funding bodies are identified by use of the
+                <gi>funder</gi> element. If multiple funding bodies are relevant, then each one gets
+              a separate <gi>funder</gi> element, which are simply listed. </p>
+          </remarks>
+        </elementSpec>
+
+        <elementSpec ident="respStmt" module="header" mode="change">
+          <content>
+            <sequence preserveOrder="true">
+              <elementRef key="resp" minOccurs="1" maxOccurs="1"/>
+              <alternate>
+                <elementRef key="orgName" minOccurs="1" maxOccurs="1"/>
+                <elementRef key="name" minOccurs="1" maxOccurs="1"/>
+              </alternate>
+            </sequence>
+          </content>
+          <exemplum>
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <titleStmt> 
+                ... 
+                <respStmt>
+                  <resp>Initial Barsoum entry creation by</resp>
+                  <name ref="http://syriaca.org/documentation/editors.xml#dmichelson"> David A. Michelson</name>
+                </respStmt>
+                <respStmt>
+                  <resp>Data merging, Pleiades and Wikipedia linking, and XML by</resp>
+                  <name ref="http://syriaca.org/documentation/editors.xml#tcarlson"> Thomas A. Carlson</name>
+                </respStmt>
+                <respStmt>
+                  <resp>Syriac description entry by</resp>
+                  <name ref="http://syriaca.org/documentation/editors.xml#raydin"> Robert Aydin</name>
+                </respStmt> 
+                ... 
+              </titleStmt>
+            </egXML>
+          </exemplum>
+          <exemplum>
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <respStmt>
+                <resp>These names were received as a dataset from E-Ktobe : manuscrits syriaques 
+                  (<ref target="http://syriac.msscatalog.org/">http://syriac.msscatalog.org/</ref>). 
+                  Née sur l’initiative d'André Binggeli (IRHT-CNRS), Françoise Briquel-Chatonnet (Orient et Méditerranée-CNRS), 
+                  Muriel Debié (EPHE) et Alain Desreumaux (Orient et Méditerranée-CNRS) dans le cadre du programme 
+                  SYRAB de l'ANR (Agence Nationale de la Recherche), la base e-ktobe est actuellement placée sous la responsabilité 
+                  scientifique d’André Binggeli et Emilie Villey (Orient et Méditerranée-CNRS).                            
+                  Liste des collaborateurs contribuant ou ayant contribué à l’alimentation de la base : 
+                  Youssef Dergham (Bibliothèque du patriarcat syro-catholique de Charfet), Margherita Farina (CNRS, Paris), 
+                  Simone I. M. Pratelli (U. de Constance), Flavia Ruani (U. de Gand) et Eleonora Serra (U. de Pise).</resp>
+                <orgName ref="http://syriac.msscatalog.org/">E-Ktobe : manuscrits syriaques</orgName>
+              </respStmt>
+            </egXML>
+          </exemplum>
+          <remarks>
+            <p> Parties who are responsible for the creation of this TEI place record are then
+              identified individually in <gi>respStmt</gi> elements (<gi>resp</gi> stands for
+              "responsibility"). The contents of the <gi>respStmt</gi> element are the description
+              of the responsibility wrapped in a <gi>resp</gi> element followed by the name of the
+              responsible party contained in a <gi>name</gi> element. The <gi>name</gi> or <gi>orgName</gi> element
+              should take a <att>ref</att> attribute which points to the <att>xml:id</att> of the
+              editor within the "editors.xml" document. Additional participants in the creation of
+              the file, for example by entering Syriac or Arabic text, can be given additional
+                <gi>respStmt</gi> entries. </p>
+          </remarks>
+        </elementSpec>
+        
+        <elementSpec ident="name" module="namesdates" mode="change">
+          <constraintSpec ident="ref-on-name" scheme="schematron">
+            <constraint>
+              <sch:rule context="//tei:teiHeader//tei:name">
+                <sch:assert test="./@ref">A @ref attribute is required on the &lt;name&gt; element inside &lt;teiHeader&gt;.</sch:assert>
+              </sch:rule>
+              <sch:rule context="//tei:teiHeader//tei:name/@ref">
+                <sch:let name="edsDoc"
+                  value="doc('https://raw.githubusercontent.com/srophe/srophe-eXist-app/master/documentation/editors.xml')"/>
+                <sch:let name="eds" value="$edsDoc//tei:text/tei:body/tei:listPerson/tei:person/@xml:id"/>
+                <sch:let name="refValues" value="for $i in $eds return concat('http://syriaca.org/documentation/editors.xml#', $i)"/>
+                <sch:assert test="
+                  every $i in .
+                  satisfies $i = $refValues">
+                  Acceptable values for the @ref attribute on a &lt;name&gt; element inside the &lt;teiHeader&gt; include: 
+                  <sch:value-of select="string-join($refValues, ' | ')"/>.
+                </sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+        </elementSpec>
+
+        <elementSpec ident="editionStmt" module="header" mode="change">
+          <content>
+            <elementRef key="edition" minOccurs="1" maxOccurs="1"/>
+          </content>
+          <exemplum>
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <editionStmt>
+                <edition n="1.0"/>
+              </editionStmt>
+            </egXML>
+          </exemplum>
+          <remarks>
+            <p> The <gi>editionStmt</gi> allows the specification of an edition or version number.
+              When a TEI file is first published online, that edition should be "1.0". Subsequent
+              revisions may bump the revision number, either by a whole new version (i.e. to "2.0")
+              or by a minor version (i.e. to "1.1"). </p>
+          </remarks>
+        </elementSpec>
+
+        <elementSpec ident="publicationStmt" module="header" mode="change">
+          <content>
+            <sequence preserveOrder="true">
+              <elementRef key="authority" minOccurs="1"/>
+              <elementRef key="idno" minOccurs="1"/>
+              <elementRef key="availability" minOccurs="1"/>
+              <elementRef key="date" minOccurs="1"/>
+            </sequence>
+          </content>
+          <exemplum>
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <publicationStmt>
+                <authority>Syriaca.org: The Syriac Reference Portal</authority>
+                <idno type="URI">http://syriaca.org/place/14/tei</idno>
+                <availability>
+                  <license target="http://creativecommons.org/licenses/by/3.0/">
+                    <p>Distributed under a Creative Commons 
+                      Attribution 3.0 Unported License.</p>
+                  </license>
+                </availability>
+                <date>2014-01-14-05:00</date>
+              </publicationStmt>
+            </egXML>
+          </exemplum>
+          <remarks>
+            <p>The <gi>publicationStmt</gi> is where we identify Syriaca.org as the entity responsible for publishing this information, 
+              indicate the date of the most recent edit, and identify the use license (Creative Commons CC-BY).</p>
+          </remarks>
+        </elementSpec>
+        
+        <elementSpec ident="authority" module="header" mode="change">
+          <content>
+            <textNode/>
+          </content>
+          <constraintSpec ident="authorityText" scheme="schematron">
+            <constraint>
+              <sch:rule context="//tei:publicationStmt/tei:authority">
+                <sch:assert test="matches(., 'Syriaca.org: The Syriac Reference Portal')">
+                  The &lt;authority&gt; element should contain the text: "Syriaca.org: The Syriac Reference Portal."
+                </sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+          <exemplum>
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <authority>Syriaca.org: The Syriac Reference Portal</authority>
+            </egXML>
+          </exemplum>
+          <remarks>
+            <p>The identification of Syriaca.org as the responsible entity is accomplished by an <gi>authority</gi> element.</p>
+          </remarks>
+        </elementSpec>
+        
+        <elementSpec ident="licence" module="header" mode="change">
+          <exemplum>
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <license target="http://creativecommons.org/licenses/by/3.0/">
+                <p>Distributed under a Creative Commons Attribution 3.0 Unported License.</p>
+              </license>
+            </egXML>
+          </exemplum>
+          <exemplum>
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <license target="http://creativecommons.org/licenses/by/3.0/">
+                <p>Distributed under a Creative Commons Attribution 3.0 Unported License.</p>
+                <p>This entry incorporates copyrighted material from the following work(s):
+                  <listBibl>
+                    <bibl>
+                      <ptr target="#bib78-3"/>
+                    </bibl>
+                    <bibl>
+                      <ptr target="#bib78-4"/>
+                    </bibl>
+                    <bibl>
+                      <ptr target="#bib78-5"/>
+                    </bibl>
+                  </listBibl>
+                  <note>used under a Creative Commons Attribution license
+                    <ref target="http://creativecommons.org/licenses/by/3.0/"/>
+                  </note>
+                </p>
+              </license>
+            </egXML>
+          </exemplum>
+          <remarks>
+            <p> The <gi>license</gi> element within the <gi>availability</gi> element is used to specify the Creative Commons CC-BY license under which 
+              this record is made available. Some records incorporate information from works under copyright (with permission), a fact which is also 
+              indicated in the <gi>license</gi> element. </p>
+          </remarks>
+        </elementSpec>
+        
+        
+        <elementSpec ident="seriesStmt" module="header" mode="change">
+          <!-- The following is more complicated than it needs to be. However, I did it this way to set things up for person data. -->
+          <content>
+            <sequence minOccurs="0" maxOccurs="unbounded">
+              <elementRef key="title" minOccurs="1" maxOccurs="1"/>
+              <elementRef key="editor" minOccurs="1" maxOccurs="unbounded"/>
+              <elementRef key="respStmt" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="idno" minOccurs="1" maxOccurs="1"/>
+              <elementRef key="biblScope" minOccurs="0" maxOccurs="unbounded"/>
+            </sequence>  
+          </content>
+          <constraintSpec ident="seriesStmt-content" scheme="schematron">
+            <constraint>
+              <sch:rule context="//tei:seriesStmt/tei:respStmt">
+                <sch:report test="preceding-sibling::tei:title[@level='s']">
+                  A &lt;respStmt&gt; element may not appear in a &lt;seriesStmt&gt; that also has a &lt;title&gt; of @type="s". 
+                </sch:report>
+              </sch:rule>
+              <sch:rule context="//tei:seriesStmt//tei:title[@level='s']">
+                <!-- Add additional values with an "or" operator if there are multiple series levels associated with a document. -->
+                <sch:assert test="matches(., 'The Syriac Gazetteer')">
+                  The text node of this &lt;title&gt; element must be "The Syriac Gazetteer". 
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="//tei:seriesStmt//tei:title[node() = 'The Syriac Gazetteer']">
+                <!-- Add additional rules with appropriate contexts when adding additional monograph values above. -->
+                <sch:assert test="./following-sibling::tei:idno/node() = 'http://syriaca.org/geo'">
+                  A &lt;title&gt; containing "The Syriac Gazetteer" requires a following sibling &lt;idno&gt; element containing "http://syriaca.org/geo'. 
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="//tei:seriesStmt/tei:title[@level='m']">
+                <sch:assert test="matches(., 'Beth Qaṭraye Gazetteer')">
+                  <!-- Add additional monograph values with an "or" operator as needed. -->
+                  The text node of this &lt;title&gt; element must be "Beth Qaṭraye Gazetteer". 
+                </sch:assert>
+                <sch:assert test="./following-sibling::tei:biblScope">
+                  A &lt;seriesStmt&gt; containing a &lt;title&gt; element @level="m" must have a &lt;biblScope&gt; element.
+                  This &lt;biblScope&gt; element is used to indicate the series (&lt;title&gt; element @level="s") of which this 
+                  'monograph' (&lt;title&gt; element @level="m") is a part.
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="//tei:seriesStmt[tei:title='Beth Qaṭraye Gazetteer']/tei:idno">
+                <!-- Add additional rules with appropriate contexts when adding additional monograph values above. -->
+                <sch:assert test="matches(., 'http://syriaca.org/bethqatraye')">
+                  The text node of this &lt;idno&gt; element must be "http://syriaca.org/bethqatraye'. 
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="//tei:seriesStmt/tei:biblScope">
+                <sch:report test="preceding-sibling::tei:title[@level='s']">
+                  A &lt;biblScope&gt; element may not appear in a &lt;seriesStmt&gt; that also has a &lt;title&gt; of @type="s". 
+                </sch:report>
+                <sch:assert test="./tei:title/@level='s'">
+                  This &lt;biblScope&gt; element must contain a &lt;title&gt; element @level="s". It is used 
+                  to indicate the series (&lt;title&gt; element @level="s") of which the 'monograph' (&lt;title&gt; element @level="m") 
+                  in this &lt;seriesStmt&gt; is a part. 
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="//tei:seriesStmt[tei:title='Beth Qaṭraye Gazetteer']/tei:biblScope/@n">
+                <!-- Add an additional rule with appropriate context/assert if there are multiple monographs. -->
+                <sch:assert test=". = '1'">
+                  The @n attribute must be "1" since the Beth Qaṭraye Gazetteer is volume 1 of The Syriac Gazetteer.
+                </sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+          <exemplum>
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              
+            </egXML>
+          </exemplum>
+        </elementSpec>
+        
+        <elementSpec ident="biblScope" module="core" mode="change">
+          <content>
+            <elementRef key="title"/>
+            <elementRef key="idno"/>
+          </content>
+          <attList>
+            <attDef ident="unit" mode="change" usage="req">
+              <valList type="closed" mode="replace">
+                <valItem ident="volume"/>
+              </valList>
+            </attDef>
+            <attDef ident="n" mode="change" usage="req"/>
+          </attList>
+        </elementSpec>
+        
+        <elementSpec ident="sourceDesc" module="header" mode="change">
+          <content>
+            <elementRef key="p" minOccurs="1" maxOccurs="1"/>
+          </content>
+          <constraintSpec ident="sourceDesc" scheme="schematron">
+            <constraint>
+              <sch:rule context="//tei:sourceDesc/tei:p">
+                <sch:assert test=". = 'Born digital.'">
+                  The &lt;sourceDesc&gt; must contain a &lt;p&gt; element with the text node: "Born digital.". 
+                </sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+          <exemplum>
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <sourceDesc>
+                <p>Born digital.</p>
+              </sourceDesc>
+            </egXML>
+          </exemplum>
+          <remarks>
+            <p>The <gi>sourceDesc</gi> element is a mandatory component of the <gi>fileDesc</gi> element. Its purpose is to 
+              indicate the source of the text which is encoded in this file, for library cataloging among other uses. 
+              For Syriaca.org data that is not marking up text from a source, the option of indicating that this 
+              TEI is "born digital," should be used.</p>
+          </remarks>
+        </elementSpec>
+
+        <elementSpec ident="encodingDesc" module="header" mode="change">
+          <content>
+            <sequence preserveOrder="true" minOccurs="1" maxOccurs="1">
+              <elementRef key="editorialDecl" minOccurs="1" maxOccurs="1"/>
+              <elementRef key="classDecl" minOccurs="1" maxOccurs="1"/>
+            </sequence>
+          </content>
+          <remarks>
+            <p>The <gi>encodingDesc</gi> element of the <gi>teiHeader</gi> is used for indicating aspects of the process of encoding 
+              the text. Although our person and place data are "born digital," they nevertheless have certain editorial decisions 
+              regarding how they have used data derived from print resources, and certain tags available for use in our <att>srophe:tags</att> 
+              attribute. Those sorts of details are encoded here.</p>
+          </remarks>
+        </elementSpec>
+        
+        <elementSpec ident="editorialDecl" module="header" mode="change">
+          <content>
+            <elementRef key="p" minOccurs="1" maxOccurs="unbounded"/>
+            <elementRef key="interpretation" minOccurs="0" maxOccurs="1"/>
+          </content>
+          <exemplum>
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <encodingDesc>
+                <editorialDecl>
+                  <p>This record created following the Syriaca.org guidelines. Documentation available at: <ref target="http://syriaca.org/documentation">
+                 http://syriaca.org/documentation</ref>.</p>
+                  <p>The capitalization of names from GEDSH (<idno type="URI">http://syriaca.org/bibl/1</idno>) was normalized (i.e. names in ALL-CAPS were replaced by Proper-noun capitalization).</p>
+                  <p>The unchanging parts of alternate names from Barsoum (<idno type="URI">http://syriaca.org/bibl/2</idno>, <idno type="URI">http://syriaca.org/bibl/3</idno>, or <idno type="URI">http://syriaca.org/bibl/4</idno>) have been supplied to each alternate.</p>
+                  <p>Names from the English translation of Barsoum (<idno type="URI">http://syriaca.org/bibl/4</idno>) were put in sentence word order rather than fronting a dictionary headword.  Any commas in the Barsoum name in English were removed.</p>
+                  <p>The <gi>state</gi> element of @type="existence" indicates the period for which this place was in use as a place of its indicated type (e.g. an inhabited settlement, a functioning monastery or church, an administrative province).  Natural features always in existence have no <gi>state</gi> element of @type="existence".</p>
+                  ...
+                </editorialDecl>
+                ...
+              </encodingDesc>
+            </egXML>
+          </exemplum>
+          <remarks>
+            <p>The first element within an <gi>encodingDesc</gi> is the <gi>editorialDecl</gi>, which indicates editorial decisions 
+              regarding how the source documents were handled. An <gi>editorialDecl</gi> cannot directly contain prose, so a prose 
+              description of each editorial decision should be wrapped in a <gi>p</gi> element. References to particular bibliographic 
+              entries can have their Syriaca.org URIs wrapped in an <gi>idno</gi> for specificity. The first <gi>p</gi> element should 
+              contain a pointer to the Syriaca.org documentation.</p>
+          </remarks>
+        </elementSpec> 
+        
+        <elementSpec ident="classDecl" module="header" mode="change">
+          <content>
+            <elementRef key="taxonomy" minOccurs="1" maxOccurs="unbounded"/>
+          </content>
+          <exemplum>
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <classDecl>
+                <taxonomy>
+                  <category xml:id="syriaca-headword">
+                    <catDesc>The name used by Syriaca.org for document titles, citation, and disambiguation. These names 
+                      have been created according to the Syriac.org guidelines for headwords: 
+                      <ref target="http://syriaca.org/documentation/headwords.html">http://syriaca.org/documentation/headwords.html</ref>.
+                    </catDesc>
+                  </category>
+                </taxonomy>
+              </classDecl>
+            </egXML>
+          </exemplum>
+          <remarks>
+            <p>The class declaration contains one or more taxonomies defining any classificatory codes used elsewhere in the 
+              text. There are various tags which Syriaca.org uses to mark elements for a variety of purposes. Syriaca.org’s 
+              preferred name forms are tagged with "syriaca-headword", for example. </p>
+          </remarks>
+        </elementSpec>
+        
+        <elementSpec ident="taxonomy" module="header" mode="change">
+          <content>
+            <elementRef key="category" maxOccurs="unbounded"/>
+          </content>
+          <exemplum>
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <classDecl>
+                <taxonomy>
+                  <category xml:id="syriaca-headword">
+                    <catDesc>The name used by Syriaca.org for document titles, citation, and disambiguation. These names 
+                      have been created according to the Syriac.org guidelines for headwords: 
+                      <ref target="http://syriaca.org/documentation/headwords.html">http://syriaca.org/documentation/headwords.html</ref>.
+                    </catDesc>
+                  </category>
+                </taxonomy>
+              </classDecl>
+            </egXML>
+          </exemplum>
+        </elementSpec>
+        
+        <elementSpec ident="category" module="header" mode="change">
+          <content>
+            <elementRef key="catDesc" minOccurs="1" maxOccurs="1"/>
+          </content>
+          <exemplum>
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <classDecl>
+                <taxonomy>
+                  <category xml:id="syriaca-headword">
+                    <catDesc>The name used by Syriaca.org for document titles, citation, and disambiguation. These names 
+                      have been created according to the Syriac.org guidelines for headwords: 
+                      <ref target="http://syriaca.org/documentation/headwords.html">http://syriaca.org/documentation/headwords.html</ref>.
+                    </catDesc>
+                  </category>
+                </taxonomy>
+              </classDecl>
+            </egXML>
+          </exemplum>
+          <remarks>
+            <p>Each <gi>category</gi> has an <att>xml:id</att> attribute whose value is the tag. Within the <gi>category</gi> 
+              element is a <gi>catDesc</gi> element which contains a brief prose description of the category’s purpose.</p>
+          </remarks>
+        </elementSpec>
+        
+        <elementSpec ident="catDesc" module="header" mode="change">
+          <exemplum>
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <classDecl>
+                <taxonomy>
+                  <category xml:id="syriaca-headword">
+                    <catDesc>The name used by Syriaca.org for document titles, citation, and disambiguation. These names 
+                      have been created according to the Syriac.org guidelines for headwords: 
+                      <ref target="http://syriaca.org/documentation/headwords.html">http://syriaca.org/documentation/headwords.html</ref>.
+                    </catDesc>
+                  </category>
+                </taxonomy>
+              </classDecl>
+            </egXML>
+          </exemplum>
+          <remarks>
+            <p>Each <gi>category</gi> has an <att>xml:id</att> attribute whose value is the tag. Within the <gi>category</gi> 
+              element is a <gi>catDesc</gi> element which contains a brief prose description of the category’s purpose.</p>
+          </remarks>
+        </elementSpec>
+        
+        <elementSpec ident="profileDesc" module="header" mode="change">
+          <content>
+            <elementRef key="langUsage" minOccurs="1" maxOccurs="1"/>
+          </content>
+          <exemplum>
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <profileDesc>
+                <langUsage>
+                  <p>
+                    Languages codes used in this record follow the Syriaca.org guidelines. Documentation available at: 
+                    <ref target="http://syriaca.org/documentation/langusage.xml">http://syriaca.org/documentation/langusage.xml</ref>
+                  </p>
+                </langUsage>
+              </profileDesc>
+            </egXML>
+          </exemplum>
+          <remarks>
+            <p>The <gi>profileDesc</gi> contains a <gi>langUsage</gi> element that contains a <gi>p</gi> element. 
+              The text of the <gi>p</gi> should read: Languages codes used in this record follow the Syriaca.org guidelines. Documentation available at: 
+              <ref target="http://syriaca.org/documentation/langusage.xml">http://syriaca.org/documentation/langusage.xml</ref></p>
+          </remarks>
+        </elementSpec>
+        
+        <elementSpec ident="langUsage" module="header" mode="change">
+          <content>
+            <elementRef key="p" minOccurs="1" maxOccurs="1"/>
+          </content>
+          <exemplum>
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <profileDesc>
+                <langUsage>
+                  <p>
+                    Languages codes used in this record follow the Syriaca.org guidelines. Documentation available at: 
+                    <ref target="http://syriaca.org/documentation/langusage.xml">http://syriaca.org/documentation/langusage.xml</ref>
+                  </p>
+                </langUsage>
+              </profileDesc>
+            </egXML>
+          </exemplum>
+          <remarks>
+            <p>The <gi>langUsage</gi> element contains a <gi>p</gi> element. 
+              The text of the <gi>p</gi> should read: Languages codes used in this record follow the Syriaca.org guidelines. Documentation available at: 
+              <ref target="http://syriaca.org/documentation/langusage.xml">http://syriaca.org/documentation/langusage.xml</ref></p>
+          </remarks>
+        </elementSpec>
+        
+        <elementSpec ident="revisionDesc" module="header" mode="change">
+          <content>
+            <elementRef key="change" minOccurs="0" maxOccurs="unbounded"/>
+          </content>
+          <attList>
+            <attDef ident="status" mode="change" usage="req">
+              <valList type="closed" mode="replace">
+                <valItem ident="draft">
+                  <gloss>draft</gloss>
+                  <desc>Indicates that this document is more-or-less complete but remains in draft status.</desc>
+                </valItem>
+                <valItem ident="incomplete">
+                  <gloss>incomplete</gloss>
+                  <desc>Indicates that this document is incomplete.</desc>
+                </valItem>
+                <valItem ident="published">
+                  <gloss>published</gloss>
+                  <desc>Indicates that this document has been published.</desc>
+                </valItem>
+                <valItem ident="underReview">
+                  <gloss>under review</gloss>
+                  <desc>Indicates that this document is under review by one or more editors.</desc>
+                </valItem>
+              </valList>
+            </attDef>
+          </attList>
+          <exemplum>
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <revisionDesc status="draft">
+                <change who="http://syriaca.org/documentation/editors.xml#wsalesky" when="2016-08-17-04:00">Update persName texts nodes from new headwords.</change>
+                <change who="http://syriaca.org/documentation/editors.xml#wsalesky" when="2016-07-08-05:00">Create English headword from Gedesh headword.</change>
+                <change who="http://syriaca.org/documentation/editors.xml#wsalesky" when="2014-10-15-04:00">ADDED: Renumbered bibl xml:id attributes and source references to be sequential.</change>
+                <change who="http://syriaca.org/documentation/editors.xml#wsalesky" when="2014-10-15-04:00">ADDED: srophe:computed-end for elements with date attributes</change>
+                <change who="http://syriaca.org/documentation/editors.xml#tcarlson" n="1.0" when="2014-07-31-05:00"> CREATED: person </change>
+              </revisionDesc>
+            </egXML>
+          </exemplum>
+          <exemplum>
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <revisionDesc status="published">
+                <change who="http://syriaca.org/documentation/editors.xml#wsalesky" when="2014-01-14">ADDED: srophe:computed-start and srophe:computed-end attributes for searching</change>
+                <change who="http://syriaca.org/documentation/editors.xml#tcarlson" when="2013-12-18-05:00">CREATED: place</change>
+              </revisionDesc>
+            </egXML>
+          </exemplum>
+          <remarks>
+            <p>The final part of the TEI header is the <gi>revisionDesc</gi> element, which is used to include a detailed log 
+              of which changes have been made to this file, when, and by whom. Each revision is encapsulated in a <gi>change</gi> 
+              element, ordered from newest to oldest.</p>
+          </remarks>
+        </elementSpec>
+        
+        <elementSpec ident="change" module="header" mode="change">
+          <constraintSpec ident="who-on-change" scheme="schematron">
+            <constraint>
+              <sch:rule context="//tei:revisionDesc//tei:change/@who">
+                <sch:let name="edsDoc"
+                  value="doc('https://raw.githubusercontent.com/srophe/srophe-eXist-app/master/documentation/editors.xml')"/>
+                <sch:let name="eds" value="$edsDoc//tei:text/tei:body/tei:listPerson/tei:person/@xml:id"/>
+                <sch:let name="refValues" value="for $i in $eds return concat('http://syriaca.org/documentation/editors.xml#', $i)"/>
+                <sch:assert test="
+                  every $i in .
+                  satisfies $i = $refValues">
+                  Acceptable values for the @who attribute on a &lt;change&gt; element inside the &lt;revisionDesc&gt; include: 
+                  <sch:value-of select="string-join($refValues, ' | ')"/>.
+                </sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+          <attList>
+            <attDef ident="when" mode="change" usage="req"/>
+            <attDef ident="who" mode="change" usage="req"/>
+            <attDef ident="n" mode="change" usage="opt"/>
+          </attList>
+          <exemplum>
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <revisionDesc>
+                <change when="2013-04-15" who="http://syriaca.org/documentation/editors.xml#ngibson" n="1.1">
+                  ADDED: Pleiades coordinates</change>
+                <change when="2013-04-01" who="http://syriaca.org/documentation/editors.xml#dmichelson">
+                  FIXED: Ufra to Urfa</change>
+                <change when="2013-03-16" who="http://syriaca.org/documentation/editors.xml#tcarlson" n="1.0">
+                  ADDED: teiHeader/revisionDesc</change>
+                <change when="2013-03-15" who="http://syriaca.org/documentation/editors.xml#tcarlson">
+                  ADDED: teiHeader</change>
+                <change when="2013-03-01" who="http://syriaca.org/documentation/editors.xml#tcarlson" n="0.1">
+                  CREATED: place</change>
+              </revisionDesc>
+            </egXML>
+          </exemplum>
+          <remarks>
+            <p>The <gi>change</gi> element takes attributes <att>when</att> and <att>who</att> which indicate the date of the 
+              change and the person who made the change. The value of <att>when</att> is a date in "yyyy-mm-dd" format, whereas 
+              <att>who</att> will have the value of an <att>xml:id</att> attribute from "http://syriaca.org/documentation/editors.xml" - the list 
+              of editors. An optional <att>n</att> attribute whose value is a version number can indicate that this change advanced 
+              the version number (given in the <gi>editionStmt</gi> within the <gi>fileDesc</gi> element). The contents of the 
+              <gi>change</gi> element describe the revision that was made.</p>
+          </remarks>
+        </elementSpec>
+
+        <elementSpec ident="text" module="textstructure" mode="change">
+          <content>
+            <elementRef key="body" minOccurs="1" maxOccurs="1"/>
+          </content>
+        </elementSpec>
+
+        <elementSpec ident="title" module="core" mode="change">
+          <constraintSpec ident="lang-on-title-in-body" scheme="schematron">
+            <constraint>
+              <sch:rule context="//tei:text//tei:bibl/tei:title">
+                <sch:assert test="./@xml:lang or ./contains(., 'http://') or ./contains(., 'https://')">A &lt;title&gt; element in a &lt;bibl&gt; 
+                  element within the text body must have an @xml:lang attribute unless the content of the text node is a URL 
+                  (i.e. contains "http://" or "https://").
+                </sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+          <constraintSpec ident="title-in-titleStmt" scheme="schematron">
+            <constraint>
+              <sch:rule context="//tei:titleStmt/tei:title">
+                <sch:assert test="matches(@level, 'a')">A &lt;title&gt; element of @level="a" is the only title allowed in
+                  the &lt;titleStmt&gt;.</sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+          <constraintSpec ident="title-in-seriesStmt" scheme="schematron">
+            <constraint>
+              <sch:rule context="//tei:seriesStmt//tei:title">
+                <sch:assert test="matches(@level, 'm') or matches(@level, 's')">Only &lt;title&gt; elements of @level="m" or "s"
+                  are allowed in the &lt;seriesStmt&gt;.
+                </sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+          <attList>
+            <attDef ident="type" mode="change" usage="opt">
+              <desc>Describes the function of the title. This attribute is optional. Certain
+                non-blank values (such as "final-rubric") may cause the title to be moved to a
+                different section of the page.</desc>
+              <valList mode="change" type="semi">
+                <valItem ident="initial-rubric">
+                  <gloss>Initial Rubric</gloss>
+                  <desc>Text denoting the beginning of a work, usually derived from a manuscript
+                    exemplar. This may include a title of the work, but should be distinguished from
+                    other titles because it also includes non-title text.</desc>
+                </valItem>
+                <valItem ident="final-rubric">
+                  <gloss>Final Rubric</gloss>
+                  <desc>Text denoting the end of a work, usually derived from a manuscript exemplar.
+                    This may include a title of the work, but should be distinguished from other
+                    titles because it also includes non-title text.</desc>
+                </valItem>
+                <valItem ident="abbreviation">
+                  <gloss>Abbreviation</gloss>
+                  <desc>An abbreviation of a work's title.</desc>
+                </valItem>
+              </valList>
+            </attDef>
+            <attDef ident="level" mode="change">
+              <valList type="closed" mode="replace">
+                <valItem ident="a">
+                  <gloss>analytic</gloss>
+                  <desc> The title for each individual xml file has a <att>level</att> attribute
+                    with value "a" to distinguish it from the title of the entire project (e.g. The
+                    Syriac Gazetteer). The "a" value stands for analytic, which means that the title
+                    is part of a larger publication. </desc>
+                </valItem>
+                <valItem ident="s">
+                  <gloss>series</gloss>
+                  <desc>
+                    The series title. This applies to Syriaca.org modules such as the "Syriac Biographical Dictionary" 
+                    and the "Syriac Gazetteer."
+                  </desc>
+                </valItem>
+                <valItem ident="m">
+                  <gloss>monographic</gloss>
+                  <desc> The <att>level</att> "m" indicates that this title is monographic which TEI defines as a distinct 
+                    publication that may be part of the larger publication. Syriaca.org uses this title level to indicate
+                    a sub-module or volume of a module such as the "Saints" sub-module which is part of the larger "Syriac Biographical Dictionary."</desc>
+                </valItem>
+              </valList>
+            </attDef>
+          </attList>
+          <exemplum versionDate="2017-03-23">
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <title xml:id="name1-1" xml:lang="en" srophe:tags="#syriaca-headword">Genesis
+                (Peshitta Version)</title>
+              <title xml:id="name1-2" xml:lang="syr" srophe:tags="#syriaca-headword"
+                source="#bib1-1">ܣܦܪܐ ܕܒܪܝܫܝܬ</title>
+              <title xml:id="name1-3" xml:lang="syr" source="#bib1-1">ܣܦܪܐ ܕܒܪܝܬܐ</title>
+              <title xml:id="name1-4" xml:lang="en" type="abbreviation" srophe:tags="#canonical"
+                source="#bib1-9">Gen</title>
+              <title xml:id="name1-5" xml:lang="en" source="#bib1-9">Genesis</title>
+              <title xml:id="name1-6" xml:lang="syr" source="#bib1-1">ܐܣ̣ܬܝܟ ܣܦ̣ܪܐ ܗܢܐ ܩܕܡܝܐ ܕܐܘܪܝܬܐ
+                ܒܦ̈ܬܓܡܐ ܐܪ̈ܒܥܐ ܐܠܦ̈ܝܢ ܘܚܡܫ ܡ̈ܠܐ ܘܬܫܥܐ ܕܒܨ̈ܚܚܐ ܠ̅ܕ̅.</title>
+            </egXML>
+          </exemplum>
+          <exemplum>
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <title level="a" xml:lang="en">Edessa — <foreign xml:lang="syr">ܐܘܪܗܝ</foreign>
+              </title>
+            </egXML>
+          </exemplum>
+          <exemplum>
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <title level="m" xml:lang="en">The Syriac Gazetteer</title>
+            </egXML>
+          </exemplum>
+        </elementSpec>
+
+        <elementSpec ident="idno" module="header" mode="change">
+          <constraintSpec ident="idno-uri" scheme="schematron">
+            <constraint>
+              <sch:rule context="//tei:publicationStmt/tei:idno[@type='URI']">
+                <sch:let name="fileNo" value="replace(document-uri(/), '[\D]', '')"/>
+                <sch:let name="docURIno" value="//tei:publicationStmt/tei:idno/substring-before(substring-after(substring-after(., 'http://syriaca.org/'), '/'), '/tei')"/>
+                <sch:assert test="$fileNo eq $docURIno">
+                  The number portion of the &lt;idno&gt; element must be the same as the URI number in the file name: <sch:value-of select="$fileNo"/>
+                </sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+          <attList>
+            <attDef ident="type" mode="change" usage="req">
+              <desc>The <att>type</att> attribute on <gi>idno</gi> defines the kind of identifier
+                contained in the text value. In the Gazetteer, the only type of <gi>idno</gi> used is "URI".</desc>
+              <valList mode="replace" type="closed">
+                <valItem ident="URI">
+                  <desc>A Uniform Resource Identifier.</desc>
+                </valItem>
+              </valList>
+            </attDef>
+          </attList>
+        </elementSpec>
+
+        <elementSpec ident="editor" module="core" mode="change">
+          <content>
+            <alternate minOccurs="0" maxOccurs="unbounded">
+              <elementRef key="persName"/>
+              <textNode/>
+            </alternate>
+          </content>
+          <constraintSpec ident="role-on-editor" scheme="schematron">
+            <constraint>
+              <sch:rule context="//tei:teiHeader//tei:editor">
+                <sch:assert test="./@role">A @role attribute is required on the &lt;editor&gt; element inside &lt;teiHeader&gt;.</sch:assert>
+              </sch:rule>
+              <sch:rule context="//tei:teiHeader//tei:titleStmt//@role">
+                <sch:assert test=". = 'creator' or . = 'code-author' or . = 'content-author' or . = 'contributor'">
+                  The acceptable attribute values for @role on the &lt;editor&gt; element inside the &lt;titleStmt&gt; are: 
+                  creator, code-author, content-author, or contributor.
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="//tei:teiHeader//tei:seriesStmt//@role">
+                <sch:assert test=". = 'associate' or . = 'general'">
+                  The acceptable attribute values for @role on the &lt;editor&gt; element inside the &lt;seriesStmt&gt; are: 
+                  associate or general.
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="//tei:body//tei:editor/@role">
+                <sch:assert test=". = 'editor' or . = 'general' or . = 'translator'">
+                  The acceptable attribute values for @role on the &lt;editor&gt; element inside the &lt;body&gt; are: 
+                  editor, general, or translator.
+                </sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+          <constraintSpec ident="ref-on-editor" scheme="schematron">
+            <constraint>
+              <sch:rule context="//tei:teiHeader//tei:editor">
+                <sch:assert test="./@ref">A @ref attribute is required on the &lt;editor&gt; element inside &lt;teiHeader&gt;.</sch:assert>
+              </sch:rule>
+              <sch:rule context="//tei:teiHeader//tei:editor/@ref">
+                <sch:let name="edsDoc"
+                  value="doc('https://raw.githubusercontent.com/srophe/srophe-eXist-app/master/documentation/editors.xml')"/>
+                <sch:let name="eds" value="$edsDoc//tei:text/tei:body/tei:listPerson/tei:person/@xml:id"/>
+                <sch:let name="refValues" value="for $i in $eds return concat('http://syriaca.org/documentation/editors.xml#', $i)"/>
+                <sch:assert test="
+                  every $i in .
+                  satisfies $i = $refValues">
+                  Acceptable values for the @ref attribute on an &lt;editor&gt; element inside the &lt;teiHeader&gt; include: 
+                  <sch:value-of select="string-join($refValues, ' | ')"/>.
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="//tei:body//tei:editor">
+                <sch:report test="./@ref">A @ref attribute is not allowed on the &lt;editor&gt; element inside &lt;body&gt;.</sch:report>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+          <attList>
+            <attDef ident="ref" mode="change">
+              <desc>Should contain the URI of a Syriaca.org editor from <ref
+                target="http://syriaca.org/documentation/editors">this list</ref>.</desc>
+            </attDef>
+            <attDef ident="role" mode="change">
+              <desc>Specifies the connection of the editor to the work, selected from
+             http://syriaca.org/documentation/author-editor-roles.xml . The attribute value
+                should contain the above URL followed by a hash (#) and the <att>xml:id</att> of the
+                role. For example,
+             http://syriaca.org/documentation/author-editor-roles.xml#translator . This is
+                recommended, but not required if the type of connection is unknown.</desc>
+              <valList type="closed" mode="replace">
+                <valItem ident="associate">
+                  <desc>An associate editor</desc>
+                </valItem>
+                <valItem ident="creator">
+                  <desc>The main author responsible for the document</desc>
+                </valItem>
+                <valItem ident="general">
+                  <desc>A general editor of a module</desc>
+                </valItem>
+                <valItem ident="code-author">
+                  <desc>The person responsible for the creation of the xml encoding</desc>
+                </valItem>
+                <valItem ident="content-author">
+                  <desc>The person responsible for the content encoded in this document by another person</desc>
+                </valItem>
+                <valItem ident="contributor">
+                  <desc>A person who contributed some data but is not the main person responsible for the document</desc>
+                </valItem>
+                <valItem ident="editor">
+                  <desc>An editor as defined by the Chicago Manual of Style</desc>
+                </valItem>
+                <valItem ident="translator">
+                  <desc>The translator of a text</desc>
+                </valItem>
+              </valList>
+            </attDef>
+          </attList>
+          <exemplum versionDate="2016-11-23">
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <editor ref="http://syriaca.org/person/239"
+                role="http://syriaca.org/documentation/author-editor-roles.xml#translator">
+                <persName xml:lang="en">Gregorius Bar Hebraeus</persName> — <persName xml:lang="syr"
+                  >ܓܪܝܓܘܪܝܘܣ ܒܪ ܥܒܪܝܐ</persName>
+              </editor>
+            </egXML>
+          </exemplum>
+          <remarks versionDate="2016-11-23">
+            <p>
+              The <gi>editor</gi> element is used in two places in the Syriac Gazetteer. In the <gi>teiHeader</gi>
+              the editors of the document appear inside the <gi>titleStmt</gi> element while inside the <gi>seriesStmt</gi>
+              the editors responsible for the Syriac Gazetteer or individual volumes of the Syriac Gazetteer are listed.
+              In the body of Gazetteer records, the <gi>editor</gi> element is used inside of <gi>bibl</gi> elements to 
+              indicated editors of works sited.
+            </p>
+          </remarks>
+        </elementSpec>
+
+        <elementSpec ident="date" module="core" mode="change">
+          <attList>
+            <attDef ident="type" mode="change" usage="rec">
+              <desc>specifies how the date is associated with the entity (work, person, etc.) to
+                which it refers</desc>
+              <valList mode="replace" type="closed">
+                <valItem ident="original-composition">
+                  <desc>the date a work was originally composed</desc>
+                </valItem>
+                <valItem ident="revision">
+                  <desc>the date a work was revised</desc>
+                </valItem>
+                <valItem ident="translation">
+                  <desc>the date a work was translated</desc>
+                </valItem>
+              </valList>
+            </attDef>
+            <attDef ident="notBefore" mode="change">
+              <remarks versionDate="2016-11-24">
+                <p>Provides a terminus post quem. Use this when the exact date is not known. See
+                    <ref target="http://syriaca.org/exist/apps/srophe/documentation/dates.html">the
+                    Syriaca.org documentation</ref> for editorial conventions regarding dates.</p>
+              </remarks>
+            </attDef>
+            <attDef ident="notAfter" mode="change">
+              <remarks versionDate="2016-11-24">
+                <p>Provides a terminus ad quem. Use this when the exact date is not known. See <ref
+                    target="http://syriaca.org/exist/apps/srophe/documentation/dates.html">the
+                    Syriaca.org documentation</ref> for editorial conventions regarding dates.</p>
+              </remarks>
+            </attDef>
+          </attList>
+          <exemplum versionDate="2016-11-24">
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <date notBefore="1240" notAfter="1286" type="original-composition">mid-late 13th
+                century</date>
+            </egXML>
+          </exemplum>
+          <remarks versionDate="2016-11-24">
+            <p>A <gi>date</gi> elment includes both a machine-readable version (using attributes like
+                <att>when</att>, <att>notBefore</att>, <att>notAfter</att>) and a human-readable
+              version as text in the element content. See <ref
+                target="http://syriaca.org/exist/apps/srophe/documentation/dates.html">the
+                Syriaca.org documentation</ref> for editorial conventions regarding dates.</p>
+          </remarks>
+        </elementSpec>
+
+        <elementSpec ident="note" module="core" mode="change">
+          <content>
+            <sequence>
+              <alternate minOccurs="0" maxOccurs="unbounded">
+                <textNode/>
+                <elementRef key="idno"/>
+                <elementRef key="placeName"/>
+                <elementRef key="quote"/>
+                <elementRef key="ref"/>
+                <elementRef key="title"/>
+              </alternate>
+            </sequence>
+          </content>
+          <constraintSpec ident="ID-target-on-note" scheme="schematron">
+            <constraint>
+              <sch:rule context="//tei:body//tei:note[@type='deprecation']">
+                <sch:assert test="./@target">
+                  A &lt;note&gt; element of @type="deprecation" must have a @target attribute.
+                </sch:assert>
+                <sch:assert test="./@xml:id">
+                  A &lt;note&gt; element of @type="deprecation" must have an @xml:id attribute.
+                </sch:assert>
+              </sch:rule>
+              
+              <sch:rule context="//tei:body//tei:note[@type='deprecation']/@target">
+                <sch:let name="nameIDs" value="//tei:place/tei:placeName/@xml:id"/>
+                <sch:let name="IDvalues" value="for $i in $nameIDs return concat('#', $i)"/>
+                <sch:assert test="
+                  every $i in tokenize(., ' ')
+                  satisfies $i = $IDvalues">
+                  This @xml:id attribute on &lt;note&gt; of @type="deprecation" can take one or more of the following value 
+                  separated by a space: 
+                  <sch:value-of select="string-join($IDvalues, ' | ')"/>.
+                </sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+          <constraintSpec ident="lang-in-note" scheme="schematron">
+            <constraint>
+              <sch:rule context="//tei:body//tei:note">
+                <sch:assert test="./@xml:lang">
+                  All &lt;note&gt; elements in the &lt;body&gt; must have an @xml:lang attribute.
+                </sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+          <constraintSpec ident="type-on-note" scheme="schematron">
+            <constraint>
+              <sch:rule context="//tei:body//tei:note">
+                <sch:assert test="./@xml:lang">
+                  All &lt;note&gt; elements in the &lt;body&gt; must have a @type attribute.
+                </sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+          <attList>
+            <attDef ident="type" mode="change">
+              <desc>Describes the function of the note. This attribute is recommended and determines
+                how the note is displayed on the page.</desc>
+              <valList mode="replace" type="closed">
+                <valItem ident="corrigenda">
+                  <desc>A note describing how the record should be corrected or read
+                    differently.</desc>
+                </valItem>
+                <valItem ident="deprecation">
+                  <desc>A note logging the reason(s) for deprecating a particular data point.</desc>
+                </valItem>
+                <valItem ident="disambiguation">
+                  <desc>A note to help distinguish this entity (person, place, work, etc.) from
+                    another one.</desc>
+                </valItem>
+                <valItem ident="errata">
+                  <desc>A note describing data that is included in the record but is known to be
+                    incorrect.</desc>
+                </valItem>
+                <valItem ident="incerta">
+                  <desc>A note describing uncertain data in the record.</desc>
+                </valItem>
+                <valItem ident="misc">
+                  <desc>A note that cannot be categorized as any other type.</desc>
+                </valItem>
+              </valList>
+            </attDef>
+          </attList>
+          <exemplum versionDate="2016-11-24">
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <note type="abstract" xml:lang="en" source="#bib2501-8 #bib2501-14">The first part of
+                  <persName ref="http://syriaca.org/person/239">Bar Hebraeus</persName>' <bibl>
+                  <title>Chronicle</title>
+                  <ptr target="http://syriaca.org/work/2500"/>
+                </bibl>; an account of secular history from the time of <persName
+                  ref="http://syriaca.org/person/1560">Adam</persName> until <persName
+                  ref="http://syriaca.org/person/239">Bar Hebraeus</persName>' own time (the 13th
+                century). </note>
+              <note type="disambiguation">This work should be distinguished from the Arabic
+                  <bibl>History of the Dynasties</bibl>, which reflects a similar structure but has
+                significant differences, including some additions that may be from Islamic
+                sources.</note>
+              <note type="content" source="#bib2501-8 #bib2501-14">Through the 12th century, this
+                work is largely an abridgement of <persName ref="http://syriaca.org/person/217"
+                  >Michael the Syrian</persName>'s <bibl>Chronicle</bibl>. The portion following
+                this is particularly valuable for its representation of events during <persName
+                  ref="http://syriaca.org/person/239">Bar Hebraeus</persName>' own lifetime.</note>
+              <note type="scope">Secular world history from Creation through the 13th century A.D.
+                Part of a larger work which also contains <bibl>an ecclesiastical history<ptr
+                    target="http:/syriaca.org/work/2502"/></bibl>.</note>
+              <note xml:lang="syr" type="incipit" source="#bib2501-2">
+                <quote>ܐܠܗܐ ܥܕܪ ܠܡܚܝܠܘܬܝ. ܡܒܪܟ ܐܢܬ ܗܘ ܡܪܝܐ ܘܡܪܐ ܕܟܠ ܫܘܪܝܐ ܘܫܪܝܐ: ܐܢܬ ܗܘ ܩܕܡܝܐ ܘܐܢܬ
+                  ܗܘ ܐܚܪܝܐ. ܘܠܘܬܟ ܡܬܛܝܒܐ ܟܠ ܡܪܕܝܬܐ:</quote>
+              </note>
+              <note xml:lang="en" type="incipit" source="#bib2501-5">
+                <quote>God, help my feebleness! Blessed be Thou, Lord, and Lord of the Universe, the
+                  beginning and the end; Thou art the First, and Thou art the last. With Thee every
+                  course of action is prepared.</quote>
+              </note>
+            </egXML>
+          </exemplum>
+          <remarks versionDate="2011-11-24">
+            <p>Notes are used for various kinds of text. In entity records, Syriaca.org typically
+              uses notes as containers for sentence-length to paragraph-length text. The
+                <att>type</att> attribute is required and determines how the note is displayed on
+              the page.</p>
+          </remarks>
+        </elementSpec>
+        
+        <elementSpec ident="link" module="linking" mode="change">
+          <constraintSpec ident="target-on-link" scheme="schematron">
+            <constraint>
+              <sch:rule context="//tei:link/@target">
+                <sch:let name="allIDs" value="//@xml:id"/>
+                <sch:let name="targetVals" value="for $i in $allIDs return concat('#', $i)"/>
+                <sch:assert
+                  test="
+                  every $i in (tokenize(., ' '))
+                  satisfies $i = $targetVals"
+                  >A &lt;link&gt; element takes a @target attribute with two or more of the following values: 
+                  <sch:value-of select="string-join($targetVals, ' | ')"/>.
+                </sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+        </elementSpec>
+        
+        <elementSpec ident="relation" module="namesdates" mode="change">
+          <constraintSpec ident="atts-on-relation" scheme="schematron">
+            <constraint>
+              <sch:rule context="//tei:body//tei:relation/@mutual">
+                <sch:let name="docURI" value="//tei:publicationStmt/tei:idno/substring-before(., '/tei')"/>
+                <sch:assert test="contains(., ' ')">
+                  The @mutual attribute on a &lt;relation&gt; element must contain two or more values.
+                </sch:assert>
+                <sch:assert
+                  test="
+                  every $i in (tokenize(., ' '))
+                  satisfies matches($i, concat('http://syriaca.org/place/', '\d+'))"
+                  >
+                  The @mutual attribute on a &lt;relation&gt; element should contain two or more properly formatted 
+                  Syriaca.org place URIs ('http://syriaca.org/place/{\d+}') separated by a blank space.
+                </sch:assert>
+                <sch:report
+                  test="
+                  every $i in (tokenize(., ' '))
+                  satisfies matches(substring-after($i, 'http://syriaca.org/place/'), '\D')"
+                  >
+                  <!-- Needs testing. Something here doesn't seem to be working properly. -->
+                  The @mutual attribute on a &lt;relation&gt; element with should contain two or more properly formatted 
+                  Syriaca.org place URIs ('http://syriaca.org/place/{\d+}') separated by a blank space.
+                </sch:report>
+                <sch:assert test="contains(., $docURI)">
+                  One on the values of the @mutual attribute must be the URI for this document's place: <sch:value-of select="$docURI"/>.
+                </sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+          <attList>
+            <attDef ident="name" mode="change" usage="req">
+              <valList mode="replace" type="closed">
+                <valItem ident="share-a-name">
+                  <desc>Use when two or more locations share a name</desc>
+                </valItem>
+                <valItem ident="see-also">
+                  <desc>Use when two or more locations share an unspecified relationship</desc>
+                </valItem>
+              </valList>
+            </attDef>
+            <attDef ident="mutual" mode="replace" usage="req"/>
+          </attList>
+        </elementSpec>
+
+        
+
+
+
+        <elementSpec ident="label" module="core" mode="change">
+          <!--  @ref on label?
+            Currently, label in the Gazetteer is used only inside of state type="confession". It contains no attributes.
+            I would propose we require a @ref attribute with a URI from the taxonomy.
+          -->
+          <exemplum versionDate="2016-11-24">
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <state type="confession" xml:id="confession1399-1" ref="http://syriaca.org/documentation/confessions.xml#yezidis" from="1160" source="#bib1399-1">
+                <label>Yezidis</label>
+              </state>
+            </egXML>
+          </exemplum>
+          <remarks>
+            <p>
+              The Gazetteer uses the <gi>label</gi> element inside of a <gi>state</gi> element with a <att>type</att> attribute of "confession". 
+              The text node of the <gi>label</gi> element contains the English name of the confession attested at a location.
+            </p>
+          </remarks>
+        </elementSpec>
+
+        <elementSpec ident="author" module="core" mode="change">
+          <content>
+            <alternate minOccurs="0" maxOccurs="unbounded">
+              <elementRef key="persName"/>
+              <textNode/>
+            </alternate>
+          </content>
+          <attList>
+            <attDef ident="ref" mode="change" usage="rec">
+              <desc>
+                Should contain the URI of the author from the 
+                <ref target="http://syriaca.org/persons">Syriac Biographical Dictionary</ref>, 
+                unless no record yet exists for the author.
+              </desc>
+            </attDef>
+          </attList>
+          <remarks>
+            <p>
+              The Gazetteer uses the <gi>author</gi> element inside of a <gi>bibl</gi> element that documents a source for the data in the record.
+            </p>
+          </remarks>
+        </elementSpec>
+        
+        <elementSpec ident="bibl" module="core" mode="change">
+          <content>
+            <sequence>
+              <alternate minOccurs="0" maxOccurs="unbounded">
+                <elementRef key="author"/>
+                <elementRef key="editor"/>
+                <elementRef key="title"/>
+                <elementRef key="citedRange"/>
+                <elementRef key="ptr" minOccurs="1"/>
+              </alternate>
+            </sequence>
+          </content>
+          <constraintSpec ident="xmlID-on-bibl" scheme="schematron">
+            <!-- listBibl
+              Add option of using bibl or listBibl in cases where you want more than one bibl in a footnote: 
+              https://docs.google.com/document/d/1fVb9ByB9L03YGk_E-hX_u1ucPMdwKGMpk901UQJfz0Y/edit#heading=h.95atzxjnq386. 
+            -->
+            <constraint>
+              <sch:rule context="//tei:place/tei:bibl">
+                <sch:let name="docURIno" value="//tei:publicationStmt/tei:idno/substring-before(substring-after(substring-after(., 'http://syriaca.org/'), '/'), '/tei')"/>
+                <sch:let name="IDno" value=".[preceding-sibling::tei:bibl]/@xml:id/number(substring-after(., '-'))"/>
+                <sch:let name="precedingIDno" value="./preceding-sibling::tei:bibl/@xml:id/number(substring-after(., '-'))"/>
+                <sch:assert test="matches(./@xml:id, concat('bib', $docURIno, '-', '\d+'))">
+                  The required @xml:id must be 'bib<sch:value-of select="$docURIno"/>-{\d+}' (where {\d+} is a number).
+                </sch:assert>
+                <sch:assert test="
+                  every $i in $IDno - 1
+                  satisfies $i = $precedingIDno">
+                  The @xml:id must be 'bib<sch:value-of select="$docURIno"/>-{\d+}' where the {\d+} sequentially numbers the @xml:id attributes.
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="//tei:place/tei:bibl[1]/@xml:id">
+                <sch:let name="docURIno" value="//tei:publicationStmt/tei:idno/substring-before(substring-after(substring-after(., 'http://syriaca.org/'), '/'), '/tei')"/>
+                <sch:assert test="./number(substring-after(., '-')) = 1">
+                  The @xml:id on the first &lt;bibl&gt; element must be 'bib<sch:value-of select="$docURIno"/>-1'.
+                </sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+          <remarks>
+            <p>
+              Each <gi>bibl</gi> element may contain: 
+              zero or more <gi>author</gi> elements,
+              zero or more <gi>editor</gi> elements, and
+              zero or more <gi>title</gi> elements.
+              It must, however, contain 
+              one <gi>ptr</gi> element, and
+              one or more <gi>citedRange</gi> elements.
+            </p>
+          </remarks>
+        </elementSpec>
+        
+        <elementSpec ident="event" module="namesdates" mode="change">
+          <content>
+            <elementRef key="p" minOccurs="1"/>
+            <elementRef key="link" minOccurs="0" maxOccurs="unbounded"/>
+            <elementRef key="precision" minOccurs="0" maxOccurs="unbounded"/>
+          </content>
+          <constraintSpec ident="xmlID-on-event" scheme="schematron">
+            <constraint>
+              <sch:rule context="//tei:text//tei:event[@type='attestation']/@xml:id">
+                <sch:let name="URIno" value="//tei:publicationStmt/tei:idno/replace(., '[\D]+', '')"/>
+                <sch:assert test="matches(., concat('attestation', $URIno, '-', '\d'))">
+                  The @xml:id must begin with 'attestation', followed by the same number as the URI number of
+                  the entity, followed by '-': attestation<sch:value-of select="$URIno"/>-. 
+                </sch:assert>
+                <sch:report test="matches(substring-after(., '-'), '\D')">
+                  This @xml:id must end with a number.
+                </sch:report>
+              </sch:rule>
+              <sch:rule context="//tei:text//tei:event[@type='attestation']">
+                <sch:let name="countElement" value="count(//tei:text//tei:event[@type='attestation'])"/>
+                <sch:let name="countIDs" value="count(distinct-values(//tei:text//tei:event[@type='attestation']/@xml:id))"/>
+                <sch:assert test="$countElement = $countIDs">
+                  Each @xml:id on a &lt;event&gt; element of @type="attestation" must have a unique value.
+                </sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+          <constraintSpec ident="xmlID-on-event" scheme="schematron">
+            <constraint>
+              <sch:rule context="//tei:place/tei:event[@type='attestation']">
+                <sch:let name="docURIno" value="//tei:publicationStmt/tei:idno/substring-before(substring-after(substring-after(., 'http://syriaca.org/'), '/'), '/tei')"/>
+                <sch:let name="IDno" value=".[preceding-sibling::tei:event[@type='attestation']]/@xml:id/number(substring-after(., '-'))"/>
+                <sch:let name="precedingIDno" value="./preceding-sibling::tei:event[@type='attestation']/@xml:id/number(substring-after(., '-'))"/>
+                <sch:assert test="matches(./@xml:id, concat('attestation', $docURIno, '-', '\d+'))">
+                  The required @xml:id must be 'attestation<sch:value-of select="$docURIno"/>-{\d+}' (where {\d+} is a number).
+                </sch:assert>
+                <sch:assert test="
+                  every $i in $IDno - 1
+                  satisfies $i = $precedingIDno">
+                  The @xml:id must be 'attestation<sch:value-of select="$docURIno"/>-{\d+}' where the {\d+} sequentially numbers the @xml:id attributes.
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="//tei:place/tei:event[@type='attestation'][1]/@xml:id">
+                <sch:let name="docURIno" value="//tei:publicationStmt/tei:idno/substring-before(substring-after(substring-after(., 'http://syriaca.org/'), '/'), '/tei')"/>
+                <sch:assert test="./number(substring-after(., '-')) = 1">
+                  The @xml:id on the first &lt;event&gt; element of @type="attestation" must be 'attestation<sch:value-of select="$docURIno"/>-1'.
+                </sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+          <attList>
+            <attDef ident="source" mode="change" usage="req">
+              <desc>The <gi>event</gi> element requires a <att>source</att> attribute.</desc>
+            </attDef>
+            <attDef ident="type" mode="change" usage="req">
+              <desc>The <gi>event</gi> element requires a <att>type</att> attribute.</desc>
+              <valList type="closed" mode="replace">
+                <valItem ident="attestation">
+                  <desc>An event that attests to the entity described in the document</desc>
+                </valItem>
+                <valItem ident="other">
+                  <desc>Any event that does something other than attest to the entity described in the document</desc>
+                </valItem>
+              </valList>
+            </attDef>
+          </attList>
+        </elementSpec>
+        
+        <elementSpec ident="state" module="namesdates" mode="change">
+          <content>
+            <elementRef key="p" minOccurs="0" maxOccurs="1"/>
+            <elementRef key="label" minOccurs="0"/>
+            <elementRef key="precision" minOccurs="0" maxOccurs="unbounded"/>
+          </content>
+          <constraintSpec ident="xmlID-on-state" scheme="schematron">
+            <constraint>
+              <sch:rule context="//tei:text//tei:state[@type='confession']/@xml:id">
+                <sch:let name="docURIno" value="//tei:publicationStmt/tei:idno/substring-before(substring-after(substring-after(., 'http://syriaca.org/'), '/'), '/tei')"/>
+                <sch:assert test="matches(., concat('confession', $docURIno, '-', '\d'))">
+                  The @xml:id must be 'confession<sch:value-of select="$docURIno"/>-{\d+}' (where {\d+} is a number).
+                </sch:assert>
+                <sch:report test="matches(substring-after(., '-'), '\D')">
+                  This @xml:id must end with a number.
+                </sch:report>
+              </sch:rule>
+              <sch:rule context="//tei:text//tei:state[@type='confession']">
+                <sch:let name="countElement" value="count(//tei:text//tei:state[@type='confession'])"/>
+                <sch:let name="countIDs" value="count(distinct-values(//tei:text//tei:state[@type='confession']/@xml:id))"/>
+                <sch:assert test="$countElement = $countIDs">
+                  Each @xml:id on a &lt;state&gt; element of @type="confession" must have a unique value.
+                </sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+        </elementSpec>
+
+        <elementSpec ident="citedRange" module="core" mode="change">
+          <attList>
+            <attDef ident="unit" mode="change" usage="req">
+              <datatype>
+                <dataRef key="teidata.enumerated"/>
+              </datatype>
+              <valList type="closed" mode="replace">
+                <valItem ident="column">
+                  <desc>the element identifies a column.</desc>
+                </valItem>
+                <valItem ident="entry">
+                  <desc>the element identifies an entry in a collection such as an reference
+                    work.</desc>
+                </valItem>
+                <valItem ident="line">
+                  <desc>the element contains a line number or line range.</desc>
+                </valItem>
+                <valItem ident="map">
+                  <desc>the element identifies a map.</desc>
+                </valItem>
+                <valItem ident="part">
+                  <desc>the element contains a part of a book or collection, i.e. chapter and verse
+                    of a biblical text.</desc>
+                </valItem>
+                <valItem ident="pp">
+                  <desc>the element contains a page number or page range.</desc>
+                </valItem>
+                <valItem ident="section">
+                  <desc>the element identifies a section of a text.</desc>
+                </valItem>
+                <valItem ident="vol">
+                  <desc>the element identifies a volume of a multi-volume work.</desc>
+                </valItem>
+              </valList>
+            </attDef>
+          </attList>
+          <remarks>
+            <p>The acceptable <att>unit</att> attribute values with the <gi>citedRange</gi> element
+              are: column, entry, line, part, pp, and section..</p>
+          </remarks>
+        </elementSpec>
+
+        <elementSpec ident="p" module="core" mode="change">
+          <constraintSpec ident="lang-on-p-in-body" scheme="schematron">
+            <constraint>
+              <sch:rule context="//tei:text//tei:p">
+                <sch:assert test="./@xml:lang">A &lt;p&gt; element in the text body must have an @xml:lang attribute.</sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+        </elementSpec>
+               
+        <elementSpec ident="body" module="textstructure" mode="change">
+          <content>
+            <elementRef key="listPlace" minOccurs="1" maxOccurs="1"/>
+          </content>
+          <remarks>
+            <p>The body of Syriaca.org TEI records are specific to the type of data. The <gi>body</gi> element 
+              of a place record must contain a <gi>listPlace</gi> element.
+            </p>
+          </remarks>
+        </elementSpec>
+
+        <elementSpec ident="listPlace" module="namesdates" mode="change">
+          <content>
+            <elementRef key="place" minOccurs="1" maxOccurs="1"/>
+            <elementRef key="listRelation" minOccurs="0" maxOccurs="1"/>
+          </content>
+          <remarks>
+            <p>The <gi>listPlace</gi> element of a place record must contain a <att>place</att> 
+              element and may contain a <gi>listRelation</gi> element.
+            </p>
+          </remarks>
+        </elementSpec>
+        
+        <elementSpec ident="place" module="namesdates" mode="change">
+          <content>
+            <elementRef key="placeName" minOccurs="1" maxOccurs="unbounded"/>
+            <elementRef key="desc" minOccurs="1" maxOccurs="unbounded"/>
+            <elementRef key="location" minOccurs="0" maxOccurs="unbounded"/>
+            <elementRef key="event" minOccurs="0" maxOccurs="unbounded"/>
+            <elementRef key="state" minOccurs="0" maxOccurs="unbounded"/>
+            <elementRef key="note" minOccurs="0" maxOccurs="unbounded"/>
+            <elementRef key="idno" minOccurs="1" maxOccurs="unbounded"/>
+            <elementRef key="bibl" minOccurs="1" maxOccurs="unbounded"/>
+          </content>
+          <constraintSpec ident="abstract-in-place" scheme="schematron">
+            <constraint>
+              <sch:rule context="//tei:body//tei:place">
+                <sch:report test="count(//tei:desc[@type='abstract']) lt 1">
+                  Every &lt;place&gt; element must have at least one &lt;desc&gt; element with @type="abstract".
+                </sch:report>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+          <attList>
+            <attDef ident="type" mode="replace" usage="req">
+              <valList type="closed" mode="replace">
+                <valItem ident="building">
+                  <desc>A construction for which there is no narrower category, such as a church or mosque. Examples of this type include palaces and named city gates.</desc>
+                </valItem>
+                <valItem ident="cemetery">
+                </valItem>
+                <valItem ident="church">
+                </valItem>
+                <valItem ident="composite">
+                  <desc>A named place concept which merges multiple distinct place types, such as a city and a diocese. More specific types are preferred.</desc>
+                </valItem>
+                <valItem ident="designated-space">
+                  <desc>An area with artificial boundaries which is not necessarily built up, such as a cemetery, town square, or polo ground.</desc>
+                </valItem>
+                <valItem ident="diocese">
+                  <desc>An ecclesiastical province governed by a bishop, archbishop, or metropolitan.</desc>
+                </valItem>
+                <valItem ident="fortification">
+                  <desc>A military outpost such as a fort or a castle.</desc>
+                </valItem>
+                <valItem ident="island">
+                  <desc>A land-mass smaller than a continent surrounded on all sides by water.</desc>
+                </valItem>
+                <valItem ident="madrasa">
+                  <desc>A building or space designated for instruction in the Islamic sciences.</desc>
+                </valItem>
+                <valItem ident="monastery">
+                  <desc>A whole monastic complex, including living quarters for the monks or nuns, the church(es), and potentially a refectory, library, school, or other part.</desc>
+                </valItem>
+                <valItem ident="mosque">
+                  <desc>A building or designated space used for Muslim congregational prayers. It can be part of a larger building complex.</desc>
+                </valItem>
+                <valItem ident="mountain">
+                  <desc>An elevated physical feature, from Mt. Ararat down to a prominent hill.</desc>
+                </valItem>
+                <valItem ident="natural-feature">
+                  <desc>A natural feature for which there is no narrower category, such as a mountain or open water. Examples of this type include forests and hot springs.</desc>
+                </valItem>
+                <valItem ident="open-water">
+                  <desc>A broad category for seas, lakes, oceans, and ponds.</desc>
+                </valItem>
+                <valItem ident="parish">
+                  <desc>An ecclesiastical region below a diocese, presided over by a priest.</desc>
+                </valItem>
+                <valItem ident="province">
+                  <desc>A political unit subject to a "state" but larger than a city. States often have multiple levels of administrative units (e.g. the late Ottoman vilayets, sanjaks, kazas, and nahiyes), all of which can be indicated as a "province."</desc>
+                </valItem>
+                <valItem ident="quarter">
+                  <desc>A subdivision of an urban center.</desc>
+                </valItem>
+                <valItem ident="region">
+                  <desc>A term indicating a geographic extent larger than a city, without a corresponding politico-administrative apparatus. The size could range from a small valley to an entire continent.</desc>
+                </valItem>
+                <valItem ident="river">
+                  <desc>A stream of water of whatever size, from the smallest creek to the Amazon. Wadis are also included, even if they are not filled with water year-round.</desc>
+                </valItem>
+                <valItem ident="settlement">
+                  <desc>Any collection of civilian residences, from the smallest village to the largest metropolis.</desc>
+                </valItem>
+                <valItem ident="state">
+                  <desc>A sovereign government such as an empire, kingdom, caliphate, or independent emirate.</desc>
+                </valItem>
+                <valItem ident="synagogue">
+                  <desc>A building designated for use in Jewish worship.</desc>
+                </valItem>
+                <valItem ident="temple">
+                  <desc>A building designated for use in pagan worship.</desc>
+                </valItem>
+                <valItem ident="unknown">
+                  <desc>A place whose name is known, but what sort of place it represents is unknown.</desc>
+                </valItem>
+                <valItem ident="valley">
+                </valItem>
+              </valList>
+            </attDef>
+            <attDef ident="xml:id" mode="delete"/>
+          </attList>
+          <remarks>
+            <p>Within each <gi>place</gi> element will be a series of: 
+              one or more <gi>placeName</gi> elements,
+              one or more <gi>note</gi> description elements,
+              zero or more <gi>location</gi> elements,
+              zero or more <gi>event</gi> elements,
+              zero or more <gi>state</gi> elements,
+              one or more <gi>idno</gi> elements, and
+              one or more <gi>bibl</gi> elements.
+            </p>
+          </remarks>
+        </elementSpec>
+        
+        <elementSpec ident="placeName" module="namesdates" mode="change">
+          <constraintSpec ident="atts-on-placeName" scheme="schematron">
+            <constraint>
+              <sch:rule context="//tei:place/tei:placeName">
+                <sch:assert test="attribute::source or attribute::resp">
+                  The &lt;placeName&gt; element must have either a @source attribute (preferred when available) or a @resp attribute.
+                </sch:assert>
+                <sch:report test="attribute::source and attribute::resp">
+                  The &lt;placeName&gt; element may not have both a @source attribute (the preferred when available) and a @resp attribute.
+                </sch:report>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+          <constraintSpec ident="xmlID-on-placeName" scheme="schematron">
+            <constraint>
+              <sch:rule context="//tei:place/tei:placeName">
+                <sch:let name="docURIno" value="//tei:publicationStmt/tei:idno/substring-before(substring-after(substring-after(., 'http://syriaca.org/'), '/'), '/tei')"/>
+                <sch:let name="IDno" value=".[preceding-sibling::tei:placeName]/@xml:id/number(substring-after(., '-'))"/>
+                <sch:let name="precedingIDno" value="./preceding-sibling::tei:placeName/@xml:id/number(substring-after(., '-'))"/>
+                <sch:assert test="matches(./@xml:id, concat('name', $docURIno, '-', '\d+'))">
+                  The required @xml:id must be 'name<sch:value-of select="$docURIno"/>-{\d+}' (where {\d+} is a number).
+                </sch:assert>
+                <sch:assert test="
+                  every $i in $IDno - 1
+                  satisfies $i = $precedingIDno">
+                  The @xml:id must be 'name<sch:value-of select="$docURIno"/>-{\d+}' where the {\d+} sequentially numbers the @xml:id attributes.
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="//tei:place/tei:placeName[1]/@xml:id">
+                <sch:let name="docURIno" value="//tei:publicationStmt/tei:idno/substring-before(substring-after(substring-after(., 'http://syriaca.org/'), '/'), '/tei')"/>
+                <sch:assert test="./number(substring-after(., '-')) = 1">
+                  The @xml:id on the first &lt;placeName&gt; element must be 'name<sch:value-of select="$docURIno"/>-1'.
+                </sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+          <constraintSpec ident="xmlLang-on-placeName" scheme="schematron">
+            <constraint>
+              <sch:rule context="//tei:text//tei:place/tei:placeName">
+                <sch:assert test="./@xml:lang">A &lt;placeName&gt; element that is the direct child of the &lt;place&gt; element must have an @xml:lang attribute.</sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+          <!-- This works in the schematron but not when placed into the ODD and converted to RelaxNG. There is a namespace issue I will try to troubleshoot.
+            <constraintSpec ident="langHeadword" scheme="schematron">
+            <constraint>
+              <sch:rule context="//tei:place/tei:placeName">
+                <sch:let name="langsOfHW" value="//tei:place/tei:placeName[@srophe:tags='#syriaca-headword']/@xml:lang"/>
+                <sch:assert test="count(./parent::tei:place/tei:placeName[@xml:lang='en' and @srophe:tags='#syriaca-headword']) = 1">
+                  There can be one and only one &lt;placeName&gt; element with the combination of @srophe:tags="#syriaca-headword" and @xml:lang="en".
+                </sch:assert>
+                <sch:assert test="count(distinct-values($langsOfHW)) = count($langsOfHW)">
+                  There cannot be more than one headword (@srophe:tags="#syriaca-headword") per &lt;placeName&gt; with the same language (@xml:lang).
+                </sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>-->
+          <attList>
+            <attDef ident="xml:id" mode="change">
+              <desc>The <gi>placeName</gi> element requires an <att>xml:id</att> attribute whose value is the concatenation of "name", 
+                the Syriaca.org ID number of this place (i.e. the last element of the URI), a ‘-’, and the number of this name element in order.</desc>
+            </attDef>
+            <attDef ident="xml:lang" mode="change">
+              <desc>
+                The language of the name should be indicated in an <att>xml:lang</att> attribute of the <gi>placeName</gi> element, 
+                whose value is derived from the the <ref target="http://www.loc.gov/standards/iso639-2/php/code_list.php">ISO-639-1 or ISO-639-2 standards</ref>. 
+                In particular, "en" should be used for "English", "ar" for "Arabic", and "syr" for Syriac. Syriaca.org is not using "syc" for 
+                Syriac to avoid the judgment of what constitutes "classical." In the case of vocalized Syriac, the <att>xml:lang</att> attribute 
+                should be augmented with a script indication: either "-Syrj" to indicate West Syrian vocalization or "-Syrn" to indicate East Syrian 
+                vocalization. Thus the <att>xml:lang</att> attribute will have a value of "syr-Syrj" for vocalized Western Syriac and "syr-Syrn" 
+                for vocalized Eastern Syriac. The <att>xml:lang</att> attribute for an unvocalized Syriac name form, such as Syriaca.org’s headword 
+                form, should be simply "syr".
+              </desc>
+            </attDef>
+            <attDef ident="resp" mode="change">
+              <desc>
+                Most <gi>placeName</gi> elements will have a <att>source</att> attribute pointing to the <gi>bibl</gi> element that is the 
+                source of that name. In instances where a place name is generated for consistency of transcription but is not attested 
+                in a print or online source, a <att>resp</att> is used with a value of 'http://syriaca.org'. 
+              </desc>
+              <valList type="closed" mode="replace">
+                <valItem ident="http://syriaca.org"/>
+              </valList>
+            </attDef>
+          </attList>
+        </elementSpec>
+        
+        <elementSpec ident="desc" module="core" mode="change">
+          <constraintSpec ident="xmlID-on-desc" scheme="schematron">
+            <constraint>
+              <sch:rule context="//tei:place/tei:desc[@type='abstract']">
+                <sch:let name="docURIno" value="//tei:publicationStmt/tei:idno/substring-before(substring-after(substring-after(., 'http://syriaca.org/'), '/'), '/tei')"/>
+                <sch:let name="IDno" value=".[preceding-sibling::tei:desc[@type='abstract']]/@xml:id/number(substring-after(., '-'))"/>
+                <sch:let name="precedingIDno" value="./preceding-sibling::tei:desc[@type='abstract']/@xml:id/number(substring-after(., '-'))"/>
+                <sch:assert test="matches(./@xml:id, concat('abstract', $docURIno, '-', '\d+'))">
+                  The required @xml:id must be 'abstract<sch:value-of select="$docURIno"/>-{\d+}' (where {\d+} is a number).
+                </sch:assert>
+                <sch:assert test="
+                  every $i in $IDno - 1
+                  satisfies $i = $precedingIDno">
+                  The @xml:id must be 'abstract<sch:value-of select="$docURIno"/>-{\d+}' where the {\d+} sequentially numbers the @xml:id attributes.
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="//tei:place/tei:desc[@type='abstract'][1]/@xml:id">
+                <sch:let name="docURIno" value="//tei:publicationStmt/tei:idno/substring-before(substring-after(substring-after(., 'http://syriaca.org/'), '/'), '/tei')"/>
+                <sch:assert test="./number(substring-after(., '-')) = 1">
+                  The @xml:id on the first &lt;desc&gt; element of @type="abstract" must be 'abstract<sch:value-of select="$docURIno"/>-1'.
+                </sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+          <constraintSpec ident="lang-on-desc" scheme="schematron">
+            <constraint>
+              <sch:rule context="//tei:body//tei:desc">
+                <sch:assert test="./@xml:lang">
+                  All &lt;desc&gt; elements must have an @xml:lang attribute.
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="//tei:text//tei:desc[@type='abstract']">
+                <sch:let name="countAbs" value="count(//tei:text//tei:desc[@type='abstract'])"/>
+                <sch:let name="countLangs" value="count(distinct-values(//tei:text//tei:desc[@type='abstract']/@xml:lang))"/>
+                <sch:assert test="$countAbs = $countLangs">
+                  There can only be one abstract is a given language. 
+                  Each abstract (&lt;desc&gt; element of @type="abstract") must have a unique @xml:lang attribute.
+                </sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+          <attList>
+            <attDef ident="type" mode="replace">
+              <valList type="closed">
+                <valItem ident="abstract"/>
+              </valList>
+            </attDef>
+          </attList>
+        </elementSpec>
+        
+        <elementSpec ident="location" module="namesdates" mode="change">
+          <content>
+            <alternate>
+              <sequence>
+                <elementRef key="geo"/>
+              </sequence>
+              <sequence preserveOrder="false">
+                <alternate minOccurs="0" maxOccurs="unbounded">
+                  <textNode/>
+                  <elementRef key="placeName"/>
+                  <elementRef key="measure"/>
+                  <elementRef key="offset"/>
+                </alternate>
+              </sequence>
+              <sequence preserveOrder="true">
+                <elementRef key="district" minOccurs="0" maxOccurs="unbounded"/>
+                <elementRef key="settlement" minOccurs="0" maxOccurs="1"/>
+                <elementRef key="region" minOccurs="0" maxOccurs="unbounded"/>   
+                <elementRef key="country" minOccurs="0" maxOccurs="unbounded"/>
+                <elementRef key="bloc" minOccurs="0" maxOccurs="unbounded"/>
+              </sequence>
+            </alternate>
+          </content>
+          <constraintSpec ident="location-children" scheme="schematron">
+            <constraint>
+              <sch:rule context="//tei:location[@type='gps']">
+                <sch:assert test="./tei:geo">
+                  A &lt;location&gt; element of @type="gps" requires a child element &lt;geo&gt;.
+                </sch:assert>
+              </sch:rule>
+              <sch:rule context="//tei:location[@type='nested']">
+                <sch:report test="./tei:placeName or ./tei:measure or ./tei:offset or ./tei:geo">
+                  A &lt;location&gt; element of @type="nested" may only contain a child elements &lt;district&gt;, &lt;settlement&gt;, &lt;region&gt;, &lt;country&gt; or &lt;bloc&gt;.
+                </sch:report>
+              </sch:rule>
+              <sch:rule context="//tei:location[@type='relative']">
+                <sch:report test="./tei:district or ./tei:settlement or ./tei:region or ./tei:country or ./tei:geo or ./bloc">
+                  A &lt;location&gt; element of @type="relative" may only contain text and child elements: &lt;placeName&gt;, &lt;measure&gt;, or &lt;offset&gt;.
+                </sch:report>
+              </sch:rule>
+              <sch:rule context="//tei:location/tei:placeName">
+                <sch:report test="./@calendar or ./@period or ./@when or ./@notBefore or ./@notAfter or ./@from or ./@to or ./@when-iso or ./@notBefore-iso or ./@notAfter-iso or ./@from-iso or ./@to-iso or ./@when-custom or ./@notBefore-custom or ./@notAfter-custom or ./@from-custom or ./@to-custom or ./@datingPoint or ./@datingMethod">
+                  Date attributes in this context should go on the &lt;location&gt; element and not on the &lt;persName&gt; element.
+                </sch:report>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+          <constraintSpec ident="atts-on-location" scheme="schematron">
+            <constraint>
+              <sch:rule context="//tei:place/tei:location">
+                <sch:assert test="attribute::source or attribute::resp">
+                  The &lt;location&gt; element must have either a @source attribute (preferred when available) or a @resp attribute.
+                </sch:assert>
+                <sch:report test="attribute::source and attribute::resp">
+                  The &lt;location&gt; element may not have both a @source attribute (the preferred when available) and a @resp attribute.
+                </sch:report>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+          <attList>
+            <attDef ident="type" mode="change" usage="req">
+              <valList mode="replace" type="closed">
+                <valItem ident="gps"/>
+                <valItem ident="nested"/>
+                <valItem ident="relative"/>
+              </valList>
+            </attDef>
+            <attDef ident="subtype" mode="change">
+              <valList mode="replace" type="closed">
+                <valItem ident="alternate"/>
+                <valItem ident="preferred"/>
+                <valItem ident="quote"/>
+                <valItem ident="representative"/>
+              </valList>
+            </attDef>
+            <attDef ident="resp" mode="change">
+              <desc>
+                Most <gi>placeName</gi> elements will have a <att>source</att> attribute pointing to the <gi>bibl</gi> element that is the 
+                source of that name. In instances where a place name is generated by Syriaca.org for consistency of transcription but is not attested 
+                in a print or online source, a <att>resp</att> is used with a value of 'http://syriaca.org'. 
+              </desc>
+              <valList type="closed" mode="replace">
+                <valItem ident="http://syriaca.org"/>
+              </valList>
+            </attDef>
+          </attList>
+        </elementSpec>
+        
+        <elementSpec ident="district" module="namesdates" mode="change">
+          <classes mode="change">
+            <memberOf key="att.datable" mode="delete"/>
+            <memberOf key="att.datable.custom" mode="delete"/>
+            <memberOf key="att.datable.iso" mode="delete"/>
+            <memberOf key="att.datable.w3c" mode="delete"/>
+          </classes>
+          <attList>
+            <attDef ident="ref" mode="change" usage="req"/>
+          </attList>
+        </elementSpec>
+        
+        <elementSpec ident="settlement" module="namesdates" mode="change">
+          <classes mode="change">
+            <memberOf key="att.datable" mode="delete"/>
+            <memberOf key="att.datable.custom" mode="delete"/>
+            <memberOf key="att.datable.iso" mode="delete"/>
+            <memberOf key="att.datable.w3c" mode="delete"/>
+          </classes>
+          <attList>
+            <attDef ident="ref" mode="change" usage="req"/>
+          </attList>
+        </elementSpec>
+        
+        <elementSpec ident="region" module="namesdates" mode="change">
+          <classes mode="change">
+            <memberOf key="att.datable" mode="delete"/>
+            <memberOf key="att.datable.custom" mode="delete"/>
+            <memberOf key="att.datable.iso" mode="delete"/>
+            <memberOf key="att.datable.w3c" mode="delete"/>
+          </classes>
+          <attList>
+            <attDef ident="ref" mode="change" usage="req"/>
+          </attList>
+        </elementSpec>
+        
+        <elementSpec ident="country" module="namesdates" mode="change">
+          <classes mode="change">
+            <memberOf key="att.datable" mode="delete"/>
+            <memberOf key="att.datable.custom" mode="delete"/>
+            <memberOf key="att.datable.iso" mode="delete"/>
+            <memberOf key="att.datable.w3c" mode="delete"/>
+          </classes>
+          <attList>
+            <attDef ident="ref" mode="change" usage="req"/>
+          </attList>
+        </elementSpec>
+        
+        <elementSpec ident="bloc" module="namesdates" mode="change">
+          <classes mode="change">
+            <memberOf key="att.datable" mode="delete"/>
+            <memberOf key="att.datable.custom" mode="delete"/>
+            <memberOf key="att.datable.iso" mode="delete"/>
+            <memberOf key="att.datable.w3c" mode="delete"/>
+          </classes>
+          <attList>
+            <attDef ident="ref" mode="change" usage="req"/>
+          </attList>
+        </elementSpec>
+        
+        <elementSpec ident="offset" module="namesdates" mode="change">
+          <classes mode="change">
+            <memberOf key="att.datable" mode="delete"/>
+            <memberOf key="att.datable.custom" mode="delete"/>
+            <memberOf key="att.datable.iso" mode="delete"/>
+            <memberOf key="att.datable.w3c" mode="delete"/>
+          </classes>
+        </elementSpec>
+        
+        <elementSpec ident="ptr" module="linking" mode="change">
+          <constraintSpec ident="target-in-ptr" scheme="schematron">
+            <constraint>
+              <sch:rule context="//tei:place/tei:bibl/tei:ptr/@target" role="warning">
+                <sch:assert test="matches(., concat('http://syriaca.org/bibl/', '\d+'))">
+                  Under most circumstances, the @target attribute on a &lt;ptr&gt; element should be a properly formatted Syriaca.org bibliography URI 
+                  ('http://syriaca.org/bibl/{\d+}' - where {\d+} is a number). However, when the &lt;ptr&gt; element indicates an external web address 
+                  (i.e. http://pleiades.stoa.org/places/922698), the @target should indicate the correct URL for that resource.
+                </sch:assert>
+                <sch:report test="matches(substring-after(., 'http://syriaca.org/bibl/'), '\D')">This @target attribute must end with a number.</sch:report>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+          <remarks>
+            <p>
+              Contained within the <gi>bibl</gi> element is a <gi>ptr</gi> element whose <att>target</att> attribute has the value of a URI pointing to the bibliographic item.
+              This URI must be formatted as follows: 'http://syriaca.org/bibl/{\d+}' (where {\d+} is a number).
+            </p>
+          </remarks>
+        </elementSpec>
+        
+      </schemaSpec>
+    </body>
+  </text>
+</TEI>
