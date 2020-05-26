@@ -1668,6 +1668,18 @@
               </sch:rule>
             </constraint>
           </constraintSpec>
+          <constraintSpec ident="source-on-state" scheme="schematron">
+            <constraint>
+              <sch:rule context="//tei:place/tei:state[@type='existence']">
+                <sch:assert test="attribute::source or attribute::resp">
+                  A &lt;state&gt; of @type="existence" must have either a @source attribute (preferred when available) or a @resp attribute.
+                </sch:assert>
+                <sch:report test="attribute::source and attribute::resp">
+                  A &lt;state&gt; of @type="existence" may not have both a @source attribute (the preferred when available) and a @resp attribute.
+                </sch:report>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
         </elementSpec>
 
         <elementSpec ident="citedRange" module="core" mode="change">
@@ -1858,7 +1870,7 @@
         </elementSpec>
         
         <elementSpec ident="placeName" module="namesdates" mode="change">
-          <constraintSpec ident="atts-on-placeName" scheme="schematron">
+          <constraintSpec ident="source-on-placeName" scheme="schematron">
             <constraint>
               <sch:rule context="//tei:place/tei:placeName">
                 <sch:assert test="attribute::source or attribute::resp">
