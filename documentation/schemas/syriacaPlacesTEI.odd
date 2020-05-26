@@ -2155,12 +2155,11 @@
           <constraintSpec ident="target-in-ptr" scheme="schematron">
             <constraint>
               <sch:rule context="//tei:place/tei:bibl/tei:ptr/@target" role="warning">
-                <sch:assert test="matches(., concat('http://syriaca.org/bibl/', '\d+'))">
+                <sch:assert test="starts-with(., 'http://syriaca.org/bibl/')">
                   Under most circumstances, the @target attribute on a &lt;ptr&gt; element should be a properly formatted Syriaca.org bibliography URI 
-                  ('http://syriaca.org/bibl/{\d+}' - where {\d+} is a number). However, when the &lt;ptr&gt; element indicates an external web address 
-                  (i.e. http://pleiades.stoa.org/places/922698), the @target should indicate the correct URL for that resource.
+                  which starts with 'http://syriaca.org/bibl/' followed by a numerical or alpha-numerical string. However, when the &lt;ptr&gt; element indicates an external web address 
+                  (i.e. http://pleiades.stoa.org/places/922698), the @target should indicate the correct URL for that resource and this warning message should be ignored.
                 </sch:assert>
-                <sch:report test="matches(substring-after(., 'http://syriaca.org/bibl/'), '\D')">This @target attribute must end with a number.</sch:report>
               </sch:rule>
             </constraint>
           </constraintSpec>
