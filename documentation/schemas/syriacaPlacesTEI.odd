@@ -1542,21 +1542,8 @@
             <constraint>
               <sch:rule context="//tei:place/tei:bibl">
                 <sch:let name="docURIno" value="//tei:publicationStmt/tei:idno/substring-before(substring-after(substring-after(., 'http://syriaca.org/'), '/'), '/tei')"/>
-                <sch:let name="IDno" value=".[preceding-sibling::tei:bibl]/@xml:id/number(substring-after(., '-'))"/>
-                <sch:let name="precedingIDno" value="./preceding-sibling::tei:bibl/@xml:id/number(substring-after(., '-'))"/>
                 <sch:assert test="matches(./@xml:id, concat('bib', $docURIno, '-', '\d+'))">
                   The required @xml:id must be 'bib<sch:value-of select="$docURIno"/>-{\d+}' (where {\d+} is a number).
-                </sch:assert>
-                <sch:assert test="
-                  every $i in $IDno - 1
-                  satisfies $i = $precedingIDno">
-                  The @xml:id must be 'bib<sch:value-of select="$docURIno"/>-{\d+}' where the {\d+} sequentially numbers the @xml:id attributes.
-                </sch:assert>
-              </sch:rule>
-              <sch:rule context="//tei:place/tei:bibl[1]/@xml:id">
-                <sch:let name="docURIno" value="//tei:publicationStmt/tei:idno/substring-before(substring-after(substring-after(., 'http://syriaca.org/'), '/'), '/tei')"/>
-                <sch:assert test="./number(substring-after(., '-')) = 1">
-                  The @xml:id on the first &lt;bibl&gt; element must be 'bib<sch:value-of select="$docURIno"/>-1'.
                 </sch:assert>
               </sch:rule>
             </constraint>
@@ -1592,34 +1579,21 @@
                   This @xml:id must end with a number.
                 </sch:report>
               </sch:rule>
-              <sch:rule context="//tei:text//tei:event[@type='attestation']">
+              <!--<sch:rule context="//tei:text//tei:event[@type='attestation']">
                 <sch:let name="countElement" value="count(//tei:text//tei:event[@type='attestation'])"/>
                 <sch:let name="countIDs" value="count(distinct-values(//tei:text//tei:event[@type='attestation']/@xml:id))"/>
                 <sch:assert test="$countElement = $countIDs">
                   Each @xml:id on a &lt;event&gt; element of @type="attestation" must have a unique value.
                 </sch:assert>
-              </sch:rule>
+              </sch:rule>-->
             </constraint>
           </constraintSpec>
           <constraintSpec ident="xmlID-on-event" scheme="schematron">
             <constraint>
               <sch:rule context="//tei:place/tei:event[@type='attestation']">
                 <sch:let name="docURIno" value="//tei:publicationStmt/tei:idno/substring-before(substring-after(substring-after(., 'http://syriaca.org/'), '/'), '/tei')"/>
-                <sch:let name="IDno" value=".[preceding-sibling::tei:event[@type='attestation']]/@xml:id/number(substring-after(., '-'))"/>
-                <sch:let name="precedingIDno" value="./preceding-sibling::tei:event[@type='attestation']/@xml:id/number(substring-after(., '-'))"/>
                 <sch:assert test="matches(./@xml:id, concat('attestation', $docURIno, '-', '\d+'))">
                   The required @xml:id must be 'attestation<sch:value-of select="$docURIno"/>-{\d+}' (where {\d+} is a number).
-                </sch:assert>
-                <sch:assert test="
-                  every $i in $IDno - 1
-                  satisfies $i = $precedingIDno">
-                  The @xml:id must be 'attestation<sch:value-of select="$docURIno"/>-{\d+}' where the {\d+} sequentially numbers the @xml:id attributes.
-                </sch:assert>
-              </sch:rule>
-              <sch:rule context="//tei:place/tei:event[@type='attestation'][1]/@xml:id">
-                <sch:let name="docURIno" value="//tei:publicationStmt/tei:idno/substring-before(substring-after(substring-after(., 'http://syriaca.org/'), '/'), '/tei')"/>
-                <sch:assert test="./number(substring-after(., '-')) = 1">
-                  The @xml:id on the first &lt;event&gt; element of @type="attestation" must be 'attestation<sch:value-of select="$docURIno"/>-1'.
                 </sch:assert>
               </sch:rule>
             </constraint>
@@ -1659,13 +1633,13 @@
                   This @xml:id must end with a number.
                 </sch:report>
               </sch:rule>
-              <sch:rule context="//tei:text//tei:state[@type='confession']">
+              <!--<sch:rule context="//tei:text//tei:state[@type='confession']">
                 <sch:let name="countElement" value="count(//tei:text//tei:state[@type='confession'])"/>
                 <sch:let name="countIDs" value="count(distinct-values(//tei:text//tei:state[@type='confession']/@xml:id))"/>
                 <sch:assert test="$countElement = $countIDs">
                   Each @xml:id on a &lt;state&gt; element of @type="confession" must have a unique value.
                 </sch:assert>
-              </sch:rule>
+              </sch:rule>-->
             </constraint>
           </constraintSpec>
           <constraintSpec ident="source-on-state" scheme="schematron">
@@ -1886,21 +1860,8 @@
             <constraint>
               <sch:rule context="//tei:place/tei:placeName">
                 <sch:let name="docURIno" value="//tei:publicationStmt/tei:idno/substring-before(substring-after(substring-after(., 'http://syriaca.org/'), '/'), '/tei')"/>
-                <sch:let name="IDno" value=".[preceding-sibling::tei:placeName]/@xml:id/number(substring-after(., '-'))"/>
-                <sch:let name="precedingIDno" value="./preceding-sibling::tei:placeName/@xml:id/number(substring-after(., '-'))"/>
                 <sch:assert test="matches(./@xml:id, concat('name', $docURIno, '-', '\d+'))">
                   The required @xml:id must be 'name<sch:value-of select="$docURIno"/>-{\d+}' (where {\d+} is a number).
-                </sch:assert>
-                <sch:assert test="
-                  every $i in $IDno - 1
-                  satisfies $i = $precedingIDno">
-                  The @xml:id must be 'name<sch:value-of select="$docURIno"/>-{\d+}' where the {\d+} sequentially numbers the @xml:id attributes.
-                </sch:assert>
-              </sch:rule>
-              <sch:rule context="//tei:place/tei:placeName[1]/@xml:id">
-                <sch:let name="docURIno" value="//tei:publicationStmt/tei:idno/substring-before(substring-after(substring-after(., 'http://syriaca.org/'), '/'), '/tei')"/>
-                <sch:assert test="./number(substring-after(., '-')) = 1">
-                  The @xml:id on the first &lt;placeName&gt; element must be 'name<sch:value-of select="$docURIno"/>-1'.
                 </sch:assert>
               </sch:rule>
             </constraint>
@@ -1961,21 +1922,8 @@
             <constraint>
               <sch:rule context="//tei:place/tei:desc[@type='abstract']">
                 <sch:let name="docURIno" value="//tei:publicationStmt/tei:idno/substring-before(substring-after(substring-after(., 'http://syriaca.org/'), '/'), '/tei')"/>
-                <sch:let name="IDno" value=".[preceding-sibling::tei:desc[@type='abstract']]/@xml:id/number(substring-after(., '-'))"/>
-                <sch:let name="precedingIDno" value="./preceding-sibling::tei:desc[@type='abstract']/@xml:id/number(substring-after(., '-'))"/>
                 <sch:assert test="matches(./@xml:id, concat('abstract', $docURIno, '-', '\d+'))">
                   The required @xml:id must be 'abstract<sch:value-of select="$docURIno"/>-{\d+}' (where {\d+} is a number).
-                </sch:assert>
-                <sch:assert test="
-                  every $i in $IDno - 1
-                  satisfies $i = $precedingIDno">
-                  The @xml:id must be 'abstract<sch:value-of select="$docURIno"/>-{\d+}' where the {\d+} sequentially numbers the @xml:id attributes.
-                </sch:assert>
-              </sch:rule>
-              <sch:rule context="//tei:place/tei:desc[@type='abstract'][1]/@xml:id">
-                <sch:let name="docURIno" value="//tei:publicationStmt/tei:idno/substring-before(substring-after(substring-after(., 'http://syriaca.org/'), '/'), '/tei')"/>
-                <sch:assert test="./number(substring-after(., '-')) = 1">
-                  The @xml:id on the first &lt;desc&gt; element of @type="abstract" must be 'abstract<sch:value-of select="$docURIno"/>-1'.
                 </sch:assert>
               </sch:rule>
             </constraint>
