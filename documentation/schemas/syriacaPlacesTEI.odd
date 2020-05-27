@@ -271,6 +271,7 @@
         
         <!-- The index lets in the following rules need to point to the raw GitHub file.
           Once that becomes available, use those links and un-comment these rules.
+          Make sure to check for other places where this could be useful. Search for uses of "\d"
         <constraintSpec ident="ref-on-person" scheme="schematron">
           <constraint>
             <sch:rule context="//tei:text//tei:persName/@ref">
@@ -1277,9 +1278,6 @@
                 <sch:assert test="./@target">
                   A &lt;note&gt; element of @type="deprecation" must have a @target attribute.
                 </sch:assert>
-                <sch:assert test="./@xml:id">
-                  A &lt;note&gt; element of @type="deprecation" must have an @xml:id attribute.
-                </sch:assert>
               </sch:rule>
               <sch:rule context="//tei:body//tei:note[@type='deprecation']/@target">
                 <sch:let name="nameIDs" value="//tei:place/tei:placeName/@xml:id"/>
@@ -1313,6 +1311,7 @@
             </constraint>
           </constraintSpec>
           <attList>
+            <attDef ident="xml:id" mode="delete"/>
             <attDef ident="type" mode="change">
               <desc>Describes the function of the note. This attribute is recommended and determines
                 how the note is displayed on the page.</desc>

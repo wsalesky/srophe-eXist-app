@@ -6,7 +6,7 @@
          xmlns="http://relaxng.org/ns/structure/1.0"
          datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
          ns="http://www.tei-c.org/ns/1.0"><!--
-Schema generated from ODD source 2020-05-27T18:00:59Z. .
+Schema generated from ODD source 2020-05-27T19:13:12Z. .
 TEI Edition: Version 4.0.0. Last updated on
 	13th February 2020, revision ccd19b0ba
 TEI Edition Location: http://www.tei-c.org/Vault/P5/Version 4.0.0/
@@ -2461,9 +2461,6 @@ attributes @target and @cRef may be supplied on <name/>.</report>
                <sch:assert test="./@target">
                   A &lt;note&gt; element of @type="deprecation" must have a @target attribute.
                 </sch:assert>
-               <sch:assert test="./@xml:id">
-                  A &lt;note&gt; element of @type="deprecation" must have an @xml:id attribute.
-                </sch:assert>
             </sch:rule>
             <sch:rule xmlns:xi="http://www.w3.org/2001/XInclude"
                       xmlns:svg="http://www.w3.org/2000/svg"
@@ -2509,7 +2506,27 @@ attributes @target and @cRef may be supplied on <name/>.</report>
                 </sch:assert>
             </sch:rule>
          </pattern>
-         <ref name="tei_att.global.attributes"/>
+         <ref name="tei_att.global.attribute.srophecomputed-start"/>
+         <ref name="tei_att.global.attribute.srophecomputed-end"/>
+         <ref name="tei_att.global.attribute.srophetags"/>
+         <ref name="tei_att.global.attribute.n"/>
+         <ref name="tei_att.global.attribute.xmllang"/>
+         <ref name="tei_att.global.attribute.xmlbase"/>
+         <ref name="tei_att.global.attribute.xmlspace"/>
+         <ref name="tei_att.global.rendition.attribute.rend"/>
+         <ref name="tei_att.global.rendition.attribute.style"/>
+         <ref name="tei_att.global.rendition.attribute.rendition"/>
+         <ref name="tei_att.global.linking.attribute.corresp"/>
+         <ref name="tei_att.global.linking.attribute.synch"/>
+         <ref name="tei_att.global.linking.attribute.sameAs"/>
+         <ref name="tei_att.global.linking.attribute.copyOf"/>
+         <ref name="tei_att.global.linking.attribute.next"/>
+         <ref name="tei_att.global.linking.attribute.prev"/>
+         <ref name="tei_att.global.linking.attribute.exclude"/>
+         <ref name="tei_att.global.linking.attribute.select"/>
+         <ref name="tei_att.global.responsibility.attribute.cert"/>
+         <ref name="tei_att.global.responsibility.attribute.resp"/>
+         <ref name="tei_att.global.source.attribute.source"/>
          <ref name="tei_att.placement.attributes"/>
          <ref name="tei_att.pointing.attributes"/>
          <ref name="tei_att.typed.attribute.subtype"/>
@@ -3695,7 +3712,7 @@ Suggested values include: 1] main; 2] sub (subordinate); 3] alt (alternate); 4] 
             </sch:rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="syriacaPlacesTEI-link-linkTargets3-constraint-assert-39">
+                  id="syriacaPlacesTEI-link-linkTargets3-constraint-assert-38">
             <rule context="tei:link">
                <sch:assert xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                            test="contains(normalize-space(@target),' ')">You must supply at least two values for @target or  on <sch:name/>
@@ -4703,7 +4720,7 @@ Suggested values include: 1] main; 2] sub (subordinate); 3] alt (alternate); 4] 
             </sch:rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="syriacaPlacesTEI-relation-reforkeyorname-constraint-assert-50">
+                  id="syriacaPlacesTEI-relation-reforkeyorname-constraint-assert-49">
             <rule context="tei:relation">
                <assert xmlns:xi="http://www.w3.org/2001/XInclude"
                        xmlns:svg="http://www.w3.org/2000/svg"
