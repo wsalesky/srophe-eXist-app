@@ -2,7 +2,7 @@ xquery version "3.1";
 (:~  
  : Builds HTML search forms and HTMl search results Srophe Collections and sub-collections   
  :) 
-module namespace search="http://syriaca.org/srophe/search";
+module namespace search="http://srophe.org/srophe/search";
 
 (:eXist templating module:)
 import module namespace templates="http://exist-db.org/xquery/templates" ;
@@ -11,20 +11,20 @@ import module namespace templates="http://exist-db.org/xquery/templates" ;
 import module namespace kwic="http://exist-db.org/xquery/kwic";
 
 (: Import Srophe application modules. :)
-import module namespace config="http://syriaca.org/srophe/config" at "../config.xqm";
-import module namespace data="http://syriaca.org/srophe/data" at "../lib/data.xqm";
-import module namespace global="http://syriaca.org/srophe/global" at "../lib/global.xqm";
-import module namespace page="http://syriaca.org/srophe/page" at "../lib/paging.xqm";
-import module namespace tei2html="http://syriaca.org/srophe/tei2html" at "../content-negotiation/tei2html.xqm";
+import module namespace config="http://srophe.org/srophe/config" at "../config.xqm";
+import module namespace data="http://srophe.org/srophe/data" at "../lib/data.xqm";
+import module namespace global="http://srophe.org/srophe/global" at "../lib/global.xqm";
+import module namespace page="http://srophe.org/srophe/page" at "../lib/paging.xqm";
+import module namespace tei2html="http://srophe.org/srophe/tei2html" at "../content-negotiation/tei2html.xqm";
 
 (: Syriaca.org search modules :)
-import module namespace bhses="http://syriaca.org/srophe/bhses" at "bhse-search.xqm";
-import module namespace bibls="http://syriaca.org/srophe/bibls" at "bibl-search.xqm";
-import module namespace ms="http://syriaca.org/srophe/ms" at "ms-search.xqm";
-import module namespace nhsls="http://syriaca.org/srophe/nhsls" at "nhsl-search.xqm";
-import module namespace persons="http://syriaca.org/srophe/persons" at "persons-search.xqm";
-import module namespace places="http://syriaca.org/srophe/places" at "places-search.xqm";
-import module namespace spears="http://syriaca.org/srophe/spears" at "spear-search.xqm";
+import module namespace bhses="http://srophe.org/srophe/bhses" at "bhse-search.xqm";
+import module namespace bibls="http://srophe.org/srophe/bibls" at "bibl-search.xqm";
+import module namespace ms="http://srophe.org/srophe/ms" at "ms-search.xqm";
+import module namespace nhsls="http://srophe.org/srophe/nhsls" at "nhsl-search.xqm";
+import module namespace persons="http://srophe.org/srophe/persons" at "persons-search.xqm";
+import module namespace places="http://srophe.org/srophe/places" at "places-search.xqm";
+import module namespace spears="http://srophe.org/srophe/spears" at "spear-search.xqm";
 
 declare namespace tei="http://www.tei-c.org/ns/1.0";
 
@@ -63,8 +63,8 @@ declare %templates:wrap function search:search-data($node as node(), $model as m
             let $hits := data:search($collection, $search-string, $sort-element)
             return
                 map {
-                        "hits" := $hits,
-                        "query" := $queryExpr
+                        "hits" : $hits,
+                        "query" : $queryExpr
                     } 
 };
 

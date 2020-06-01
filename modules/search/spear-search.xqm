@@ -3,12 +3,12 @@ xquery version "3.0";
  : Builds search information for spear sub-collection
  : Search string is passed to search.xqm for processing.  
  :)
-module namespace spears="http://syriaca.org/srophe/spears";
+module namespace spears="http://srophe.org/srophe/spears";
 import module namespace functx="http://www.functx.com";
 import module namespace facet="http://expath.org/ns/facet" at "../lib/facet.xqm";
-import module namespace config="http://syriaca.org/srophe/config" at "../config.xqm";
-import module namespace data="http://syriaca.org/srophe/data" at "../lib/data.xqm";
-import module namespace global="http://syriaca.org/srophe/global" at "../lib/global.xqm";
+import module namespace config="http://srophe.org/srophe/config" at "../config.xqm";
+import module namespace data="http://srophe.org/srophe/data" at "../lib/data.xqm";
+import module namespace global="http://srophe.org/srophe/global" at "../lib/global.xqm";
 
 declare namespace tei="http://www.tei-c.org/ns/1.0";
 

@@ -3,11 +3,11 @@
  :)
 xquery version "3.0";
 
-module namespace place="http://syriaca.org/srophe/place";
-import module namespace config="http://syriaca.org/srophe/config" at "config.xqm";
-import module namespace global="http://syriaca.org/srophe/global" at "lib/global.xqm";
-import module namespace app="http://syriaca.org/srophe/templates" at "app.xql";
-import module namespace maps="http://syriaca.org/srophe/maps" at "lib/maps.xqm";
+module namespace place="http://srophe.org/srophe/place";
+import module namespace config="http://srophe.org/srophe/config" at "config.xqm";
+import module namespace global="http://srophe.org/srophe/global" at "lib/global.xqm";
+import module namespace app="http://srophe.org/srophe/templates" at "app.xql";
+import module namespace maps="http://srophe.org/srophe/maps" at "lib/maps.xqm";
 
 import module namespace templates="http://exist-db.org/xquery/templates" ;
 
