@@ -1625,12 +1625,15 @@
                 <dataRef key="teidata.enumerated"/>
               </datatype>
               <valList type="closed" mode="replace">
-                <valItem ident="column">
-                  <desc>the element identifies a column.</desc>
+                <valItem ident="col">
+                  <desc>the element identifies a column or column range.</desc>
                 </valItem>
                 <valItem ident="entry">
                   <desc>the element identifies an entry in a collection such as an reference
                     work.</desc>
+                </valItem>
+                <valItem ident="f">
+                  <desc>the element identifies a folio number or folio range</desc>
                 </valItem>
                 <valItem ident="line">
                   <desc>the element contains a line number or line range.</desc>
@@ -1642,7 +1645,7 @@
                   <desc>the element contains a part of a book or collection, i.e. chapter and verse
                     of a biblical text.</desc>
                 </valItem>
-                <valItem ident="pp">
+                <valItem ident="p">
                   <desc>the element contains a page number or page range.</desc>
                 </valItem>
                 <valItem ident="section">
