@@ -1506,8 +1506,8 @@
             <constraint>
               <sch:rule context="//tei:place/tei:bibl">
                 <sch:let name="docURIno" value="//tei:publicationStmt/tei:idno/substring-before(substring-after(substring-after(., 'http://syriaca.org/'), '/'), '/tei')"/>
-                <sch:assert test="matches(./@xml:id, concat('bib', $docURIno, '-', '\d+'))">
-                  The required @xml:id must be 'bib<sch:value-of select="$docURIno"/>-{\d+}' (where {\d+} is a number).
+                <sch:assert test="matches(./@xml:id, concat('bib', $docURIno, '-', '\d+$'))">
+                  The required @xml:id must be 'bib<sch:value-of select="$docURIno"/>-{\d+$}' (where {\d+$} is a number).
                 </sch:assert>
               </sch:rule>
             </constraint>
@@ -1533,24 +1533,10 @@
           </content>
           <constraintSpec ident="xmlID-on-event" scheme="schematron">
             <constraint>
-              <sch:rule context="//tei:text//tei:event[@type='attestation']/@xml:id">
-                <sch:let name="URIno" value="//tei:publicationStmt/tei:idno/replace(., '[\D]+', '')"/>
-                <sch:assert test="matches(., concat('attestation', $URIno, '-', '\d'))">
-                  The @xml:id must begin with 'attestation', followed by the same number as the URI number of
-                  the entity, followed by '-': attestation<sch:value-of select="$URIno"/>-. 
-                </sch:assert>
-                <sch:report test="matches(substring-after(., '-'), '\D')">
-                  This @xml:id must end with a number.
-                </sch:report>
-              </sch:rule>
-            </constraint>
-          </constraintSpec>
-          <constraintSpec ident="xmlID-on-event" scheme="schematron">
-            <constraint>
               <sch:rule context="//tei:place/tei:event[@type='attestation']">
                 <sch:let name="docURIno" value="//tei:publicationStmt/tei:idno/substring-before(substring-after(substring-after(., 'http://syriaca.org/'), '/'), '/tei')"/>
-                <sch:assert test="matches(./@xml:id, concat('attestation', $docURIno, '-', '\d+'))">
-                  The required @xml:id must be 'attestation<sch:value-of select="$docURIno"/>-{\d+}' (where {\d+} is a number).
+                <sch:assert test="matches(./@xml:id, concat('attestation', $docURIno, '-', '\d+$'))">
+                  The required @xml:id must be 'attestation<sch:value-of select="$docURIno"/>-{\d+$}' (where {\d+$} is a number).
                 </sch:assert>
               </sch:rule>
             </constraint>
@@ -1583,12 +1569,9 @@
             <constraint>
               <sch:rule context="//tei:text//tei:state[@type='confession']/@xml:id">
                 <sch:let name="docURIno" value="//tei:publicationStmt/tei:idno/substring-before(substring-after(substring-after(., 'http://syriaca.org/'), '/'), '/tei')"/>
-                <sch:assert test="matches(., concat('confession', $docURIno, '-', '\d'))">
-                  The @xml:id must be 'confession<sch:value-of select="$docURIno"/>-{\d+}' (where {\d+} is a number).
+                <sch:assert test="matches(., concat('confession', $docURIno, '-', '\d+$'))">
+                  The @xml:id must be 'confession<sch:value-of select="$docURIno"/>-{\d+$}' (where {\d+$} is a number).
                 </sch:assert>
-                <sch:report test="matches(substring-after(., '-'), '\D')">
-                  This @xml:id must end with a number.
-                </sch:report>
               </sch:rule>
             </constraint>
           </constraintSpec>
@@ -1813,8 +1796,8 @@
             <constraint>
               <sch:rule context="//tei:place/tei:placeName">
                 <sch:let name="docURIno" value="//tei:publicationStmt/tei:idno/substring-before(substring-after(substring-after(., 'http://syriaca.org/'), '/'), '/tei')"/>
-                <sch:assert test="matches(./@xml:id, concat('name', $docURIno, '-', '\d+'))">
-                  The required @xml:id must be 'name<sch:value-of select="$docURIno"/>-{\d+}' (where {\d+} is a number).
+                <sch:assert test="matches(./@xml:id, concat('name', $docURIno, '-', '\d+$'))">
+                  The required @xml:id must be 'name<sch:value-of select="$docURIno"/>-{\d+$}' (where {\d+$} is a number).
                 </sch:assert>
               </sch:rule>
             </constraint>
@@ -1875,8 +1858,8 @@
             <constraint>
               <sch:rule context="//tei:place/tei:desc[@type='abstract']">
                 <sch:let name="docURIno" value="//tei:publicationStmt/tei:idno/substring-before(substring-after(substring-after(., 'http://syriaca.org/'), '/'), '/tei')"/>
-                <sch:assert test="matches(./@xml:id, concat('abstract', $docURIno, '-', '\d+'))">
-                  The required @xml:id must be 'abstract<sch:value-of select="$docURIno"/>-{\d+}' (where {\d+} is a number).
+                <sch:assert test="matches(./@xml:id, concat('abstract', $docURIno, '-', '\d+$'))">
+                  The required @xml:id must be 'abstract<sch:value-of select="$docURIno"/>-{\d+$}' (where {\d+$} is a number).
                 </sch:assert>
               </sch:rule>
             </constraint>
