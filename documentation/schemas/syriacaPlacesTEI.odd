@@ -1405,7 +1405,7 @@
                 <sch:let name="placeIndex" value="doc('https://raw.githubusercontent.com/srophe/srophe-eXist-app/master/documentation/indexes/places.xml')"/>
                 <sch:let name="placeURIs" value="$placeIndex//tei:place/@ref"/>
                 <sch:assert test="
-                  every $i in .
+                  every $i in tokenize(., ' ')
                   satisfies $i = $placeURIs">
                   This @mutual attribute contains one or more place URIs not in use in Syriaca.org data. Note that all place URIs take the form 'http://syriaca.org/place/{\d+}' (where {\d+} is a number).
                 </sch:assert>
