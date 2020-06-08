@@ -1588,15 +1588,15 @@
           </content>
           <constraintSpec ident="xmlID-on-state" scheme="schematron">
             <constraint>
-              <sch:rule context="//tei:text//tei:state[@type='confession']/@xml:id">
+              <sch:rule context="//tei:text//tei:state[@type='confession']">
                 <sch:let name="docURIno" value="//tei:publicationStmt/tei:idno/substring-before(substring-after(substring-after(., 'http://syriaca.org/'), '/'), '/tei')"/>
-                <sch:assert test="matches(., concat('confession', $docURIno, '-', '\d+$'))">
-                  The @xml:id must be 'confession<sch:value-of select="$docURIno"/>-{\d+$}' (where {\d+$} is a number).
+                <sch:assert test="matches(./@xml:id, concat('confession', $docURIno, '-', '\d+$'))">
+                  The required @xml:id must be 'confession<sch:value-of select="$docURIno"/>-{\d+$}' (where {\d+$} is a number).
                 </sch:assert>
               </sch:rule>
             </constraint>
           </constraintSpec>
-          <constraintSpec ident="source-on-state" scheme="schematron">
+          <constraintSpec ident="state-type-existence" scheme="schematron">
             <constraint>
               <sch:rule context="//tei:place/tei:state[@type='existence']">
                 <sch:assert test="attribute::source or attribute::resp">
@@ -1604,6 +1604,9 @@
                 </sch:assert>
                 <sch:report test="attribute::source and attribute::resp">
                   A &lt;state&gt; of @type="existence" may not have both a @source attribute (the preferred when available) and a @resp attribute.
+                </sch:report>
+                <sch:report test="@xml:id">
+                  A &lt;state&gt; of @type="existence" may not may not take an @xml:id attribute.
                 </sch:report>
               </sch:rule>
             </constraint>
