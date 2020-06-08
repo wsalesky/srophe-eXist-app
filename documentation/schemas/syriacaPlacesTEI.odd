@@ -1631,6 +1631,18 @@
               </sch:rule>
             </constraint>
           </constraintSpec>
+          <attList>
+            <attDef ident="type" mode="change" usage="req">
+              <valList type="closed" mode="change">
+                <valItem ident="confession">
+                  <desc>identifies the presence of a confessional community in this place</desc>
+                </valItem>
+                <valItem ident="existence">
+                  <desc>indicates that the place existed</desc>
+                </valItem>
+              </valList>
+            </attDef>
+          </attList>
         </elementSpec>
 
         <elementSpec ident="citedRange" module="core" mode="change">
