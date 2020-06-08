@@ -1659,7 +1659,7 @@
                   <desc>the element identifies an entry in a collection such as an reference
                     work.</desc>
                 </valItem>
-                <valItem ident="f">
+                <valItem ident="fol">
                   <desc>the element identifies a folio number or folio range</desc>
                 </valItem>
                 <valItem ident="line">
@@ -1686,7 +1686,7 @@
           </attList>
           <remarks>
             <p>The acceptable <att>unit</att> attribute values with the <gi>citedRange</gi> element
-              are: column, entry, line, part, pp, and section..</p>
+              are: col, entry, fol, line, map, part, p, section, and vol.</p>
           </remarks>
         </elementSpec>
 
