@@ -6,11 +6,17 @@
     <sch:pattern>
         
         
-        <sch:rule context="//tei:place/tei:placeName">
-            <sch:let name="langsOfHW" value="//tei:place/tei:placeName[@srophe:tags='#syriaca-headword']/@xml:lang"/>
+        <sch:rule context="//tei:place/tei:placeName[@xml:lang='en']">
             <sch:assert test="count(./parent::tei:place/tei:placeName[@xml:lang='en' and @srophe:tags='#syriaca-headword']) = 1">
-                There can be one and only one &lt;placeName&gt; element with the combination of @srophe:tags="#syriaca-headword" and @xml:lang="en".
+                There must be one and only one &lt;placeName&gt; element with the combination of @srophe:tags="#syriaca-headword" and @xml:lang="en".
             </sch:assert>
+        </sch:rule>
+        
+        <sch:rule context="//tei:place/tei:placeName[@srophe:tags='#syriaca-headword']">
+            <sch:let name="langsOfHW" value="//tei:place/tei:placeName[@srophe:tags='#syriaca-headword']/@xml:lang"/>
+            <!--<sch:assert test="count(./parent::tei:place/tei:placeName[@xml:lang='en' and @srophe:tags='#syriaca-headword']) = 1">
+                There can be one and only one &lt;placeName&gt; element with the combination of @srophe:tags="#syriaca-headword" and @xml:lang="en".
+            </sch:assert>-->
             <sch:assert test="count(distinct-values($langsOfHW)) = count($langsOfHW)">
                 There cannot be more than one headword (@srophe:tags="#syriaca-headword") per &lt;placeName&gt; with the same language (@xml:lang).
             </sch:assert>
