@@ -1332,6 +1332,9 @@
                 <valItem ident="incerta">
                   <desc>A note describing uncertain data in the record.</desc>
                 </valItem>
+                <valItem ident="license">
+                  <desc>A note describing the license under which this file is released.</desc>
+                </valItem>
                 <valItem ident="misc">
                   <desc>A note that cannot be categorized as any other type.</desc>
                 </valItem>
