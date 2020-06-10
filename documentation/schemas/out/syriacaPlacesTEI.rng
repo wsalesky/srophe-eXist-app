@@ -6,7 +6,7 @@
          xmlns="http://relaxng.org/ns/structure/1.0"
          datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
          ns="http://www.tei-c.org/ns/1.0"><!--
-Schema generated from ODD source 2020-06-01T16:02:28Z. .
+Schema generated from ODD source 2020-06-09T17:22:04Z. .
 TEI Edition: Version 4.0.0. Last updated on
 	13th February 2020, revision ccd19b0ba
 TEI Edition Location: http://www.tei-c.org/Vault/P5/Version 4.0.0/
@@ -2071,8 +2071,8 @@ Suggested values include: 1] below; 2] bottom; 3] margin; 4] top; 5] opposite; 6
                       context="//tei:place/tei:desc[@type='abstract']">
                <sch:let name="docURIno"
                         value="//tei:publicationStmt/tei:idno/substring-before(substring-after(substring-after(., 'http://syriaca.org/'), '/'), '/tei')"/>
-               <sch:assert test="matches(./@xml:id, concat('abstract', $docURIno, '-', '\d+'))">
-                  The required @xml:id must be 'abstract<sch:value-of select="$docURIno"/>-{\d+}' (where {\d+} is a number).
+               <sch:assert test="matches(./@xml:id, concat('abstract', $docURIno, '-', '\d+$'))">
+                  The required @xml:id must be 'abstract<sch:value-of select="$docURIno"/>-{\d+$}' (where {\d+$} is a number).
                 </sch:assert>
             </sch:rule>
          </pattern>
@@ -2429,6 +2429,34 @@ attributes @target and @cRef may be supplied on <name/>.</report>
       <element name="label">
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains any label or heading used to identify part of a text, typically but not exclusively in a list or glossary. [3.7. Lists]</a:documentation>
          <ref name="tei_macro.phraseSeq"/>
+         <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
+                  id="syriacaPlacesTEI-label-confession-label-constraint-rule-16">
+            <sch:rule xmlns:xi="http://www.w3.org/2001/XInclude"
+                      xmlns:svg="http://www.w3.org/2000/svg"
+                      xmlns:math="http://www.w3.org/1998/Math/MathML"
+                      xmlns="http://www.tei-c.org/ns/1.0"
+                      xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+                      xmlns:srophe="https://srophe.app"
+                      context="//tei:state/tei:label">
+               <sch:let name="confessionDoc"
+                        value="doc('https://raw.githubusercontent.com/srophe/srophe-eXist-app/master/documentation/confessions.xml')"/>
+               <sch:let name="confessionLabels"
+                        value="$confessionDoc//tei:text//tei:item/tei:label"/>
+               <sch:let name="stateRefPart"
+                        value="substring-after(parent::tei:state/@ref, '#')"/>
+               <sch:let name="spaceTo-" value="for $i in . return(replace($i, ' ', '-'))"/>
+               <sch:let name="labelToRef"
+                        value="for $i in $spaceTo- return lower-case($spaceTo-)"/>
+               <sch:assert test="parent::tei:state/@type='confession'">A &lt;label&gt; element can only be used when parent &lt;state&gt; element has @type="confession"</sch:assert>
+               <sch:assert test="                   every $i in $labelToRef                   satisfies $i = $stateRefPart">
+                  The text node in the &lt;label&gt; element must correspond to the @ref attribute on the parent &lt;state&gt;: 
+                  <sch:value-of select="parent::tei:state/@ref"/>.
+                </sch:assert>
+               <sch:assert test="                   every $i in .                   satisfies $i = $confessionLabels">
+                  The text node in the &lt;label&gt; element must be one of the following: <sch:value-of select="string-join($confessionLabels, '; ')"/>.
+                </sch:assert>
+            </sch:rule>
+         </pattern>
          <ref name="tei_att.global.attributes"/>
          <ref name="tei_att.typed.attributes"/>
          <ref name="tei_att.placement.attributes"/>
@@ -2450,7 +2478,7 @@ attributes @target and @cRef may be supplied on <name/>.</report>
             </choice>
          </zeroOrMore>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="syriacaPlacesTEI-note-ID-target-on-note-constraint-rule-16">
+                  id="syriacaPlacesTEI-note-ID-target-on-note-constraint-rule-17">
             <sch:rule xmlns:xi="http://www.w3.org/2001/XInclude"
                       xmlns:svg="http://www.w3.org/2000/svg"
                       xmlns:math="http://www.w3.org/1998/Math/MathML"
@@ -2479,7 +2507,7 @@ attributes @target and @cRef may be supplied on <name/>.</report>
             </sch:rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="syriacaPlacesTEI-note-lang-in-note-constraint-rule-18">
+                  id="syriacaPlacesTEI-note-lang-in-note-constraint-rule-19">
             <sch:rule xmlns:xi="http://www.w3.org/2001/XInclude"
                       xmlns:svg="http://www.w3.org/2000/svg"
                       xmlns:math="http://www.w3.org/1998/Math/MathML"
@@ -2493,7 +2521,7 @@ attributes @target and @cRef may be supplied on <name/>.</report>
             </sch:rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="syriacaPlacesTEI-note-type-on-note-constraint-rule-19">
+                  id="syriacaPlacesTEI-note-type-on-note-constraint-rule-20">
             <sch:rule xmlns:xi="http://www.w3.org/2001/XInclude"
                       xmlns:svg="http://www.w3.org/2000/svg"
                       xmlns:math="http://www.w3.org/1998/Math/MathML"
@@ -2545,6 +2573,8 @@ attributes @target and @cRef may be supplied on <name/>.</report>
                   <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">A note describing data that is included in the record but is known to be incorrect.</a:documentation>
                   <value>incerta</value>
                   <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">A note describing uncertain data in the record.</a:documentation>
+                  <value>license</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">A note describing the license under which this file is released.</a:documentation>
                   <value>misc</value>
                   <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">A note that cannot be categorized as any other type.</a:documentation>
                </choice>
@@ -2607,7 +2637,7 @@ attributes @target and @cRef may be supplied on <name/>.</report>
             </choice>
          </zeroOrMore>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="syriacaPlacesTEI-editor-role-on-editor-constraint-rule-20">
+                  id="syriacaPlacesTEI-editor-role-on-editor-constraint-rule-21">
             <sch:rule xmlns:xi="http://www.w3.org/2001/XInclude"
                       xmlns:svg="http://www.w3.org/2000/svg"
                       xmlns:math="http://www.w3.org/1998/Math/MathML"
@@ -2655,7 +2685,7 @@ attributes @target and @cRef may be supplied on <name/>.</report>
             </sch:rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="syriacaPlacesTEI-editor-ref-on-editor-constraint-rule-24">
+                  id="syriacaPlacesTEI-editor-ref-on-editor-constraint-rule-25">
             <sch:rule xmlns:xi="http://www.w3.org/2001/XInclude"
                       xmlns:svg="http://www.w3.org/2000/svg"
                       xmlns:math="http://www.w3.org/1998/Math/MathML"
@@ -2766,7 +2796,7 @@ attributes @target and @cRef may be supplied on <name/>.</report>
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains a title for any kind of work. [3.11.2.2. Titles, Authors, and Editors 2.2.1. The Title Statement 2.2.5. The Series Statement]</a:documentation>
          <ref name="tei_macro.paraContent"/>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="syriacaPlacesTEI-title-lang-on-title-in-body-constraint-rule-27">
+                  id="syriacaPlacesTEI-title-lang-on-title-in-body-constraint-rule-28">
             <sch:rule xmlns:xi="http://www.w3.org/2001/XInclude"
                       xmlns:svg="http://www.w3.org/2000/svg"
                       xmlns:math="http://www.w3.org/1998/Math/MathML"
@@ -2781,7 +2811,7 @@ attributes @target and @cRef may be supplied on <name/>.</report>
             </sch:rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="syriacaPlacesTEI-title-title-in-titleStmt-constraint-rule-28">
+                  id="syriacaPlacesTEI-title-title-in-titleStmt-constraint-rule-29">
             <sch:rule xmlns:xi="http://www.w3.org/2001/XInclude"
                       xmlns:svg="http://www.w3.org/2000/svg"
                       xmlns:math="http://www.w3.org/1998/Math/MathML"
@@ -2794,7 +2824,7 @@ attributes @target and @cRef may be supplied on <name/>.</report>
             </sch:rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="syriacaPlacesTEI-title-title-in-seriesStmt-constraint-rule-29">
+                  id="syriacaPlacesTEI-title-title-in-seriesStmt-constraint-rule-30">
             <sch:rule xmlns:xi="http://www.w3.org/2001/XInclude"
                       xmlns:svg="http://www.w3.org/2000/svg"
                       xmlns:math="http://www.w3.org/1998/Math/MathML"
@@ -2905,7 +2935,7 @@ Suggested values include: 1] main; 2] sub (subordinate); 3] alt (alternate); 4] 
                <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">the element identifies a column or column range.</a:documentation>
                <value>entry</value>
                <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">the element identifies an entry in a collection such as an reference work.</a:documentation>
-               <value>f</value>
+               <value>fol</value>
                <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">the element identifies a folio number or folio range</a:documentation>
                <value>line</value>
                <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">the element contains a line number or line range.</a:documentation>
@@ -2947,7 +2977,7 @@ Suggested values include: 1] main; 2] sub (subordinate); 3] alt (alternate); 4] 
             </zeroOrMore>
          </group>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="syriacaPlacesTEI-bibl-xmlID-on-bibl-constraint-rule-30">
+                  id="syriacaPlacesTEI-bibl-xmlID-on-bibl-constraint-rule-31">
             <sch:rule xmlns:xi="http://www.w3.org/2001/XInclude"
                       xmlns:svg="http://www.w3.org/2000/svg"
                       xmlns:math="http://www.w3.org/1998/Math/MathML"
@@ -2957,8 +2987,8 @@ Suggested values include: 1] main; 2] sub (subordinate); 3] alt (alternate); 4] 
                       context="//tei:place/tei:bibl">
                <sch:let name="docURIno"
                         value="//tei:publicationStmt/tei:idno/substring-before(substring-after(substring-after(., 'http://syriaca.org/'), '/'), '/tei')"/>
-               <sch:assert test="matches(./@xml:id, concat('bib', $docURIno, '-', '\d+'))">
-                  The required @xml:id must be 'bib<sch:value-of select="$docURIno"/>-{\d+}' (where {\d+} is a number).
+               <sch:assert test="matches(./@xml:id, concat('bib', $docURIno, '-', '\d+$'))">
+                  The required @xml:id must be 'bib<sch:value-of select="$docURIno"/>-{\d+$}' (where {\d+$} is a number).
                 </sch:assert>
             </sch:rule>
          </pattern>
@@ -3148,7 +3178,7 @@ Suggested values include: 1] main; 2] sub (subordinate); 3] alt (alternate); 4] 
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(release authority) supplies the name of a person or other agency responsible for making a work available, other than a publisher or distributor. [2.2.4. Publication, Distribution, Licensing, etc.]</a:documentation>
          <text/>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="syriacaPlacesTEI-authority-authorityText-constraint-rule-31">
+                  id="syriacaPlacesTEI-authority-authorityText-constraint-rule-32">
             <sch:rule xmlns:rng="http://relaxng.org/ns/structure/1.0"
                       xmlns:xi="http://www.w3.org/2001/XInclude"
                       xmlns:svg="http://www.w3.org/2000/svg"
@@ -3178,7 +3208,7 @@ Suggested values include: 1] main; 2] sub (subordinate); 3] alt (alternate); 4] 
             </choice>
          </zeroOrMore>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="syriacaPlacesTEI-idno-idno-uri-constraint-rule-32">
+                  id="syriacaPlacesTEI-idno-idno-uri-constraint-rule-33">
             <sch:rule xmlns:rng="http://relaxng.org/ns/structure/1.0"
                       xmlns:xi="http://www.w3.org/2001/XInclude"
                       xmlns:svg="http://www.w3.org/2000/svg"
@@ -3265,7 +3295,7 @@ Suggested values include: 1] main; 2] sub (subordinate); 3] alt (alternate); 4] 
             </group>
          </zeroOrMore>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="syriacaPlacesTEI-seriesStmt-seriesStmt-content-constraint-rule-33">
+                  id="syriacaPlacesTEI-seriesStmt-seriesStmt-content-constraint-rule-34">
             <sch:rule xmlns:rng="http://relaxng.org/ns/structure/1.0"
                       xmlns:xi="http://www.w3.org/2001/XInclude"
                       xmlns:svg="http://www.w3.org/2000/svg"
@@ -3371,7 +3401,7 @@ Suggested values include: 1] main; 2] sub (subordinate); 3] alt (alternate); 4] 
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(source description) describes the source(s) from which an electronic text was derived or generated, typically a bibliographic description in the case of a digitized text, or a phrase such as "born digital" for a text which has no previous existence. [2.2.7. The Source Description]</a:documentation>
          <ref name="tei_p"/>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="syriacaPlacesTEI-sourceDesc-sourceDesc-constraint-rule-40">
+                  id="syriacaPlacesTEI-sourceDesc-sourceDesc-constraint-rule-41">
             <sch:rule xmlns:rng="http://relaxng.org/ns/structure/1.0"
                       xmlns:xi="http://www.w3.org/2001/XInclude"
                       xmlns:svg="http://www.w3.org/2000/svg"
@@ -3500,7 +3530,7 @@ Suggested values include: 1] main; 2] sub (subordinate); 3] alt (alternate); 4] 
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">documents a change or set of changes made during the production of a source document, or during the revision of an electronic file. [2.6. The Revision Description 2.4.1. Creation 11.7. Identifying Changes and Revisions]</a:documentation>
          <ref name="tei_macro.specialPara"/>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="syriacaPlacesTEI-change-who-on-change-constraint-rule-41">
+                  id="syriacaPlacesTEI-change-who-on-change-constraint-rule-42">
             <sch:rule xmlns:rng="http://relaxng.org/ns/structure/1.0"
                       xmlns:xi="http://www.w3.org/2001/XInclude"
                       xmlns:svg="http://www.w3.org/2000/svg"
@@ -3697,7 +3727,7 @@ Suggested values include: 1] main; 2] sub (subordinate); 3] alt (alternate); 4] 
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">defines an association or hypertextual link among elements or passages, of some type not more precisely specifiable by other elements. [16.1. Links]</a:documentation>
          <empty/>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="syriacaPlacesTEI-link-target-on-link-constraint-rule-42">
+                  id="syriacaPlacesTEI-link-target-on-link-constraint-rule-43">
             <sch:rule xmlns:rng="http://relaxng.org/ns/structure/1.0"
                       xmlns:xi="http://www.w3.org/2001/XInclude"
                       xmlns:svg="http://www.w3.org/2000/svg"
@@ -3714,7 +3744,7 @@ Suggested values include: 1] main; 2] sub (subordinate); 3] alt (alternate); 4] 
             </sch:rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="syriacaPlacesTEI-link-linkTargets3-constraint-assert-38">
+                  id="syriacaPlacesTEI-link-linkTargets3-constraint-assert-41">
             <rule context="tei:link">
                <sch:assert xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                            test="contains(normalize-space(@target),' ')">You must supply at least two values for @target or  on <sch:name/>
@@ -3964,7 +3994,7 @@ Suggested values include: 1] main; 2] sub (subordinate); 3] alt (alternate); 4] 
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains an absolute or relative place name. [13.2.3. Place Names]</a:documentation>
          <ref name="tei_macro.phraseSeq"/>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="syriacaPlacesTEI-placeName-source-on-placeName-constraint-rule-43">
+                  id="syriacaPlacesTEI-placeName-source-on-placeName-constraint-rule-44">
             <sch:rule xmlns:xi="http://www.w3.org/2001/XInclude"
                       xmlns:svg="http://www.w3.org/2000/svg"
                       xmlns:math="http://www.w3.org/1998/Math/MathML"
@@ -3981,7 +4011,7 @@ Suggested values include: 1] main; 2] sub (subordinate); 3] alt (alternate); 4] 
             </sch:rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="syriacaPlacesTEI-placeName-xmlID-on-placeName-constraint-rule-44">
+                  id="syriacaPlacesTEI-placeName-xmlID-on-placeName-constraint-rule-45">
             <sch:rule xmlns:xi="http://www.w3.org/2001/XInclude"
                       xmlns:svg="http://www.w3.org/2000/svg"
                       xmlns:math="http://www.w3.org/1998/Math/MathML"
@@ -3991,13 +4021,13 @@ Suggested values include: 1] main; 2] sub (subordinate); 3] alt (alternate); 4] 
                       context="//tei:place/tei:placeName">
                <sch:let name="docURIno"
                         value="//tei:publicationStmt/tei:idno/substring-before(substring-after(substring-after(., 'http://syriaca.org/'), '/'), '/tei')"/>
-               <sch:assert test="matches(./@xml:id, concat('name', $docURIno, '-', '\d+'))">
-                  The required @xml:id must be 'name<sch:value-of select="$docURIno"/>-{\d+}' (where {\d+} is a number).
+               <sch:assert test="matches(./@xml:id, concat('name', $docURIno, '-', '\d+$'))">
+                  The required @xml:id must be 'name<sch:value-of select="$docURIno"/>-{\d+$}' (where {\d+$} is a number).
                 </sch:assert>
             </sch:rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="syriacaPlacesTEI-placeName-xmlLang-on-placeName-constraint-rule-45">
+                  id="syriacaPlacesTEI-placeName-xmlLang-on-placeName-constraint-rule-46">
             <sch:rule xmlns:xi="http://www.w3.org/2001/XInclude"
                       xmlns:svg="http://www.w3.org/2000/svg"
                       xmlns:math="http://www.w3.org/1998/Math/MathML"
@@ -4262,26 +4292,6 @@ Suggested values include: 1] main; 2] sub (subordinate); 3] alt (alternate); 4] 
             <ref name="tei_precision"/>
          </zeroOrMore>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="syriacaPlacesTEI-event-xmlID-on-event-constraint-rule-46">
-            <sch:rule xmlns:xi="http://www.w3.org/2001/XInclude"
-                      xmlns:svg="http://www.w3.org/2000/svg"
-                      xmlns:math="http://www.w3.org/1998/Math/MathML"
-                      xmlns="http://www.tei-c.org/ns/1.0"
-                      xmlns:sch="http://purl.oclc.org/dsdl/schematron"
-                      xmlns:srophe="https://srophe.app"
-                      context="//tei:text//tei:event[@type='attestation']/@xml:id">
-               <sch:let name="URIno"
-                        value="//tei:publicationStmt/tei:idno/replace(., '[\D]+', '')"/>
-               <sch:assert test="matches(., concat('attestation', $URIno, '-', '\d'))">
-                  The @xml:id must begin with 'attestation', followed by the same number as the URI number of
-                  the entity, followed by '-': attestation<sch:value-of select="$URIno"/>-. 
-                </sch:assert>
-               <sch:report test="matches(substring-after(., '-'), '\D')">
-                  This @xml:id must end with a number.
-                </sch:report>
-            </sch:rule>
-         </pattern>
-         <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   id="syriacaPlacesTEI-event-xmlID-on-event-constraint-rule-47">
             <sch:rule xmlns:xi="http://www.w3.org/2001/XInclude"
                       xmlns:svg="http://www.w3.org/2000/svg"
@@ -4292,8 +4302,8 @@ Suggested values include: 1] main; 2] sub (subordinate); 3] alt (alternate); 4] 
                       context="//tei:place/tei:event[@type='attestation']">
                <sch:let name="docURIno"
                         value="//tei:publicationStmt/tei:idno/substring-before(substring-after(substring-after(., 'http://syriaca.org/'), '/'), '/tei')"/>
-               <sch:assert test="matches(./@xml:id, concat('attestation', $docURIno, '-', '\d+'))">
-                  The required @xml:id must be 'attestation<sch:value-of select="$docURIno"/>-{\d+}' (where {\d+} is a number).
+               <sch:assert test="matches(./@xml:id, concat('attestation', $docURIno, '-', '\d+$'))">
+                  The required @xml:id must be 'attestation<sch:value-of select="$docURIno"/>-{\d+$}' (where {\d+$} is a number).
                 </sch:assert>
             </sch:rule>
          </pattern>
@@ -4704,25 +4714,22 @@ Suggested values include: 1] main; 2] sub (subordinate); 3] alt (alternate); 4] 
                       context="//tei:body//tei:relation/@mutual">
                <sch:let name="docURI"
                         value="//tei:publicationStmt/tei:idno/substring-before(., '/tei')"/>
+               <sch:let name="placeIndex"
+                        value="doc('https://raw.githubusercontent.com/srophe/srophe-eXist-app/master/documentation/indexes/places.xml')"/>
+               <sch:let name="placeURIs" value="$placeIndex//tei:place/@ref"/>
+               <sch:assert test="                   every $i in tokenize(., ' ')                   satisfies $i = $placeURIs">
+                  This @mutual attribute contains one or more place URIs not in use in Syriaca.org data. Note that all place URIs take the form 'http://syriaca.org/place/{\d+}' (where {\d+} is a number).
+                </sch:assert>
                <sch:assert test="contains(., ' ')">
                   The @mutual attribute on a &lt;relation&gt; element must contain two or more values.
                 </sch:assert>
-               <sch:assert test="                   every $i in (tokenize(., ' '))                   satisfies matches($i, concat('http://syriaca.org/place/', '\d+'))">
-                  The @mutual attribute on a &lt;relation&gt; element should contain two or more properly formatted 
-                  Syriaca.org place URIs ('http://syriaca.org/place/{\d+}') separated by a blank space.
-                </sch:assert>
-               <sch:report test="                   every $i in (tokenize(., ' '))                   satisfies matches(substring-after($i, 'http://syriaca.org/place/'), '\D')">
-                  
-                  The @mutual attribute on a &lt;relation&gt; element with should contain two or more properly formatted 
-                  Syriaca.org place URIs ('http://syriaca.org/place/{\d+}') separated by a blank space.
-                </sch:report>
                <sch:assert test="contains(., $docURI)">
                   One on the values of the @mutual attribute must be the URI for this document's place: <sch:value-of select="$docURI"/>.
                 </sch:assert>
             </sch:rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="syriacaPlacesTEI-relation-reforkeyorname-constraint-assert-49">
+                  id="syriacaPlacesTEI-relation-reforkeyorname-constraint-assert-51">
             <rule context="tei:relation">
                <assert xmlns:xi="http://www.w3.org/2001/XInclude"
                        xmlns:svg="http://www.w3.org/2000/svg"
@@ -4733,7 +4740,7 @@ Suggested values include: 1] main; 2] sub (subordinate); 3] alt (alternate); 4] 
             </rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="syriacaPlacesTEI-relation-activemutual-constraint-report-20">
+                  id="syriacaPlacesTEI-relation-activemutual-constraint-report-18">
             <rule context="tei:relation">
                <report xmlns:xi="http://www.w3.org/2001/XInclude"
                        xmlns:svg="http://www.w3.org/2000/svg"
@@ -4744,7 +4751,7 @@ Suggested values include: 1] main; 2] sub (subordinate); 3] alt (alternate); 4] 
             </rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="syriacaPlacesTEI-relation-activepassive-constraint-report-21">
+                  id="syriacaPlacesTEI-relation-activepassive-constraint-report-19">
             <rule context="tei:relation">
                <report xmlns:xi="http://www.w3.org/2001/XInclude"
                        xmlns:svg="http://www.w3.org/2000/svg"
@@ -4818,19 +4825,16 @@ Suggested values include: 1] main; 2] sub (subordinate); 3] alt (alternate); 4] 
                       xmlns="http://www.tei-c.org/ns/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
-                      context="//tei:text//tei:state[@type='confession']/@xml:id">
+                      context="//tei:text//tei:state[@type='confession']">
                <sch:let name="docURIno"
                         value="//tei:publicationStmt/tei:idno/substring-before(substring-after(substring-after(., 'http://syriaca.org/'), '/'), '/tei')"/>
-               <sch:assert test="matches(., concat('confession', $docURIno, '-', '\d'))">
-                  The @xml:id must be 'confession<sch:value-of select="$docURIno"/>-{\d+}' (where {\d+} is a number).
+               <sch:assert test="matches(./@xml:id, concat('confession', $docURIno, '-', '\d+$'))">
+                  The required @xml:id must be 'confession<sch:value-of select="$docURIno"/>-{\d+$}' (where {\d+$} is a number).
                 </sch:assert>
-               <sch:report test="matches(substring-after(., '-'), '\D')">
-                  This @xml:id must end with a number.
-                </sch:report>
             </sch:rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="syriacaPlacesTEI-state-source-on-state-constraint-rule-56">
+                  id="syriacaPlacesTEI-state-state-type-existence-constraint-rule-56">
             <sch:rule xmlns:xi="http://www.w3.org/2001/XInclude"
                       xmlns:svg="http://www.w3.org/2000/svg"
                       xmlns:math="http://www.w3.org/1998/Math/MathML"
@@ -4844,14 +4848,60 @@ Suggested values include: 1] main; 2] sub (subordinate); 3] alt (alternate); 4] 
                <sch:report test="attribute::source and attribute::resp">
                   A &lt;state&gt; of @type="existence" may not have both a @source attribute (the preferred when available) and a @resp attribute.
                 </sch:report>
+               <sch:report test="@xml:id">
+                  A &lt;state&gt; of @type="existence" may not may not take an @xml:id attribute.
+                </sch:report>
+            </sch:rule>
+         </pattern>
+         <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
+                  id="syriacaPlacesTEI-state-state-type-confession-constraint-rule-57">
+            <sch:rule xmlns:xi="http://www.w3.org/2001/XInclude"
+                      xmlns:svg="http://www.w3.org/2000/svg"
+                      xmlns:math="http://www.w3.org/1998/Math/MathML"
+                      xmlns="http://www.tei-c.org/ns/1.0"
+                      xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+                      xmlns:srophe="https://srophe.app"
+                      context="//tei:state[@type='confession']">
+               <sch:let name="docURIno"
+                        value="//tei:publicationStmt/tei:idno/substring-before(substring-after(substring-after(., 'http://syriaca.org/'), '/'), '/tei')"/>
+               <sch:assert test="@ref">A &lt;state&gt; element with @type="confession" must have a @ref attribute.</sch:assert>
+               <sch:assert test="tei:label">A &lt;state&gt; element with @type="confession" must have a child &lt;label&gt; element.</sch:assert>
+            </sch:rule>
+            <sch:rule xmlns:xi="http://www.w3.org/2001/XInclude"
+                      xmlns:svg="http://www.w3.org/2000/svg"
+                      xmlns:math="http://www.w3.org/1998/Math/MathML"
+                      xmlns="http://www.tei-c.org/ns/1.0"
+                      xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+                      xmlns:srophe="https://srophe.app"
+                      context="//tei:state/@ref">
+               <sch:let name="confessionDoc"
+                        value="doc('https://raw.githubusercontent.com/srophe/srophe-eXist-app/master/documentation/confessions.xml')"/>
+               <sch:let name="confessionIDs" value="$confessionDoc//tei:text//tei:item/@xml:id"/>
+               <sch:let name="confessionPtrs"
+                        value="for $i in $confessionIDs return concat('#', $i)"/>
+               <sch:let name="confessionRefValues"
+                        value="for $i in $confessionPtrs return concat('http://syriaca.org/documentation/confessions.xml', $i)"/>
+               <sch:assert test="                   every $i in .                   satisfies $i = $confessionRefValues">
+                  The acceptable values of @ref are 'http://syriaca.org/documentation/confessions.xml' followed by one of the following:
+                  <sch:value-of select="string-join($confessionPtrs, '; ')"/>
+               </sch:assert>
             </sch:rule>
          </pattern>
          <ref name="tei_att.global.attributes"/>
          <ref name="tei_att.datable.attributes"/>
          <ref name="tei_att.editLike.attributes"/>
-         <ref name="tei_att.typed.attributes"/>
+         <ref name="tei_att.typed.attribute.subtype"/>
          <ref name="tei_att.naming.attributes"/>
          <ref name="tei_att.dimensions.attributes"/>
+         <attribute name="type">
+            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">characterizes the element in some sense, using any convenient classification scheme or typology.</a:documentation>
+            <choice>
+               <value>confession</value>
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">identifies the presence of a confessional community in this place</a:documentation>
+               <value>existence</value>
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">indicates that the place existed</a:documentation>
+            </choice>
+         </attribute>
          <empty/>
       </element>
    </define>
@@ -4959,7 +5009,7 @@ Sample values include: 1] TEI; 2] DBK (docbook); 3] XX (unknown); 4] Schematron;
       </choice>
    </start>
    <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-            id="syriacaPlacesTEI-source-att-constraint-rule-57">
+            id="syriacaPlacesTEI-source-att-constraint-rule-59">
       <sch:rule xmlns:xi="http://www.w3.org/2001/XInclude"
                 xmlns:svg="http://www.w3.org/2000/svg"
                 xmlns:math="http://www.w3.org/1998/Math/MathML"
@@ -4974,6 +5024,42 @@ Sample values include: 1] TEI; 2] DBK (docbook); 3] XX (unknown); 4] Schematron;
                 Multiple values are allowed and must be separated by a blank space. Acceptable values include: 
                 <sch:value-of select="string-join($sourceValues, ' | ')"/>.
               </sch:assert>
+      </sch:rule>
+   </pattern>
+   <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
+            id="syriacaPlacesTEI-ref-on-person-constraint-rule-60">
+      <sch:rule xmlns:xi="http://www.w3.org/2001/XInclude"
+                xmlns:svg="http://www.w3.org/2000/svg"
+                xmlns:math="http://www.w3.org/1998/Math/MathML"
+                xmlns="http://www.tei-c.org/ns/1.0"
+                xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+                xmlns:srophe="https://srophe.app"
+                context="//tei:text//tei:persName/@ref">
+         <sch:let name="personIndex"
+                  value="doc('https://raw.githubusercontent.com/srophe/srophe-eXist-app/master/documentation/indexes/persons.xml')"/>
+         <sch:let name="personURIs" value="$personIndex//tei:person/@ref"/>
+         <sch:assert test="                 every $i in .                 satisfies $i = $personURIs">
+                This @ref attribute is not a person URI in use in Syriaca.org data. Note that all person URIs take the form 'http://syriaca.org/person/{\d+}' (where {\d+} is a number).
+              </sch:assert>
+         <sch:report test="contains(., ' ')">This @ref may contain only one URI.</sch:report>
+      </sch:rule>
+   </pattern>
+   <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
+            id="syriacaPlacesTEI-ref-on-place-constraint-rule-61">
+      <sch:rule xmlns:xi="http://www.w3.org/2001/XInclude"
+                xmlns:svg="http://www.w3.org/2000/svg"
+                xmlns:math="http://www.w3.org/1998/Math/MathML"
+                xmlns="http://www.tei-c.org/ns/1.0"
+                xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+                xmlns:srophe="https://srophe.app"
+                context="//tei:text//tei:placeName/@ref  | tei:district/@ref  | tei:settlement/@ref  | tei:region/@ref  | tei:country/@ref | tei:bloc/@ref">
+         <sch:let name="placeIndex"
+                  value="doc('https://raw.githubusercontent.com/srophe/srophe-eXist-app/master/documentation/indexes/places.xml')"/>
+         <sch:let name="placeURIs" value="$placeIndex//tei:place/@ref"/>
+         <sch:assert test="                 every $i in .                 satisfies $i = $placeURIs">
+                This @ref attribute is not a place URI in use in Syriaca.org data. Note that all place URIs take the form 'http://syriaca.org/place/{\d+}' (where {\d+} is a number).
+              </sch:assert>
+         <sch:report test="contains(., ' ')">This @ref may contain only one URI.</sch:report>
       </sch:rule>
    </pattern>
 </grammar>

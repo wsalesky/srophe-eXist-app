@@ -269,13 +269,11 @@
           </constraint>
         </constraintSpec>
         
-        <!-- The index lets in the following rules need to point to the raw GitHub file.
-          Once that becomes available, use those links and un-comment these rules.
-          Make sure to check for other places where this could be useful. Search for uses of "\d"
+         
         <constraintSpec ident="ref-on-person" scheme="schematron">
           <constraint>
             <sch:rule context="//tei:text//tei:persName/@ref">
-              <sch:let name="personIndex" value="doc('http://wwwb.library.vanderbilt.edu/exist/apps/srophe/documentation/indexes/persons.xml')"></sch:let>
+              <sch:let name="personIndex" value="doc('https://raw.githubusercontent.com/srophe/srophe-eXist-app/master/documentation/indexes/persons.xml')"></sch:let>
               <sch:let name="personURIs" value="$personIndex//tei:person/@ref"/>
               <sch:assert test="
                 every $i in .
@@ -290,7 +288,7 @@
         <constraintSpec ident="ref-on-place" scheme="schematron">
           <constraint>
             <sch:rule context="//tei:text//tei:placeName/@ref  | tei:district/@ref  | tei:settlement/@ref  | tei:region/@ref  | tei:country/@ref | tei:bloc/@ref">
-              <sch:let name="placeIndex" value="doc('http://wwwb.library.vanderbilt.edu/exist/apps/srophe/documentation/indexes/places.xml')"/>
+              <sch:let name="placeIndex" value="doc('https://raw.githubusercontent.com/srophe/srophe-eXist-app/master/documentation/indexes/places.xml')"/>
               <sch:let name="placeURIs" value="$placeIndex//tei:place/@ref"/>
               <sch:assert test="
                 every $i in .
@@ -300,7 +298,7 @@
               <sch:report test="contains(., ' ')">This @ref may contain only one URI.</sch:report>
             </sch:rule>
           </constraint>
-        </constraintSpec>-->
+        </constraintSpec>
         
         <elementSpec ident="teiHeader" module="header" mode="change">
           <content>
@@ -1334,6 +1332,9 @@
                 <valItem ident="incerta">
                   <desc>A note describing uncertain data in the record.</desc>
                 </valItem>
+                <valItem ident="license">
+                  <desc>A note describing the license under which this file is released.</desc>
+                </valItem>
                 <valItem ident="misc">
                   <desc>A note that cannot be categorized as any other type.</desc>
                 </valItem>
@@ -1404,26 +1405,16 @@
             <constraint>
               <sch:rule context="//tei:body//tei:relation/@mutual">
                 <sch:let name="docURI" value="//tei:publicationStmt/tei:idno/substring-before(., '/tei')"/>
+                <sch:let name="placeIndex" value="doc('https://raw.githubusercontent.com/srophe/srophe-eXist-app/master/documentation/indexes/places.xml')"/>
+                <sch:let name="placeURIs" value="$placeIndex//tei:place/@ref"/>
+                <sch:assert test="
+                  every $i in tokenize(., ' ')
+                  satisfies $i = $placeURIs">
+                  This @mutual attribute contains one or more place URIs not in use in Syriaca.org data. Note that all place URIs take the form 'http://syriaca.org/place/{\d+}' (where {\d+} is a number).
+                </sch:assert>
                 <sch:assert test="contains(., ' ')">
                   The @mutual attribute on a &lt;relation&gt; element must contain two or more values.
                 </sch:assert>
-                <sch:assert
-                  test="
-                  every $i in (tokenize(., ' '))
-                  satisfies matches($i, concat('http://syriaca.org/place/', '\d+'))"
-                  ><!-- This assert needs to point to the place index instead of using this concat. -->
-                  The @mutual attribute on a &lt;relation&gt; element should contain two or more properly formatted 
-                  Syriaca.org place URIs ('http://syriaca.org/place/{\d+}') separated by a blank space.
-                </sch:assert>
-                <sch:report
-                  test="
-                  every $i in (tokenize(., ' '))
-                  satisfies matches(substring-after($i, 'http://syriaca.org/place/'), '\D')"
-                  >
-                  <!-- This report can go away once the assert above points to the place index. -->
-                  The @mutual attribute on a &lt;relation&gt; element with should contain two or more properly formatted 
-                  Syriaca.org place URIs ('http://syriaca.org/place/{\d+}') separated by a blank space.
-                </sch:report>
                 <sch:assert test="contains(., $docURI)">
                   One on the values of the @mutual attribute must be the URI for this document's place: <sch:value-of select="$docURI"/>.
                 </sch:assert>
@@ -1450,10 +1441,31 @@
 
 
         <elementSpec ident="label" module="core" mode="change">
-          <!--  @ref on label?
-            Currently, label in the Gazetteer is used only inside of state type="confession". It contains no attributes.
-            I would propose we require a @ref attribute with a URI from the taxonomy.
-          -->
+          <constraintSpec ident="confession-label" scheme="schematron">
+            <constraint>
+              <sch:rule context="//tei:state/tei:label">
+                <!-- Revisit this. It works but it is inelegent. 
+            The problem is that it is difficult to combine regex and schematron functions to move between lowercase w/ hypens to uppercase without.-->
+                <sch:let name="confessionDoc" value="doc('https://raw.githubusercontent.com/srophe/srophe-eXist-app/master/documentation/confessions.xml')"/>
+                <sch:let name="confessionLabels" value="$confessionDoc//tei:text//tei:item/tei:label"/>
+                <sch:let name="stateRefPart" value="substring-after(parent::tei:state/@ref, '#')"/>
+                <sch:let name="spaceTo-" value="for $i in . return(replace($i, ' ', '-'))"/>
+                <sch:let name="labelToRef" value="for $i in $spaceTo- return lower-case($spaceTo-)"/>
+                <sch:assert test="parent::tei:state/@type='confession'">A &lt;label&gt; element can only be used when parent &lt;state&gt; element has @type="confession"</sch:assert>
+                <sch:assert test="
+                  every $i in $labelToRef
+                  satisfies $i = $stateRefPart">
+                  The text node in the &lt;label&gt; element must correspond to the @ref attribute on the parent &lt;state&gt;: 
+                  <sch:value-of select="parent::tei:state/@ref"/>.
+                </sch:assert>
+                <sch:assert test="
+                  every $i in .
+                  satisfies $i = $confessionLabels">
+                  The text node in the &lt;label&gt; element must be one of the following: <sch:value-of select="string-join($confessionLabels, '; ')"/>.
+                </sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
           <exemplum versionDate="2016-11-24">
             <egXML xmlns="http://www.tei-c.org/ns/Examples">
               <state type="confession" xml:id="confession1399-1" ref="http://syriaca.org/documentation/confessions.xml#yezidis" from="1160" source="#bib1399-1">
@@ -1518,8 +1530,8 @@
             <constraint>
               <sch:rule context="//tei:place/tei:bibl">
                 <sch:let name="docURIno" value="//tei:publicationStmt/tei:idno/substring-before(substring-after(substring-after(., 'http://syriaca.org/'), '/'), '/tei')"/>
-                <sch:assert test="matches(./@xml:id, concat('bib', $docURIno, '-', '\d+'))">
-                  The required @xml:id must be 'bib<sch:value-of select="$docURIno"/>-{\d+}' (where {\d+} is a number).
+                <sch:assert test="matches(./@xml:id, concat('bib', $docURIno, '-', '\d+$'))">
+                  The required @xml:id must be 'bib<sch:value-of select="$docURIno"/>-{\d+$}' (where {\d+$} is a number).
                 </sch:assert>
               </sch:rule>
             </constraint>
@@ -1545,24 +1557,10 @@
           </content>
           <constraintSpec ident="xmlID-on-event" scheme="schematron">
             <constraint>
-              <sch:rule context="//tei:text//tei:event[@type='attestation']/@xml:id">
-                <sch:let name="URIno" value="//tei:publicationStmt/tei:idno/replace(., '[\D]+', '')"/>
-                <sch:assert test="matches(., concat('attestation', $URIno, '-', '\d'))">
-                  The @xml:id must begin with 'attestation', followed by the same number as the URI number of
-                  the entity, followed by '-': attestation<sch:value-of select="$URIno"/>-. 
-                </sch:assert>
-                <sch:report test="matches(substring-after(., '-'), '\D')">
-                  This @xml:id must end with a number.
-                </sch:report>
-              </sch:rule>
-            </constraint>
-          </constraintSpec>
-          <constraintSpec ident="xmlID-on-event" scheme="schematron">
-            <constraint>
               <sch:rule context="//tei:place/tei:event[@type='attestation']">
                 <sch:let name="docURIno" value="//tei:publicationStmt/tei:idno/substring-before(substring-after(substring-after(., 'http://syriaca.org/'), '/'), '/tei')"/>
-                <sch:assert test="matches(./@xml:id, concat('attestation', $docURIno, '-', '\d+'))">
-                  The required @xml:id must be 'attestation<sch:value-of select="$docURIno"/>-{\d+}' (where {\d+} is a number).
+                <sch:assert test="matches(./@xml:id, concat('attestation', $docURIno, '-', '\d+$'))">
+                  The required @xml:id must be 'attestation<sch:value-of select="$docURIno"/>-{\d+$}' (where {\d+$} is a number).
                 </sch:assert>
               </sch:rule>
             </constraint>
@@ -1593,18 +1591,15 @@
           </content>
           <constraintSpec ident="xmlID-on-state" scheme="schematron">
             <constraint>
-              <sch:rule context="//tei:text//tei:state[@type='confession']/@xml:id">
+              <sch:rule context="//tei:text//tei:state[@type='confession']">
                 <sch:let name="docURIno" value="//tei:publicationStmt/tei:idno/substring-before(substring-after(substring-after(., 'http://syriaca.org/'), '/'), '/tei')"/>
-                <sch:assert test="matches(., concat('confession', $docURIno, '-', '\d'))">
-                  The @xml:id must be 'confession<sch:value-of select="$docURIno"/>-{\d+}' (where {\d+} is a number).
+                <sch:assert test="matches(./@xml:id, concat('confession', $docURIno, '-', '\d+$'))">
+                  The required @xml:id must be 'confession<sch:value-of select="$docURIno"/>-{\d+$}' (where {\d+$} is a number).
                 </sch:assert>
-                <sch:report test="matches(substring-after(., '-'), '\D')">
-                  This @xml:id must end with a number.
-                </sch:report>
               </sch:rule>
             </constraint>
           </constraintSpec>
-          <constraintSpec ident="source-on-state" scheme="schematron">
+          <constraintSpec ident="state-type-existence" scheme="schematron">
             <constraint>
               <sch:rule context="//tei:place/tei:state[@type='existence']">
                 <sch:assert test="attribute::source or attribute::resp">
@@ -1613,9 +1608,44 @@
                 <sch:report test="attribute::source and attribute::resp">
                   A &lt;state&gt; of @type="existence" may not have both a @source attribute (the preferred when available) and a @resp attribute.
                 </sch:report>
+                <sch:report test="@xml:id">
+                  A &lt;state&gt; of @type="existence" may not may not take an @xml:id attribute.
+                </sch:report>
               </sch:rule>
             </constraint>
           </constraintSpec>
+          <constraintSpec ident="state-type-confession" scheme="schematron">
+            <constraint>
+              <sch:rule context="//tei:state[@type='confession']">
+                <sch:let name="docURIno" value="//tei:publicationStmt/tei:idno/substring-before(substring-after(substring-after(., 'http://syriaca.org/'), '/'), '/tei')"/>
+                <sch:assert test="@ref">A &lt;state&gt; element with @type="confession" must have a @ref attribute.</sch:assert>
+                <sch:assert test="tei:label">A &lt;state&gt; element with @type="confession" must have a child &lt;label&gt; element.</sch:assert>
+              </sch:rule>
+              <sch:rule context="//tei:state/@ref">
+                <sch:let name="confessionDoc" value="doc('https://raw.githubusercontent.com/srophe/srophe-eXist-app/master/documentation/confessions.xml')"/>
+                <sch:let name="confessionIDs" value="$confessionDoc//tei:text//tei:item/@xml:id"/>
+                <sch:let name="confessionPtrs" value="for $i in $confessionIDs return concat('#', $i)"/>
+                <sch:let name="confessionRefValues" value="for $i in $confessionPtrs return concat('http://syriaca.org/documentation/confessions.xml', $i)"/>
+                <sch:assert test="
+                  every $i in .
+                  satisfies $i = $confessionRefValues">
+                  The acceptable values of @ref are 'http://syriaca.org/documentation/confessions.xml' followed by one of the following:
+                  <sch:value-of select="string-join($confessionPtrs, '; ')"/></sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+          <attList>
+            <attDef ident="type" mode="change" usage="req">
+              <valList type="closed" mode="change">
+                <valItem ident="confession">
+                  <desc>identifies the presence of a confessional community in this place</desc>
+                </valItem>
+                <valItem ident="existence">
+                  <desc>indicates that the place existed</desc>
+                </valItem>
+              </valList>
+            </attDef>
+          </attList>
         </elementSpec>
 
         <elementSpec ident="citedRange" module="core" mode="change">
@@ -1632,7 +1662,7 @@
                   <desc>the element identifies an entry in a collection such as an reference
                     work.</desc>
                 </valItem>
-                <valItem ident="f">
+                <valItem ident="fol">
                   <desc>the element identifies a folio number or folio range</desc>
                 </valItem>
                 <valItem ident="line">
@@ -1659,7 +1689,7 @@
           </attList>
           <remarks>
             <p>The acceptable <att>unit</att> attribute values with the <gi>citedRange</gi> element
-              are: column, entry, line, part, pp, and section..</p>
+              are: col, entry, fol, line, map, part, p, section, and vol.</p>
           </remarks>
         </elementSpec>
 
@@ -1825,8 +1855,8 @@
             <constraint>
               <sch:rule context="//tei:place/tei:placeName">
                 <sch:let name="docURIno" value="//tei:publicationStmt/tei:idno/substring-before(substring-after(substring-after(., 'http://syriaca.org/'), '/'), '/tei')"/>
-                <sch:assert test="matches(./@xml:id, concat('name', $docURIno, '-', '\d+'))">
-                  The required @xml:id must be 'name<sch:value-of select="$docURIno"/>-{\d+}' (where {\d+} is a number).
+                <sch:assert test="matches(./@xml:id, concat('name', $docURIno, '-', '\d+$'))">
+                  The required @xml:id must be 'name<sch:value-of select="$docURIno"/>-{\d+$}' (where {\d+$} is a number).
                 </sch:assert>
               </sch:rule>
             </constraint>
@@ -1887,8 +1917,8 @@
             <constraint>
               <sch:rule context="//tei:place/tei:desc[@type='abstract']">
                 <sch:let name="docURIno" value="//tei:publicationStmt/tei:idno/substring-before(substring-after(substring-after(., 'http://syriaca.org/'), '/'), '/tei')"/>
-                <sch:assert test="matches(./@xml:id, concat('abstract', $docURIno, '-', '\d+'))">
-                  The required @xml:id must be 'abstract<sch:value-of select="$docURIno"/>-{\d+}' (where {\d+} is a number).
+                <sch:assert test="matches(./@xml:id, concat('abstract', $docURIno, '-', '\d+$'))">
+                  The required @xml:id must be 'abstract<sch:value-of select="$docURIno"/>-{\d+$}' (where {\d+$} is a number).
                 </sch:assert>
               </sch:rule>
             </constraint>
