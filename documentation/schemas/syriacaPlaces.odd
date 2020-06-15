@@ -319,11 +319,7 @@
           </constraintSpec>-->
           <attList>
             <attDef ident="key" mode="delete"/>
-            <attDef ident="srophe:tags" mode="add">
-              <datatype>
-                <dataRef key="teidata.pointer"/>
-              </datatype>
-            </attDef>
+            <attDef ident="srophe:tags" mode="change" usage="req"/>
             <attDef ident="xml:id" mode="change">
               <desc>The <gi>placeName</gi> element requires an <att>xml:id</att> attribute whose value is the concatenation of "name", 
                 the Syriaca.org ID number of this place (i.e. the last element of the URI), a ‘-’, and the number of this name element in order.</desc>

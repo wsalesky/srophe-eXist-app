@@ -33,12 +33,12 @@
         <moduleRef key="textstructure" include="TEI body text"/>
         
         
-        <classSpec ident="att.srophe.tags" mode="add" type="atts">
+        <classSpec ident="att.global" mode="change" type="atts" source="tei">
           <attList>
             <attDef ident="srophe:tags" ns="https://srophe.app" mode="add">
               <desc>Specialized attributes specific to the functions performed by the Srophé App.</desc>
               <datatype maxOccurs="unbounded" minOccurs="1">
-                <rng:text xmlns:rng="http://relaxng.org/ns/structure/1.0"/>
+                <dataRef key="teidata.text"/>
               </datatype>
             </attDef>
           </attList>
