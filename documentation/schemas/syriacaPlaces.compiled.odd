@@ -8357,7 +8357,7 @@ langues, registres, dialectes, etc. présents à l’intérieur d’un texte.</d
                 <sch:report test="contains(., ' ')">This @ref may contain only one URI.</sch:report>
               </sch:rule>
             </constraint>
-          </constraintSpec><attList><attDef ident="key" mode="delete"/><attDef ident="srophe:tags" mode="change" usage="req"/><attDef ident="xml:id" mode="change">
+          </constraintSpec><attList><attDef ident="key" mode="delete"/><attDef ident="xml:id" mode="change">
               <desc>The <gi>placeName</gi> element requires an <att>xml:id</att> attribute whose value is the concatenation of "name", 
                 the Syriaca.org ID number of this place (i.e. the last element of the URI), a ‘-’, and the number of this name element in order.</desc>
             </attDef><attDef ident="xml:lang" mode="change">
