@@ -313,6 +313,7 @@
           <content>
             <alternate minOccurs="0" maxOccurs="unbounded">
               <elementRef key="persName"/>
+              <elementRef key="date"/>
               <textNode/>
             </alternate>
           </content>
@@ -328,9 +329,9 @@
                 </sch:assert>
               </sch:rule>
               <sch:rule context="//tei:teiHeader//tei:seriesStmt//@role">
-                <sch:assert test=". = 'associate' or . = 'general' or . = 'past'">
+                <sch:assert test=". = 'associate' or . = 'general' or . = 'technical'">
                   The acceptable attribute values for @role on the &lt;editor&gt; element inside the &lt;seriesStmt&gt; are: 
-                  associate, general, or past.
+                  associate, general, or technical.
                 </sch:assert>
               </sch:rule>
               <sch:rule context="//tei:body//tei:editor/@role">
@@ -379,12 +380,6 @@
                 <valItem ident="associate">
                   <desc>An associate editor</desc>
                 </valItem>
-                <valItem ident="creator">
-                  <desc>The main author responsible for the document</desc>
-                </valItem>
-                <valItem ident="general">
-                  <desc>A general editor of a module</desc>
-                </valItem>
                 <valItem ident="code-author">
                   <desc>The person responsible for the creation of the xml encoding</desc>
                 </valItem>
@@ -394,8 +389,17 @@
                 <valItem ident="contributor">
                   <desc>A person who contributed some data but is not the main person responsible for the document</desc>
                 </valItem>
+                <valItem ident="creator">
+                  <desc>The main author responsible for the document</desc>
+                </valItem>
+                <valItem ident="general">
+                  <desc>A general editor of a module</desc>
+                </valItem>
                 <valItem ident="editor">
                   <desc>An editor as defined by the Chicago Manual of Style</desc>
+                </valItem>
+                <valItem ident="technical">
+                  <desc>An editor responsible for the data model</desc>
                 </valItem>
                 <valItem ident="translator">
                   <desc>The translator of a text</desc>

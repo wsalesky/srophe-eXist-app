@@ -6,7 +6,7 @@
          xmlns="http://relaxng.org/ns/structure/1.0"
          datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
          ns="http://www.tei-c.org/ns/1.0"><!--
-Schema generated from ODD source 2020-06-15T18:35:31Z. .
+Schema generated from ODD source 2020-06-15T22:00:18Z. .
 TEI Edition: Version 4.0.0. Last updated on
 	13th February 2020, revision ccd19b0ba
 TEI Edition Location: http://www.tei-c.org/Vault/P5/Version 4.0.0/
@@ -2406,6 +2406,7 @@ attributes @target and @cRef may be supplied on <name/>.</report>
          <zeroOrMore>
             <choice>
                <ref name="tei_persName"/>
+               <ref name="tei_date"/>
                <text/>
             </choice>
          </zeroOrMore>
@@ -2430,9 +2431,9 @@ attributes @target and @cRef may be supplied on <name/>.</report>
                       xmlns:srophe="https://srophe.app"
                       xmlns="http://www.tei-c.org/ns/1.0"
                       context="//tei:teiHeader//tei:seriesStmt//@role">
-               <sch:assert test=". = 'associate' or . = 'general' or . = 'past'">
+               <sch:assert test=". = 'associate' or . = 'general' or . = 'technical'">
                   The acceptable attribute values for @role on the &lt;editor&gt; element inside the &lt;seriesStmt&gt; are: 
-                  associate, general, or past.
+                  associate, general, or technical.
                 </sch:assert>
             </sch:rule>
             <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
@@ -2486,18 +2487,20 @@ attributes @target and @cRef may be supplied on <name/>.</report>
                      <choice>
                         <value>associate</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">An associate editor</a:documentation>
-                        <value>creator</value>
-                        <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">The main author responsible for the document</a:documentation>
-                        <value>general</value>
-                        <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">A general editor of a module</a:documentation>
                         <value>code-author</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">The person responsible for the creation of the xml encoding</a:documentation>
                         <value>content-author</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">The person responsible for the content encoded in this document by another person</a:documentation>
                         <value>contributor</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">A person who contributed some data but is not the main person responsible for the document</a:documentation>
+                        <value>creator</value>
+                        <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">The main author responsible for the document</a:documentation>
+                        <value>general</value>
+                        <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">A general editor of a module</a:documentation>
                         <value>editor</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">An editor as defined by the Chicago Manual of Style</a:documentation>
+                        <value>technical</value>
+                        <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">An editor responsible for the data model</a:documentation>
                         <value>translator</value>
                         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">The translator of a text</a:documentation>
                      </choice>
