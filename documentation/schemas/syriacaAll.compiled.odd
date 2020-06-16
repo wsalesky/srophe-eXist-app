@@ -6532,9 +6532,9 @@ places, in particular where  multiple names are given.</p>
                 </sch:assert>
               </sch:rule>
               <sch:rule context="//tei:teiHeader//tei:seriesStmt//@role">
-                <sch:assert test=". = 'associate' or . = 'general' or . = 'technical'">
+                <sch:assert test=". = 'associate' or . = 'general' or . = 'technical' or . = 'past-associate' or . = 'past-general' or . = 'past-technical'">
                   The acceptable attribute values for @role on the &lt;editor&gt; element inside the &lt;seriesStmt&gt; are: 
-                  associate, general, or technical.
+                  associate, general, technical, past-associate, past-general, or past-technical.
                 </sch:assert>
               </sch:rule>
               <sch:rule context="//tei:body//tei:editor/@role">
@@ -6587,11 +6587,20 @@ places, in particular where  multiple names are given.</p>
                 <valItem ident="creator">
                   <desc>The main author responsible for the document</desc>
                 </valItem>
+                <valItem ident="editor">
+                  <desc>An editor as defined by the Chicago Manual of Style</desc>
+                </valItem>
                 <valItem ident="general">
                   <desc>A general editor of a module</desc>
                 </valItem>
-                <valItem ident="editor">
-                  <desc>An editor as defined by the Chicago Manual of Style</desc>
+                <valItem ident="past-associate">
+                  <desc>An associate editor</desc>
+                </valItem>
+                <valItem ident="past-general">
+                  <desc>A general editor of a module</desc>
+                </valItem>
+                <valItem ident="past-technical">
+                  <desc>An editor responsible for the data model</desc>
                 </valItem>
                 <valItem ident="technical">
                   <desc>An editor responsible for the data model</desc>
