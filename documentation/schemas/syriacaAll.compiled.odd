@@ -6488,8 +6488,8 @@ psychological significance.
                   the &lt;seriesStmt&gt; are: associate, general, technical, past-associate,
                   past-general, or past-technical. </sch:assert>
               </sch:rule>
-              <sch:rule context="//tei:teiHeader//tei:seriesStmt//tei:editor[contains(@role, 'past-')]">
-                <sch:assert test="tei:date">An &lt;editor&gt; element with a "past" @role attribute must contain a &lt;date&gt; element.</sch:assert>
+              <sch:rule context="//tei:teiHeader//tei:seriesStmt//tei:editor[@role='past-general'] | //tei:teiHeader//tei:seriesStmt//tei:editor[@role='past-associate'] |//tei:teiHeader//tei:seriesStmt//tei:editor[@role='past-technical']">
+                <sch:assert test="./tei:date">An &lt;editor&gt; element with a "past" @role attribute must contain a &lt;date&gt; element.</sch:assert>
               </sch:rule>
               <sch:rule context="//tei:body//tei:editor/@role">
                 <sch:assert test=". = 'editor' or . = 'general' or . = 'translator'"> The acceptable

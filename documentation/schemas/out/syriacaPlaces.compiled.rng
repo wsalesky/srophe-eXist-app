@@ -6,7 +6,7 @@
          xmlns="http://relaxng.org/ns/structure/1.0"
          datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
          ns="http://www.tei-c.org/ns/1.0"><!--
-Schema generated from ODD source 2020-06-16T21:36:41Z. .
+Schema generated from ODD source 2020-06-16T21:54:30Z. .
 TEI Edition: Version 4.0.0. Last updated on
 	13th February 2020, revision ccd19b0ba
 TEI Edition Location: http://www.tei-c.org/Vault/P5/Version 4.0.0/
@@ -2431,8 +2431,8 @@ attributes @target and @cRef may be supplied on <name/>.</report>
             <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
                       xmlns="http://www.tei-c.org/ns/1.0"
-                      context="//tei:teiHeader//tei:seriesStmt//tei:editor[contains(@role, 'past-')]">
-               <sch:assert test="tei:date">An &lt;editor&gt; element with a "past" @role attribute must contain a &lt;date&gt; element.</sch:assert>
+                      context="//tei:teiHeader//tei:seriesStmt//tei:editor[@role='past-general'] | //tei:teiHeader//tei:seriesStmt//tei:editor[@role='past-associate'] |//tei:teiHeader//tei:seriesStmt//tei:editor[@role='past-technical']">
+               <sch:assert test="./tei:date">An &lt;editor&gt; element with a "past" @role attribute must contain a &lt;date&gt; element.</sch:assert>
             </sch:rule>
             <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
