@@ -6478,15 +6478,18 @@ psychological significance.
                 <sch:assert test="./@role">A @role attribute is required on the &lt;editor&gt;
                   element inside &lt;teiHeader&gt;.</sch:assert>
               </sch:rule>
-              <sch:rule context="//tei:teiHeader//tei:titleStmt//@role">
+              <sch:rule context="//tei:teiHeader//tei:titleStmt//tei:editor/@role">
                 <sch:assert test=". = 'creator' or . = 'code-author' or . = 'content-author' or . = 'contributor'"> The acceptable attribute values for @role on the &lt;editor&gt; element inside
                   the &lt;titleStmt&gt; are: creator, code-author, content-author, or contributor.
                 </sch:assert>
               </sch:rule>
-              <sch:rule context="//tei:teiHeader//tei:seriesStmt//@role">
+              <sch:rule context="//tei:teiHeader//tei:seriesStmt//tei:editor/@role">
                 <sch:assert test=". = 'associate' or . = 'general' or . = 'technical' or . = 'past-associate' or . = 'past-general' or . = 'past-technical'"> The acceptable attribute values for @role on the &lt;editor&gt; element inside
                   the &lt;seriesStmt&gt; are: associate, general, technical, past-associate,
                   past-general, or past-technical. </sch:assert>
+              </sch:rule>
+              <sch:rule context="//tei:teiHeader//tei:seriesStmt//tei:editor[contains(@role, 'past-')]">
+                <sch:assert test="tei:date">An &lt;editor&gt; element with a "past" @role attribute must contain a &lt;date&gt; element.</sch:assert>
               </sch:rule>
               <sch:rule context="//tei:body//tei:editor/@role">
                 <sch:assert test=". = 'editor' or . = 'general' or . = 'translator'"> The acceptable
