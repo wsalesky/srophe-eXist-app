@@ -104,7 +104,7 @@
           <content>
             <elementRef key="listPlace" minOccurs="1" maxOccurs="1"/>
           </content>
-          <remarks>
+          <remarks mode="add">
             <p>The body of Syriaca.org TEI records are specific to the type of data. The <gi>body</gi> element 
               of a place record must contain a <gi>listPlace</gi> element.
             </p>
@@ -129,7 +129,7 @@
             <elementRef key="place" minOccurs="1" maxOccurs="1"/>
             <elementRef key="listRelation" minOccurs="0" maxOccurs="1"/>
           </content>
-          <remarks>
+          <remarks mode="add">
             <p>The <gi>listPlace</gi> element of a place record must contain a <att>place</att> 
               element and may contain a <gi>listRelation</gi> element.
             </p>
@@ -247,7 +247,7 @@
               </valList>
             </attDef>
           </attList>
-          <remarks>
+          <remarks mode="add">
             <p>Within each <gi>place</gi> element will be a series of: 
               one or more <gi>placeName</gi> elements,
               zero or more <gi>location</gi> elements,
@@ -737,24 +737,6 @@
         </elementSpec>
         
         <elementSpec ident="state" module="namesdates" mode="change">
-          <classes mode="change">
-            <memberOf key="att.global.rendition" mode="delete"/><!-- not deleted -->
-            <memberOf key="att.global.linking" mode="delete"/><!-- not deleted -->
-            <memberOf key="att.global.analytic" mode="delete"/><!-- deleted -->
-            <memberOf key="att.global.facs" mode="delete"/><!-- deleted -->
-            <memberOf key="att.global.change" mode="delete"/><!-- deleted -->
-            <memberOf key="att.global.responsibility" mode="delete"/>
-            <memberOf key="att.editLike" mode="delete"/><!-- deleted -->
-            <memberOf key="att.naming" mode="delete"/><!-- deleted -->
-            <memberOf key="att.dimensions" mode="delete"/><!-- deleted -->
-            <memberOf key="att.ranging" mode="delete"/><!-- deleted -->
-            <memberOf key="att.canonical" mode="add"/><!-- added -->
-          </classes>
-          <content>
-            <elementRef key="p" minOccurs="0" maxOccurs="1"/>
-            <elementRef key="label" minOccurs="0"/>
-            <elementRef key="precision" minOccurs="0" maxOccurs="unbounded"/>
-          </content>
           <constraintSpec ident="xmlID-on-state" scheme="schematron">
             <constraint>
               <sch:rule context="//tei:text//tei:state[@type='confession']">
@@ -863,7 +845,7 @@
               </state>
             </egXML>
           </exemplum>
-          <remarks>
+          <remarks mode="add">
             <p>
               The Gazetteer uses the <gi>label</gi> element inside of a <gi>state</gi> element with a <att>type</att> attribute of "confession". 
               The text node of the <gi>label</gi> element contains the English name of the confession attested at a location.
@@ -889,7 +871,7 @@
               </alternate>
             </sequence>
           </content>
-          <remarks>
+          <remarks mode="add">
             <p>
               Each <gi>bibl</gi> element may contain: 
               zero or more <gi>author</gi> elements,
@@ -934,7 +916,7 @@
             <attDef ident="targetLang" mode="delete"/>
             <attDef ident="evaluate" mode="delete"/>
           </attList>
-          <remarks>
+          <remarks mode="add">
             <p>
               Contained within the <gi>bibl</gi> element is a <gi>ptr</gi> element whose <att>target</att> attribute has the value of a URI pointing to the bibliographic item.
               This URI must be formatted as follows: 'http://syriaca.org/bibl/{\d+}' (where {\d+} is a number).

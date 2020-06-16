@@ -1618,7 +1618,7 @@ the TEI header.</p>
 	  (Routledge 1920:205,210) and their connections to
 	  ancestral territorial organization.</p>
         </egXML>
-      </exemplum><remarks versionDate="2016-12-07">
+      </exemplum><remarks mode="add">
                 <p>All elements should have an <att>xml:lang</att> value, either inherited from an
                   ancestor element or declared explicitly. See the <ref target="http://syriaca.org/documentation/isostandards.html">Syriaca.org
                     documentation</ref> for more information on the usage of particular tags. Note
@@ -4857,8 +4857,9 @@ one initial.</desc>
   </remarks>
 </dataSpec><elementSpec rend="change" module="core" ident="p"><gloss versionDate="2005-01-14" xml:lang="en">paragraph</gloss><gloss versionDate="2007-12-20" xml:lang="ko">문단</gloss><gloss versionDate="2007-05-02" xml:lang="zh-TW">段落</gloss><gloss versionDate="2009-01-06" xml:lang="fr">paragraphe</gloss><gloss versionDate="2007-05-04" xml:lang="es">párrafo</gloss><gloss versionDate="2007-01-21" xml:lang="it">paragrafo</gloss><gloss versionDate="2016-11-24" xml:lang="de">Absatz</gloss><desc versionDate="2005-01-14" xml:lang="en">marks paragraphs in prose.</desc><desc versionDate="2007-12-20" xml:lang="ko">산문에서 문단을 표시한다.</desc><desc versionDate="2007-05-02" xml:lang="zh-TW">標記散文的段落。</desc><desc versionDate="2008-04-05" xml:lang="ja">散文の段落を示す．</desc><desc versionDate="2009-01-06" xml:lang="fr">marque les paragraphes dans un texte en prose.</desc><desc versionDate="2007-05-04" xml:lang="es">marca párrafos en prosa.</desc><desc versionDate="2007-01-21" xml:lang="it">indica i paragrafi in prosa</desc><desc versionDate="2016-11-24" xml:lang="de">markiert einen Absatz in einem Prosatext.</desc><classes><memberOf key="att.global"/><memberOf key="model.pLike"/><memberOf key="att.declaring"/><memberOf key="att.fragmentable"/><memberOf key="att.written"/></classes><content><macroRef key="macro.paraContent"/></content><constraintSpec ident="lang-on-p-in-body" scheme="schematron">
             <constraint>
-              <sch:rule context="//tei:body//tei:p">
-                <sch:assert test="./@xml:lang">A &lt;p&gt; element in the text body must have an @xml:lang attribute.</sch:assert>
+              <sch:rule context="//tei:text//tei:p">
+                <sch:assert test="./@xml:lang">A &lt;p&gt; element in the text body must have an
+                  @xml:lang attribute.</sch:assert>
               </sch:rule>
             </constraint>
           </constraintSpec><constraintSpec ident="abstractModel-structure-p" scheme="schematron">
@@ -4873,32 +4874,19 @@ one initial.</desc>
         Abstract model violation: Lines may not contain higher-level structural elements such as div, p, or ab.
       </report>
     </constraint>
-  </constraintSpec><attList/><exemplum xml:lang="en">
-    <egXML xmlns="http://www.tei-c.org/ns/Examples" source="#NJAL">
-      <p>Hallgerd was outside. <q>There is blood on your axe,</q> she said. <q>What have you
-                    done?</q>
+  </constraintSpec><attList/><exemplum>
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <event type="attestation" xml:id="attestation2567-1" when="0473" srophe:computed-start="0473-01-01" srophe:computed-end="0473-12-31" source="#bib2567-3">
+                <p xml:lang="en">Attestation of name <foreign xml:lang="syr">ܬܠܢܫܐ</foreign> in <title>Vatican Syriac 160</title>.</p>
+                <link target="#name2567-2 #attestation2567-1"/>
+              </event>
+            </egXML>
+          </exemplum><remarks mode="add">
+            <p>
+              The <gi>p</gi> element is used for paragraphs of text in various contexts. In the body of a record, the <gi>p</gi> element must have an 
+              <att>xml:id</att> attribute. 
             </p>
-      <p><q>I have now arranged that you can be married a second time,</q> replied Thjostolf.</p>
-      <p><q>Then you must mean that Thorvald is dead,</q> she said.</p>
-      <p><q>Yes,</q> said Thjostolf. <q>And now you must think up some plan for me.</q>
-         </p>
-    </egXML>
-  </exemplum><exemplum versionDate="2008-04-06" xml:lang="fr">
-    <egXML xmlns="http://www.tei-c.org/ns/Examples" source="#fr-ex-Flaubert_Sal">
-      <div>
-        <p>C'était à Mégara, faubourg de Carthage, dans les jardins d'Hamilcar.</p>
-        <p>Les soldats qu'il avait commandés en Sicile se donnaient un grand festin pour célébrer
-            le jour anniversaire de la bataille d'Eryx, et comme le maître était absent et qu'ils se
-            trouvaient nombreux, ils mangeaient et ils buvaient en pleine liberté.</p>
-      </div>
-    </egXML>
-  </exemplum><exemplum xml:lang="zh-TW">
-    <egXML xmlns="http://www.tei-c.org/ns/Examples" source="#biblzh-tw_n17"><p>我抬起頭，他打開了一扇窗戶，探出頭來。<q>先生？</q>
-         </p><p><q>你要去哪。葛里葉？</q></p><p><q>去藥劑師那裡，先生。太太要我去，替男孩拿點東西。</q></p><p><q>你能不能也替我拿點東西？</q></p>ㄒㄒ
-      <p><q>當然能，先生。</q> 忽然間風好像沒那麼刺骨了。 <q>等一下，我把它寫下來。</q>
-         </p>
-      </egXML>
-  </exemplum><listRef>
+          </remarks><listRef>
     <ref target="http://www.tei-c.org/release/doc/tei-p5-doc/en/html/CO.html#COPA">3.1. Paragraphs</ref>
     <ref target="http://www.tei-c.org/release/doc/tei-p5-doc/en/html/DR.html#DRPAL">7.2.5. Speech Contents</ref>
   </listRef></elementSpec><elementSpec rend="add" module="core" ident="foreign"><gloss versionDate="2007-12-20" xml:lang="ko">외국어</gloss><gloss versionDate="2007-05-02" xml:lang="zh-TW">外文</gloss><gloss versionDate="2009-01-06" xml:lang="fr">étranger</gloss><gloss versionDate="2007-05-04" xml:lang="es">extranjero</gloss><gloss versionDate="2007-01-21" xml:lang="it">straniero</gloss><gloss versionDate="2017-06-04" xml:lang="de">fremd</gloss><desc versionDate="2005-01-14" xml:lang="en">identifies a word or phrase as belonging to some language other than that of the
@@ -5483,7 +5471,8 @@ Normalization</ref>
           </constraintSpec><constraintSpec ident="ref-on-name" scheme="schematron">
             <constraint>
               <sch:rule context="//tei:teiHeader//tei:name">
-                <sch:assert test="./@ref">A @ref attribute is required on the &lt;name&gt; element inside &lt;teiHeader&gt;.</sch:assert>
+                <sch:assert test="./@ref">A @ref attribute is required on the &lt;name&gt; element
+                  inside &lt;teiHeader&gt;.</sch:assert>
               </sch:rule>
             </constraint>
           </constraintSpec><attList/><exemplum xml:lang="mul">
@@ -5605,13 +5594,13 @@ Measures</ref>
                 </valItem>
               </valList>
             </attDef><attDef ident="notBefore" mode="change">
-              <remarks versionDate="2016-11-24">
+              <remarks mode="add">
                 <p>Provides a terminus post quem. Use this when the exact date is not known. See
                   <ref target="http://syriaca.org/exist/apps/srophe/documentation/dates.html">the
                     Syriaca.org documentation</ref> for editorial conventions regarding dates.</p>
               </remarks>
             </attDef><attDef ident="notAfter" mode="change">
-              <remarks versionDate="2016-11-24">
+              <remarks mode="add">
                 <p>Provides a terminus ad quem. Use this when the exact date is not known. See <ref target="http://syriaca.org/exist/apps/srophe/documentation/dates.html">the
                   Syriaca.org documentation</ref> for editorial conventions regarding dates.</p>
               </remarks>
@@ -5620,7 +5609,7 @@ Measures</ref>
               <date notBefore="1240" notAfter="1286" type="original-composition">mid-late 13th
                 century</date>
             </egXML>
-          </exemplum><remarks versionDate="2016-11-24">
+          </exemplum><remarks mode="add">
             <p>A <gi>date</gi> elment includes both a machine-readable version (using attributes like
               <att>when</att>, <att>notBefore</att>, <att>notAfter</att>) and a human-readable
               version as text in the element content. See <ref target="http://syriaca.org/exist/apps/srophe/documentation/dates.html">the
@@ -6303,9 +6292,8 @@ entre les Romains.</label>
   </listRef></elementSpec><elementSpec rend="change" module="core" ident="note"><gloss versionDate="2017-06-25" xml:lang="de">Anmerkung</gloss><desc versionDate="2005-01-14" xml:lang="en">contains a note or annotation.</desc><desc versionDate="2009-01-06" xml:lang="fr">contient une note ou une annotation</desc><desc versionDate="2007-05-04" xml:lang="es">contiene una nota o aclaración</desc><desc versionDate="2007-05-02" xml:lang="zh-TW">包含附註或註釋。</desc><desc versionDate="2007-01-21" xml:lang="it">contiene una nota o un'annotazione</desc><desc versionDate="2006-10-28" xml:lang="ja">注釈・コメント．</desc><desc versionDate="2017-06-25" xml:lang="de">enthält eine Anmerkung oder Annotation.</desc><classes><memberOf key="att.global"/><memberOf key="model.noteLike"/><memberOf key="att.pointing"/><memberOf key="att.typed"/></classes><content><macroRef key="macro.specialPara"/></content><constraintSpec ident="xmlLang-in-note" scheme="schematron">
             <constraint>
               <sch:rule context="//tei:body//tei:note">
-                <sch:assert test="./@xml:lang">
-                  All &lt;note&gt; elements in the &lt;body&gt; must have an @xml:lang attribute.
-                </sch:assert>
+                <sch:assert test="./@xml:lang"> All &lt;note&gt; elements in the &lt;body&gt; must
+                  have an @xml:lang attribute. </sch:assert>
               </sch:rule>
             </constraint>
           </constraintSpec><attList><attDef ident="subtype" mode="delete"/><attDef ident="xml:id" mode="delete"/><attDef ident="type" mode="change" usage="req">
@@ -6421,11 +6409,13 @@ psychological significance.
     <p>Wenn jedoch Anmerkungen sequenziell nummeriert sind und deren Nummerierung durch die
       elektronische Verarbeitung automatisch rekonstruiert werden kann, kann es als unnötig angesehen
       werden, die Nummerierung anzugeben.</p>
-  </exemplum><remarks versionDate="2011-11-24">
-            <p>Notes are used for various kinds of text. In entity records, Syriaca.org typically
-              uses notes as containers for sentence-length to paragraph-length text. The
-              <att>type</att> attribute is required and determines how the note is displayed on
-              the page.</p>
+  </exemplum><remarks mode="add">
+            <p>The <gi>note</gi> element is used for a variety of notes about the entity described in the data. 
+              All <gi>note</gi> elements must have an <att>xml:lang</att> attribute that facilitates the display of notes by 
+              language in The Srophé Application. A <att>type</att> attribute is required and determines how the note is displayed on
+              the page. Available values for this <att>type</att> attribute are: corrigenda, deprecation, disambiguation, errata, incerta
+              license, and misc. Only certain values are allowed in certain contexts within the document. 
+            </p>
           </remarks><listRef>
     <ref target="http://www.tei-c.org/release/doc/tei-p5-doc/en/html/CO.html#CONONO">3.8.1. Notes and Simple Annotation</ref>
     <ref target="http://www.tei-c.org/release/doc/tei-p5-doc/en/html/HD.html#HD27">2.2.6. The Notes Statement</ref>
@@ -6466,47 +6456,9 @@ psychological significance.
       <author>中央日報</author>
       <author>中央通訊社董事長馬星野</author>
     </egXML>
-  </exemplum><remarks versionDate="2009-03-18" xml:lang="en">
-    <p>Particularly where cataloguing is likely to be based on the
-    content of the header, it is advisable to use a generally recognized
-    name authority file to supply the content for this element.  The
-    attributes <att>key</att> or <att>ref</att> may also be used to
-    reference canonical information about the author(s) intended from any
-    appropriate authority, such as a library catalogue or online
-    resource. </p>
-    <p>In the case of a broadcast, use this element for the name of
-    the company or network responsible for making the broadcast.</p>
-    <p>Where an author is unknown or unspecified, this element may contain
-text such as <mentioned>Unknown</mentioned> or
-<mentioned>Anonymous</mentioned>. When the appropriate TEI modules are
-in use, it may also contain detailed tagging of the names used for people, organizations or
-places, in particular where  multiple names are given.</p>
-  </remarks><remarks xml:lang="fr" versionDate="2007-06-12">
-    <p>Il est conseillé d'utiliser des listes d'autorité reconnues
-    pour trouver la forme exacte des noms de personnes, en particulier
-    lorsque le catalogage repose sur le contenu de l'en-tête TEI. Les
-    attributs <att>key</att> ou <att>ref</att> seront aussi employés
-    pour donner une référence canonique documentant l'auteur concerné
-    grâce à une autorité appropriée, comme le catalogue d'une
-    bibliothèque ou une ressource en ligne. </p>
-    <p>Dans le cas d'une émission, cet élément sert à encoder le nom de la société ou du
-      réseau qui diffuse le programme.</p>
-  </remarks><remarks xml:lang="ja" versionDate="2008-04-05">
-    <p> 書誌情報を当該ヘダーに収録する場合，個人名の正確な記述を，一般に理 解可能な著者リストとして使用した方がよい． </p>
-    <p> 放送の場合，当該要素は会社や放送局の名前として使用される． </p>
-  </remarks><remarks versionDate="2017-06-04" xml:lang="de">
-    <p>Insbesondere wenn eine Katalogisierung auf Basis des TEI-Headers erfolgen soll, ist es ratsam
-      einen Namen aus einer annerkannten Normdatei zu verwenden. Die Attribute <att>key</att> und
-      <att>ref</att> können außerdem benutzt werden, um auf kanonische Informationen über
-      einen Autor zu verweisen, etwa in einem Bibliothekskatalog oder einer Online-Ressource.</p>
-    <p>Im Fall von Rundfunksendungen sollte dies Element benutzt werden, um den Namen der Firma oder
-      der Sendergruppe zu notieren, welche diese Rundfunksendung verantwortet.</p>
-    <p>Wo ein Autor unbekannt oder nicht angegeben ist, kann dieses Element Text wie z. B.
-      <mentioned>Unbekannt</mentioned> oder <mentioned>Nicht angegeben</mentioned> beinhalten.
-      Wenn die entsprechenden TEI-Module benutzt werden, kann das Element auch detaillierte
-      Auszeichnungen für Namen von Personen, Organisationen oder Orten beinhalten - insbesondere
-      wenn mehrere Namen vorhanden sind.</p>
-  </remarks><listRef>
+  </exemplum><remarks mode="add">
+            <p> The <gi>author</gi> element may contain either a <gi>persName</gi> element or text.</p>
+          </remarks><listRef>
     <ref target="http://www.tei-c.org/release/doc/tei-p5-doc/en/html/CO.html#COBICOR">3.11.2.2. Titles, Authors, and Editors</ref>
     <ref target="http://www.tei-c.org/release/doc/tei-p5-doc/en/html/HD.html#HD21">2.2.1. The Title Statement</ref>
   </listRef></elementSpec><elementSpec rend="change" module="core" ident="editor"><desc versionDate="2012-12-27" xml:lang="en">contains a secondary statement of responsibility for a bibliographic item, for example the name of an
@@ -6523,43 +6475,41 @@ places, in particular where  multiple names are given.</p>
     Herausgeber, Kompilator, Übersetzer etc. fungiert.</desc><classes><memberOf key="att.global"/><memberOf key="att.naming"/><memberOf key="model.respLike"/></classes><content><alternate minOccurs="0" maxOccurs="unbounded"><elementRef key="persName"/><elementRef key="date"/><textNode/></alternate></content><constraintSpec ident="role-on-editor" scheme="schematron">
             <constraint>
               <sch:rule context="//tei:teiHeader//tei:editor">
-                <sch:assert test="./@role">A @role attribute is required on the &lt;editor&gt; element inside &lt;teiHeader&gt;.</sch:assert>
+                <sch:assert test="./@role">A @role attribute is required on the &lt;editor&gt;
+                  element inside &lt;teiHeader&gt;.</sch:assert>
               </sch:rule>
               <sch:rule context="//tei:teiHeader//tei:titleStmt//@role">
-                <sch:assert test=". = 'creator' or . = 'code-author' or . = 'content-author' or . = 'contributor'">
-                  The acceptable attribute values for @role on the &lt;editor&gt; element inside the &lt;titleStmt&gt; are: 
-                  creator, code-author, content-author, or contributor.
+                <sch:assert test=". = 'creator' or . = 'code-author' or . = 'content-author' or . = 'contributor'"> The acceptable attribute values for @role on the &lt;editor&gt; element inside
+                  the &lt;titleStmt&gt; are: creator, code-author, content-author, or contributor.
                 </sch:assert>
               </sch:rule>
               <sch:rule context="//tei:teiHeader//tei:seriesStmt//@role">
-                <sch:assert test=". = 'associate' or . = 'general' or . = 'technical' or . = 'past-associate' or . = 'past-general' or . = 'past-technical'">
-                  The acceptable attribute values for @role on the &lt;editor&gt; element inside the &lt;seriesStmt&gt; are: 
-                  associate, general, technical, past-associate, past-general, or past-technical.
-                </sch:assert>
+                <sch:assert test=". = 'associate' or . = 'general' or . = 'technical' or . = 'past-associate' or . = 'past-general' or . = 'past-technical'"> The acceptable attribute values for @role on the &lt;editor&gt; element inside
+                  the &lt;seriesStmt&gt; are: associate, general, technical, past-associate,
+                  past-general, or past-technical. </sch:assert>
               </sch:rule>
               <sch:rule context="//tei:body//tei:editor/@role">
-                <sch:assert test=". = 'editor' or . = 'general' or . = 'translator'">
-                  The acceptable attribute values for @role on the &lt;editor&gt; element inside the &lt;body&gt; are: 
-                  editor, general, or translator.
-                </sch:assert>
+                <sch:assert test=". = 'editor' or . = 'general' or . = 'translator'"> The acceptable
+                  attribute values for @role on the &lt;editor&gt; element inside the &lt;body&gt;
+                  are: editor, general, or translator. </sch:assert>
               </sch:rule>
             </constraint>
           </constraintSpec><constraintSpec ident="ref-on-editor" scheme="schematron">
             <constraint>
               <sch:rule context="//tei:teiHeader//tei:editor">
-                <sch:assert test="./@ref">A @ref attribute is required on the &lt;editor&gt; element inside &lt;teiHeader&gt;.</sch:assert>
+                <sch:assert test="./@ref">A @ref attribute is required on the &lt;editor&gt; element
+                  inside &lt;teiHeader&gt;.</sch:assert>
               </sch:rule>
               <sch:rule context="//tei:teiHeader//tei:editor/@ref">
                 <sch:let name="edsDoc" value="doc('https://raw.githubusercontent.com/srophe/srophe-eXist-app/master/documentation/editors.xml')"/>
                 <sch:let name="eds" value="$edsDoc//tei:text/tei:body/tei:listPerson/tei:person/@xml:id"/>
                 <sch:let name="refValues" value="for $i in $eds return concat('http://syriaca.org/documentation/editors.xml#', $i)"/>
-                <sch:assert test="                   every $i in .                   satisfies $i = $refValues">
-                  Acceptable values for the @ref attribute on an &lt;editor&gt; element inside the &lt;teiHeader&gt; include: 
-                  <sch:value-of select="string-join($refValues, ' | ')"/>.
-                </sch:assert>
+                <sch:assert test="                   every $i in .                   satisfies $i = $refValues"> Acceptable values for the @ref attribute on an &lt;editor&gt; element inside the
+                  &lt;teiHeader&gt; include: <sch:value-of select="string-join($refValues, ' | ')"/>. </sch:assert>
               </sch:rule>
               <sch:rule context="//tei:body//tei:editor">
-                <sch:report test="./@ref">A @ref attribute is not allowed on the &lt;editor&gt; element inside &lt;body&gt;.</sch:report>
+                <sch:report test="./@ref">A @ref attribute is not allowed on the &lt;editor&gt;
+                  element inside &lt;body&gt;.</sch:report>
               </sch:rule>
             </constraint>
           </constraintSpec><attList><attDef ident="ref" mode="change">
@@ -6579,10 +6529,12 @@ places, in particular where  multiple names are given.</p>
                   <desc>The person responsible for the creation of the xml encoding</desc>
                 </valItem>
                 <valItem ident="content-author">
-                  <desc>The person responsible for the content encoded in this document by another person</desc>
+                  <desc>The person responsible for the content encoded in this document by another
+                    person</desc>
                 </valItem>
                 <valItem ident="contributor">
-                  <desc>A person who contributed some data but is not the main person responsible for the document</desc>
+                  <desc>A person who contributed some data but is not the main person responsible
+                    for the document</desc>
                 </valItem>
                 <valItem ident="creator">
                   <desc>The main author responsible for the document</desc>
@@ -6594,13 +6546,13 @@ places, in particular where  multiple names are given.</p>
                   <desc>A general editor of a module</desc>
                 </valItem>
                 <valItem ident="past-associate">
-                  <desc>An associate editor</desc>
+                  <desc>A former associate editor</desc>
                 </valItem>
                 <valItem ident="past-general">
-                  <desc>A general editor of a module</desc>
+                  <desc>A former general editor of a module</desc>
                 </valItem>
                 <valItem ident="past-technical">
-                  <desc>An editor responsible for the data model</desc>
+                  <desc>A former editor responsible for the data model</desc>
                 </valItem>
                 <valItem ident="technical">
                   <desc>An editor responsible for the data model</desc>
@@ -6609,19 +6561,77 @@ places, in particular where  multiple names are given.</p>
                   <desc>The translator of a text</desc>
                 </valItem>
               </valList>
-            </attDef></attList><exemplum versionDate="2016-11-23">
+            </attDef></attList><exemplum>
             <egXML xmlns="http://www.tei-c.org/ns/Examples">
               <editor ref="http://syriaca.org/person/239" role="http://syriaca.org/documentation/author-editor-roles.xml#translator">
                 <persName xml:lang="en">Gregorius Bar Hebraeus</persName> — <persName xml:lang="syr">ܓܪܝܓܘܪܝܘܣ ܒܪ ܥܒܪܝܐ</persName>
               </editor>
             </egXML>
-          </exemplum><remarks versionDate="2016-11-23">
-            <p>
-              The <gi>editor</gi> element is used in two places in the Syriac Gazetteer. In the <gi>teiHeader</gi>
-              the editors of the document appear inside the <gi>titleStmt</gi> element while inside the <gi>seriesStmt</gi>
-              the editors responsible for the Syriac Gazetteer or individual volumes of the Syriac Gazetteer are listed.
-              In the body of Gazetteer records, the <gi>editor</gi> element is used inside of <gi>bibl</gi> elements to 
-              indicated editors of works sited.
+          </exemplum><exemplum>
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <editor role="creator" ref="http://syriaca.org/documentation/editors.xml#tcarlson">Thomas A. Carlson</editor>
+            </egXML>
+          </exemplum><exemplum>
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <bibl xml:id="bib18-9">
+                <title xml:lang="en">The Sixth Book of the Select Letters of Severus, Patriarch of
+                  Antioch in the Syriac Version of Athanasius of Nisibis</title>
+                <title type="sub">Translation, I.1 - II.3</title>
+                <author>
+                  <persName ref="http://syriaca.org/person/51">Severus of Antioch</persName>
+                </author>
+                <editor>
+                  <persName ref="http://syriaca.org/person/403">E. W. Brooks</persName>
+                </editor>
+                <ptr target="http://syriaca.org/bibl/668"/>
+                <citedRange unit="p">151</citedRange>
+              </bibl>
+            </egXML>
+          </exemplum><exemplum>
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <titleStmt>
+                <title level="a" xml:lang="en">Telneshe — <foreign xml:lang="syr">ܬܠܢܫܐ</foreign>
+                </title> ... <editor role="code-author" ref="http://syriaca.org/documentation/editors.xml#tcarlson">Thomas A.
+                  Carlson</editor>
+                <editor role="content-author" ref="http://syriaca.org/documentation/editors.xml#dboero">Dina Boero</editor>
+                <respStmt>
+                  <resp>Initial XML by</resp>
+                  <name ref="http://syriaca.org/documentation/editors.xml#tcarlson">Thomas A.
+                    Carlson</name>
+                </respStmt>
+                <respStmt>
+                  <resp>Data submission by</resp>
+                  <name ref="http://syriaca.org/documentation/editors.xml#dboero">Dina Boero</name>
+                </respStmt>
+                <respStmt>
+                  <resp>Data submission review by</resp>
+                  <name ref="http://syriaca.org/documentation/editors.xml#pforness">Philip
+                    Forness</name>
+                </respStmt>
+              </titleStmt>
+            </egXML>
+          </exemplum><exemplum>
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <seriesStmt>
+                <title level="s" xml:lang="en">The Syriac Gazetteer</title>
+                <editor role="general" ref="http://syriaca.org/documentation/editors.xml#dmichelson">
+                  <persName>David A. Michelson</persName>, <date from="2014">2014-present</date>.</editor>
+                <editor role="general" ref="http://syriaca.org/documentation/editors.xml#wpotter">
+                  <persName>William L. Potter</persName>, <date from="2020">2020-present</date>.</editor>
+                <editor role="technical" ref="http://syriaca.org/documentation/editors.xml#dschwartz">
+                  <persName>Daniel L. Schwartz</persName>, <date from="2019">2019-present</date>.</editor>
+                <editor role="past-general" ref="http://syriaca.org/documentation/editors.xml#tcarlson">
+                  <persName>Thomas A. Carlson</persName>, <date from="2014" to="2018">2014-2018</date>
+                </editor>
+                <idno type="URI">http://syriaca.org/geo</idno>
+              </seriesStmt>
+            </egXML>
+          </exemplum><remarks mode="add">
+            <p> The <gi>editor</gi> element is used in three places in the Srophé App. In the
+                <gi>teiHeader</gi> the editors of the document appear inside the <gi>titleStmt</gi>
+              element while inside the <gi>seriesStmt</gi> the editors responsible for a series that
+              the document might be a part of are listed. In the text of files, the <gi>editor</gi>
+              element is used inside of <gi>bibl</gi> elements to indicated editors of works sited.
             </p>
           </remarks><listRef>
     <ref target="http://www.tei-c.org/release/doc/tei-p5-doc/en/html/CO.html#COBICOR">3.11.2.2. Titles, Authors, and Editors</ref>
@@ -6642,48 +6652,51 @@ places, in particular where  multiple names are given.</p>
     Informationen zu Individuen oder Organisationen, die bei der Produktion oder Verbreitung eines
     bibliografischen Objekts eine Rolle gespielt.</desc><classes><memberOf key="att.global"/><memberOf key="att.canonical"/><memberOf key="model.respLike"/></classes><content><sequence minOccurs="1" maxOccurs="1"><elementRef key="resp" minOccurs="1" maxOccurs="1"/><alternate minOccurs="1" maxOccurs="1"><elementRef key="orgName" minOccurs="1" maxOccurs="1"/><elementRef key="name" minOccurs="1" maxOccurs="1"/></alternate></sequence></content><attList/><exemplum>
             <egXML xmlns="http://www.tei-c.org/ns/Examples">
-              <titleStmt> 
-                ... 
-                <respStmt>
-                  <resp>Initial Barsoum entry creation by</resp>
-                  <name ref="http://syriaca.org/documentation/editors.xml#dmichelson"> David A. Michelson</name>
-                </respStmt>
-                <respStmt>
+              <titleStmt> ... <respStmt>
                   <resp>Data merging, Pleiades and Wikipedia linking, and XML by</resp>
-                  <name ref="http://syriaca.org/documentation/editors.xml#tcarlson"> Thomas A. Carlson</name>
+                  <name ref="http://syriaca.org/documentation/editors.xml#tcarlson">Thomas A.
+                    Carlson</name>
                 </respStmt>
                 <respStmt>
-                  <resp>Syriac description entry by</resp>
-                  <name ref="http://syriaca.org/documentation/editors.xml#raydin"> Robert Aydin</name>
-                </respStmt> 
-                ... 
+                  <resp>Wilmshurst index information entry by</resp>
+                  <name ref="http://syriaca.org/documentation/editors.xml#adavis">Anthony
+                    Davis</name>
+                </respStmt>
               </titleStmt>
             </egXML>
           </exemplum><exemplum>
             <egXML xmlns="http://www.tei-c.org/ns/Examples">
               <respStmt>
-                <resp>These names were received as a dataset from E-Ktobe : manuscrits syriaques 
-                  (<ref target="http://syriac.msscatalog.org/">http://syriac.msscatalog.org/</ref>). 
-                  Née sur l’initiative d'André Binggeli (IRHT-CNRS), Françoise Briquel-Chatonnet (Orient et Méditerranée-CNRS), 
-                  Muriel Debié (EPHE) et Alain Desreumaux (Orient et Méditerranée-CNRS) dans le cadre du programme 
-                  SYRAB de l'ANR (Agence Nationale de la Recherche), la base e-ktobe est actuellement placée sous la responsabilité 
-                  scientifique d’André Binggeli et Emilie Villey (Orient et Méditerranée-CNRS).                            
-                  Liste des collaborateurs contribuant ou ayant contribué à l’alimentation de la base : 
-                  Youssef Dergham (Bibliothèque du patriarcat syro-catholique de Charfet), Margherita Farina (CNRS, Paris), 
-                  Simone I. M. Pratelli (U. de Constance), Flavia Ruani (U. de Gand) et Eleonora Serra (U. de Pise).</resp>
-                <orgName ref="http://syriac.msscatalog.org/">E-Ktobe : manuscrits syriaques</orgName>
+                <resp>These names were received as a dataset from E-Ktobe : manuscrits syriaques
+                    (<ref target="http://syriac.msscatalog.org/">http://syriac.msscatalog.org/</ref>). Née sur l’initiative d'André Binggeli
+                  (IRHT-CNRS), Françoise Briquel-Chatonnet (Orient et Méditerranée-CNRS), Muriel
+                  Debié (EPHE) et Alain Desreumaux (Orient et Méditerranée-CNRS) dans le cadre du
+                  programme SYRAB de l'ANR (Agence Nationale de la Recherche), la base e-ktobe est
+                  actuellement placée sous la responsabilité scientifique d’André Binggeli et Emilie
+                  Villey (Orient et Méditerranée-CNRS). Liste des collaborateurs contribuant ou
+                  ayant contribué à l’alimentation de la base : Youssef Dergham (Bibliothèque du
+                  patriarcat syro-catholique de Charfet), Margherita Farina (CNRS, Paris), Simone I.
+                  M. Pratelli (U. de Constance), Flavia Ruani (U. de Gand) et Eleonora Serra (U. de
+                  Pise).</resp>
+                <orgName ref="http://syriac.msscatalog.org/">E-Ktobe : manuscrits
+                  syriaques</orgName>
               </respStmt>
             </egXML>
-          </exemplum><remarks>
-            <p> Parties who are responsible for the creation of this TEI place record are then
-              identified individually in <gi>respStmt</gi> elements (<gi>resp</gi> stands for
-              "responsibility"). The contents of the <gi>respStmt</gi> element are the description
-              of the responsibility wrapped in a <gi>resp</gi> element followed by the name of the
-              responsible party contained in a <gi>name</gi> element. The <gi>name</gi> or <gi>orgName</gi> element
-              should take a <att>ref</att> attribute which points to the <att>xml:id</att> of the
-              editor within the "editors.xml" document. Additional participants in the creation of
-              the file, for example by entering Syriac or Arabic text, can be given additional
-              <gi>respStmt</gi> entries. </p>
+          </exemplum><remarks mode="add">
+            <p> Both the editors and other parties who are responsible for the creation of this TEI
+              place record are then identified individually in <gi>respStmt</gi> elements
+                (<gi>resp</gi> stands for "responsibility"). The schema requires the record have at
+              least one <gi>respStmt</gi> which would describe the contribution of the
+                <gi>editor</gi> with the <att>role</att>="creator". Most records will have multiple
+                <gi>respStmt</gi> elements, especially in cases where there were contributions made
+              by persons who do not fall into the available @role values. The contents of the
+                <gi>respStmt</gi> element are the description of the responsibility wrapped in a
+                <gi>resp</gi> element followed by the name of the responsible party contained in a
+                <gi>name</gi> element or the name of the responsible organization in an
+                <gi>orgName</gi> element. The <gi>name</gi> element should take a <att>ref</att>
+              attribute which points to the <att>xml:id</att> of the editor within the "editors.xml"
+              document. Additional participants in the creation of the file, for example by entering
+              Syriac or Arabic text, can be given additional <gi>respStmt</gi> entries.</p>
           </remarks><listRef>
     <ref target="http://www.tei-c.org/release/doc/tei-p5-doc/en/html/CO.html#COBICOR">3.11.2.2. Titles, Authors, and Editors</ref>
     <ref target="http://www.tei-c.org/release/doc/tei-p5-doc/en/html/HD.html#HD21">2.2.1. The Title Statement</ref>
@@ -7108,9 +7121,9 @@ inclus, peuvent être encodés dans un élément
       <bibl><ptr target="#mueller01"/>, <citedRange target="http://example.com/mueller3.xml#page4">vol. 3, pp.
         4-5</citedRange></bibl>
     </egXML>
-  </exemplum><remarks>
-            <p>The acceptable <att>unit</att> attribute values with the <gi>citedRange</gi> element
-              are: col, entry, fol, line, map, part, p, section, and vol.</p>
+  </exemplum><remarks mode="add">
+            <p>The <gi>citedRange</gi> is used to indicate the portion of a text is being cited in a bibliographic reference. 
+              It requires a <att>unit</att> attribute with one of the following values: col, entry, fol, line, map, part, p, section, and vol.</p>
           </remarks><listRef>
     <ref target="http://www.tei-c.org/release/doc/tei-p5-doc/en/html/CO.html#COBICOB">3.11.2.5. Scopes and Ranges in Bibliographic Citations</ref>
   </listRef></elementSpec><elementSpec rend="add" module="core" ident="bibl"><gloss versionDate="2005-01-14" xml:lang="en">bibliographic citation</gloss><gloss versionDate="2007-12-20" xml:lang="ko">서지 인용</gloss><gloss versionDate="2007-05-02" xml:lang="zh-TW">書目資料</gloss><gloss versionDate="2009-01-06" xml:lang="fr">référence bibliographique.</gloss><gloss versionDate="2007-05-04" xml:lang="es">cita bibliográfica.</gloss><gloss versionDate="2007-01-21" xml:lang="it">citazione bibliografica</gloss><gloss versionDate="2017-06-13" xml:lang="de">bibliografische Angabe</gloss><desc versionDate="2005-01-14" xml:lang="en">contains a loosely-structured bibliographic citation of which the sub-components may or may
@@ -7267,7 +7280,16 @@ inclus, peuvent être encodés dans un élément
     <ref target="http://www.tei-c.org/release/doc/tei-p5-doc/en/html/HD.html#HD3">2.2.7. The Source Description</ref>
     <ref target="http://www.tei-c.org/release/doc/tei-p5-doc/en/html/CC.html#CCAS2">15.3.2. Declarable Elements</ref>
   </listRef></elementSpec><elementSpec rend="change" module="certainty" ident="precision"><desc versionDate="2009-06-05" xml:lang="en">indicates the numerical accuracy or precision  associated
-  with some aspect of the text markup.</desc><classes><memberOf key="model.global.meta"/><memberOf key="att.scoping"/><memberOf key="att.ranging"/><memberOf key="model.certLike"/><memberOf key="att.datable"/></classes><content><alternate minOccurs="0" maxOccurs="unbounded"><classRef key="model.descLike"/><classRef key="model.certLike"/></alternate></content><attList><attDef ident="target" mode="delete"/><attDef ident="precision">
+  with some aspect of the text markup.</desc><classes><memberOf key="model.global.meta"/><memberOf key="att.scoping"/><memberOf key="att.ranging"/><memberOf key="model.certLike"/><memberOf key="att.datable"/></classes><content><alternate minOccurs="0" maxOccurs="unbounded"><classRef key="model.descLike"/><classRef key="model.certLike"/></alternate></content><attList><attDef ident="target" mode="delete"/><attDef ident="match" mode="change" usage="req">
+              <valList type="closed">
+                <valItem ident="@from">
+                  <desc>describes the precision of the @from attribute on the parent element</desc>
+                </valItem>
+                <valItem ident="@to">
+                  <desc>describes the precision of the @to attribute on the parent element</desc>
+                </valItem>
+              </valList>
+            </attDef><attDef ident="precision">
       <desc versionDate="2011-04-13" xml:lang="en">characterizes the precision of the element or attribute pointed 
         to by the <gi>precision</gi> element.</desc>
       <datatype><dataRef key="teidata.certainty"/></datatype>
@@ -7275,21 +7297,36 @@ inclus, peuvent être encodés dans un élément
       <desc versionDate="2009-06-05" xml:lang="en">supplies a standard deviation associated with the value in
       question</desc>
       <datatype><dataRef key="teidata.numeric"/></datatype>
-    </attDef></attList><exemplum xml:lang="en">
-    <egXML xmlns="http://www.tei-c.org/ns/Examples">
-      <date xml:id="date001" notBefore="0014" notAfter="0064">Within about 50
-        years of the death of Augustus</date>
-      <precision target="#date001" match="@notBefore" precision="high"/>
-      <precision target="#date001" match="@notAfter" precision="low"/>
-    </egXML>
-  </exemplum><exemplum xml:lang="en">
-    <egXML xmlns="http://www.tei-c.org/ns/Examples">
-      <date notBefore="1632" notAfter="1642">Not more than ten years before the start of the Civil War
-            <precision match="@notBefore" precision="low"/>
-            <precision match="@notAfter" precision="high"/>
-         </date>
-    </egXML>
-  </exemplum><listRef>
+    </attDef></attList><exemplum>
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <state resp="http://syriaca.org" type="existence" from="0300" to="0527" srophe:computed-end="0527-01-01" srophe:computed-start="0300-01-01">
+                <precision match="@from" notAfter="0300" srophe:computed-end="0300-01-01"/>
+                <precision match="@to" notAfter="1943" notBefore="0527" srophe:computed-end="1943-01-01" srophe:computed-start="0527-01-01"/>
+              </state>
+            </egXML>
+          </exemplum><exemplum>
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <state type="existence" from="0270" to="0694" syriaca-computed-end="0694-01-01" syriaca-computed-start="0270-01-01">
+                <precision match="@from" notAfter="0270" syriaca-computed-end="0270-01-01"/>
+                <precision match="@to" notAfter="1200" notBefore="0694" syriaca-computed-end="1200-01-01" syriaca-computed-start="0694-01-01"/>
+              </state>
+            </egXML>
+          </exemplum><remarks mode="add">
+            <p> 
+              The Srophé Application does not permit @notBefore and @notAfter on the <gi>state</gi> element. In the many cases where the precise beginning 
+              or ending dates are not known, the range of possible beginning dates or ending dates must be given within a <gi>precision</gi> 
+              element within <gi>state</gi>. This <gi>precision</gi> element will have a <att>match</att> attribute whose value is either 
+              "@from" or "@to" (depending on whether the beginning or ending date is uncertain). This <gi>precision</gi> element can take <att>notBefore</att> to indicate the terminus post quem and 
+              <att>notAfter</att> to indicate the terminus ante quem of the range of uncertainty. If, as is not uncommon, both the beginning 
+              and the end of the place’s existence are uncertain, these uncertainties should be represented by separate <gi>precision</gi> 
+              elements. When a <gi>precision</gi> element is used, the value of the <att>from</att> or <att>to</att> elements on the parent 
+              <gi>state</gi> should be within the range specified by the <gi>precision</gi> element but should be interpreted as imprecise. 
+            </p>
+            <p>
+              Note: The dates indicated in the <gi>precision</gi> element(s) are used for search but the Srophé Application does not 
+              currently display them in the HTML.
+            </p>
+          </remarks><listRef>
     <ref target="http://www.tei-c.org/release/doc/tei-p5-doc/en/html/CE.html#CEPREC">21.2. Indications of Precision</ref>
   </listRef></elementSpec><elementSpec rend="change" module="header" ident="teiHeader"><gloss xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2013-02-02" xml:lang="en">TEI header</gloss><gloss xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2009-01-05" xml:lang="fr">en-tête TEI</gloss><gloss xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-12-20" xml:lang="ko">TEI 헤더</gloss><gloss xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-02" xml:lang="zh-TW">TEI標頭</gloss><gloss xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2006-10-18" xml:lang="de">TEI-Header (elektronische Titelseite)</gloss><gloss xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-04" xml:lang="es">Encabezado TEI</gloss><gloss xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-01-21" xml:lang="it">intestazione</gloss><desc xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2016-02-19" xml:lang="en">supplies descriptive and
     declarative metadata associated with a digital resource or set of
@@ -7442,11 +7479,11 @@ inclus, peuvent être encodés dans un élément
         </revisionDesc>
       </teiHeader>
     </egXML>
-  </exemplum><remarks xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0">
+  </exemplum><remarks xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" mode="add">
             <p> Every <gi>teiHeader</gi> element contains a <gi>fileDesc</gi> element (information
               about the creation of a file), an <gi>encodingDesc</gi> element (editorial rules), a
-              <gi>profileDesc</gi>&gt; element (non-bibliographic aspects of a text), and a
-              <gi>revisionDesc</gi> element (history of revisions). </p>
+                <gi>profileDesc</gi> element (non-bibliographic aspects of a text), and a
+                <gi>revisionDesc</gi> element (history of revisions). </p>
           </remarks><listRef xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0">
     <ref target="http://www.tei-c.org/release/doc/tei-p5-doc/en/html/HD.html#HD11">2.1.1. The TEI Header and Its Components</ref>
     <ref target="http://www.tei-c.org/release/doc/tei-p5-doc/en/html/CC.html#CCDEF">15.1. Varieties of Composite Text</ref>
@@ -7483,9 +7520,10 @@ inclus, peuvent être encodés dans un élément
         </fileDesc>
       </teiHeader>
     </egXML>
-  </exemplum><remarks xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0">
+  </exemplum><remarks xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" mode="add">
             <p> Each <gi>fileDesc</gi> element contains (in order) a <gi>titleStmt</gi>, an
-              <gi>editionStmt</gi>, a <gi>publicationStmt</gi>, an optional <gi>seriesStmt</gi>, and a <gi>sourceDesc</gi>. </p>
+                <gi>editionStmt</gi>, a <gi>publicationStmt</gi>, an optional <gi>seriesStmt</gi>,
+              and a <gi>sourceDesc</gi>. </p>
           </remarks><listRef xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0">
     <ref target="http://www.tei-c.org/release/doc/tei-p5-doc/en/html/HD.html#HD2">2.2. The File Description</ref>
     <ref target="http://www.tei-c.org/release/doc/tei-p5-doc/en/html/HD.html#HD11">2.1.1. The TEI Header and Its Components</ref>
@@ -7493,54 +7531,32 @@ inclus, peuvent être encodés dans un élément
     les personnes ou institutions responsables de son contenu intellectuel.</desc><desc xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-12-20" xml:lang="ko">저작의 제목 그리고 지적 내용에 대한 책임에 관한 정보를 모아 놓는다.</desc><desc xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-02" xml:lang="zh-TW">匯集關於作品標題與作品智慧內容責任歸屬的資訊。</desc><desc xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2008-04-05" xml:lang="ja">作品や知的内容に責任のあるもののタイトルに関する情報をまとめる．</desc><desc xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2018-07-18" xml:lang="de">umfasst Angaben zum Titel eines Werks und zu den für
     seinen Inhalt Verantwortlichen.</desc><desc xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-04" xml:lang="es">agrupa la información referente al título de una obra y a
     los responsables de su contenido intelectual.</desc><desc xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-01-21" xml:lang="it">raggruppa le informazioni sul titolo di un'opera e sulle
-    responsabilità del suo contenuto intellettuale.</desc><classes><memberOf key="att.global"/></classes><content><sequence minOccurs="1" maxOccurs="1"><elementRef key="title" minOccurs="1" maxOccurs="unbounded"/><elementRef key="sponsor" minOccurs="1" maxOccurs="unbounded"/><elementRef key="funder" minOccurs="0" maxOccurs="unbounded"/><elementRef key="editor" minOccurs="1" maxOccurs="unbounded"/><elementRef key="respStmt" minOccurs="1" maxOccurs="unbounded"/></sequence></content><attList/><exemplum xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" xml:lang="en">
-    <egXML xmlns="http://www.tei-c.org/ns/Examples">
-      <titleStmt>
-        <title>Capgrave's Life of St. John Norbert: a machine-readable transcription</title>
-        <respStmt>
-          <resp>compiled by</resp>
-          <name>P.J. Lucas</name>
-        </respStmt>
-      </titleStmt>
-    </egXML>
-  </exemplum><exemplum xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2010-02-26" xml:lang="fr">
-    <egXML xmlns="http://www.tei-c.org/ns/Examples" source="#fr-ex-Sanctoral-ee">
-      <titleStmt>
-        <title>Le sanctoral du lectionnaire de l'office dominicain (1254-1256)</title>
-        <funder>2008—..., École nationale des chartes</funder>
-        <principal>Anne-Élisabeth Urfels-Capot</principal>
-        <respStmt>
-          <resp>responsable des publications</resp>
-          <name>Olivier Canteaut (École nationale des chartes)</name>
-        </respStmt>
-        <respStmt>
-          <resp> 2009—..., Éditeur électronique : du TEI à l'écran</resp>
-          <name ref="vincent.jolivet@enc.sorbonne.fr">Vincent Jolivet (École nationale
-              des chartes)</name>
-        </respStmt>
-        <respStmt>
-          <resp>2009, Éditeur scientifique</resp>
-          <name ref="pascale.bourgain@enc.sorbonne.fr">Pascale Bourgain (École
-              nationale des chartes)</name>
-        </respStmt>
-        <respStmt>
-          <resp>2008, Conversion du document bureautique vers TEI</resp>
-          <name ref="frederic.glorieux@enc.sorbonne.fr">Frédéric Glorieux (École
-              nationale des chartes)</name>
-        </respStmt>
-      </titleStmt>
-    </egXML>
-  </exemplum><exemplum xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" xml:lang="zh-TW">
-    <egXML xmlns="http://www.tei-c.org/ns/Examples">
-      <titleStmt>
-        <title>Taisho Tripitaka, Electronic version, No. 251 般若波羅蜜多心經</title>
-        <respStmt>
-          <resp>電子化</resp>
-          <name>中華電子佛典協會</name>
-        </respStmt>
-      </titleStmt>
-    </egXML>
-  </exemplum><listRef xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0">
+    responsabilità del suo contenuto intellettuale.</desc><classes><memberOf key="att.global"/></classes><content><sequence minOccurs="1" maxOccurs="1"><elementRef key="title" minOccurs="1" maxOccurs="unbounded"/><elementRef key="sponsor" minOccurs="1" maxOccurs="unbounded"/><elementRef key="funder" minOccurs="0" maxOccurs="unbounded"/><elementRef key="editor" minOccurs="1" maxOccurs="unbounded"/><elementRef key="respStmt" minOccurs="1" maxOccurs="unbounded"/></sequence></content><attList/><exemplum xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0">
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <titleStmt>
+                <title level="a" xml:lang="en">Van</title>
+                <sponsor>Syriaca.org: The Syriac Reference Portal</sponsor>
+                <funder>The National Endowment for the Humanities</funder>
+                <funder>The International Balzan Prize Foundation</funder>
+                <editor role="creator" ref="http://syriaca.org/documentation/editors.xml#tcarlson">Thomas A. Carlson</editor>
+                <respStmt>
+                  <resp>Data merging, Pleiades and Wikipedia linking, and XML by</resp>
+                  <name ref="http://syriaca.org/documentation/editors.xml#tcarlson">Thomas A.
+                    Carlson</name>
+                </respStmt>
+                <respStmt>
+                  <resp>Wilmshurst index information entry by</resp>
+                  <name ref="http://syriaca.org/documentation/editors.xml#adavis">Anthony
+                    Davis</name>
+                </respStmt>
+              </titleStmt>
+            </egXML>
+          </exemplum><remarks xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" mode="add">
+            <p> Each <gi>titleStmt</gi> element contains (in order) one or more <gi>title</gi>
+              elements, optional <gi>sponsor</gi> elements, optional <gi>funder</gi> elements,
+              optional <gi>principal</gi> elements, one or more <gi>sourceDesc</gi> elements, and
+              optional <gi>respStmt</gi> elements. </p>
+          </remarks><listRef xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0">
     <ref target="http://www.tei-c.org/release/doc/tei-p5-doc/en/html/HD.html#HD21">2.2.1. The Title Statement</ref>
     <ref target="http://www.tei-c.org/release/doc/tei-p5-doc/en/html/HD.html#HD2">2.2. The File Description</ref>
   </listRef></elementSpec><elementSpec rend="add" module="header" ident="sponsor"><gloss xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-06-12" xml:lang="fr">commanditaire</gloss><gloss xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2016-11-17" xml:lang="de">Förderer</gloss><desc xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2005-01-14" xml:lang="en">specifies the name of a sponsoring organization or institution.</desc><desc xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2009-01-05" xml:lang="fr">indique le nom d’une institution ou d’un organisme
@@ -7554,7 +7570,7 @@ inclus, peuvent être encodés dans un élément
                 ...
               </titleStmt>
             </egXML>
-          </exemplum><remarks>
+          </exemplum><remarks mode="add">
             <p> The TEI guidelines recommend that the <gi>titleStmt</gi> element also indicate who
               is responsible for this TEI file. Since <gi>author</gi> is typically used for the
               author of a print or manuscript text which was then encoded in TEI, we avoid the use
@@ -7576,7 +7592,7 @@ inclus, peuvent être encodés dans un élément
                 ... 
               </titleStmt>
             </egXML>
-          </exemplum><remarks>
+          </exemplum><remarks mode="add">
             <p> Next within the <gi>titleStmt</gi> the funding bodies are identified by use of the
               <gi>funder</gi> element. If multiple funding bodies are relevant, then each one gets
               a separate <gi>funder</gi> element, which are simply listed. </p>
@@ -7610,7 +7626,7 @@ creation of an electronic text.</desc><desc xmlns:xi="http://www.w3.org/2001/XIn
                 <edition n="1.0"/>
               </editionStmt>
             </egXML>
-          </exemplum><remarks xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0">
+          </exemplum><remarks xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" mode="add">
             <p> The <gi>editionStmt</gi> allows the specification of an edition or version number.
               When a TEI file is first published online, that edition should be "1.0". Subsequent
               revisions may bump the revision number, either by a whole new version (i.e. to "2.0")
@@ -7649,19 +7665,21 @@ creation of an electronic text.</desc><desc xmlns:xi="http://www.w3.org/2001/XIn
             <egXML xmlns="http://www.tei-c.org/ns/Examples">
               <publicationStmt>
                 <authority>Syriaca.org: The Syriac Reference Portal</authority>
-                <idno type="URI">http://syriaca.org/place/14/tei</idno>
+                <idno type="URI">http://syriaca.org/place/1027/tei</idno>
                 <availability>
-                  <license target="http://creativecommons.org/licenses/by/3.0/">
-                    <p>Distributed under a Creative Commons 
-                      Attribution 3.0 Unported License.</p>
-                  </license>
+                  <licence target="http://creativecommons.org/licenses/by/3.0/">
+                    <p>Distributed under a Creative Commons Attribution 3.0 Unported License.</p>
+                  </licence>
                 </availability>
                 <date>2014-01-14-05:00</date>
               </publicationStmt>
             </egXML>
-          </exemplum><remarks xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0">
-            <p>The <gi>publicationStmt</gi> is where we identify Syriaca.org as the entity responsible for publishing this information, 
-              indicate the date of the most recent edit, and identify the use license (Creative Commons CC-BY).</p>
+          </exemplum><remarks xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" mode="add">
+            <p>The <gi>publicationStmt</gi> is where we identify Syriaca.org as the entity
+              responsible for publishing this information, indicate the date of the most recent
+              edit, and identify the use license (Creative Commons CC-BY). The
+                <gi>publicationStmt</gi> contains requires (in order) the following
+                <gi>authority</gi>, <gi>idno</gi>, <gi>availability</gi>, and <gi>date</gi>. </p>
           </remarks><listRef xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0">
     <ref target="http://www.tei-c.org/release/doc/tei-p5-doc/en/html/HD.html#HD24">2.2.4. Publication, Distribution, Licensing, etc.</ref>
     <ref target="http://www.tei-c.org/release/doc/tei-p5-doc/en/html/HD.html#HD2">2.2. The File Description</ref>
@@ -7680,7 +7698,7 @@ creation of an electronic text.</desc><desc xmlns:xi="http://www.w3.org/2001/XIn
             <egXML xmlns="http://www.tei-c.org/ns/Examples">
               <authority>Syriaca.org: The Syriac Reference Portal</authority>
             </egXML>
-          </exemplum><remarks>
+          </exemplum><remarks mode="add">
             <p>The identification of Syriaca.org as the responsible entity is accomplished by an <gi>authority</gi> element.</p>
           </remarks><listRef xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0">
     <ref target="http://www.tei-c.org/release/doc/tei-p5-doc/en/html/HD.html#HD24">2.2.4. Publication, Distribution, Licensing, etc.</ref>
@@ -7924,8 +7942,7 @@ définissant les droits d'utilisation.</desc><desc xmlns:xi="http://www.w3.org/2
             <egXML xmlns="http://www.tei-c.org/ns/Examples">
               <license target="http://creativecommons.org/licenses/by/3.0/">
                 <p>Distributed under a Creative Commons Attribution 3.0 Unported License.</p>
-                <p>This entry incorporates copyrighted material from the following work(s):
-                  <listBibl>
+                <p>This entry incorporates copyrighted material from the following work(s): <listBibl>
                     <bibl>
                       <ptr target="#bib78-3"/>
                     </bibl>
@@ -7936,16 +7953,16 @@ définissant les droits d'utilisation.</desc><desc xmlns:xi="http://www.w3.org/2
                       <ptr target="#bib78-5"/>
                     </bibl>
                   </listBibl>
-                  <note>used under a Creative Commons Attribution license
-                    <ref target="http://creativecommons.org/licenses/by/3.0/"/>
+                  <note>used under a Creative Commons Attribution license <ref target="http://creativecommons.org/licenses/by/3.0/"/>
                   </note>
                 </p>
               </license>
             </egXML>
-          </exemplum><remarks xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0">
-            <p> The <gi>license</gi> element within the <gi>availability</gi> element is used to specify the Creative Commons CC-BY license under which 
-              this record is made available. Some records incorporate information from works under copyright (with permission), a fact which is also 
-              indicated in the <gi>license</gi> element. </p>
+          </exemplum><remarks xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" mode="add">
+            <p> The <gi>license</gi> element within the <gi>availability</gi> element is used to
+              specify the Creative Commons CC-BY license under which this record is made available.
+              Some records incorporate information from works under copyright (with permission), a
+              fact which is also indicated in the <gi>license</gi> element. </p>
           </remarks><listRef xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0">
     <ref target="http://www.tei-c.org/release/doc/tei-p5-doc/en/html/HD.html#HD24">2.2.4. Publication, Distribution, Licensing, etc.</ref>
   </listRef></elementSpec><elementSpec rend="change" module="header" ident="seriesStmt"><gloss xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2005-01-14" xml:lang="en">series statement</gloss><gloss xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2009-01-05" xml:lang="fr">mention de collection</gloss><gloss xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-12-20" xml:lang="ko">연속간행물 진술</gloss><gloss xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-02" xml:lang="zh-TW">集叢陳述</gloss><gloss xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2016-11-17" xml:lang="de">Angaben zu einer Publikationsreihe</gloss><gloss xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-04" xml:lang="es">declaración de serie</gloss><gloss xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-01-21" xml:lang="it">dichiarazione sulla serie</gloss><desc xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2005-01-14" xml:lang="en">groups information about the series, if any, to which a publication belongs.</desc><desc xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2009-01-05" xml:lang="fr">regroupe toute information relative à la collection (si
@@ -8054,12 +8071,19 @@ définissant les droits d'utilisation.</desc><desc xmlns:xi="http://www.w3.org/2
         Üblicherweise eine bibliografische Beschreibung im Falle eines digitalisierten Textes oder eine Bezeichnung wie 
         "born digital" für einen nur in elektronischer Form vorliegenden Text.  </desc><desc xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-04" xml:lang="es">proporciona una descripción del texto (o textos) fuente
     del que un texto electrónico deriva o ha sido generado.</desc><desc xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-01-21" xml:lang="it"> fornisce una descrizionei relativa alla o alle fonti da
-    cui è derivato o generato un documento elettronico.</desc><classes xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0"><memberOf key="att.global"/><memberOf key="att.declarable"/></classes><content xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0"><elementRef key="p" minOccurs="1" maxOccurs="1"/></content><constraintSpec xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" ident="sourceDesc" scheme="schematron">
+    cui è derivato o generato un documento elettronico.</desc><classes><memberOf key="att.global"/><memberOf key="att.declarable"/></classes><content><elementRef key="p" minOccurs="1" maxOccurs="1"/></content><constraintSpec ident="sourceDesc" scheme="schematron">
             <constraint>
               <sch:rule context="//tei:sourceDesc/tei:p">
                 <sch:assert test=". = 'Born digital.'">
                   The &lt;sourceDesc&gt; must contain a &lt;p&gt; element with the text node: "Born digital.". 
                 </sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec><constraintSpec xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" ident="sourceDesc" scheme="schematron">
+            <constraint>
+              <sch:rule context="//tei:sourceDesc/tei:p">
+                <sch:assert test=". = 'Born digital.'"> The &lt;sourceDesc&gt; must contain a
+                  &lt;p&gt; element with the text node: "Born digital.". </sch:assert>
               </sch:rule>
             </constraint>
           </constraintSpec><attList/><exemplum xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0">
@@ -8068,42 +8092,184 @@ définissant les droits d'utilisation.</desc><desc xmlns:xi="http://www.w3.org/2
                 <p>Born digital.</p>
               </sourceDesc>
             </egXML>
-          </exemplum><remarks xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0">
-            <p>The <gi>sourceDesc</gi> element is a mandatory component of the <gi>fileDesc</gi> element. Its purpose is to 
-              indicate the source of the text which is encoded in this file, for library cataloging among other uses. 
-              For Syriaca.org data that is not marking up text from a source, the option of indicating that this 
-              TEI is "born digital," should be used.</p>
+          </exemplum><exemplum xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0">
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <sourceDesc xml:id="sourceDesc1">
+                <biblStruct>
+                  <monogr>
+                    <editor>
+                      <forename>G. H.</forename>
+                      <surname>Gwilliam</surname>
+                    </editor>
+                    <editor>
+                      <forename>J.</forename>
+                      <surname>Pinkerton</surname>
+                    </editor>
+                    <editor>
+                      <forename>John</forename>
+                      <surname>Gwynn</surname>
+                    </editor>
+                    <title level="m">The New Testament in Syriac [<foreign xml:lang="syr">ܕܝܬܝܩܐ
+                        ܚܕܬܐ ܕܡܪܢ ܝܫܘܥ ܡܫܝܚܐ</foreign>]</title>
+                    <idno type="URI">http://syriaca.org/bibl/2491</idno>
+                    <idno type="zotero">1049</idno>
+                    <idno type="URI">http://zotero.org/groups/392292/items/N4KFR4M9</idno>
+                    <ref target="https://archive.org/details/newtestamentinsy00lond"/>
+                    <imprint>
+                      <pubPlace>London</pubPlace>
+                      <publisher>British and Foreign Bible Society</publisher>
+                      <date>1905</date>
+                    </imprint>
+                  </monogr>
+                </biblStruct>
+              </sourceDesc>
+            </egXML>
+          </exemplum><exemplum xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0">
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <sourceDesc>
+                <biblStruct>
+                  <monogr>
+                    <title level="m">Gorgias Encyclopedic Dictionary of the Syriac Heritage</title>
+                    <editor>Sebastian P. Brock</editor>
+                    <editor>Aaron M. Butts</editor>
+                    <editor>George A. Kiraz</editor>
+                    <editor>Lucas Van Rompay</editor>
+                    <imprint>
+                      <pubPlace>Piscataway, N.J.</pubPlace>
+                      <publisher>Gorgias Press for Beth Mardutho: The Syriac Institute</publisher>
+                      <date>2011</date>
+                      <note>Copyright ©2011 by Beth Mardutho: The Syriac Institute</note>
+                      <note>ISBN: 978-1-59333-714-8</note>
+                    </imprint>
+                  </monogr>
+                </biblStruct>
+              </sourceDesc>
+            </egXML>
+          </exemplum><remarks xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" mode="add">
+            <p>The <gi>sourceDesc</gi> element is a mandatory component of the <gi>fileDesc</gi>
+              element. Its purpose is to indicate the source of the text which is encoded in this
+              file, for library cataloging among other uses. For Syriaca.org data that is not
+              marking up text from a source, the option of indicating that this TEI is "born
+              digital," should be used. For text encoding projects</p>
           </remarks><listRef xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0">
     <ref target="http://www.tei-c.org/release/doc/tei-p5-doc/en/html/HD.html#HD3">2.2.7. The Source Description</ref>
   </listRef></elementSpec><elementSpec rend="change" module="header" ident="encodingDesc"><gloss xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-07-04" xml:lang="en">encoding description</gloss><gloss xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2009-01-05" xml:lang="fr">description de l'encodage</gloss><gloss xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-12-20" xml:lang="ko">부호화 기술</gloss><gloss xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-02" xml:lang="zh-TW">編碼描述</gloss><gloss xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2006-10-18" xml:lang="de">Beschreibung der Kodierung</gloss><gloss xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-04" xml:lang="es">Descripción de la codificación</gloss><gloss xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-01-21" xml:lang="it">descrizione della codifica</gloss><desc xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2005-01-14" xml:lang="en">documents the relationship between an electronic text and the
-source or sources from which it was derived.</desc><desc xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2009-01-05" xml:lang="fr">documente la relation d'un texte électronique avec sa ou ses sources.</desc><desc xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-12-20" xml:lang="ko">전자 텍스트와 그것의 원전 텍스트 혹은 텍스트들 사이의 관련성을 기록한다.</desc><desc xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-02" xml:lang="zh-TW">記錄電子文件和其ㄧ個或多個文件來源之間的關係。</desc><desc xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2008-04-05" xml:lang="ja">電子テキストとその元資料との関係を示す．</desc><desc xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2016-11-17" xml:lang="de">dokumentiert das Verhältnis zwischen dem elektronischen Text und seiner Quelle oder den Quellen, von denen er sich ableitet.</desc><desc xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-04" xml:lang="es">documenta la relación entre un texto electrónico y la fuente o fuentes de las que este deriva.</desc><desc xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-01-21" xml:lang="it">documenta la relazione fra un documento elettronico e la o le fonti da cui è derivato.</desc><classes xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0"><memberOf key="att.global"/></classes><content xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0"><sequence minOccurs="1" maxOccurs="1"><elementRef key="editorialDecl" minOccurs="1" maxOccurs="1"/><elementRef key="classDecl" minOccurs="1" maxOccurs="1"/></sequence></content><attList/><exemplum xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" xml:lang="en">
-    <egXML xmlns="http://www.tei-c.org/ns/Examples">
-      <encodingDesc>
-        <p>Basic encoding, capturing lexical information only. All
-hyphenation, punctuation, and variant spellings normalized. No
-formatting or layout information preserved.</p>
-      </encodingDesc>
-    </egXML>
-  </exemplum><exemplum xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" xml:lang="fr">
-    <egXML xmlns="http://www.tei-c.org/ns/Examples">
-      <encodingDesc>
-        <projectDesc>
-          <p>Corpus de
-                      textes sélectionnés pour la formation MISAT, Frejus,
-		      juillet 2010.
-                    </p>
-        </projectDesc>
-        <samplingDecl>
-          <p>Corpus
-                      d'échantillons de 2000 mots pris au début de chaque texte. </p>
-        </samplingDecl>
-      </encodingDesc>
-    </egXML>
-  </exemplum><remarks xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0">
-            <p>The <gi>encodingDesc</gi> element of the <gi>teiHeader</gi> is used for indicating aspects of the process of encoding 
-              the text. Although our person and place data are "born digital," they nevertheless have certain editorial decisions 
-              regarding how they have used data derived from print resources, and certain tags available for use in our <att>srophe:tags</att> 
-              attribute. Those sorts of details are encoded here.</p>
+source or sources from which it was derived.</desc><desc xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2009-01-05" xml:lang="fr">documente la relation d'un texte électronique avec sa ou ses sources.</desc><desc xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-12-20" xml:lang="ko">전자 텍스트와 그것의 원전 텍스트 혹은 텍스트들 사이의 관련성을 기록한다.</desc><desc xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-02" xml:lang="zh-TW">記錄電子文件和其ㄧ個或多個文件來源之間的關係。</desc><desc xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2008-04-05" xml:lang="ja">電子テキストとその元資料との関係を示す．</desc><desc xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2016-11-17" xml:lang="de">dokumentiert das Verhältnis zwischen dem elektronischen Text und seiner Quelle oder den Quellen, von denen er sich ableitet.</desc><desc xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-04" xml:lang="es">documenta la relación entre un texto electrónico y la fuente o fuentes de las que este deriva.</desc><desc xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-01-21" xml:lang="it">documenta la relazione fra un documento elettronico e la o le fonti da cui è derivato.</desc><classes xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0"><memberOf key="att.global"/></classes><content xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0"><sequence minOccurs="1" maxOccurs="1"><elementRef key="editorialDecl" minOccurs="1" maxOccurs="1"/><elementRef key="classDecl" minOccurs="0" maxOccurs="1"/></sequence></content><attList/><exemplum xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0">
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <encodingDesc>
+                <editorialDecl>
+                  <p>This record has been created following the Syriaca.org editorial guidelines.
+                    Documentation is available at: <ref target="http://syriaca.org/documentation">http://syriaca.org/documentation</ref>. <title>The Syriac Gazetteer</title>
+                    was encoded using both the general editorial guidelines for all publications of
+                    Syriaca.org and an encoding schema specific to <title>The Syriac
+                      Gazetteer</title>.</p>
+                  <p>Approximate dates described in terms of centuries or partial centuries have
+                    been interpreted into quantitative values as documented in the Syriaca.org
+                    guidelines for normalization of dates. See <ref target="http://syriaca.org/documentation/dates.html">Syriaca.org Guidelines
+                      for Approximate Dates</ref>.</p>
+                  <p>The <gi>state</gi> element of @type="existence" indicates the period for which
+                    this place was in use as a place of its indicated type (e.g. an inhabited
+                    settlement, a functioning monastery or church, an administrative province).
+                    While it is possible to indicate a source for this date, this date is usually
+                    based on the estimate of the editors and provided as an aid to searching. As a
+                    practice, attested dates for a place based on historical sources have instead
+                    been encoded more precisely using <gi>event</gi> of @type="attestation". Natural
+                    features which have always existed have no date on the <gi>state</gi> element of
+                    @type="existence" since they are are presumed to have always existed throughout
+                    recorded history.</p>
+                  <p>In some cases, maps from print publications have been used as the basis for
+                    coordinate data in <title>The Syriac Gazetteer</title>. In two instances, the
+                    editors of such print maps provided the digital coordinate data used to prepare
+                    the print maps. Specifically, coordinates which are attributed to <title>The
+                      Gorgias Encyclopedic Dictionary of the Syriac Heritage</title> (<ref target="http://syriaca.org/bibl/1">http://syriaca.org/bibl/1</ref>) or to
+                      <title>The Syriac World</title> (<ref target="http://syriaca.org/bibl/PUTG99V4">http://syriaca.org/bibl/PUTG99V4</ref>) were extracted from the KML files
+                    used to create the print maps for those volumes. Because only the print maps
+                    were published, the citation for these coordinates refers to the print source.
+                    The editors of the <title>The Syriac Gazetteer</title> are grateful to the
+                    editors of <title>The Gorgias Encyclopedic Dictionary of the Syriac
+                      Heritage</title> and <title>The Syriac World</title> for providing these
+                    coordinate files.</p>
+                  <p>The editors have silently normalized data from other sources in some cases. The
+                    primary instances are listed below.</p>
+                  <p>The capitalization of names from <title>The Gorgias Encyclopedic Dictionary of
+                      the Syriac Heritage</title> (<ref target="http://syriaca.org/bibl/1">http://syriaca.org/bibl/1</ref>) was normalized silently (i.e. names in
+                    ALL-CAPS were replaced by Proper-noun capitalization).</p>
+                  <p>The unchanging parts of alternate names from the editions and translations of
+                    Barsoum, <title>The Scattered Pearls: A History of Syriac Literature and
+                      Sciences</title> (<ref target="http://syriaca.org/bibl/2">http://syriaca.org/bibl/2</ref>, <ref target="http://syriaca.org/bibl/3">http://syriaca.org/bibl/3</ref>, or <ref target="http://syriaca.org/bibl/4">http://syriaca.org/bibl/4</ref>) have been supplied silently.</p>
+                  <p>Names from the English translation of Barsoum, <title>The Scattered Pearls: A
+                      History of Syriac Literature and Sciences</title> (<ref target="http://syriaca.org/bibl/4">http://syriaca.org/bibl/4</ref>) were
+                    silently transformed into sentence word order rather than the headword
+                    alphabetization used by Barsoum. Commas were silently removed.</p>
+                </editorialDecl>
+                <classDecl>
+                  <taxonomy>
+                    <category xml:id="syriaca-headword">
+                      <catDesc>The name used by Syriaca.org for document titles, citation, and
+                        disambiguation. These names have been created according to the Syriac.org
+                        guidelines for headwords: <ref target="http://syriaca.org/documentation/headwords.html">http://syriaca.org/documentation/headwords.html</ref>.</catDesc>
+                    </category>
+                  </taxonomy>
+                </classDecl>
+              </encodingDesc>
+            </egXML>
+          </exemplum><exemplum xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0">
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <encodingDesc>
+                <editorialDecl>
+                  <p>This record has been created following the Syriaca.org editorial guidelines.
+                    Documentation is available at: <ref target="http://syriaca.org/documentation">http://syriaca.org/documentation</ref>. <title>The Syriac Gazetteer</title>
+                    was encoded using both the general editorial guidelines for all publications of
+                    Syriaca.org and an encoding schema specific to <title>The Syriac
+                      Gazetteer</title>.</p>
+                  <p>Approximate dates described in terms of centuries or partial centuries have
+                    been interpreted into quantitative values as documented in the Syriaca.org
+                    guidelines for normalization of dates. See <ref target="http://syriaca.org/documentation/dates.html">Syriaca.org Guidelines
+                      for Approximate Dates</ref>.</p>
+                  <p>The <gi>state</gi> element of @type="existence" indicates the period for which
+                    this place was in use as a place of its indicated type (e.g. an inhabited
+                    settlement, a functioning monastery or church, an administrative province).
+                    While it is possible to indicate a source for this date, this date is usually
+                    based on the estimate of the editors and provided as an aid to searching. As a
+                    practice, attested dates for a place based on historical sources have instead
+                    been encoded more precisely using <gi>event</gi> of @type="attestation". Natural
+                    features which have always existed have no date on the <gi>state</gi> element of
+                    @type="existence" since they are are presumed to have always existed throughout
+                    recorded history.</p>
+                  <p>In some cases, maps from print publications have been used as the basis for
+                    coordinate data in <title>The Syriac Gazetteer</title>. In two instances, the
+                    editors of such print maps provided the digital coordinate data used to prepare
+                    the print maps. Specifically, coordinates which are attributed to <title>The
+                      Gorgias Encyclopedic Dictionary of the Syriac Heritage</title> (<ref target="http://syriaca.org/bibl/1">http://syriaca.org/bibl/1</ref>) or to
+                    <title>The Syriac World</title> (<ref target="http://syriaca.org/bibl/PUTG99V4">http://syriaca.org/bibl/PUTG99V4</ref>) were extracted from the KML files
+                    used to create the print maps for those volumes. Because only the print maps
+                    were published, the citation for these coordinates refers to the print source.
+                    The editors of the <title>The Syriac Gazetteer</title> are grateful to the
+                    editors of <title>The Gorgias Encyclopedic Dictionary of the Syriac
+                      Heritage</title> and <title>The Syriac World</title> for providing these
+                    coordinate files.</p>
+                  <p>The editors have silently normalized data from other sources in some cases. The
+                    primary instances are listed below.</p>
+                  <p>The capitalization of names from <title>The Gorgias Encyclopedic Dictionary of
+                    the Syriac Heritage</title> (<ref target="http://syriaca.org/bibl/1">http://syriaca.org/bibl/1</ref>) was normalized silently (i.e. names in
+                    ALL-CAPS were replaced by Proper-noun capitalization).</p>
+                  <p>The unchanging parts of alternate names from the editions and translations of
+                    Barsoum, <title>The Scattered Pearls: A History of Syriac Literature and
+                      Sciences</title> (<ref target="http://syriaca.org/bibl/2">http://syriaca.org/bibl/2</ref>, <ref target="http://syriaca.org/bibl/3">http://syriaca.org/bibl/3</ref>, or <ref target="http://syriaca.org/bibl/4">http://syriaca.org/bibl/4</ref>) have been supplied silently.</p>
+                  <p>Names from the English translation of Barsoum, <title>The Scattered Pearls: A
+                    History of Syriac Literature and Sciences</title> (<ref target="http://syriaca.org/bibl/4">http://syriaca.org/bibl/4</ref>) were
+                    silently transformed into sentence word order rather than the headword
+                    alphabetization used by Barsoum. Commas were silently removed.</p>
+                </editorialDecl>
+                ...
+              </encodingDesc>
+            </egXML>
+          </exemplum><remarks xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" mode="add">
+            <p>The <gi>encodingDesc</gi> element of the <gi>teiHeader</gi> is used for indicating
+              aspects of the process of encoding the text. Even data are "born digital," they
+              nevertheless have certain editorial decisions regarding how they have used data
+              derived from print resources, and certain tags available for use in our
+                <att>srophe:tags</att> attribute. Those sorts of details are encoded here.</p>
           </remarks><listRef xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0">
     <ref target="http://www.tei-c.org/release/doc/tei-p5-doc/en/html/HD.html#HD5">2.3. The Encoding Description</ref>
     <ref target="http://www.tei-c.org/release/doc/tei-p5-doc/en/html/HD.html#HD11">2.1.1. The TEI Header and Its Components</ref>
@@ -8112,23 +8278,29 @@ during the encoding of a text.</desc><desc xmlns:xi="http://www.w3.org/2001/XInc
             <egXML xmlns="http://www.tei-c.org/ns/Examples">
               <encodingDesc>
                 <editorialDecl>
-                  <p>This record created following the Syriaca.org guidelines. Documentation available at: <ref target="http://syriaca.org/documentation">
-                    http://syriaca.org/documentation</ref>.</p>
-                  <p>The capitalization of names from GEDSH (<idno type="URI">http://syriaca.org/bibl/1</idno>) was normalized (i.e. names in ALL-CAPS were replaced by Proper-noun capitalization).</p>
+                  <p>This record created following the Syriaca.org guidelines. Documentation
+                    available at: <ref target="http://syriaca.org/documentation">
+                      http://syriaca.org/documentation</ref>.</p>
+                  <p>The capitalization of names from GEDSH (<idno type="URI">http://syriaca.org/bibl/1</idno>) was normalized (i.e. names in ALL-CAPS were
+                    replaced by Proper-noun capitalization).</p>
                   <p>The unchanging parts of alternate names from Barsoum (<idno type="URI">http://syriaca.org/bibl/2</idno>, <idno type="URI">http://syriaca.org/bibl/3</idno>, or <idno type="URI">http://syriaca.org/bibl/4</idno>) have been supplied to each alternate.</p>
-                  <p>Names from the English translation of Barsoum (<idno type="URI">http://syriaca.org/bibl/4</idno>) were put in sentence word order rather than fronting a dictionary headword.  Any commas in the Barsoum name in English were removed.</p>
-                  <p>The <gi>state</gi> element of @type="existence" indicates the period for which this place was in use as a place of its indicated type (e.g. an inhabited settlement, a functioning monastery or church, an administrative province).  Natural features always in existence have no <gi>state</gi> element of @type="existence".</p>
-                  ...
-                </editorialDecl>
-                ...
-              </encodingDesc>
+                  <p>Names from the English translation of Barsoum (<idno type="URI">http://syriaca.org/bibl/4</idno>) were put in sentence word order rather than
+                    fronting a dictionary headword. Any commas in the Barsoum name in English were
+                    removed.</p>
+                  <p>The <gi>state</gi> element of @type="existence" indicates the period for which
+                    this place was in use as a place of its indicated type (e.g. an inhabited
+                    settlement, a functioning monastery or church, an administrative province).
+                    Natural features always in existence have no <gi>state</gi> element of
+                    @type="existence".</p> ... </editorialDecl> ... </encodingDesc>
             </egXML>
-          </exemplum><remarks xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0">
-            <p>The first element within an <gi>encodingDesc</gi> is the <gi>editorialDecl</gi>, which indicates editorial decisions 
-              regarding how the source documents were handled. An <gi>editorialDecl</gi> cannot directly contain prose, so a prose 
-              description of each editorial decision should be wrapped in a <gi>p</gi> element. References to particular bibliographic 
-              entries can have their Syriaca.org URIs wrapped in an <gi>idno</gi> for specificity. The first <gi>p</gi> element should 
-              contain a pointer to the Syriaca.org documentation.</p>
+          </exemplum><remarks xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" mode="add">
+            <p>The first element within an <gi>encodingDesc</gi> is the <gi>editorialDecl</gi>,
+              which indicates editorial decisions regarding how the source documents were handled.
+              An <gi>editorialDecl</gi> cannot directly contain prose, so a prose description of
+              each editorial decision should be wrapped in a <gi>p</gi> element. References to
+              particular bibliographic entries can have their Syriaca.org URIs wrapped in an
+                <gi>idno</gi> for specificity. The first <gi>p</gi> element should contain a pointer
+              to the Syriaca.org documentation.</p>
           </remarks><listRef xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0">
     <ref target="http://www.tei-c.org/release/doc/tei-p5-doc/en/html/HD.html#HD53">2.3.3. The Editorial Practices Declaration</ref>
     <ref target="http://www.tei-c.org/release/doc/tei-p5-doc/en/html/HD.html#HD5">2.3. The Encoding Description</ref>
@@ -8140,18 +8312,18 @@ codes used elsewhere in the text.</desc><desc xmlns:xi="http://www.w3.org/2001/X
               <classDecl>
                 <taxonomy>
                   <category xml:id="syriaca-headword">
-                    <catDesc>The name used by Syriaca.org for document titles, citation, and disambiguation. These names 
-                      have been created according to the Syriac.org guidelines for headwords: 
-                      <ref target="http://syriaca.org/documentation/headwords.html">http://syriaca.org/documentation/headwords.html</ref>.
-                    </catDesc>
+                    <catDesc>The name used by Syriaca.org for document titles, citation, and
+                      disambiguation. These names have been created according to the Syriac.org
+                      guidelines for headwords: <ref target="http://syriaca.org/documentation/headwords.html">http://syriaca.org/documentation/headwords.html</ref>.</catDesc>
                   </category>
                 </taxonomy>
               </classDecl>
             </egXML>
-          </exemplum><remarks xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0">
-            <p>The class declaration contains one or more taxonomies defining any classificatory codes used elsewhere in the 
-              text. There are various tags which Syriaca.org uses to mark elements for a variety of purposes. Syriaca.org’s 
-              preferred name forms are tagged with "syriaca-headword", for example. </p>
+          </exemplum><remarks xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" mode="add">
+            <p>The <gi>classDecl</gi> contains one or more taxonomies defining any classificatory
+              codes used elsewhere in the text. There are various tags which Syriaca.org uses to
+              mark elements for a variety of purposes. Syriaca.org’s preferred name forms are tagged
+              with "syriaca-headword", for example. </p>
           </remarks><listRef xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0">
     <ref target="http://www.tei-c.org/release/doc/tei-p5-doc/en/html/HD.html#HD55">2.3.7. The Classification Declaration</ref>
     <ref target="http://www.tei-c.org/release/doc/tei-p5-doc/en/html/HD.html#HD5">2.3. The Encoding Description</ref>
@@ -8167,22 +8339,19 @@ codes used elsewhere in the text.</desc><desc xmlns:xi="http://www.w3.org/2001/X
               <classDecl>
                 <taxonomy>
                   <category xml:id="syriaca-headword">
-                    <catDesc>The name used by Syriaca.org for document titles, citation, and disambiguation. These names 
-                      have been created according to the Syriac.org guidelines for headwords: 
-                      <ref target="http://syriaca.org/documentation/headwords.html">http://syriaca.org/documentation/headwords.html</ref>.
-                    </catDesc>
+                    <catDesc>The name used by Syriaca.org for document titles, citation, and
+                      disambiguation. These names have been created according to the Syriac.org
+                      guidelines for headwords: <ref target="http://syriaca.org/documentation/headwords.html">http://syriaca.org/documentation/headwords.html</ref>.</catDesc>
                   </category>
                 </taxonomy>
               </classDecl>
             </egXML>
-          </exemplum><remarks xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2015-10-31" xml:lang="en">
-      <p>Nested taxonomies are common in many fields, so the
-      <gi>taxonomy</gi> element can be nested.</p>
-    </remarks><remarks xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2016-11-17" xml:lang="de">
-        <p>
-            Da in vielen Bereichen verschachtelte Taxonomien gängig sind, kann das <gi>taxonomy</gi>-Element verschachtelt werden.
-        </p>
-    </remarks><listRef xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0">
+          </exemplum><remarks xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" mode="add">
+            <p>The <gi>taxonomy</gi> contains one or more taxonomies defining any classificatory
+              codes used elsewhere in the text. There are various tags which Syriaca.org uses to
+              mark elements for a variety of purposes. Syriaca.org’s preferred name forms are tagged
+              with "syriaca-headword", for example. </p>
+          </remarks><listRef xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0">
     <ref target="http://www.tei-c.org/release/doc/tei-p5-doc/en/html/HD.html#HD55">2.3.7. The Classification Declaration</ref>
   </listRef></elementSpec><elementSpec rend="change" module="header" ident="category"><gloss xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2009-01-05" xml:lang="fr">catégorie</gloss><gloss xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2016-11-17" xml:lang="de">Kategorie</gloss><desc xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2005-01-14" xml:lang="en">contains an individual descriptive category, possibly nested within a superordinate
     category, within a user-defined taxonomy.</desc><desc xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2009-01-05" xml:lang="fr"> contient une catégorie descriptive particulière,
@@ -8195,17 +8364,17 @@ codes used elsewhere in the text.</desc><desc xmlns:xi="http://www.w3.org/2001/X
               <classDecl>
                 <taxonomy>
                   <category xml:id="syriaca-headword">
-                    <catDesc>The name used by Syriaca.org for document titles, citation, and disambiguation. These names 
-                      have been created according to the Syriac.org guidelines for headwords: 
-                      <ref target="http://syriaca.org/documentation/headwords.html">http://syriaca.org/documentation/headwords.html</ref>.
-                    </catDesc>
+                    <catDesc>The name used by Syriaca.org for document titles, citation, and
+                      disambiguation. These names have been created according to the Syriac.org
+                      guidelines for headwords: <ref target="http://syriaca.org/documentation/headwords.html">http://syriaca.org/documentation/headwords.html</ref>.</catDesc>
                   </category>
                 </taxonomy>
               </classDecl>
             </egXML>
-          </exemplum><remarks xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0">
-            <p>Each <gi>category</gi> has an <att>xml:id</att> attribute whose value is the tag. Within the <gi>category</gi> 
-              element is a <gi>catDesc</gi> element which contains a brief prose description of the category’s purpose.</p>
+          </exemplum><remarks xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" mode="add">
+            <p>The <gi>category</gi> has an <att>xml:id</att> attribute whose value is the tag.
+              Within the <gi>category</gi> element is a <gi>catDesc</gi> element which contains a
+              brief prose description of the category’s purpose.</p>
           </remarks><listRef xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0">
     <ref target="http://www.tei-c.org/release/doc/tei-p5-doc/en/html/HD.html#HD55">2.3.7. The Classification Declaration</ref>
   </listRef></elementSpec><elementSpec rend="change" module="header" ident="catDesc"><gloss xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2005-01-14" xml:lang="en">category description</gloss><gloss xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2009-01-05" xml:lang="fr">Description de la catégorie</gloss><gloss xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-12-20" xml:lang="ko">범주 기술</gloss><gloss xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-02" xml:lang="zh-TW">類目描述</gloss><gloss xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2006-10-18" xml:lang="de">Beschreibung der Kategorie</gloss><gloss xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-04" xml:lang="es">descripción de una categoría</gloss><gloss xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-01-21" xml:lang="it">descrizione della categoria</gloss><desc xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2005-01-14" xml:lang="en">describes some category within a taxonomy or text typology, either in the form of a brief
@@ -8224,17 +8393,16 @@ codes used elsewhere in the text.</desc><desc xmlns:xi="http://www.w3.org/2001/X
               <classDecl>
                 <taxonomy>
                   <category xml:id="syriaca-headword">
-                    <catDesc>The name used by Syriaca.org for document titles, citation, and disambiguation. These names 
-                      have been created according to the Syriac.org guidelines for headwords: 
-                      <ref target="http://syriaca.org/documentation/headwords.html">http://syriaca.org/documentation/headwords.html</ref>.
-                    </catDesc>
+                    <catDesc>The name used by Syriaca.org for document titles, citation, and
+                      disambiguation. These names have been created according to the Syriac.org
+                      guidelines for headwords: <ref target="http://syriaca.org/documentation/headwords.html">http://syriaca.org/documentation/headwords.html</ref>.</catDesc>
                   </category>
                 </taxonomy>
               </classDecl>
             </egXML>
-          </exemplum><remarks xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0">
-            <p>Each <gi>category</gi> has an <att>xml:id</att> attribute whose value is the tag. Within the <gi>category</gi> 
-              element is a <gi>catDesc</gi> element which contains a brief prose description of the category’s purpose.</p>
+          </exemplum><remarks xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" mode="add">
+            <p>The <gi>catDesc</gi> contains a brief prose description of the category’s
+              purpose.</p>
           </remarks><listRef xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0">
     <ref target="http://www.tei-c.org/release/doc/tei-p5-doc/en/html/HD.html#HD55">2.3.7. The Classification Declaration</ref>
   </listRef></elementSpec><elementSpec rend="add" module="header" ident="profileDesc"><gloss xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2005-01-14" xml:lang="en">text-profile description</gloss><gloss xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2009-01-05" xml:lang="fr">description du profil</gloss><gloss xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-12-20" xml:lang="ko">텍스트-개요 기술</gloss><gloss xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-02" xml:lang="zh-TW">文件背景描述</gloss><gloss xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2006-10-18" xml:lang="de">Beschreibung des Textprofils</gloss><gloss xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-04" xml:lang="es">descripción del perfil del texto.</gloss><gloss xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-01-21" xml:lang="it">descrizione del profilo del testo</gloss><desc xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2005-01-14" xml:lang="en">provides a detailed description of non-bibliographic aspects of a text, specifically the
@@ -8258,7 +8426,7 @@ codes used elsewhere in the text.</desc><desc xmlns:xi="http://www.w3.org/2001/X
                 </langUsage>
               </profileDesc>
             </egXML>
-          </exemplum><remarks>
+          </exemplum><remarks mode="add">
             <p>The <gi>profileDesc</gi> contains a <gi>langUsage</gi> element that contains a <gi>p</gi> element. 
               The text of the <gi>p</gi> should read: Languages codes used in this record follow the Syriaca.org guidelines. Documentation available at: 
               <ref target="http://syriaca.org/documentation/langusage.xml">http://syriaca.org/documentation/langusage.xml</ref></p>
@@ -8278,7 +8446,7 @@ langues, registres, dialectes, etc. présents à l’intérieur d’un texte.</d
                 </langUsage>
               </profileDesc>
             </egXML>
-          </exemplum><remarks>
+          </exemplum><remarks mode="add">
             <p>The <gi>langUsage</gi> element contains a <gi>p</gi> element. 
               The text of the <gi>p</gi> should read: Languages codes used in this record follow the Syriaca.org guidelines. Documentation available at: 
               <ref target="http://syriaca.org/documentation/langusage.xml">http://syriaca.org/documentation/langusage.xml</ref></p>
@@ -8306,46 +8474,26 @@ langues, registres, dialectes, etc. présents à l’intérieur d’un texte.</d
                   <desc>Indicates that this document is under review by one or more editors.</desc>
                 </valItem>
               </valList>
-            </attDef></attList><exemplum xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" xml:lang="en">
-    <egXML xmlns="http://www.tei-c.org/ns/Examples">
-      <revisionDesc status="embargoed">
-        <change when="1991-11-11" who="#LB"> deleted chapter 10 </change>
-      </revisionDesc>
-    </egXML>
-  </exemplum><exemplum xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2008-04-06" xml:lang="fr">
-    <egXML xmlns="http://www.tei-c.org/ns/Examples">
-      <revisionDesc>
-        <list>
-          <item><date when="2003-04-12">12 avril 03</date>Dernière révision par F. B.</item>
-          <item><date when="2003-03-01">1 mars 03</date> F.B a fait le nouveau fichier.</item>
-        </list>
-      </revisionDesc>
-    </egXML>
-  </exemplum><exemplum xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" xml:lang="zh-TW">
-    <egXML xmlns="http://www.tei-c.org/ns/Examples">
-      <revisionDesc status="embargoed">
-        <change when="1991-11-11"> 王大明刪除第十章</change>
-      </revisionDesc>
-    </egXML>
-  </exemplum><remarks xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2016-11-04" xml:lang="en">
-    <p>If present on this element, the <att>status</att> attribute
-    should indicate the current status of the document. The same
-    attribute may appear on any <gi>change</gi> to record the status
-    at the time of that change. Conventionally <gi>change</gi> elements should
-    be given in reverse date order, with the most recent change at the
-    start of the list.</p>
-  </remarks><remarks xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" xml:lang="fr" versionDate="2007-06-12">
-    <p>Les changements les plus récents apparaissent en début de liste</p>
-  </remarks><remarks xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" xml:lang="es" versionDate="2008-04-06">
-    <p>Registran los cambios más recientes en el top de la lista.</p>
-  </remarks><remarks xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" xml:lang="ja" versionDate="2008-04-05">
-    <p> 直近の変更をリストの先頭に記録する． </p>
-  </remarks><remarks xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" xml:lang="de" versionDate="2016-11-25">
-      <p>Wenn an diesem Element gesetzt, sollte das <att>status</att>-Attribut den aktuellen 
-          Status des Dokuments widerspiegeln. An jedem <gi>change</gi>-Kindelement gibt das selbe 
-          Attribut den jeweiligen Status zum Zeitpunkt der Änderung an. Die <gi>change</gi>-Elemente 
-          werden der Konvention nach so angeordnet, dass die letzte Änderung am Anfang steht und die erste zum Schluss. </p>
-  </remarks><listRef xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0">
+            </attDef></attList><exemplum xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0">
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <revisionDesc status="published">
+                <change who="http://syriaca.org/documentation/editors.xml#wsalesky" when="2014-06-30-04:00">CHANGED tei:author element to tei:persName under tei:event
+                  element.</change>
+                <change who="http://syriaca.org/documentation/editors.xml#tcarlson" when="2014-06-12-05:00">ADDED: Yaqut citation and attestation</change>
+                <change who="http://syriaca.org/documentation/editors.xml#wsalesky" when="2014-01-14">ADDED: relation element with shares-name-with attribute for all
+                  place headwords that share names</change>
+                <change who="http://syriaca.org/documentation/editors.xml#wsalesky" when="2014-01-14">ADDED: syriaca-computed-start and syriaca-computed-end
+                  attributes for searching</change>
+                <change who="http://syriaca.org/documentation/editors.xml#tcarlson" when="2013-12-18-05:00">CREATED: place</change>
+              </revisionDesc>
+            </egXML>
+          </exemplum><remarks xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" mode="add">
+            <p> The <gi>revisionDesc</gi> element is used to include a detailed log of which changes
+              have been made to this file, when, and by whom. The <gi>revisionDesc</gi> should have
+              a <att>status</att> attribute which indicates the publication stage of the file.
+              Possible values for this attribute include: “draft,” “incomplete,” “published,” and
+              “underReview”. Each revision contains a <gi>change</gi> element. </p>
+          </remarks><listRef xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0">
     <ref target="http://www.tei-c.org/release/doc/tei-p5-doc/en/html/HD.html#HD6">2.6. The Revision Description</ref>
     <ref target="http://www.tei-c.org/release/doc/tei-p5-doc/en/html/HD.html#HD11">2.1.1. The TEI Header and Its Components</ref>
   </listRef></elementSpec><elementSpec rend="change" module="header" ident="change"><gloss xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2016-11-25" xml:lang="de">Änderung</gloss><desc xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2011-10-31" xml:lang="en">documents a change or set of changes made during the production
@@ -8374,25 +8522,27 @@ langues, registres, dialectes, etc. présents à l’intérieur d’un texte.</d
     </attDef></attList><exemplum xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0">
             <egXML xmlns="http://www.tei-c.org/ns/Examples">
               <revisionDesc>
-                <change when="2013-04-15" who="http://syriaca.org/documentation/editors.xml#ngibson" n="1.1">
-                  ADDED: Pleiades coordinates</change>
-                <change when="2013-04-01" who="http://syriaca.org/documentation/editors.xml#dmichelson">
-                  FIXED: Ufra to Urfa</change>
-                <change when="2013-03-16" who="http://syriaca.org/documentation/editors.xml#tcarlson" n="1.0">
-                  ADDED: teiHeader/revisionDesc</change>
-                <change when="2013-03-15" who="http://syriaca.org/documentation/editors.xml#tcarlson">
-                  ADDED: teiHeader</change>
-                <change when="2013-03-01" who="http://syriaca.org/documentation/editors.xml#tcarlson" n="0.1">
-                  CREATED: place</change>
+                <change when="2013-04-15" who="http://syriaca.org/documentation/editors.xml#ngibson" n="1.1"> ADDED: Pleiades coordinates</change>
+                <change when="2013-04-01" who="http://syriaca.org/documentation/editors.xml#dmichelson"> FIXED: Ufra to
+                  Urfa</change>
+                <change when="2013-03-16" who="http://syriaca.org/documentation/editors.xml#tcarlson" n="1.0"> ADDED:
+                  teiHeader/revisionDesc</change>
+                <change when="2013-03-15" who="http://syriaca.org/documentation/editors.xml#tcarlson"> ADDED:
+                  teiHeader</change>
+                <change when="2013-03-01" who="http://syriaca.org/documentation/editors.xml#tcarlson" n="0.1"> CREATED:
+                  place</change>
               </revisionDesc>
             </egXML>
-          </exemplum><remarks xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0">
-            <p>The <gi>change</gi> element takes attributes <att>when</att> and <att>who</att> which indicate the date of the 
-              change and the person who made the change. The value of <att>when</att> is a date in "yyyy-mm-dd" format, whereas 
-              <att>who</att> will have the value of an <att>xml:id</att> attribute from "http://syriaca.org/documentation/editors.xml" - the list 
-              of editors. An optional <att>n</att> attribute whose value is a version number can indicate that this change advanced 
-              the version number (given in the <gi>editionStmt</gi> within the <gi>fileDesc</gi> element). The contents of the 
-              <gi>change</gi> element describe the revision that was made.</p>
+          </exemplum><remarks xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" mode="add">
+            <p>The <gi>change</gi> element takes attributes <att>when</att> and <att>who</att> which
+              indicate the date of the change and the person who made the change. The value of
+                <att>when</att> is a date in "yyyy-mm-dd" format, whereas <att>who</att> will have
+              the value of an <att>xml:id</att> attribute from
+              "http://syriaca.org/documentation/editors.xml" - the list of editors. An optional
+                <att>n</att> attribute whose value is a version number can indicate that this change
+              advanced the version number (given in the <gi>editionStmt</gi> within the
+                <gi>fileDesc</gi> element). The contents of the <gi>change</gi> element describe the
+              revision that was made.</p>
           </remarks><listRef xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0">
     <ref target="http://www.tei-c.org/release/doc/tei-p5-doc/en/html/HD.html#HD6">2.6. The Revision Description</ref>
     <ref target="http://www.tei-c.org/release/doc/tei-p5-doc/en/html/HD.html#HD4C">2.4.1. Creation</ref>
@@ -8631,8 +8781,8 @@ langues, registres, dialectes, etc. présents à l’intérieur d’un texte.</d
               <sch:rule context="//tei:link/@target">
                 <sch:let name="allIDs" value="//@xml:id"/>
                 <sch:let name="targetVals" value="for $i in $allIDs return concat('#', $i)"/>
-                <sch:assert test="                   every $i in (tokenize(., ' '))                   satisfies $i = $targetVals">A &lt;link&gt; element takes a @target attribute with two or more of the following values: 
-                  <sch:value-of select="string-join($targetVals, ' | ')"/>.
+                <sch:assert test="                   every $i in (tokenize(., ' '))                   satisfies $i = $targetVals">A &lt;link&gt; element takes a @target attribute with two or more of the
+                  following values: <sch:value-of select="string-join($targetVals, ' | ')"/>.
                 </sch:assert>
               </sch:rule>
             </constraint>
@@ -8640,28 +8790,26 @@ langues, registres, dialectes, etc. présents à l’intérieur d’un texte.</d
     <constraint>
       <sch:assert test="contains(normalize-space(@target),' ')">You must supply at least two values for @target or  on <sch:name/></sch:assert>
     </constraint>
-  </constraintSpec><attList><attDef ident="targetLang" mode="delete"/><attDef ident="evaluate" mode="delete"/></attList><exemplum xmlns:rng="http://relaxng.org/ns/structure/1.0" xml:lang="en">
-    <egXML xmlns="http://www.tei-c.org/ns/Examples">
-      <s n="1">The state Supreme Court has refused to release <rs xml:id="R1"><rs xml:id="R2">Rahway State Prison</rs> inmate</rs> 
-            <rs xml:id="R3">James Scott</rs> on bail.</s>
-      <s n="2"><rs xml:id="R4">The fighter</rs> is serving 30-40 years
-      for a 1975 armed robbery conviction in <rs xml:id="R5">the penitentiary</rs>.</s>
-      <!-- ... -->
-      <linkGrp type="periphrasis">
-        <link target="#R1 #R3 #R4"/>
-        <link target="#R2 #R5"/>
-      </linkGrp>
-    </egXML>
-  </exemplum><remarks xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2005-01-14" xml:lang="en">
-    <p>This element should only be used to encode associations not otherwise provided for by more specific elements.</p>
-    <p>The location of this element within a document has no significance, unless it is included within a <gi>linkGrp</gi>, in which case it may inherit the value of the <att>type</att> attribute from the value given on the <gi>linkGrp</gi>.</p>
-  </remarks><remarks xmlns:rng="http://relaxng.org/ns/structure/1.0" xml:lang="fr" versionDate="2009-10-06">
-    <p>Cet élément n’est utilisé que pour encoder des associations ; il n’est pas préconisé pour d’autres éléments plus spécifiques. </p>
-    <p> L’emplacement de cet élément dans un document n'a aucune signification, à moins qu'il ne soit inclus dans un élément <gi>linkGrp</gi> ; dans ce cas il peut hériter de la valeur donnée à l’attribut <att>type</att> de l’élément <gi>linkGrp</gi> .</p>
-  </remarks><remarks xmlns:rng="http://relaxng.org/ns/structure/1.0" xml:lang="ja" versionDate="2008-04-05">
-    <p> 当該要素は，他の要素では示すことができない関連性を符号化する際にの み使われるべきである． </p>
-    <p> 当該要素が，要素<gi>linkGrp</gi>でまとめられているのでなければ，当 該要素のある場所は重要ではない．要素<gi>linkGrp</gi>の下にある場合， 属性<att>type</att>の値は要素<gi>linkGrp</gi>がもつ値を継承する． </p>
-  </remarks><listRef xmlns:rng="http://relaxng.org/ns/structure/1.0">
+  </constraintSpec><attList><attDef ident="targetLang" mode="delete"/><attDef ident="evaluate" mode="delete"/></attList><exemplum xmlns:rng="http://relaxng.org/ns/structure/1.0">
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <event type="attestation" xml:id="attestation2567-2" when="0473" srophe:computed-start="0473-01-01" srophe:computed-end="0473-12-31" source="#bib2567-4">
+                <p xml:lang="en">Attestation of name <foreign xml:lang="syr">ܬܠܢܫܝܢ</foreign> in <title>Vatican Syriac 160</title>.</p>
+                <link target="#name2567-4 #attestation2567-2"/>
+              </event>
+            </egXML>
+          </exemplum><exemplum xmlns:rng="http://relaxng.org/ns/structure/1.0">
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <event type="attestation" xml:id="attestation78-6" when="0520" source="#bib78-10" srophe:computed-start="0520-01-01" srophe:computed-end="0520-01-01">
+                <p xml:lang="en">Attestation of anti-Chalcedonian bishop in Edessa according to the <title ref="http://syriaca.org/work/119">Chronicle of Edessa</title>.</p>
+                <link target="#confession78-1 #attestation78-6"/>
+              </event>
+            </egXML>
+          </exemplum><remarks xmlns:rng="http://relaxng.org/ns/structure/1.0">
+            <p>
+              The <gi>link</gi> element is used to link two pieces of data together, for example an event and the 
+              attestation of a name variant. It must point to an <att>xml:id</att> within the current document.
+            </p>
+          </remarks><listRef xmlns:rng="http://relaxng.org/ns/structure/1.0">
     <ref target="http://www.tei-c.org/release/doc/tei-p5-doc/en/html/SA.html#SAPT">16.1. Links</ref>
   </listRef></elementSpec><classSpec rend="add" module="namesdates" xml:id="DATABLECUSTOM" type="atts" predeclare="true" ident="att.datable.custom">
   <desc versionDate="2011-11-11" xml:lang="en">provides attributes for normalization of elements that contain datable events to a custom dating system
@@ -9671,64 +9819,16 @@ langues, registres, dialectes, etc. présents à l’intérieur d’un texte.</d
     <ref target="http://www.tei-c.org/release/doc/tei-p5-doc/en/html/ND.html#NDPERSREL">13.3.2.3. Personal Relationships</ref>
     
     
-  </listRef></elementSpec><elementSpec rend="add" module="namesdates" ident="state"><gloss versionDate="2009-03-19" xml:lang="fr">statut</gloss><desc versionDate="2011-12-01" xml:lang="en">contains a description of some status or quality attributed to a person, place, or organization often at some specific time or for a specific date range.</desc><desc versionDate="2009-03-19" xml:lang="fr">contient la description d'un statut ou d'une qualité actuels attribués à une personne, un lieu ou une
+  </listRef></elementSpec><elementSpec rend="change" module="namesdates" ident="state"><gloss versionDate="2009-03-19" xml:lang="fr">statut</gloss><desc versionDate="2011-12-01" xml:lang="en">contains a description of some status or quality attributed to a person, place, or organization often at some specific time or for a specific date range.</desc><desc versionDate="2009-03-19" xml:lang="fr">contient la description d'un statut ou d'une qualité actuels attribués à une personne, un lieu ou une
         organisation.</desc><desc versionDate="2007-12-20" xml:lang="ko">개인, 장소, 또는 조직에 관련한 현재 지위 또는 특성 기술을 포함한다.</desc><desc versionDate="2007-05-02" xml:lang="zh-TW">標明分界方法所定義的權威參照標準裡其中ㄧ個組件。</desc><desc versionDate="2008-04-05" xml:lang="ja">人物，場所，組織などの，現在の社会的状態や地位を示す．</desc><desc versionDate="2018-07-18" xml:lang="de">enthält eine Beschreibung eines Status oder einer Qualität, die einer Person, einem Ort oder einer Organisation 
-    oft zu einem bestimmten Zeitpunkt oder für einen bestimmten Zeitraum zugeordnet wird.</desc><desc versionDate="2007-05-04" xml:lang="es">especifica un componente de una referencia canónica definida por el método milestone (hito).</desc><desc versionDate="2007-01-21" xml:lang="it">specifica un componente di un riferimento canonico definito dal metodo milestone.</desc><classes>
-    <memberOf key="att.global"/>
-    <memberOf key="att.datable"/>
-    <memberOf key="att.editLike"/>
-    <memberOf key="att.typed"/>
-    <memberOf key="att.naming"/>
-    
-    
-    <memberOf key="model.placeStateLike"/>
-    <memberOf key="att.dimensions"/>
-  </classes><content>
-    <sequence minOccurs="1" maxOccurs="1"><elementRef key="precision" minOccurs="0" maxOccurs="unbounded"/><alternate minOccurs="1" maxOccurs="1"><elementRef key="state" minOccurs="1" maxOccurs="unbounded"/><sequence minOccurs="1" maxOccurs="1"><classRef key="model.headLike" minOccurs="0" maxOccurs="unbounded"/><classRef key="model.pLike" minOccurs="1" maxOccurs="unbounded"/><alternate minOccurs="0" maxOccurs="unbounded"><classRef key="model.noteLike"/><classRef key="model.biblLike"/></alternate></sequence><alternate minOccurs="0" maxOccurs="unbounded"><classRef key="model.labelLike"/><classRef key="model.noteLike"/><classRef key="model.biblLike"/></alternate></alternate></sequence>
-  </content><exemplum xml:lang="en">
-    <egXML xmlns="http://www.tei-c.org/ns/Examples">
-        <state ref="#SCHOL" type="status">
-          <label>scholar</label>
-        </state>
-    </egXML>
-  </exemplum><exemplum xml:lang="en">
-    <egXML xmlns="http://www.tei-c.org/ns/Examples">
-      <org>
-        <orgName notAfter="1960">The Silver Beetles</orgName>
-        <orgName notBefore="1960">The Beatles</orgName>
-        <state type="membership" from="1960-08" to="1962-05">
-          <desc>
-            <persName>John Lennon</persName>
-            <persName>Paul McCartney</persName>
-            <persName>George Harrison</persName>
-            <persName>Stuart Sutcliffe</persName>
-            <persName>Pete Best</persName>
-          </desc>
-        </state>
-        <state type="membership" notBefore="1963">
-          <desc>
-            <persName>John Lennon</persName>
-            <persName>Paul McCartney</persName>
-            <persName>George Harrison</persName>
-            <persName>Ringo Starr</persName>
-          </desc>
-        </state>
-      </org>
-    </egXML>
-  </exemplum><exemplum versionDate="2008-04-06" xml:lang="fr">
-    <egXML xmlns="http://www.tei-c.org/ns/Examples">
-      <state cert="high" type="social" from="1987-01-01" to="1997-12-31">
-        <label>Citoyenneté</label>
-        <desc>Entre 1987 et 1997a bénéficié du statut de citoyen naturalisé du ROYAUME-UNI</desc>
-      </state>
-    </egXML>
-  </exemplum><exemplum xml:lang="zh-TW">
-    <egXML xmlns="http://www.tei-c.org/ns/Examples">
-        <state ref="#zh-tw_SCHOL" type="status">
-          <label>學者</label>
-        </state>
-    </egXML>
-  </exemplum><remarks versionDate="2011-12-01" xml:lang="en">
+    oft zu einem bestimmten Zeitpunkt oder für einen bestimmten Zeitraum zugeordnet wird.</desc><desc versionDate="2007-05-04" xml:lang="es">especifica un componente de una referencia canónica definida por el método milestone (hito).</desc><desc versionDate="2007-01-21" xml:lang="it">specifica un componente di un riferimento canonico definito dal metodo milestone.</desc><classes><memberOf key="att.canonical"/><memberOf key="att.global"/><memberOf key="att.datable"/><memberOf key="att.typed"/><memberOf key="model.placeStateLike"/></classes><content><elementRef key="p" minOccurs="0" maxOccurs="1"/><elementRef key="label" minOccurs="0"/><elementRef key="precision" minOccurs="0" maxOccurs="unbounded"/></content><attList><attDef ident="notAfter" mode="delete"/><attDef ident="notBefore" mode="delete"/><attDef ident="notAfter-custom" mode="delete"/><attDef ident="notBefore-custom" mode="delete"/></attList><exemplum>
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <state resp="http://syriaca.org" type="existence" from="0400" to="0473" srophe:computed-start="0400-01-01" srophe:computed-end="0473-0101">
+                <precision match="@from" notAfter="0420" srophe:computed-end="0420-01-01"/>
+                <precision match="@to" notBefore="0473" srophe:computed-start="0473-01-01"/>
+              </state>
+            </egXML>
+          </exemplum><remarks versionDate="2011-12-01" xml:lang="en">
     <p>Where there is confusion between <gi>trait</gi> and <gi>state</gi> the more general purpose
       element <gi>state</gi> should be used even for unchanging characteristics. If you wish to
       distinguish between characteristics that are generally perceived to be time-bound states and
@@ -10018,153 +10118,45 @@ langues, registres, dialectes, etc. présents à l’intérieur d’un texte.</d
     romanzo, un dizionario, o una porzione di corpus</desc><classes><memberOf key="model.resource"/></classes><content><elementRef key="body" minOccurs="1" maxOccurs="1"/></content><constraintSpec ident="source-in-text" scheme="schematron">
             <constraint>
               <sch:rule context="//tei:text//@source">
-                <sch:let name="biblIDs" value="//tei:body//tei:bibl/@xml:id"/>
+                <sch:let name="biblIDs" value="//tei:body//tei:bibl/@xml:id | //tei:body//tei:bibl/@xml:id"/>
                 <sch:let name="sourceValues" value="for $i in $biblIDs return concat('#', $i)"/>
-                <sch:assert test="                   every $i in (tokenize(., ' '))                   satisfies $i = $sourceValues">
-                  A @source attribute must point to an @xml:id attribute on a &lt;bibl&gt; element. 
-                  Multiple values are allowed and must be separated by a blank space. Acceptable values include: 
-                  <sch:value-of select="string-join($sourceValues, ' | ')"/>.
-                </sch:assert>
+                <sch:assert test="                   every $i in (tokenize(., ' '))                   satisfies $i = $sourceValues"> A @source attribute must point to an @xml:id attribute on a &lt;bibl&gt;
+                  element or a &lt;listBibl&gt; element. Multiple values are allowed and must be separated by a blank space.
+                  Acceptable values include: <sch:value-of select="string-join($sourceValues, ' | ')"/>. </sch:assert>
               </sch:rule>
             </constraint>
-          </constraintSpec><attList/><exemplum xml:lang="en">
-    <egXML xmlns="http://www.tei-c.org/ns/Examples" source="#lowellAut">
-      <text>
-        <front>
-          <docTitle>
-            <titlePart>Autumn Haze</titlePart>
-          </docTitle>
-        </front>
-        <body>
-          <l>Is it a dragonfly or a maple leaf</l>
-          <l>That settles softly down upon the water?</l>
-        </body>
-      </text>
-    </egXML>
-  </exemplum><exemplum versionDate="2008-04-06" xml:lang="fr">
-    <egXML xmlns="http://www.tei-c.org/ns/Examples" source="#fr-ex-Hugo-Nuit">
-      <text>
-        <front>
-          <docTitle>
-            <titlePart>Souvenir de la nuit du 4</titlePart>
-          </docTitle>
-        </front>
-        <body>
-          <l>Il avait dans sa poche une toupie en buis.</l>
-        </body>
-      </text>
-    </egXML>
-  </exemplum><exemplum versionDate="2008-04-06" xml:lang="fr">
-    <p>Le <gi>body</gi> d'un texte peut être remplacé par un groupe de textes enchâssés, comme
-        dans la structure suivante : </p>
-    <egXML xmlns="http://www.tei-c.org/ns/Examples" valid="feasible" source="#UND">
-      <TEI>
-        <teiHeader>
-          <!--[ en-tête du texte composite ]-->
-        </teiHeader>
-        <text>
-          <front>
-            <!--[ partie préfatoire du texte composite  ]-->
-          </front>
-          <group>
-            <text>
-              <front>
-                <!--[ partie préfatoire du premier texte ]-->
-              </front>
-              <body>
-                <!--[ corps  du premier texte ]-->
-              </body>
-              <back>
-                <!--[ annexe  du premier texte ]-->
-              </back>
-            </text>
-            <text>
-              <front>
-                <!--[ partie préfatoire du deuxième texte ]-->
-              </front>
-              <body>
-                <!--[ corps du deuxième texte ]-->
-              </body>
-              <back>
-                <!--[ annex du deuxième texte ]-->
-              </back>
-            </text>
-            <!--[ encore de textes, simples ou composites  ]-->
-          </group>
-          <back>
-            <!--[ annex du texte composite  ]-->
-          </back>
-        </text>
-      </TEI>
-    </egXML>
-  </exemplum><exemplum xml:lang="zh-TW">
-    <egXML xmlns="http://www.tei-c.org/ns/Examples" source="#biblzh-tw_n59">
-      <text>
-        <front>
-          <docTitle>
-            <titlePart>憶江南</titlePart>
-          </docTitle>
-        </front>
-        <body>
-          <l>江南好，</l>
-          <l>風景舊曾諳。</l>
-          <l>日出江花紅胜火，</l>
-          <l>春來江水綠如藍，</l>
-          <l>能不憶江南。</l>
-        </body>
-      </text>
-    </egXML>
-  </exemplum><exemplum xml:lang="en">
-    <p>The body of a text may be replaced by a group of nested texts, as in the following schematic:</p>
-    <egXML xmlns="http://www.tei-c.org/ns/Examples" valid="feasible" source="#UND">
-      <text>
-        <front>
-          <!-- front matter for the whole group -->
-        </front>
-        <group>
-          <text>
-            <!-- first text -->
-          </text>
-          <text>
-            <!-- second text -->
-          </text>
-        </group>
-      </text>
-    </egXML>
-  </exemplum><exemplum xml:lang="de" versionDate="2017-06-25">
-    <p>Der Textkörper kann durch eine Gruppierung von verschachtelten Texten ersetzt werden, wie das folgende Beispiel zeigt:</p>
-    <egXML xmlns="http://www.tei-c.org/ns/Examples" valid="feasible" source="#UND">
-      <text>
-        <front>
-          <!-- Vorspann für die gesamte Gruppierung -->
-        </front>
-        <group>
-          <text>
-            <!-- erster Text -->
-          </text>
-          <text>
-            <!-- zweiter Text -->
-          </text>
-        </group>
-      </text>
-    </egXML>
-  </exemplum><remarks versionDate="2007-03-30" xml:lang="en">
-    <p>This element should not be used to represent a text which is inserted at an arbitrary point
-      within the structure of another, for example as in an embedded or quoted narrative; the
-        <gi>floatingText</gi> is provided for this purpose.</p>
-  </remarks><remarks xml:lang="fr" versionDate="2007-06-12">
-    <p>Cet élément ne devrait pas être utilisé pour encoder un texte inséré à un endroit non
-      prévisible à l'intérieur de la structure d'un autre texte, comme par exemple dans un récit qui est enchâssé 
-    ou cité dans un autre ; c'est l'élément <gi>floatingText</gi> qui doit être utilisé à
-      cet effet.</p>
-  </remarks><remarks xml:lang="ja" versionDate="2008-04-05">
-    <p> 当該要素は，別の構造中，例えば引用された語りの任意の場所に挿入され るテキストを示すためには使うべきではない．この場合は，要素 <gi>floatingText</gi>が使われる．
-    </p>
-  </remarks><remarks versionDate="2017-06-25" xml:lang="de">
-    <p>Dieses Element sollte nicht benutzt werden, um einen Text wiederzugeben, der an irgendeiner
-      Stelle in einer anderen Struktur eingefügt ist, wie z. B. eine eingebettete oder zitierte
-      Erzählung. Für diesen Zweck wird das Element <gi>floatingText</gi> benutzt.</p>
-  </remarks><listRef>
+          </constraintSpec><attList/><exemplum>
+            <egXML xmlns="http://www.tei-c.org/ns/Examples">
+              <text>
+                <body>
+                  <listPlace>
+                    <place type="diocese">
+                      <placeName resp="http://syriaca.org" xml:id="name3053-1" xml:lang="en" srophe:tags="#syriaca-headword">Arethusa</placeName>
+                      <placeName resp="http://syriaca.org" xml:id="name3053-2" xml:lang="syr" srophe:tags="#syriaca-headword">ܐܪܝܣܬܢ</placeName>
+                      <placeName xml:id="name3053-3" xml:lang="en" source="#bib3053-1">Arethusa</placeName>
+                      <placeName xml:id="name3053-4" xml:lang="syr" source="#bib3053-2">ܐܪܝܣܬܢ</placeName>
+                      <desc type="abstract" xml:id="abstract3053-1" xml:lang="en">The diocese associated with the city of Arethusa</desc>
+                      <state resp="http://syriaca.org" type="existence"/>
+                      <idno type="URI">http://syriaca.org/place/3053</idno>
+                      <bibl xml:id="bib3053-1">
+                        <ptr target="http://syriaca.org/bibl/668"/>
+                        <citedRange unit="p">73</citedRange>
+                      </bibl>
+                      <bibl xml:id="bib3053-2">
+                        <ptr target="http://syriaca.org/bibl/666"/>
+                        <citedRange unit="p">81</citedRange>
+                      </bibl>
+                    </place>
+                  </listPlace>
+                </body>
+              </text>
+            </egXML>
+          </exemplum><remarks mode="add">
+            <p> The data of the record is contained within the <gi>text</gi> element. The Srophé App requires that all 
+              <att>source</att> attributes inside the <gi>text</gi> element point to an <att>xml:id</att> attribute on 
+              a <gi>bibl</gi> or <gi>listBibl</gi> element.
+            </p>
+          </remarks><listRef>
     <ref target="http://www.tei-c.org/release/doc/tei-p5-doc/en/html/DS.html#DS">4. Default Text Structure</ref>
     <ref target="http://www.tei-c.org/release/doc/tei-p5-doc/en/html/CC.html#CCDEF">15.1. Varieties of Composite Text</ref>
   </listRef></elementSpec><elementSpec rend="add" module="textstructure" ident="body"><gloss versionDate="2005-01-14" xml:lang="en">text body</gloss><gloss versionDate="2007-12-20" xml:lang="ko">텍스트 본문</gloss><gloss versionDate="2007-05-02" xml:lang="zh-TW">正文</gloss><gloss versionDate="2007-06-12" xml:lang="fr">corps du texte</gloss><gloss versionDate="2017-06-13" xml:lang="de">Textkörper</gloss><gloss versionDate="2007-05-04" xml:lang="es">cuerpo del texto</gloss><gloss versionDate="2007-01-21" xml:lang="it">corpo del testo</gloss><desc versionDate="2005-01-14" xml:lang="en">contains the whole body of a single unitary text, excluding any front or back matter.</desc><desc versionDate="2007-12-20" xml:lang="ko">전면부 또는 후면부 자료를 배제한 단일 텍스트의 전체 본문을 포함한다.</desc><desc versionDate="2007-05-02" xml:lang="zh-TW">單篇文章的整體部分，不包含正文前及正文後資訊。</desc><desc versionDate="2008-04-05" xml:lang="ja">前付，後付を除いた，単一の作品の本文全体を示す．</desc><desc versionDate="2007-06-12" xml:lang="fr">contient la totalité du corps d’un seul texte simple, à

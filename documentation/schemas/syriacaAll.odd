@@ -221,7 +221,7 @@
                   <desc>Turkish</desc>
                 </valItem>
               </valList>
-              <remarks versionDate="2016-12-07">
+              <remarks mode="add">
                 <p>All elements should have an <att>xml:lang</att> value, either inherited from an
                   ancestor element or declared explicitly. See the <ref
                     target="http://syriaca.org/documentation/isostandards.html">Syriaca.org
@@ -245,7 +245,7 @@
               </titleStmt>
             </egXML>
           </exemplum>
-          <remarks>
+          <remarks mode="add">
             <p> The TEI guidelines recommend that the <gi>titleStmt</gi> element also indicate who
               is responsible for this TEI file. Since <gi>author</gi> is typically used for the
               author of a print or manuscript text which was then encoded in TEI, we avoid the use
@@ -265,13 +265,27 @@
               </titleStmt>
             </egXML>
           </exemplum>
-          <remarks>
+          <remarks mode="add">
             <p> Next within the <gi>titleStmt</gi> the funding bodies are identified by use of the
               <gi>funder</gi> element. If multiple funding bodies are relevant, then each one gets
               a separate <gi>funder</gi> element, which are simply listed. </p>
           </remarks>
         </elementSpec>
-
+        
+        <elementSpec ident="sourceDesc" module="header" mode="change">
+          <content>
+            <elementRef key="p" minOccurs="1" maxOccurs="1"/>
+          </content>
+          <constraintSpec ident="sourceDesc" scheme="schematron">
+            <constraint>
+              <sch:rule context="//tei:sourceDesc/tei:p">
+                <sch:assert test=". = 'Born digital.'">
+                  The &lt;sourceDesc&gt; must contain a &lt;p&gt; element with the text node: "Born digital.". 
+                </sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+        </elementSpec>
         
         <elementSpec ident="name" module="namesdates" mode="change">
           <constraintSpec ident="ref-on-name" scheme="schematron">
@@ -311,7 +325,7 @@
               <authority>Syriaca.org: The Syriac Reference Portal</authority>
             </egXML>
           </exemplum>
-          <remarks>
+          <remarks mode="add">
             <p>The identification of Syriaca.org as the responsible entity is accomplished by an <gi>authority</gi> element.</p>
           </remarks>
         </elementSpec>
@@ -404,7 +418,7 @@
               </profileDesc>
             </egXML>
           </exemplum>
-          <remarks>
+          <remarks mode="add">
             <p>The <gi>profileDesc</gi> contains a <gi>langUsage</gi> element that contains a <gi>p</gi> element. 
               The text of the <gi>p</gi> should read: Languages codes used in this record follow the Syriaca.org guidelines. Documentation available at: 
               <ref target="http://syriaca.org/documentation/langusage.xml">http://syriaca.org/documentation/langusage.xml</ref></p>
@@ -427,7 +441,7 @@
               </profileDesc>
             </egXML>
           </exemplum>
-          <remarks>
+          <remarks mode="add">
             <p>The <gi>langUsage</gi> element contains a <gi>p</gi> element. 
               The text of the <gi>p</gi> should read: Languages codes used in this record follow the Syriaca.org guidelines. Documentation available at: 
               <ref target="http://syriaca.org/documentation/langusage.xml">http://syriaca.org/documentation/langusage.xml</ref></p>
@@ -750,14 +764,14 @@
               </valList>
             </attDef>
             <attDef ident="notBefore" mode="change">
-              <remarks versionDate="2016-11-24">
+              <remarks mode="add">
                 <p>Provides a terminus post quem. Use this when the exact date is not known. See
                   <ref target="http://syriaca.org/exist/apps/srophe/documentation/dates.html">the
                     Syriaca.org documentation</ref> for editorial conventions regarding dates.</p>
               </remarks>
             </attDef>
             <attDef ident="notAfter" mode="change">
-              <remarks versionDate="2016-11-24">
+              <remarks mode="add">
                 <p>Provides a terminus ad quem. Use this when the exact date is not known. See <ref
                   target="http://syriaca.org/exist/apps/srophe/documentation/dates.html">the
                   Syriaca.org documentation</ref> for editorial conventions regarding dates.</p>
@@ -770,7 +784,7 @@
                 century</date>
             </egXML>
           </exemplum>
-          <remarks versionDate="2016-11-24">
+          <remarks mode="add">
             <p>A <gi>date</gi> elment includes both a machine-readable version (using attributes like
               <att>when</att>, <att>notBefore</att>, <att>notAfter</att>) and a human-readable
               version as text in the element content. See <ref
