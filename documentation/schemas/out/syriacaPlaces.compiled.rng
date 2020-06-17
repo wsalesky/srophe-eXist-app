@@ -6,7 +6,7 @@
          xmlns="http://relaxng.org/ns/structure/1.0"
          datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
          ns="http://www.tei-c.org/ns/1.0"><!--
-Schema generated from ODD source 2020-06-17T17:18:16Z. .
+Schema generated from ODD source 2020-06-17T18:49:09Z. .
 TEI Edition: Version 4.0.0. Last updated on
 	13th February 2020, revision ccd19b0ba
 TEI Edition Location: http://www.tei-c.org/Vault/P5/Version 4.0.0/
@@ -2707,25 +2707,25 @@ Suggested values include: 1] main; 2] sub (subordinate); 3] alt (alternate); 4] 
    <define name="tei_bibl">
       <element name="bibl">
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(bibliographic citation) contains a loosely-structured bibliographic citation of which the sub-components may or may not be explicitly tagged. [3.11.1. Methods of Encoding Bibliographic References and Lists of References 2.2.7. The Source Description 15.3.2. Declarable Elements]</a:documentation>
-         <group>
-            <zeroOrMore>
-               <choice>
+         <oneOrMore>
+            <group>
+               <zeroOrMore>
                   <ref name="tei_author"/>
+               </zeroOrMore>
+               <optional>
                   <ref name="tei_title"/>
+               </optional>
+               <zeroOrMore>
                   <ref name="tei_editor"/>
+               </zeroOrMore>
+               <zeroOrMore>
                   <ref name="tei_citedRange"/>
-               </choice>
-            </zeroOrMore>
-            <ref name="tei_ptr"/>
-            <zeroOrMore>
-               <choice>
-                  <ref name="tei_author"/>
-                  <ref name="tei_title"/>
-                  <ref name="tei_editor"/>
-                  <ref name="tei_citedRange"/>
-               </choice>
-            </zeroOrMore>
-         </group>
+               </zeroOrMore>
+               <zeroOrMore>
+                  <ref name="tei_ptr"/>
+               </zeroOrMore>
+            </group>
+         </oneOrMore>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
                   id="syriacaPlaces-bibl-xmlID-on-bibl-constraint-rule-31">
             <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
@@ -2739,7 +2739,29 @@ Suggested values include: 1] main; 2] sub (subordinate); 3] alt (alternate); 4] 
                 </sch:assert>
             </sch:rule>
          </pattern>
+         <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
+                  id="syriacaPlaces-bibl-mssCitation-constraint-rule-32">
+            <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+                      xmlns:srophe="https://srophe.app"
+                      xmlns="http://www.tei-c.org/ns/1.0"
+                      context="//tei:text//tei:bibl"
+                      role="warning">
+               <sch:assert test="./tei:ptr">A &lt;bibl&gt; should contain a &lt;ptr&gt; 
+                indicating the URI or URL for the citation. The only exception is when 
+                when citing a manuscript in which case this &lt;bibl&gt; should have
+                @type="syriaca:Manuscript".</sch:assert>
+            </sch:rule>
+         </pattern>
          <ref name="tei_att.global.attributes"/>
+         <optional>
+            <attribute name="type">
+               <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
+               <choice>
+                  <value>syriaca:Manuscript</value>
+                  <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">used for bibliographic citation of a manuscript</a:documentation>
+               </choice>
+            </attribute>
+         </optional>
          <empty/>
       </element>
    </define>
@@ -2750,7 +2772,7 @@ Suggested values include: 1] main; 2] sub (subordinate); 3] alt (alternate); 4] 
             <ref name="tei_bibl"/>
          </oneOrMore>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="syriacaPlaces-listBibl-xmlID-on-listBibl-constraint-rule-32">
+                  id="syriacaPlaces-listBibl-xmlID-on-listBibl-constraint-rule-33">
             <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
                       xmlns="http://www.tei-c.org/ns/1.0"
@@ -2916,7 +2938,7 @@ Suggested values include: 1] main; 2] sub (subordinate); 3] alt (alternate); 4] 
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(release authority) supplies the name of a person or other agency responsible for making a work available, other than a publisher or distributor. [2.2.4. Publication, Distribution, Licensing, etc.]</a:documentation>
          <text/>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="syriacaPlaces-authority-authorityText-constraint-rule-33">
+                  id="syriacaPlaces-authority-authorityText-constraint-rule-34">
             <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
                       xmlns="http://www.tei-c.org/ns/1.0"
@@ -2936,7 +2958,7 @@ Suggested values include: 1] main; 2] sub (subordinate); 3] alt (alternate); 4] 
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(identifier) supplies any form of identifier used to identify some object, such as a bibliographic item, a person, a title, an organization, etc. in a standardized way. [13.3.1. Basic Principles 2.2.4. Publication, Distribution, Licensing, etc. 2.2.5. The Series Statement 3.11.2.4. Imprint, Size of a Document, and Reprint Information]</a:documentation>
          <text/>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="syriacaPlaces-idno-idno-uri-constraint-rule-34">
+                  id="syriacaPlaces-idno-idno-uri-constraint-rule-35">
             <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
                       xmlns="http://www.tei-c.org/ns/1.0"
@@ -3020,7 +3042,7 @@ Suggested values include: 1] main; 2] sub (subordinate); 3] alt (alternate); 4] 
             </group>
          </zeroOrMore>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="syriacaPlaces-seriesStmt-seriesStmt-content-constraint-rule-35">
+                  id="syriacaPlaces-seriesStmt-seriesStmt-content-constraint-rule-36">
             <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
                       xmlns="http://www.tei-c.org/ns/1.0"
@@ -3098,7 +3120,7 @@ Suggested values include: 1] main; 2] sub (subordinate); 3] alt (alternate); 4] 
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(source description) describes the source(s) from which an electronic text was derived or generated, typically a bibliographic description in the case of a digitized text, or a phrase such as "born digital" for a text which has no previous existence. [2.2.7. The Source Description]</a:documentation>
          <ref name="tei_p"/>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="syriacaPlaces-sourceDesc-sourceDesc-constraint-rule-42">
+                  id="syriacaPlaces-sourceDesc-sourceDesc-constraint-rule-43">
             <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
                       xmlns="http://www.tei-c.org/ns/1.0"
@@ -3109,7 +3131,7 @@ Suggested values include: 1] main; 2] sub (subordinate); 3] alt (alternate); 4] 
             </sch:rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="syriacaPlaces-sourceDesc-sourceDesc-constraint-rule-43">
+                  id="syriacaPlaces-sourceDesc-sourceDesc-constraint-rule-44">
             <sch:rule xmlns:xi="http://www.w3.org/2001/XInclude"
                       xmlns:rng="http://relaxng.org/ns/structure/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
@@ -3282,7 +3304,7 @@ Suggested values include: 1] main; 2] sub (subordinate); 3] alt (alternate); 4] 
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">documents a change or set of changes made during the production of a source document, or during the revision of an electronic file. [2.6. The Revision Description 2.4.1. Creation 11.7. Identifying Changes and Revisions]</a:documentation>
          <ref name="tei_macro.specialPara"/>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="syriacaPlaces-change-who-on-change-constraint-rule-44">
+                  id="syriacaPlaces-change-who-on-change-constraint-rule-45">
             <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
                       xmlns="http://www.tei-c.org/ns/1.0"
@@ -3475,7 +3497,7 @@ Suggested values include: 1] main; 2] sub (subordinate); 3] alt (alternate); 4] 
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">defines an association or hypertextual link among elements or passages, of some type not more precisely specifiable by other elements. [16.1. Links]</a:documentation>
          <empty/>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="syriacaPlaces-link-target-on-link-constraint-rule-45">
+                  id="syriacaPlaces-link-target-on-link-constraint-rule-46">
             <sch:rule xmlns:rng="http://relaxng.org/ns/structure/1.0"
                       xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
@@ -3489,7 +3511,7 @@ Suggested values include: 1] main; 2] sub (subordinate); 3] alt (alternate); 4] 
             </sch:rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="syriacaPlaces-link-linkTargets3-constraint-assert-43">
+                  id="syriacaPlaces-link-linkTargets3-constraint-assert-44">
             <rule context="tei:link">
                <sch:assert xmlns:rng="http://relaxng.org/ns/structure/1.0"
                            xmlns:sch="http://purl.oclc.org/dsdl/schematron"
@@ -3728,7 +3750,7 @@ Suggested values include: 1] main; 2] sub (subordinate); 3] alt (alternate); 4] 
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(personal name) contains a proper noun or proper-noun phrase referring to a person, possibly including one or more of the person's forenames, surnames, honorifics, added names, etc. [13.2.1. Personal Names]</a:documentation>
          <ref name="tei_macro.phraseSeq"/>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="syriacaPlaces-persName-ref-on-person-constraint-rule-46">
+                  id="syriacaPlaces-persName-ref-on-person-constraint-rule-47">
             <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
                       xmlns="http://www.tei-c.org/ns/1.0"
@@ -3755,7 +3777,7 @@ Suggested values include: 1] main; 2] sub (subordinate); 3] alt (alternate); 4] 
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains an absolute or relative place name. [13.2.3. Place Names]</a:documentation>
          <ref name="tei_macro.phraseSeq"/>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="syriacaPlaces-placeName-source-on-placeName-constraint-rule-47">
+                  id="syriacaPlaces-placeName-source-on-placeName-constraint-rule-48">
             <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
                       xmlns="http://www.tei-c.org/ns/1.0"
@@ -3769,7 +3791,7 @@ Suggested values include: 1] main; 2] sub (subordinate); 3] alt (alternate); 4] 
             </sch:rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="syriacaPlaces-placeName-xmlID-on-placeName-constraint-rule-48">
+                  id="syriacaPlaces-placeName-xmlID-on-placeName-constraint-rule-49">
             <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
                       xmlns="http://www.tei-c.org/ns/1.0"
@@ -3782,7 +3804,7 @@ Suggested values include: 1] main; 2] sub (subordinate); 3] alt (alternate); 4] 
             </sch:rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="syriacaPlaces-placeName-xmlLang-on-placeName-constraint-rule-49">
+                  id="syriacaPlaces-placeName-xmlLang-on-placeName-constraint-rule-50">
             <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
                       xmlns="http://www.tei-c.org/ns/1.0"
@@ -3791,7 +3813,7 @@ Suggested values include: 1] main; 2] sub (subordinate); 3] alt (alternate); 4] 
             </sch:rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="syriacaPlaces-placeName-ref-on-placeName-constraint-rule-50">
+                  id="syriacaPlaces-placeName-ref-on-placeName-constraint-rule-51">
             <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
                       xmlns="http://www.tei-c.org/ns/1.0"
@@ -3938,7 +3960,7 @@ Suggested values include: 1] main; 2] sub (subordinate); 3] alt (alternate); 4] 
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains the name of a geo-political unit consisting of two or more nation states or countries. [13.2.3. Place Names]</a:documentation>
          <ref name="tei_macro.phraseSeq"/>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="syriacaPlaces-bloc-ref-on-bloc-constraint-rule-51">
+                  id="syriacaPlaces-bloc-ref-on-bloc-constraint-rule-52">
             <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
                       xmlns="http://www.tei-c.org/ns/1.0"
@@ -3968,7 +3990,7 @@ Suggested values include: 1] main; 2] sub (subordinate); 3] alt (alternate); 4] 
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains the name of a geo-political unit, such as a nation, country, colony, or commonwealth, larger than or administratively superior to a region and smaller than a bloc. [13.2.3. Place Names]</a:documentation>
          <ref name="tei_macro.phraseSeq"/>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="syriacaPlaces-country-ref-on-country-constraint-rule-52">
+                  id="syriacaPlaces-country-ref-on-country-constraint-rule-53">
             <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
                       xmlns="http://www.tei-c.org/ns/1.0"
@@ -3998,7 +4020,7 @@ Suggested values include: 1] main; 2] sub (subordinate); 3] alt (alternate); 4] 
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains the name of an administrative unit such as a state, province, or county, larger than a settlement, but smaller than a country. [13.2.3. Place Names]</a:documentation>
          <ref name="tei_macro.phraseSeq"/>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="syriacaPlaces-region-ref-on-region-constraint-rule-53">
+                  id="syriacaPlaces-region-ref-on-region-constraint-rule-54">
             <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
                       xmlns="http://www.tei-c.org/ns/1.0"
@@ -4028,7 +4050,7 @@ Suggested values include: 1] main; 2] sub (subordinate); 3] alt (alternate); 4] 
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains the name of a settlement such as a city, town, or village identified as a single geo-political or administrative unit. [13.2.3. Place Names]</a:documentation>
          <ref name="tei_macro.phraseSeq"/>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="syriacaPlaces-settlement-ref-on-settlement-constraint-rule-54">
+                  id="syriacaPlaces-settlement-ref-on-settlement-constraint-rule-55">
             <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
                       xmlns="http://www.tei-c.org/ns/1.0"
@@ -4058,7 +4080,7 @@ Suggested values include: 1] main; 2] sub (subordinate); 3] alt (alternate); 4] 
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains the name of any kind of subdivision of a settlement, such as a parish, ward, or other administrative or geographic unit. [13.2.3. Place Names]</a:documentation>
          <ref name="tei_macro.phraseSeq"/>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="syriacaPlaces-district-ref-on-district-constraint-rule-55">
+                  id="syriacaPlaces-district-ref-on-district-constraint-rule-56">
             <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
                       xmlns="http://www.tei-c.org/ns/1.0"
@@ -4102,7 +4124,7 @@ Suggested values include: 1] main; 2] sub (subordinate); 3] alt (alternate); 4] 
             <ref name="tei_precision"/>
          </zeroOrMore>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="syriacaPlaces-event-xmlID-on-event-constraint-rule-56">
+                  id="syriacaPlaces-event-xmlID-on-event-constraint-rule-57">
             <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
                       xmlns="http://www.tei-c.org/ns/1.0"
@@ -4217,7 +4239,7 @@ Suggested values include: 1] main; 2] sub (subordinate); 3] alt (alternate); 4] 
             </group>
          </choice>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="syriacaPlaces-location-source-on-location-constraint-rule-57">
+                  id="syriacaPlaces-location-source-on-location-constraint-rule-58">
             <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
                       xmlns="http://www.tei-c.org/ns/1.0"
@@ -4231,7 +4253,7 @@ Suggested values include: 1] main; 2] sub (subordinate); 3] alt (alternate); 4] 
             </sch:rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="syriacaPlaces-location-location-children-constraint-rule-58">
+                  id="syriacaPlaces-location-location-children-constraint-rule-59">
             <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
                       xmlns="http://www.tei-c.org/ns/1.0"
@@ -4266,7 +4288,7 @@ Suggested values include: 1] main; 2] sub (subordinate); 3] alt (alternate); 4] 
             </sch:rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="syriacaPlaces-location-atts-on-location-constraint-rule-62">
+                  id="syriacaPlaces-location-atts-on-location-constraint-rule-63">
             <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
                       xmlns="http://www.tei-c.org/ns/1.0"
@@ -4389,7 +4411,7 @@ Suggested values include: 1] main; 2] sub (subordinate); 3] alt (alternate); 4] 
             <ref name="tei_bibl"/>
          </oneOrMore>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="syriacaPlaces-place-abstract-in-place-constraint-rule-63">
+                  id="syriacaPlaces-place-abstract-in-place-constraint-rule-64">
             <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
                       xmlns="http://www.tei-c.org/ns/1.0"
@@ -4464,7 +4486,7 @@ Suggested values include: 1] main; 2] sub (subordinate); 3] alt (alternate); 4] 
             <ref name="tei_desc"/>
          </optional>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="syriacaPlaces-relation-atts-on-relation-constraint-rule-64">
+                  id="syriacaPlaces-relation-atts-on-relation-constraint-rule-65">
             <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
                       xmlns="http://www.tei-c.org/ns/1.0"
@@ -4486,7 +4508,7 @@ Suggested values include: 1] main; 2] sub (subordinate); 3] alt (alternate); 4] 
             </sch:rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="syriacaPlaces-relation-reforkeyorname-constraint-assert-61">
+                  id="syriacaPlaces-relation-reforkeyorname-constraint-assert-62">
             <rule context="tei:relation">
                <assert xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                        xmlns:srophe="https://srophe.app"
@@ -4548,7 +4570,7 @@ Suggested values include: 1] main; 2] sub (subordinate); 3] alt (alternate); 4] 
             <ref name="tei_precision"/>
          </zeroOrMore>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="syriacaPlaces-state-xmlID-on-state-constraint-rule-65">
+                  id="syriacaPlaces-state-xmlID-on-state-constraint-rule-66">
             <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
                       xmlns="http://www.tei-c.org/ns/1.0"
@@ -4561,7 +4583,7 @@ Suggested values include: 1] main; 2] sub (subordinate); 3] alt (alternate); 4] 
             </sch:rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="syriacaPlaces-state-state-type-existence-constraint-rule-66">
+                  id="syriacaPlaces-state-state-type-existence-constraint-rule-67">
             <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
                       xmlns="http://www.tei-c.org/ns/1.0"
@@ -4578,7 +4600,7 @@ Suggested values include: 1] main; 2] sub (subordinate); 3] alt (alternate); 4] 
             </sch:rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="syriacaPlaces-state-state-type-confession-constraint-rule-67">
+                  id="syriacaPlaces-state-state-type-confession-constraint-rule-68">
             <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
                       xmlns="http://www.tei-c.org/ns/1.0"
@@ -4711,7 +4733,7 @@ Sample values include: 1] TEI; 2] DBK (docbook); 3] XX (unknown); 4] Schematron;
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains a single text of any kind, whether unitary or composite, for example a poem or drama, a collection of essays, a novel, a dictionary, or a corpus sample. [4. Default Text Structure 15.1. Varieties of Composite Text]</a:documentation>
          <ref name="tei_body"/>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="syriacaPlaces-text-source-in-text-constraint-rule-69">
+                  id="syriacaPlaces-text-source-in-text-constraint-rule-70">
             <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
                       xmlns="http://www.tei-c.org/ns/1.0"

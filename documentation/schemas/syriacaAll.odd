@@ -867,6 +867,27 @@
               </sch:rule>
             </constraint>
           </constraintSpec>
+          <constraintSpec ident="mssCitation" scheme="schematron">
+            <constraint>
+              <!-- This is a temporary rule until we have URIs for mss. -->
+              <sch:rule context="//tei:text//tei:bibl" role="warning">
+                <sch:assert test="./tei:ptr">A &lt;bibl&gt; should contain a &lt;ptr&gt; 
+                indicating the URI or URL for the citation. The only exception is when 
+                when citing a manuscript in which case this &lt;bibl&gt; should have
+                @type="syriaca:Manuscript".</sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
+          <attList>
+            <attDef ident="type" mode="add" usage="opt">
+              <!-- This is a temporary addition until we have URIs for mss. -->
+              <valList mode="change" type="closed">
+                <valItem ident="syriaca:Manuscript">
+                  <desc>used for bibliographic citation of a manuscript</desc>
+                </valItem>
+              </valList>
+            </attDef>
+          </attList>
          </elementSpec>
         
         

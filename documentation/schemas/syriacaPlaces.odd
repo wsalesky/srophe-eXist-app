@@ -855,20 +855,12 @@
         
         <elementSpec ident="bibl" module="core" mode="change">
           <content>
-            <sequence>
-              <alternate minOccurs="0" maxOccurs="unbounded">
-                <elementRef key="author"/>
-                <elementRef key="title"/>
-                <elementRef key="editor"/>
-                <elementRef key="citedRange"/>
-              </alternate>
-              <elementRef key="ptr" minOccurs="1" maxOccurs="1"/>
-              <alternate minOccurs="0" maxOccurs="unbounded">
-                <elementRef key="author"/>
-                <elementRef key="title"/>
-                <elementRef key="editor"/>
-                <elementRef key="citedRange"/>
-              </alternate>
+            <sequence preserveOrder="false" minOccurs="1" maxOccurs="unbounded">
+              <elementRef key="author" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="title" minOccurs="0" maxOccurs="1"/>
+              <elementRef key="editor" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="citedRange" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="ptr" minOccurs="0" maxOccurs="unbounded"/>
             </sequence>
           </content>
           <remarks mode="add">
