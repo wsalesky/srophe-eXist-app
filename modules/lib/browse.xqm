@@ -12,6 +12,7 @@ import module namespace templates="http://exist-db.org/xquery/templates" ;
 import module namespace config="http://srophe.org/srophe/config" at "../config.xqm";
 import module namespace data="http://srophe.org/srophe/data" at "data.xqm";
 import module namespace facet="http://expath.org/ns/facet" at "facet.xqm";
+import module namespace sf="http://srophe.org/srophe/facets" at "facets.xql";
 import module namespace global="http://srophe.org/srophe/global" at "lib/global.xqm";
 import module namespace maps="http://srophe.org/srophe/maps" at "maps.xqm";
 import module namespace page="http://srophe.org/srophe/page" at "paging.xqm";
@@ -36,7 +37,15 @@ declare variable $browse:perpage {request:get-parameter('perpage', 25) cast as x
  : @param $facets facet xml file name, relative to collection directory
 :)  
 declare function browse:get-all($node as node(), $model as map(*), $collection as xs:string*, $element as xs:string?, $facets as xs:string?){
-    map{"hits" : data:get-records($collection, $element) }
+    let $collectionPath := 
+            if(config:collection-vars($collection)/@data-root != '') then concat('/',config:collection-vars($collection)/@data-root)
+            else if($collection != '') then concat('/',$collection)
+            else ()
+    let $hits := 
+        if($browse:view = 'facets' or $browse:view = 'date' or ($browse:view = 'type' and $collection != ('geo','places'))) then 
+            collection($config:data-root || $collectionPath)//tei:body[ft:query(., (),sf:facet-query())] 
+        else data:get-records($collection, $element)
+    return map{"hits" : $hits }
 };
 
 (:
@@ -199,27 +208,29 @@ declare function browse:by-type($hits, $collection, $sort-options){
         {if($browse:view='type') then 
             if($collection = ('geo','places')) then 
                 browse:browse-type($collection)
-            else facet:html-list-facets-as-buttons(facet:count($hits, $facet-config/descendant::facet:facet-definition[@name="Type"]))
+            else sf:display($hits, $facet-config/descendant::facet:facet-definition[@name="series"])
          else if($browse:view = 'date') then 
-            facet:html-list-facets-as-buttons(facet:count($hits, $facet-config/descendant::facet:facet-definition[@name="Century"]))
-         else facet:html-list-facets-as-buttons(facet:count($hits, $facet-config/descendant::facet:facet-definition))         
+            sf:display($hits, $facet-config/descendant::facet:facet-definition[@name="syriacaComputedStart"])
+         else 
+           (<h4>Facets</h4>,
+           if(not(empty($facet-config))) then 
+             sf:display($hits, $facet-config)
+           else ()  
+           )
         }</div>,
     <div class="col-md-8" xmlns="http://www.w3.org/1999/xhtml">{
         if($browse:view='type') then
-            if(request:get-parameter('fq', '') and contains(request:get-parameter('fq', ''), 'fq-Type:') or request:get-parameter('type', '') != '') then
                 (page:pages($hits, $collection, $browse:start, $browse:perpage,'', $sort-options),
                 <h3>{concat(upper-case(substring(request:get-parameter('type', ''),1,1)),substring(request:get-parameter('type', ''),2))}</h3>,
                 <div>{(        
                     <div class="col-md-12 map-md">{browse:get-map($hits)}</div>,
                         browse:display-hits($hits)
                     )}</div>)
-            else <h3>Select Type</h3>
-        else if($browse:view='date') then 
-            if(request:get-parameter('fq', '') and contains(request:get-parameter('fq', ''), 'fq-Century:')) then 
+            
+        else if($browse:view='date') then  
                 (page:pages($hits, $collection, $browse:start, $browse:perpage,'', $sort-options),
                 <h3>{request:get-parameter('date', '')}</h3>,
                 <div>{browse:display-hits($hits)}</div>)
-            else <h3>Select Date</h3>  
        else (page:pages($hits, $collection, $browse:start, $browse:perpage,'', $sort-options),
             <h3>Results {concat(upper-case(substring(request:get-parameter('type', ''),1,1)),substring(request:get-parameter('type', ''),2))} ({count($hits)})</h3>,
             <div>{(

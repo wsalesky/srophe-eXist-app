@@ -30,14 +30,6 @@ declare variable $persons:place-type {request:get-parameter('place-type', '')};
 declare variable $persons:related-persons {request:get-parameter('related-persons', '')};
 declare variable $persons:mentioned {request:get-parameter('mentioned', '')};
 
-(:~
- : Build full-text keyword search over all tei:person data
- : @param $q query string
-:)
-declare function persons:keyword() as xs:string? {
-    if($persons:q != '') then concat("[ft:query(.,'",data:clean-string($persons:q),"',data:search-options()) | ft:query(descendant::tei:persName,'",data:clean-string($persons:q),"',data:search-options()) | ft:query(descendant::tei:placeName,'",data:clean-string($persons:q),"',data:search-options()) | ft:query(ancestor::tei:TEI/descendant::tei:teiHeader/descendant::tei:title,'",data:clean-string($persons:q),"',data:search-options()) | ft:query(descendant::tei:desc,'",data:clean-string($persons:q),"',data:search-options())]")
-    else ()    
-};
 
 (:~
  : Search Name
@@ -73,7 +65,7 @@ let $collection := if($persons:coll = 'sbd' ) then 'The Syriac Biographical Dict
                    else if($coll = 'q' ) then 'Qadishe: A Guide to the Syriac Saints'
                    else if($coll = 'authors' ) then 'A Guide to Syriac Authors'
                    else ()
-return                    
+return    (:     if($collection != '') then 'series': $collection else ():)                
     if($collection != '') then concat("[ancestor::tei:TEI/descendant::tei:title/text() = '",$collection,"']")
     else ()
 };

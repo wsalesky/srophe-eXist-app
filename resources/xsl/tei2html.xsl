@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:t="http://www.tei-c.org/ns/1.0" xmlns:x="http://www.w3.org/1999/xhtml" xmlns:saxon="http://saxon.sf.net/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:local="http://syriaca.org/ns" exclude-result-prefixes="xs t x saxon local" version="2.0">
 
  <!-- ================================================================== 
@@ -107,10 +108,14 @@
                     <xsl:when test="$config//*:collection[@title=$collection]">
                         <xsl:value-of select="$config//*:collection[@title=$collection]/@title"/>
                     </xsl:when>
-                    <xsl:otherwise><xsl:value-of select="$repository-title"/></xsl:otherwise>
+                    <xsl:otherwise>
+                        <xsl:value-of select="$repository-title"/>
+                    </xsl:otherwise>
                 </xsl:choose>
             </xsl:when>
-            <xsl:otherwise><xsl:value-of select="$repository-title"/></xsl:otherwise>
+            <xsl:otherwise>
+                <xsl:value-of select="$repository-title"/>
+            </xsl:otherwise>
         </xsl:choose>
     </xsl:variable>
     <!-- Resource id -->
@@ -539,7 +544,9 @@
                         <xsl:sort collation="{$languages}" select="if (contains(@xml:lang, '-')=true()) then substring-before(@xml:lang, '-') else @xml:lang"/>
                         <xsl:for-each select="current-group()">
                             <xsl:sort lang="{current-grouping-key()}" select="normalize-space(.)"/>
-                            <li><xsl:apply-templates select="."/></li>
+                            <li>
+                                <xsl:apply-templates select="."/>
+                            </li>
                         </xsl:for-each>
                     </xsl:for-each-group>
                 </ul>
@@ -812,11 +819,14 @@
         <!-- Events -->
         <xsl:if test="t:event[not(@type='attestation')]">
             <div id="event">
-                <h3>Event<xsl:if test="count(t:event[not(@type='attestation')]) &gt; 1">s</xsl:if></h3>
+                <h3>Event<xsl:if test="count(t:event[not(@type='attestation')]) &gt; 1">s</xsl:if>
+                </h3>
                 <ul class="tei-events">
                     <xsl:for-each select="t:event[not(@type='attestation')]">
                         <xsl:sort select="if(exists(@notBefore)) then @notBefore else @when"/>
-                        <li><xsl:apply-templates select="."/></li>
+                        <li>
+                            <xsl:apply-templates select="."/>
+                        </li>
                     </xsl:for-each>
                 </ul>
             </div>
@@ -825,12 +835,17 @@
         <!-- Events/attestation -->
         <xsl:if test="t:event[@type='attestation']">
             <div id="attestation">
-                <h3>Attestation<xsl:if test="count(t:event[@type='attestation']) &gt; 1">s</xsl:if></h3>
+                <h3>Attestation<xsl:if test="count(t:event[@type='attestation']) &gt; 1">s</xsl:if>
+                </h3>
                 <ul>
                     <!-- Sorts events on dates, checks first for @notBefore and if not present, uses @when -->
                     <xsl:for-each select="t:event[@type='attestation']">
                         <xsl:sort select="if(exists(@notBefore)) then @notBefore else @when"/>
-                        <li><span class="tei-event"><xsl:apply-templates select="."/></span></li>
+                        <li>
+                            <span class="tei-event">
+                                <xsl:apply-templates select="."/>
+                            </span>
+                        </li>
                     </xsl:for-each>
                 </ul>
             </div>
@@ -1015,7 +1030,8 @@
                     <!-- write out the placename itself, with appropriate language and directionality indicia -->
                     <span class="tei-{local-name(.)}">
                         <xsl:sequence select="local:attributes(.)"/>
-                        <!--<xsl:apply-templates select="." mode="plain"/>--><xsl:value-of select="normalize-space(.)"/>
+                        <!--<xsl:apply-templates select="." mode="plain"/>-->
+                        <xsl:value-of select="normalize-space(.)"/>
                     </span>
                     <xsl:sequence select="local:add-footnotes(@source,ancestor::t:*[@xml:lang][1])"/>
                 </li>
