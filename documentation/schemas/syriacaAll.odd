@@ -736,7 +736,9 @@
           <constraintSpec ident="idno-uri" scheme="schematron">
             <constraint>
               <sch:rule context="//tei:publicationStmt/tei:idno[@type='URI']">
-                <sch:let name="fileNo" value="replace(document-uri(/), '[\D]', '')"/>
+                <sch:let name="path" value="document-uri(/)"/>
+                <sch:let name="cleanPath" value="replace($path, '%20', '')"/>
+                <sch:let name="fileNo" value="replace($cleanPath, '[\D]', '')"/>
                 <sch:let name="docURIno" value="//tei:publicationStmt/tei:idno/substring-before(substring-after(substring-after(., 'http://syriaca.org/'), '/'), '/tei')"/>
                 <sch:assert test="$fileNo eq $docURIno">
                   The number portion of the &lt;idno&gt; element must be the same as the URI number in the file name: <sch:value-of select="$fileNo"/>
