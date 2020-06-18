@@ -499,6 +499,13 @@
           <content>
             <elementRef key="body" minOccurs="1" maxOccurs="1"/>
           </content>
+          <constraintSpec ident="source-within-test" scheme="schematron">
+            <constraint>
+              <sch:rule context="//tei:text">
+                <sch:assert test="count(.//@source) ge 1">At least one descendent element of &lt;text&gt; must have a @source attribute (@source attributes point to the @xml:id on a &lt;bibl&gt; or &lt;listBibl&gt;).</sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
         </elementSpec>
         
         <elementSpec ident="title" module="core" mode="change">

@@ -1027,7 +1027,7 @@
           <constraintSpec ident="source-in-text" scheme="schematron">
             <constraint>
               <sch:rule context="//tei:text//@source">
-                <sch:let name="biblIDs" value="//tei:body//tei:bibl/@xml:id | //tei:body//tei:bibl/@xml:id"/>
+                <sch:let name="biblIDs" value="//tei:body//tei:bibl/@xml:id | //tei:body//tei:listBibl/@xml:id"/>
                 <sch:let name="sourceValues" value="for $i in $biblIDs return concat('#', $i)"/>
                 <sch:assert
                   test="

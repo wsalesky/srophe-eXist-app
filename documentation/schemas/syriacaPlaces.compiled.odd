@@ -9727,7 +9727,13 @@ langues, registres, dialectes, etc. présents à l’intérieur d’un texte.</d
     unitario o combinado, p.ej. un texto en verso o teatral, una recopilación de ensayos, una
     novela, un diccionario, o una fragmento de corpus.</desc><desc versionDate="2007-01-21" xml:lang="it">contiene un unico testo di qualsiasi tipo, sia esso
     unitario o composito, per esempio un testo in versi o teatrale, una raccolta di saggi, un
-    romanzo, un dizionario, o una porzione di corpus</desc><classes><memberOf key="model.resource"/></classes><content><elementRef key="body" minOccurs="1" maxOccurs="1"/></content><constraintSpec ident="source-in-text" scheme="schematron">
+    romanzo, un dizionario, o una porzione di corpus</desc><classes><memberOf key="model.resource"/></classes><content><elementRef key="body" minOccurs="1" maxOccurs="1"/></content><constraintSpec ident="source-within-test" scheme="schematron">
+            <constraint>
+              <sch:rule context="//tei:text">
+                <sch:assert test="count(.//@source) ge 1">At least one descendent element of &lt;text&gt; must have a @source attribute (@source attributes point to the @xml:id on a &lt;bibl&gt; or &lt;listBibl&gt;).</sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec><constraintSpec ident="source-in-text" scheme="schematron">
             <constraint>
               <sch:rule context="//tei:text//@source">
                 <sch:let name="biblIDs" value="//tei:body//tei:bibl/@xml:id | //tei:body//tei:bibl/@xml:id"/>

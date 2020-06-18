@@ -6,7 +6,7 @@
          xmlns="http://relaxng.org/ns/structure/1.0"
          datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
          ns="http://www.tei-c.org/ns/1.0"><!--
-Schema generated from ODD source 2020-06-17T19:19:27Z. .
+Schema generated from ODD source 2020-06-18T14:41:49Z. .
 TEI Edition: Version 4.0.0. Last updated on
 	13th February 2020, revision ccd19b0ba
 TEI Edition Location: http://www.tei-c.org/Vault/P5/Version 4.0.0/
@@ -4599,7 +4599,16 @@ Sample values include: 1] TEI; 2] DBK (docbook); 3] XX (unknown); 4] Schematron;
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains a single text of any kind, whether unitary or composite, for example a poem or drama, a collection of essays, a novel, a dictionary, or a corpus sample. [4. Default Text Structure 15.1. Varieties of Composite Text]</a:documentation>
          <ref name="tei_body"/>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="syriacaAll-text-source-in-text-constraint-rule-47">
+                  id="syriacaAll-text-source-within-test-constraint-rule-47">
+            <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+                      xmlns:srophe="https://srophe.app"
+                      xmlns="http://www.tei-c.org/ns/1.0"
+                      context="//tei:text">
+               <sch:assert test="count(.//@source) ge 1">At least one descendent element of &lt;text&gt; must have a @source attribute (@source attributes point to the @xml:id on a &lt;bibl&gt; or &lt;listBibl&gt;).</sch:assert>
+            </sch:rule>
+         </pattern>
+         <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
+                  id="syriacaAll-text-source-in-text-constraint-rule-48">
             <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns:srophe="https://srophe.app"
                       xmlns="http://www.tei-c.org/ns/1.0"
