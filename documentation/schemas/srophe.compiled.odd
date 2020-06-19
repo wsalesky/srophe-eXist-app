@@ -1428,7 +1428,7 @@ the TEI header.</p>
 </classSpec><classSpec rend="change" module="tei" xml:id="GLOBAL" type="atts" ident="att.global"><desc versionDate="2007-10-02" xml:lang="en">provides attributes common to all elements in the TEI encoding scheme.</desc><desc versionDate="2007-12-20" xml:lang="ko">TEI 부호화 스키마의 모든 요소에 공통 속성을 제공한다.</desc><desc versionDate="2007-05-02" xml:lang="zh-TW">提供一組屬性，通用於TEI編碼標準中的所有元素。</desc><desc versionDate="2008-04-05" xml:lang="ja">TEI符号化スキーム中の全要素に共通する属性を示す． </desc><desc versionDate="2007-06-12" xml:lang="fr">fournit un jeu d'attributs communs à tous les éléments
     dans le système de codage TEI.</desc><desc versionDate="2007-05-04" xml:lang="es">proporciona un conjunto de atributos común a todos los
     elementos del esquema de codificación TEI.</desc><desc versionDate="2007-01-21" xml:lang="it">stabilisce un insieme di attributi comuni a tutti gli
-    elementi dello schema di codifica TEI</desc><classes><memberOf key="att.global.rendition"/><memberOf key="att.global.linking"/><memberOf key="att.global.responsibility"/><memberOf key="att.global.source"/></classes><attList><attDef ident="srophe:tags" ns="https://srophe.app">
+    elementi dello schema di codifica TEI</desc><classes><memberOf key="att.global.rendition"/><memberOf key="att.global.linking"/><memberOf key="att.global.analytic"/><memberOf key="att.global.responsibility"/><memberOf key="att.global.source"/></classes><attList><attDef ident="srophe:tags" ns="https://srophe.app">
               <desc>Specialized attributes specific to the functions performed by the Srophé
                 App.</desc>
               <datatype maxOccurs="unbounded" minOccurs="1">
@@ -3346,7 +3346,7 @@ Elements</ref>
   <desc versionDate="2007-01-21" xml:lang="it">raggruppa elementi che contengono una descrizione bibliografica</desc>
   <classes>
     <memberOf key="model.inter"/>
-    
+    <memberOf key="model.personPart"/>
     
     
   </classes>
@@ -3471,7 +3471,7 @@ expliquer d'autres parties d'un document.</desc>
 </classSpec><classSpec predeclare="true" module="tei" type="model" ident="model.eventLike">
   <desc versionDate="2015-05-25" xml:lang="en">groups elements which describe events.</desc>
   <classes>
-    
+    <memberOf key="model.personPart"/>
     
   </classes>
 </classSpec><classSpec module="tei" xml:id="EDITINCL" type="model" ident="model.global.edit">
@@ -3524,6 +3524,41 @@ expliquer d'autres parties d'un document.</desc>
   <listRef>
     <ref target="http://www.tei-c.org/release/doc/tei-p5-doc/en/html/ST.html#STEC">1.3. The TEI Class System</ref>
   </listRef>
+</classSpec><classSpec type="model" module="tei" ident="model.persStateLike">
+  <desc versionDate="2007-10-03" xml:lang="en">groups elements describing changeable characteristics of a person which have a definite
+    duration, for example occupation, residence, or name.</desc>
+  <desc versionDate="2007-12-20" xml:lang="ko">직업, 거주지, 이름과 같이 일정 기간 유지되는 변화가능한 사람의 특성을 기술하는 요소를 모아 놓는다.</desc>
+  <desc versionDate="2007-05-02" xml:lang="zh-TW">該元素集描述人物的可改變特性，有明確的時間長度，例如職業、居所、姓名等。這些特性通常是個人或他人行為的結果。</desc>
+  <desc versionDate="2008-04-05" xml:lang="ja">一定期間で変容する，個人の特性を示す要素をまとめる．例えば，仕事，住 所，名前など．</desc>
+  <desc versionDate="2009-05-28" xml:lang="fr">regroupe des éléments décrivant les caractéristiques
+    d'une personne, variables mais définies dans le temps, par exemple sa profession, son lieu de
+    résidence ou son nom.</desc>
+  <desc versionDate="2007-05-04" xml:lang="es">clase de elementos que describen las características
+    mutables o con una duración determinada en una persona, p.ej. ocupación, residencia, nombre,
+    etc.; tales características de un individuo representan generalmente una consecuencia de sus
+    acciones o de las de otros.</desc>
+  <desc versionDate="2007-01-21" xml:lang="it">classe di elementi che descrivono le caratteristiche
+    mutevoli e con una determinata durata di una persona, per esempio occupazione, residenza, nome,
+    ecc.; tali caratteristiche di un individuo rappresentano in genere una conseguenza delle sue
+    azioni o di quelle degli altri</desc>
+  <classes>
+    <memberOf key="model.personPart"/>
+  </classes>
+  <remarks versionDate="2007-10-03" xml:lang="en">
+    <p>These characteristics of an individual are typically a consequence of their own action or
+      that of others.</p>
+  </remarks>
+  <remarks xml:lang="fr" versionDate="2007-06-12">
+    <p>Il s'agit en général des caractéristiques d'un individu résultant de sa propre action ou de
+      celle d'autrui.</p>
+  </remarks>
+  <remarks xml:lang="es" versionDate="2008-04-06">
+    <p>Estas características de un individuo son típicamente una consecuencia de su propia acción o
+      de la de otros.</p>
+  </remarks>
+  <remarks xml:lang="ja" versionDate="2008-04-05">
+    <p> 当該個人の特性は，自らの行動などによる結果である． </p>
+  </remarks>
 </classSpec><classSpec type="model" module="tei" ident="model.personLike">
   <desc versionDate="2007-10-03" xml:lang="en">groups elements which provide information about people and their relationships.</desc>
   <desc versionDate="2007-12-20" xml:lang="ko">사람과 그들의 친족관계에 관한 정보를 제공하는 요소를 모아 놓는다.</desc>
@@ -3537,6 +3572,22 @@ expliquer d'autres parties d'un document.</desc>
     relative a persone e relazioni tra le stesse</desc>
   
   
+</classSpec><classSpec module="tei" xml:id="DEMOG" type="model" ident="model.personPart">
+  <desc versionDate="2007-10-03" xml:lang="en">groups elements which form part of the description of a person.</desc>
+  <desc versionDate="2007-12-20" xml:lang="ko">개인에 대한 기술의 부분을 형성하는 요소를 모아 놓는다.</desc>
+  <desc versionDate="2007-05-02" xml:lang="zh-TW">匯集的元素描述由文本所參照、或參與語言互動的人物特性。</desc>
+  <desc versionDate="2008-04-05" xml:lang="ja">個人の説明する部分となる要素をまとめる．</desc>
+  <desc versionDate="2009-05-28" xml:lang="fr">regroupe des éléments qui font partie de la description
+    d'une personne</desc>
+  <desc versionDate="2007-05-04" xml:lang="es">agrupa elementos que describen determinadas
+    características de las personas a las cuales se hace referencia en el texto o que participan en
+    una interacción verbal.</desc>
+  <desc versionDate="2007-01-21" xml:lang="it">raggruppa elementi che descrivono determinate
+    caratteristiche delle persone a cui si fa riferimento nel testo o che partecipano a
+    un'interazione verbale</desc>
+  <listRef>
+    <ref target="http://www.tei-c.org/release/doc/tei-p5-doc/en/html/CC.html#CCAHPA">15.2.2. The Participant Description</ref>
+  </listRef>
 </classSpec><classSpec predeclare="true" module="tei" xml:id="PLACPART" type="model" ident="model.placeNamePart">
   <desc versionDate="2007-10-03" xml:lang="en">groups elements which form part of a place name.</desc>
   <desc versionDate="2007-12-20" xml:lang="ko">장소명의 부분을 형성하는 요소를 모아 놓는다.</desc>
@@ -5075,6 +5126,39 @@ which contain an XPath expression.</desc>
       d’espace.
     </p>
   </remarks>
+</dataSpec><dataSpec module="tei" ident="teidata.sex">
+  <desc xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-10-18" xml:lang="en">defines the range of attribute values used to identify human or animal sex.</desc>
+  <desc xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-12-20" xml:lang="ko">인간 또는 동물의 성을 식별하는 속성 값 범위를 정의한다.</desc>
+  <desc xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-02" xml:lang="zh-TW">定義的屬性值範圍用以識別人類或動物的性別</desc>
+  <desc xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2008-04-05" xml:lang="ja">人間または動物の性を示す属性値の範囲を定義する． </desc>
+  <desc xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-06-12" xml:lang="fr">définit la gamme des valeurs d'attributs employés pour
+    identifier le sexe humain ou animal.</desc>
+  <desc xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-05-04" xml:lang="es">define la gama de valores de atributos usados para
+    identificar el género humano o animal.</desc>
+  <desc xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2007-01-21" xml:lang="it">definisce una gamma di valori di attributi usati per
+    identificare il sesso umano o animale</desc>
+  <content xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0">
+      <dataRef key="teidata.word"/>
+   </content>
+  <remarks xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2013-04-14" xml:lang="en">
+      <p>Values for attributes using this datatype may be locally defined by a project, or may refer to an external standard, such as
+      vCard's sex property <ptr target="http://microformats.org/wiki/gender-formats"/>
+      (in which <val>M</val> indicates male, <val>F</val> female, <val>O</val> other, <val>N</val> none or not applicable, <val>U</val> unknown),
+      or the often used ISO 5218:2004 <title>Representation of Human Sexes</title>
+         <ptr target="http://standards.iso.org/ittf/PubliclyAvailableStandards/c036266_ISO_IEC_5218_2004(E_F).zip"/> (in which <val>0</val>
+      indicates unknown; <val>1</val> male; <val>2</val> female; and <val>9</val> not applicable,
+      although the ISO standard is widely considered inadequate);
+      cf. CETH's <title>Recommendations for Inclusive Data Collection of Trans People</title>
+         <ptr target="http://transhealth.ucsf.edu/trans?page=lib-data-collection"/>.</p>
+  </remarks>
+  <remarks xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0" xml:lang="ja" versionDate="2008-04-05">
+      <p> 当該属性値は，ISO 5218:2004 <title>Representation of Human Sexes</title>にあるものとなる．
+      0は不明，1は男性，2は女性，9は当てはまらないことを意味する． </p>
+  </remarks>
+  <remarks xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0" xml:lang="fr" versionDate="2007-06-12">
+      <p>des valeurs sont celle de l' SO 5218:2004 <title>identification des sexes humains.</title>; 0
+      : inconnu ; 1 : homme ; 2 : femme ; et 9 : non applicable.</p>
+  </remarks>
 </dataSpec><dataSpec module="tei" ident="teidata.text">
   <desc xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0" versionDate="2012-06-17" xml:lang="en">defines the range of attribute values used to express some
   kind of identifying string as a single sequence
@@ -6250,7 +6334,7 @@ Normalization</ref>
 Normalization</ref>
     <ref target="http://www.tei-c.org/release/doc/tei-p5-doc/en/html/TC.html#TC">12. Critical Apparatus</ref>
   </listRef>
-</elementSpec><elementSpec rend="change" module="core" ident="name"><gloss versionDate="2005-01-14" xml:lang="en">name, proper noun</gloss><gloss versionDate="2007-12-20" xml:lang="ko">이름, 고유명사</gloss><gloss versionDate="2007-05-02" xml:lang="zh-TW">名稱，特定名稱</gloss><gloss versionDate="2009-01-06" xml:lang="fr">nom, nom propre</gloss><gloss versionDate="2007-05-04" xml:lang="es">nombre, nombre propio</gloss><gloss versionDate="2007-01-21" xml:lang="it">nome, nome proprio</gloss><gloss versionDate="2016-11-24" xml:lang="de">Name, Eigenname</gloss><desc versionDate="2005-01-14" xml:lang="en">contains a proper noun or noun phrase.</desc><desc versionDate="2007-12-20" xml:lang="ko">고유명사 또는 명사구를 포함한다.</desc><desc versionDate="2007-05-02" xml:lang="zh-TW">包含一個特定名稱 或名詞詞組。</desc><desc versionDate="2008-04-05" xml:lang="ja">固有名詞．</desc><desc versionDate="2009-01-06" xml:lang="fr">contient un nom propre ou un syntagme nominal.</desc><desc versionDate="2007-05-04" xml:lang="es">contiene un nombre propio o un sintagma nominal</desc><desc versionDate="2007-01-21" xml:lang="it">contiene un nome proprio o un sintagma nominale.</desc><desc versionDate="2016-11-24" xml:lang="de">enthält einen Eigennamen in Form eines Nomens oder einer Nominalphrase.</desc><classes><memberOf key="att.global"/><memberOf key="model.nameLike.agent"/><memberOf key="att.personal"/><memberOf key="att.datable"/><memberOf key="att.editLike"/><memberOf key="att.typed"/></classes><content><macroRef key="macro.phraseSeq"/></content><constraintSpec ident="ref-on-name" scheme="schematron">
+</elementSpec><elementSpec rend="change" module="core" ident="name"><gloss versionDate="2005-01-14" xml:lang="en">name, proper noun</gloss><gloss versionDate="2007-12-20" xml:lang="ko">이름, 고유명사</gloss><gloss versionDate="2007-05-02" xml:lang="zh-TW">名稱，特定名稱</gloss><gloss versionDate="2009-01-06" xml:lang="fr">nom, nom propre</gloss><gloss versionDate="2007-05-04" xml:lang="es">nombre, nombre propio</gloss><gloss versionDate="2007-01-21" xml:lang="it">nome, nome proprio</gloss><gloss versionDate="2016-11-24" xml:lang="de">Name, Eigenname</gloss><desc versionDate="2005-01-14" xml:lang="en">contains a proper noun or noun phrase.</desc><desc versionDate="2007-12-20" xml:lang="ko">고유명사 또는 명사구를 포함한다.</desc><desc versionDate="2007-05-02" xml:lang="zh-TW">包含一個特定名稱 或名詞詞組。</desc><desc versionDate="2008-04-05" xml:lang="ja">固有名詞．</desc><desc versionDate="2009-01-06" xml:lang="fr">contient un nom propre ou un syntagme nominal.</desc><desc versionDate="2007-05-04" xml:lang="es">contiene un nombre propio o un sintagma nominal</desc><desc versionDate="2007-01-21" xml:lang="it">contiene un nome proprio o un sintagma nominale.</desc><desc versionDate="2016-11-24" xml:lang="de">enthält einen Eigennamen in Form eines Nomens oder einer Nominalphrase.</desc><classes><memberOf key="att.global"/><memberOf key="model.nameLike.agent"/><memberOf key="model.personPart"/><memberOf key="att.personal"/><memberOf key="att.datable"/><memberOf key="att.editLike"/><memberOf key="att.typed"/></classes><content><macroRef key="macro.phraseSeq"/></content><constraintSpec ident="ref-on-name" scheme="schematron">
             <constraint>
               <sch:rule context="//tei:teiHeader//tei:name">
                 <sch:assert test="./@ref">A @ref attribute is required on the &lt;name&gt; element
@@ -7288,7 +7372,7 @@ entre les Romains.</label>
                   have an @xml:lang attribute. </sch:assert>
               </sch:rule>
             </constraint>
-          </constraintSpec><attList><attDef ident="xml:id" mode="delete"/><attDef ident="type" mode="change" usage="req">
+          </constraintSpec><attList><attDef ident="type" mode="change" usage="req">
               <desc>Describes the function of the note. This attribute is recommended and determines
                 how the note is displayed on the page.</desc>
               <valList mode="replace" type="closed">
@@ -9300,7 +9384,7 @@ creation of an electronic text.</desc>
     
     <memberOf key="model.nameLike"/>
     
-    
+    <memberOf key="model.personPart"/>
   </classes>
   <content>
 
@@ -10811,7 +10895,7 @@ langues, registres, dialectes, etc. présents à l’intérieur d’un texte.</d
     cognomi, titoli onorifici, o nomi aggiunti della persona in questione</desc>
   <classes>
     <memberOf key="att.global"/>
-    
+    <memberOf key="model.persStateLike"/>
     <memberOf key="model.nameLike.agent"/>
     <memberOf key="att.datable"/>
     <memberOf key="att.editLike"/>
@@ -10850,6 +10934,44 @@ langues, registres, dialectes, etc. présents à l’intérieur d’un texte.</d
     <egXML xmlns="http://www.tei-c.org/ns/Examples">
       <persName><forename>夏爾</forename><forename>皮耶</forename><surname>波特萊爾</surname>，<roleName><placeName>法國</placeName>象徵派詩人         </roleName>
          </persName>
+    </egXML>
+  </exemplum>
+  <listRef>
+    <ref target="http://www.tei-c.org/release/doc/tei-p5-doc/en/html/ND.html#NDPER">13.2.1. Personal Names</ref>
+  </listRef>
+</elementSpec><elementSpec module="namesdates" ident="surname">
+  <gloss versionDate="2009-03-19" xml:lang="fr">nom de famille</gloss>
+  <desc versionDate="2005-01-14" xml:lang="en">contains a family (inherited) name, as opposed to a given, baptismal, or nick name.</desc>
+  <desc versionDate="2009-01-05" xml:lang="fr">contient un nom de famille (hérité) par opposition à un nom donné, nom de baptême ou surnom.</desc>
+  <desc versionDate="2007-12-20" xml:lang="ko">이름, 세례명, 또는 별명에 반대되는 것으로 (물려받은) 성을 포함한다.</desc>
+  <desc versionDate="2007-05-02" xml:lang="zh-TW">包含一個家族姓氏，並非名字、教名、或綽號。</desc>
+  <desc versionDate="2008-04-05" xml:lang="ja">(継承される)苗字を示す．姓名中の名，洗礼名，愛称，別称とは異なる．</desc>
+  <desc versionDate="2007-05-04" xml:lang="es">contiene el apellido o nombre de família (heredado), en oposicion a un nombre asignado, un nombre de
+        bautismo o un sobranombre.</desc>
+  <desc versionDate="2007-01-21" xml:lang="it">contiene un nome di famiglia (ereditato) piuttosto che un nome assegnato, un nome di battesimo o un
+        soprannome</desc>
+  <classes>
+    <memberOf key="att.global"/>
+    <memberOf key="model.persNamePart"/>
+    <memberOf key="att.personal"/>
+    <memberOf key="att.typed"/>
+  </classes>
+  <content>
+    <macroRef key="macro.phraseSeq"/>
+  </content>
+  <exemplum xml:lang="en">
+    <egXML xmlns="http://www.tei-c.org/ns/Examples">
+      <surname type="combine">St John Stevas</surname>
+    </egXML>
+  </exemplum>
+  <exemplum versionDate="2008-04-06" xml:lang="fr">
+    <egXML xmlns="http://www.tei-c.org/ns/Examples">
+      <surname type="combine">Sidonie Gabrielle Colette</surname>
+    </egXML>
+  </exemplum>
+  <exemplum xml:lang="zh-TW">
+    <egXML xmlns="http://www.tei-c.org/ns/Examples">
+      <surname type="combine">歐陽</surname>
     </egXML>
   </exemplum>
   <listRef>
@@ -10956,6 +11078,80 @@ langues, registres, dialectes, etc. présents à l’intérieur d’un texte.</d
       </persName>
     </egXML>
   </exemplum>
+  <listRef>
+    <ref target="http://www.tei-c.org/release/doc/tei-p5-doc/en/html/ND.html#NDPER">13.2.1. Personal Names</ref>
+  </listRef>
+</elementSpec><elementSpec module="namesdates" ident="roleName">
+  <gloss versionDate="2008-12-09" xml:lang="fr">rôle</gloss>
+  <desc versionDate="2005-01-14" xml:lang="en">contains a name component which indicates that the referent has a particular role or position in society, such as an official title or
+        rank.</desc>
+  <desc versionDate="2007-12-20" xml:lang="ko">공식적 직함 또는 서열과 같이 사회에서 특별한 역할 또는 지위를 나타내는 이름 성분을 포함한다.</desc>
+  <desc versionDate="2007-05-02" xml:lang="zh-TW">包含一個身份名稱，代表個人在社會上所扮演的特殊角色或所處地位，例如官方頭銜或地位。</desc>
+  <desc versionDate="2008-04-05" xml:lang="ja">参照されるものの，社会的な役割や地位，例えば，公式な役職名や地位など を示す，名前要素を示す</desc>
+  <desc versionDate="2009-03-19" xml:lang="fr">contient un composant du nom d'une personne, indiquant que celle-ci a un rôle ou une position
+        particulière dans la société, comme un titre ou un rang officiel.</desc>
+  <desc versionDate="2007-05-04" xml:lang="es">contiene un componente del nombre que indica un rol o una posición específica a nivel social, como en el
+        caso de títulos oficiales o de grado militar.</desc>
+  <desc versionDate="2007-01-21" xml:lang="it">contiene una componente del nome che indica un ruolo o una posizione specifici a livello sociale, come
+        nel caso di titoli ufficiali o grado militare</desc>
+  <classes>
+    <memberOf key="att.global"/>
+    <memberOf key="model.persNamePart"/>
+    <memberOf key="att.personal"/>
+    <memberOf key="att.typed"/>
+  </classes>
+  <content>
+    <macroRef key="macro.phraseSeq"/>
+  </content>
+  <exemplum xml:lang="en">
+    <egXML xmlns="http://www.tei-c.org/ns/Examples">
+      <persName>
+        <forename>William</forename>
+        <surname>Poulteny</surname>
+        <roleName>Earl of Bath</roleName>
+      </persName>
+    </egXML>
+  </exemplum>
+  <exemplum versionDate="2008-04-06" xml:lang="fr">
+    <egXML xmlns="http://www.tei-c.org/ns/Examples">
+      <persName><forename>Joachim</forename><surname>Murat</surname>, <roleName>roi de Naples</roleName></persName>
+    </egXML>
+  </exemplum>
+  <exemplum xml:lang="zh-TW">
+    <egXML xmlns="http://www.tei-c.org/ns/Examples">
+      <persName>
+        <forename>溥儀</forename>
+        <surname>愛新覺羅</surname>
+        <roleName>滿清末代皇帝</roleName>
+      </persName>
+    </egXML>
+  </exemplum>
+  <exemplum xml:lang="en" versionDate="2019-07-15">
+    <egXML xmlns="http://www.tei-c.org/ns/Examples">
+      <p>The <roleName role="#solicitor_general">S.G.</roleName> is the only national public official,
+      including the Supreme Court justices, required by statute to be “learned in the law.”</p>
+    </egXML>
+  </exemplum>
+  <exemplum xml:lang="en" versionDate="2019-07-15">
+    <egXML xmlns="http://www.tei-c.org/ns/Examples">
+      <p><persName ref="#NJF"><roleName role="#solicitor_general">Solicitor General</roleName> Noel J. Francisco</persName>,
+      representing the administration, asserted in rebuttal that there was nothing to disavow (...)
+      <persName ref="#NJF">Francisco</persName> had violated the scrupulous standard of candor about the facts and
+      the law that <roleName role="#solicitor_general">S.G.s</roleName>, in Republican and Democratic administrations
+      alike, have repeatedly said they must honor.</p>
+    </egXML>
+  </exemplum>
+  <remarks versionDate="2005-01-14" xml:lang="en">
+    <p>A <gi>roleName</gi> may be distinguished from an <gi>addName</gi> by virtue of the fact that, like a title, it typically exists
+            independently of its holder.</p>
+  </remarks>
+  <remarks versionDate="2008-12-09" xml:lang="fr">
+    <p>Un élément <gi>roleName</gi> peut être distingué d'un élément <gi>addName</gi> du fait que, à l'instar d'un titre, il existe en général
+            indépendamment de la personne qui le porte.</p>
+  </remarks>
+  <remarks xml:lang="ja" versionDate="2008-04-05">
+    <p> 要素<gi>roleName</gi>は，役職名などはその当事者とは独立してあるも のであることから，要素<gi>addName</gi>とは異なっている． </p>
+  </remarks>
   <listRef>
     <ref target="http://www.tei-c.org/release/doc/tei-p5-doc/en/html/ND.html#NDPER">13.2.1. Personal Names</ref>
   </listRef>
@@ -11365,6 +11561,76 @@ langues, registres, dialectes, etc. présents à l’intérieur d’un texte.</d
   </exemplum>
   <listRef>
     <ref target="http://www.tei-c.org/release/doc/tei-p5-doc/en/html/ND.html#NDPLAC">13.2.3. Place Names</ref>
+  </listRef>
+</elementSpec><elementSpec module="namesdates" ident="death">
+  <gloss versionDate="2008-12-09" xml:lang="fr">décès</gloss>
+  <desc versionDate="2005-12-13" xml:lang="en">contains information about a person's death, such as its date and place.</desc>
+  <desc versionDate="2007-12-20" xml:lang="ko">날짜, 장소와 같이 개인의 죽음과 관련된 정보를 포함한다.</desc>
+  <desc versionDate="2007-05-02" xml:lang="zh-TW">包含個人的死亡資訊，例如日期及地點等。</desc>
+  <desc versionDate="2008-04-05" xml:lang="ja">人物の死亡に関する情報を示す．例えば，日付や場所など．</desc>
+  <desc versionDate="2008-12-09" xml:lang="fr">contient des informations sur le décès d'une personne, comme la date et le lieu.</desc>
+  <desc versionDate="2007-05-04" xml:lang="es">contiene informaciones relativas a la defunción de una persona, del tipo lugar y fecha.</desc>
+  <desc versionDate="2007-01-21" xml:lang="it">contiene informazioni relative al luogo e alla data di morte di una persona</desc>
+  <classes>
+    <memberOf key="att.datable"/>
+    <memberOf key="att.dimensions"/>
+    <memberOf key="att.editLike"/>
+    <memberOf key="att.global"/>
+    <memberOf key="att.naming"/>
+    <memberOf key="att.typed"/>
+    <memberOf key="model.personPart"/>
+  </classes>
+  <content>
+    <macroRef key="macro.phraseSeq"/>
+  </content>
+  <attList>
+    <attDef ident="type" usage="opt" mode="change">
+      <datatype>
+	<dataRef key="teidata.enumerated"/>
+      </datatype>
+      <valList type="open" mode="add">
+	<valItem ident="proclaimed"/>
+	<valItem ident="assumed"/>
+	<valItem ident="verified"/>
+	<valItem ident="clinical"/>
+	<valItem ident="brain"/>
+	<valItem ident="natural"/>
+	<valItem ident="unnatural"/>
+	<valItem ident="fragmentation"/>
+	<valItem ident="dissolution"/>
+      </valList>
+      <remarks xml:lang="en" versionDate="2017-06-23">
+	<p>This attribute is not intended to express the cause of death.</p>
+      </remarks>
+    </attDef>
+  </attList>
+  <exemplum xml:lang="und">
+    <egXML xmlns="http://www.tei-c.org/ns/Examples" source="#UND">
+      <death when="1902-10-01"/>
+    </egXML>
+  </exemplum>
+  <exemplum versionDate="2008-04-06" xml:lang="fr">
+    <egXML xmlns="http://www.tei-c.org/ns/Examples" source="#UND">
+      <death when="1902-10-01"/>
+    </egXML>
+  </exemplum>
+  <exemplum versionDate="2008-04-06" xml:lang="fr">
+    <egXML xmlns="http://www.tei-c.org/ns/Examples" source="#fr-ex-Ernaux-perdre">
+      <death when="1953-04-07">Ma mère est morte le 7 avril.</death>
+    </egXML>
+  </exemplum>
+  <exemplum xml:lang="zh-TW">
+    <egXML xmlns="http://www.tei-c.org/ns/Examples">
+      <death when="1960-12-10">在<name type="place">北大教堂</name>附近死於腦性麻痺</death>
+    </egXML>
+  </exemplum>
+  <exemplum xml:lang="en">
+    <egXML xmlns="http://www.tei-c.org/ns/Examples">
+      <death when="1960-12-10">Passed away near <name type="place">Aix-la-Chapelle</name>, after suffering from cerebral palsy. </death>
+    </egXML>
+  </exemplum>
+  <listRef>
+    <ref target="http://www.tei-c.org/release/doc/tei-p5-doc/en/html/CC.html#CCAHPA">15.2.2. The Participant Description</ref>
   </listRef>
 </elementSpec><elementSpec module="namesdates" ident="event">
   <gloss versionDate="2008-12-09" xml:lang="fr">évènement</gloss>
@@ -11876,6 +12142,181 @@ langues, registres, dialectes, etc. présents à l’intérieur d’un texte.</d
     
     
   </listRef>
+</elementSpec><elementSpec module="namesdates" ident="person">
+  <gloss versionDate="2008-12-09" xml:lang="fr">personne</gloss>
+  <desc versionDate="2005-12-14" xml:lang="en">provides information about an identifiable individual, for example a participant in a language interaction, or a person referred to in a
+        historical source.</desc>
+  <desc versionDate="2007-12-20" xml:lang="ko">예를 들어 언어 상호작용의 참여자 또는 역사적 문헌에서 언급된 사람과 같이 식별가능한 개인에 관한 정보를 제공한다.</desc>
+  <desc versionDate="2007-05-02" xml:lang="zh-TW">提供一個已知人物的相關資料，例如語言互動中的參與者、或是歷史來源中提及的人物。</desc>
+  <desc versionDate="2008-04-05" xml:lang="ja">特定可能な個人の情報を示す．例えば，言語交流の参加者，歴史資料中で参 照される人物など．</desc>
+  <desc versionDate="2009-03-19" xml:lang="fr">fournit des informations sur un individu identifiable, par exemple un participant à une interaction
+        linguistique, ou une personne citée dans une source historique.</desc>
+  <desc versionDate="2007-05-04" xml:lang="es">proporciona información relativa a un individuo específico, p.ej. un participante de una interacción
+        verbal o una persona identificada por una fuente histórica.</desc>
+  <desc versionDate="2007-01-21" xml:lang="it">fornisce informazioni relative a un soggetto specifico, come i partecipanti a un'interazione verbale o le
+        persone identificate da una fonte storica</desc>
+  <classes>
+    <memberOf key="att.global"/>
+    <memberOf key="att.editLike"/>
+    <memberOf key="model.personLike"/>
+    <memberOf key="att.sortable"/>
+  </classes>
+  <content>
+    <alternate>
+      
+        <classRef key="model.pLike" minOccurs="1" maxOccurs="unbounded"/>
+      
+      
+        <alternate minOccurs="0" maxOccurs="unbounded">
+          <classRef key="model.personPart"/>
+          <classRef key="model.global"/>
+          <elementRef key="ptr"/>
+        </alternate>
+      
+    </alternate>
+  </content>
+  <attList>
+    <attDef ident="role" usage="opt">
+      <desc versionDate="2005-12-14" xml:lang="en">specifies a primary role or classification for the person.</desc>
+      <desc versionDate="2007-12-20" xml:lang="ko">사람에 대한 주요 역할 또는 분류를 명시한다.</desc>
+      <desc versionDate="2007-05-02" xml:lang="zh-TW">說明該人物的主要角色或分類。</desc>
+      <desc versionDate="2008-04-05" xml:lang="ja">当該人物の第一位の役割や分類を示す．</desc>
+      <desc versionDate="2009-03-19" xml:lang="fr">précise un rôle principal ou une classification principale pour cette personne.</desc>
+      <desc versionDate="2007-05-04" xml:lang="es">establece el rol o la clasificación primaria de una persona.</desc>
+      <desc versionDate="2007-01-21" xml:lang="it">stabilisce il ruolo o la classificazione primaria di una persona</desc>
+      <datatype maxOccurs="unbounded"><dataRef key="teidata.enumerated"/></datatype>
+<remarks versionDate="2013-12-21" xml:lang="en">
+        <p>Values for this attribute may be locally defined by a
+	project, using arbitrary keywords such as <val>artist</val>,
+	<val>employer</val>, <val>author</val>, <val>relative</val>, or
+	<val>servant</val>, each of which should be associated with a
+	definition. Such local definitions will typically be provided by a
+	<gi>valList</gi> element in the project schema
+specification.</p></remarks>
+    </attDef>
+    <attDef ident="sex" usage="opt">
+      <desc versionDate="2005-12-14" xml:lang="en">specifies the sex of the person.</desc>
+      <desc versionDate="2007-12-20" xml:lang="ko">사람의 성을 명시한다.</desc>
+      <desc versionDate="2007-05-02" xml:lang="zh-TW">指出該人物的性別。</desc>
+      <desc versionDate="2008-04-05" xml:lang="ja">当該人物の性別を示す．</desc>
+      <desc versionDate="2009-03-19" xml:lang="fr">précise le sexe de la personne.</desc>
+      <desc versionDate="2007-05-04" xml:lang="es">especifica el sexo de una persona.</desc>
+      <desc versionDate="2007-01-21" xml:lang="it">indica il sesso di una persona</desc>
+      <datatype minOccurs="1" maxOccurs="unbounded"><dataRef key="teidata.sex"/></datatype>
+      <remarks versionDate="2013-04-14" xml:lang="en">
+        <p>Values for this attribute may be locally defined by a project, or may refer to an external standard, such as
+          vCard's sex property <ptr target="http://microformats.org/wiki/gender-formats"/>
+          (in which <val>M</val> indicates male, <val>F</val> female, <val>O</val> other, <val>N</val> none or not applicable, <val>U</val> unknown),
+          or the often used ISO 5218:2004 <title>Representation of Human Sexes</title>
+               <ptr target="http://standards.iso.org/ittf/PubliclyAvailableStandards/c036266_ISO_IEC_5218_2004(E_F).zip"/> (in which <val>0</val>
+          indicates unknown; <val>1</val> male; <val>2</val> female; and <val>9</val> not applicable,
+          although the ISO standard is widely considered inadequate);
+          cf. CETH's <title>Recommendations for Inclusive Data Collection of Trans People</title>
+               <ptr target="http://transhealth.ucsf.edu/trans?page=lib-data-collection"/>.</p>
+      </remarks>
+    </attDef>
+    <attDef ident="age" usage="opt">
+      <desc versionDate="2005-12-14" xml:lang="en">specifies an age group for the person.</desc>
+      <desc versionDate="2007-12-20" xml:lang="ko">사람의 연령군을 명시한다.</desc>
+      <desc versionDate="2007-05-02" xml:lang="zh-TW">指出該人物所屬的年齡層。</desc>
+      <desc versionDate="2008-04-05" xml:lang="ja">当該人物の年齢層を示す．</desc>
+      <desc versionDate="2009-03-19" xml:lang="fr">précise une tranche d'âge pour la personne.</desc>
+      <desc versionDate="2007-05-04" xml:lang="es">especifica un intervalo de edad para una persona.</desc>
+      <desc versionDate="2007-01-21" xml:lang="it">indica la fascia di età di una persona</desc>
+      <datatype><dataRef key="teidata.enumerated"/></datatype>
+<remarks versionDate="2013-12-21" xml:lang="en">
+        <p>Values for this attribute may be locally defined by a
+	project, using arbitrary keywords such as <val>infant</val>,
+	<val>child</val>, <val>teen</val>, <val>adult</val>, or
+	<val>senior</val>, each of which should be associated with a
+	definition. Such local definitions will typically be provided by a
+	<gi>valList</gi> element in the project schema
+specification.</p></remarks>
+    </attDef>
+  </attList>
+  <exemplum xml:lang="en">
+    <egXML xmlns="http://www.tei-c.org/ns/Examples">
+      <person sex="F" age="adult">
+        <p>Female respondent, well-educated, born in Shropshire UK, 12 Jan 1950, of unknown occupation. Speaks French fluently. Socio-Economic
+          status B2.</p>
+      </person>
+    </egXML>
+  </exemplum>
+  <exemplum xml:lang="en">
+    <egXML xmlns="http://www.tei-c.org/ns/Examples">
+      <person sex="intersex" role="god" age="immortal">
+        <persName>Hermaphroditos</persName>
+        <persName xml:lang="grc">Ἑρμαφρόδιτος</persName>
+      </person>
+    </egXML>
+  </exemplum>
+  <exemplum versionDate="2008-04-06" xml:lang="fr">
+    <egXML xmlns="http://www.tei-c.org/ns/Examples">
+      <person sex="2" age="adult">
+        <p>Personne interrogée, de sexe féminin, instruite, née à Shropshire, au ROYAUME-UNI le 12
+            Janvier 1950, d'occupation inconnue. Parle le français couramment. Statut
+            socio-économique B2.</p>
+      </person>
+    </egXML>
+  </exemplum>
+  <exemplum versionDate="2008-04-06" xml:lang="fr">
+    <egXML xmlns="http://www.tei-c.org/ns/Examples">
+      <person xml:id="fr_Ovi01" sex="1" role="poet">
+        <persName xml:lang="en">Ovid</persName>
+        <persName xml:lang="la">Publius Ovidius Naso</persName>
+        <birth when="-0044-03-20"> 20 March 43 BC<placeName><settlement type="city">Sulmona</settlement><country key="IT">Italie</country></placeName>
+            </birth>
+        <death notBefore="0017" notAfter="0018">17 or 18 AD<placeName><settlement type="city">Tomis (Constanta)</settlement><country key="RO">Roumanie</country></placeName>
+            </death>
+      </person>
+    </egXML>
+  </exemplum>
+  <exemplum xml:lang="zh-TW">
+    <egXML xmlns="http://www.tei-c.org/ns/Examples">
+      <person sex="2" age="adult">
+        <p>女性被告。1950年1月12日生於西藏，受過良好教育，職業不明。能說流利漢語，中產階級。</p>
+      </person>
+    </egXML>
+  </exemplum>
+  <exemplum xml:lang="zh-TW">
+    <egXML xmlns="http://www.tei-c.org/ns/Examples">
+      <person xml:id="zh-tw_Ovi01" sex="1" role="poet">
+        <persName xml:lang="en">Ovid</persName>
+        <persName xml:lang="zh-TW">奧維德</persName>
+        <birth when="-0044-03-20"> 西元前43年3月20日<placeName><settlement type="city">Sulmona</settlement><country key="IT">義大利</country></placeName>
+            </birth>
+        <death notBefore="0017" notAfter="0018">西元後17或18年<placeName><settlement type="city">Tomis (Constanta)</settlement><country key="RO">羅馬尼亞</country></placeName>
+            </death>
+      </person>
+    </egXML>
+  </exemplum>
+  <exemplum xml:lang="en">
+    <egXML xmlns="http://www.tei-c.org/ns/Examples">
+      <person xml:id="Ovi01" sex="1" role="poet">
+        <persName xml:lang="en">Ovid</persName>
+        <persName xml:lang="la">Publius Ovidius Naso</persName>
+        <birth when="-0044-03-20"> 20 March 43 BC <placeName><settlement type="city">Sulmona</settlement><country key="IT">Italy</country></placeName>
+            </birth>
+        <death notBefore="0017" notAfter="0018">17 or 18 AD <placeName><settlement type="city">Tomis (Constanta)</settlement><country key="RO">Romania</country></placeName>
+            </death>
+      </person>
+    </egXML>
+  </exemplum>
+  <remarks versionDate="2005-12-14" xml:lang="en">
+    <p rend="dataDesc">May contain either a prose description organized as paragraphs, or a sequence of more specific demographic elements drawn
+            from the <ident type="class">model.personPart</ident> class.</p>
+  </remarks>
+  <remarks versionDate="2008-12-09" xml:lang="fr">
+    <p rend="dataDesc">Peut contenir soit une description en prose organisée en paragraphes, soit une suite d'éléments spécifiques relatifs à la
+            démographie extraits de la classe <ident type="class">model.personPart</ident>.</p>
+  </remarks>
+  <remarks xml:lang="ja" versionDate="2008-04-05">
+    <p rend="dataDesc"> 段落による散文の解説，またはクラス <ident type="class">model.personPart</ident>にある一連の人口統計要 素を含むかもしれない． </p>
+  </remarks>
+  <listRef>
+    <ref target="http://www.tei-c.org/release/doc/tei-p5-doc/en/html/ND.html#NDPERSE">13.3.2. The Person Element</ref>
+    <ref target="http://www.tei-c.org/release/doc/tei-p5-doc/en/html/CC.html#CCAHPA">15.2.2. The Participant Description</ref>
+  </listRef>
 </elementSpec><elementSpec ident="place" module="namesdates">
   <gloss versionDate="2008-12-09" xml:lang="fr">lieu</gloss>
   <desc versionDate="2007-06-14" xml:lang="en">contains data about a geographic location</desc>
@@ -12088,9 +12529,103 @@ langues, registres, dialectes, etc. présents à l’intérieur d’un texte.</d
     
     
   </listRef>
+</elementSpec><elementSpec module="namesdates" ident="sex">
+  <gloss versionDate="2009-03-19" xml:lang="fr">sexe</gloss>
+  <desc versionDate="2006-06-21" xml:lang="en">specifies the sex of a person.</desc>
+  <desc versionDate="2009-03-19" xml:lang="fr">précise le sexe d'une personne.</desc>
+  <desc versionDate="2007-12-20" xml:lang="ko">개인의 성을 명시한다.</desc>
+  <desc versionDate="2007-05-02" xml:lang="zh-TW">指明個人性別。</desc>
+  <desc versionDate="2008-04-05" xml:lang="ja">人物の性別を示す．</desc>
+  <desc versionDate="2007-05-04" xml:lang="es">especifica el sexo de una persona.</desc>
+  <desc versionDate="2007-01-21" xml:lang="it">specifica il sesso di una persona</desc>
+  <classes>
+    <memberOf key="att.global"/>
+    <memberOf key="model.persStateLike"/>
+    <memberOf key="att.editLike"/>
+    <memberOf key="att.datable"/>
+    <memberOf key="att.typed"/>
+  </classes>
+  <content>
+    <macroRef key="macro.phraseSeq"/>
+  </content>
+  <attList>
+    <attDef ident="type" usage="opt" mode="change">
+      <datatype>
+        <dataRef key="teidata.enumerated"/>
+      </datatype>
+      <valList type="open" mode="add">
+        <valItem ident="explicit"/>
+        <valItem ident="implicit"/>
+      </valList>
+    </attDef>
+    <attDef ident="value" usage="opt">
+      <desc versionDate="2012-10-07" xml:lang="en">supplies a coded value for sex</desc>
+      <datatype minOccurs="1" maxOccurs="unbounded"><dataRef key="teidata.sex"/></datatype>
+      <remarks versionDate="2013-04-14" xml:lang="en">
+        <p>Values for this attribute may be locally defined by a project, or may refer to an external standard, such as
+          vCard's sex property <ptr target="http://microformats.org/wiki/gender-formats"/>
+          (in which <val>M</val> indicates male, <val>F</val> female, <val>O</val> other, <val>N</val> none or not applicable, <val>U</val> unknown),
+          or the often used ISO 5218:2004 <title>Representation of Human Sexes</title>
+               <ptr target="http://standards.iso.org/ittf/PubliclyAvailableStandards/c036266_ISO_IEC_5218_2004(E_F).zip"/> (in which <val>0</val>
+          indicates unknown; <val>1</val> male; <val>2</val> female; and <val>9</val> not applicable,
+          although the ISO standard is widely considered inadequate);
+          cf. CETH's <title>Recommendations for Inclusive Data Collection of Trans People</title>
+               <ptr target="http://transhealth.ucsf.edu/trans?page=lib-data-collection"/>.</p>
+      </remarks>
+      <remarks xml:lang="fr" versionDate="2009-03-19">
+        <p>Les valeurs de cet attribut sont tirées de la norme ISO 5218:1977 <title>Échange d'information -- Représentation des sexes humains</title> ; 0 indique "inconnu" ; 1 indique "masculin" ; 2 indique "féminin" ; et 9 indique "ne s'applique pas".</p>
+      </remarks>
+      <remarks xml:lang="ja" versionDate="2008-04-05">
+        <p> 当該属性の値は，ISO 5218:1977 <title>Representation of Human Sexes</title>で定義されている． 0は不明，1は男性，2は女性，9は不適切であることを示す． </p>
+      </remarks>
+    </attDef>
+  </attList>
+  <exemplum xml:lang="en">
+    <egXML xmlns="http://www.tei-c.org/ns/Examples">
+      <sex value="M">male</sex>
+    </egXML>
+  </exemplum>
+  <exemplum xml:lang="en">
+    <egXML xmlns="http://www.tei-c.org/ns/Examples">
+      <sex value="2">female</sex>
+    </egXML>
+  </exemplum>
+  <exemplum xml:lang="en">
+    <egXML xmlns="http://www.tei-c.org/ns/Examples">
+      <sex value="I">Intersex</sex>
+    </egXML>
+  </exemplum>
+  <exemplum xml:lang="en">
+    <egXML xmlns="http://www.tei-c.org/ns/Examples">
+      <sex value="TG F">Female (TransWoman)</sex>
+    </egXML>
+  </exemplum>
+  <exemplum versionDate="2008-04-06" xml:lang="fr">
+    <egXML xmlns="http://www.tei-c.org/ns/Examples">
+      <sex value="2">féminin</sex>
+    </egXML>
+  </exemplum>
+  <exemplum xml:lang="zh-TW">
+    <egXML xmlns="http://www.tei-c.org/ns/Examples">
+      <sex value="2">女性</sex>
+    </egXML>
+  </exemplum>
+  <remarks versionDate="2013-04-13" xml:lang="en">
+    <p>As with other culturally-constructed traits such as
+    age, the way in which this concept is described in different
+    cultural contexts may vary. The normalizing attributes are
+    provided only as an optional means of simplifying that variety to 
+    one or more external standards for purposes of interoperability,
+    or project-internal taxonomies for consistency, and should not be used where that is
+    inappropriate or unhelpful. The content of the element may be used to describe
+    the intended concept in more detail, using plain text. </p>
+  </remarks>
+  <listRef>
+    <ref target="http://www.tei-c.org/release/doc/tei-p5-doc/en/html/ND.html#NDPERSEpc">13.3.2.1. Personal Characteristics</ref>
+  </listRef>
 </elementSpec><elementSpec rend="change" module="namesdates" ident="state"><gloss versionDate="2009-03-19" xml:lang="fr">statut</gloss><desc versionDate="2011-12-01" xml:lang="en">contains a description of some status or quality attributed to a person, place, or organization often at some specific time or for a specific date range.</desc><desc versionDate="2009-03-19" xml:lang="fr">contient la description d'un statut ou d'une qualité actuels attribués à une personne, un lieu ou une
         organisation.</desc><desc versionDate="2007-12-20" xml:lang="ko">개인, 장소, 또는 조직에 관련한 현재 지위 또는 특성 기술을 포함한다.</desc><desc versionDate="2007-05-02" xml:lang="zh-TW">標明分界方法所定義的權威參照標準裡其中ㄧ個組件。</desc><desc versionDate="2008-04-05" xml:lang="ja">人物，場所，組織などの，現在の社会的状態や地位を示す．</desc><desc versionDate="2018-07-18" xml:lang="de">enthält eine Beschreibung eines Status oder einer Qualität, die einer Person, einem Ort oder einer Organisation 
-    oft zu einem bestimmten Zeitpunkt oder für einen bestimmten Zeitraum zugeordnet wird.</desc><desc versionDate="2007-05-04" xml:lang="es">especifica un componente de una referencia canónica definida por el método milestone (hito).</desc><desc versionDate="2007-01-21" xml:lang="it">specifica un componente di un riferimento canonico definito dal metodo milestone.</desc><classes><memberOf key="att.canonical"/><memberOf key="att.global"/><memberOf key="att.datable"/><memberOf key="att.typed"/><memberOf key="model.placeStateLike"/></classes><content><elementRef key="p" minOccurs="0" maxOccurs="1"/><elementRef key="label" minOccurs="0"/><elementRef key="precision" minOccurs="0" maxOccurs="unbounded"/></content><attList><attDef ident="notAfter" mode="delete"/><attDef ident="notBefore" mode="delete"/><attDef ident="notAfter-custom" mode="delete"/><attDef ident="notBefore-custom" mode="delete"/></attList><exemplum>
+    oft zu einem bestimmten Zeitpunkt oder für einen bestimmten Zeitraum zugeordnet wird.</desc><desc versionDate="2007-05-04" xml:lang="es">especifica un componente de una referencia canónica definida por el método milestone (hito).</desc><desc versionDate="2007-01-21" xml:lang="it">specifica un componente di un riferimento canonico definito dal metodo milestone.</desc><classes><memberOf key="att.global"/><memberOf key="att.datable"/><memberOf key="att.typed"/><memberOf key="att.naming"/><memberOf key="model.persStateLike"/><memberOf key="model.placeStateLike"/></classes><content><elementRef key="p" minOccurs="0" maxOccurs="1"/><elementRef key="label" minOccurs="0"/><elementRef key="precision" minOccurs="0" maxOccurs="unbounded"/></content><attList><attDef ident="notAfter" mode="delete"/><attDef ident="notBefore" mode="delete"/><attDef ident="notAfter-custom" mode="delete"/><attDef ident="notBefore-custom" mode="delete"/></attList><exemplum>
             <egXML xmlns="http://www.tei-c.org/ns/Examples">
               <state resp="http://syriaca.org" type="existence" from="0400" to="0473" srophe:computed-start="0400-01-01" srophe:computed-end="0473-0101">
                 <precision match="@from" notAfter="0420" srophe:computed-end="0420-01-01"/>
@@ -12664,7 +13199,17 @@ langues, registres, dialectes, etc. présents à l’intérieur d’un texte.</d
   <listRef>
     <ref target="http://www.tei-c.org/release/doc/tei-p5-doc/en/html/DS.html#DS">4. Default Text Structure</ref>
   </listRef>
-</elementSpec><moduleSpec n="ST" xml:id="DSTTEI2" ident="tei" type="core"/><moduleSpec n="CO" xml:id="DCO" ident="core"/><moduleSpec n="CE" xml:id="DCE" ident="certainty"/><moduleSpec xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" n="HD" xml:id="DHD" ident="header"/><moduleSpec n="SA" xml:id="DSA" ident="linking"/><moduleSpec n="ND" xml:id="DND" ident="namesdates"/><moduleSpec n="TD" xml:id="DTDDTD" ident="tagdocs"/><moduleSpec n="DS" xml:id="DDS" ident="textstructure"/></schemaSpec>
+</elementSpec><classSpec rend="add" module="derived-module-srophe" type="atts" ident="att.global.analytic" mode="add">
+          <desc>I have needed to include this because it somehow disappeared from this
+            customization. I do not know why this was necessary.</desc>
+          <attList>
+            <attDef ident="ana" mode="add">
+              <datatype>
+                <dataRef key="teidata.text"/>
+              </datatype>
+            </attDef>
+          </attList>
+        </classSpec><moduleSpec n="ST" xml:id="DSTTEI2" ident="tei" type="core"/><moduleSpec n="CO" xml:id="DCO" ident="core"/><moduleSpec n="CE" xml:id="DCE" ident="certainty"/><moduleSpec xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:rng="http://relaxng.org/ns/structure/1.0" n="HD" xml:id="DHD" ident="header"/><moduleSpec n="SA" xml:id="DSA" ident="linking"/><moduleSpec n="ND" xml:id="DND" ident="namesdates"/><moduleSpec n="TD" xml:id="DTDDTD" ident="tagdocs"/><moduleSpec n="DS" xml:id="DDS" ident="textstructure"/></schemaSpec>
     </body>
   </text>
 </TEI>

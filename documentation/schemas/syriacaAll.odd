@@ -30,9 +30,21 @@
           include="authority availability catDesc category change classDecl edition editionStmt editorialDecl encodingDesc fileDesc funder idno langUsage licence principal profileDesc publicationStmt revisionDesc seriesStmt sourceDesc sponsor taxonomy teiHeader titleStmt"/>
         <moduleRef key="linking" include="link"/>
         <moduleRef key="namesdates"
-          include="addName bloc country district event forename geo listPerson listPlace listRelation location offset persName place placeName region relation settlement state"/>
+          include="addName bloc country death district event forename geo listPerson listPlace listRelation location offset persName person place placeName region relation roleName settlement sex state surname"/>
         <moduleRef key="tagdocs" include="gi"/>
         <moduleRef key="textstructure" include="TEI body text"/>
+        
+        <classSpec type="atts" ident="att.global.analytic" mode="add">
+          <desc>I have needed to include this because it somehow disappeared from this
+            customization. I do not know why this was necessary.</desc>
+          <attList>
+            <attDef ident="ana" mode="add">
+              <datatype>
+                <dataRef key="teidata.text"/>
+              </datatype>
+            </attDef>
+          </attList>
+        </classSpec>
         
         <classSpec ident="att.global" mode="change" module="tei" type="atts">
           <attList>
@@ -805,7 +817,6 @@
           <classes mode="change">
             <memberOf key="att.global.rendition" mode="delete"/><!-- not deleted -->
             <memberOf key="att.global.linking" mode="delete"/><!-- not deleted -->
-            <memberOf key="att.global.analytic" mode="delete"/><!-- deleted -->
             <memberOf key="att.global.facs" mode="delete"/><!-- deleted -->
             <memberOf key="att.global.change" mode="delete"/><!-- deleted -->
             <memberOf key="att.global.responsibility" mode="delete"/><!-- not deleted -->
@@ -840,14 +851,13 @@
             <memberOf key="att.global" mode="delete"/>
             <memberOf key="att.global.rendition" mode="delete"/>
             <memberOf key="att.global.linking" mode="delete"/>
-            <memberOf key="att.global.analytic" mode="delete"/>
             <memberOf key="att.global.facs" mode="delete"/>
             <memberOf key="att.global.change" mode="delete"/>
             <memberOf key="att.global.responsibility" mode="delete"/>
-            <memberOf key="att.global.source" mode="delete"/>
             <memberOf key="att.editLike" mode="delete"/>
             <memberOf key="att.sortable" mode="delete"/>
             <memberOf key="att.typed" mode="delete"/>
+            <memberOf key="att.global.source" mode="add"/>
           </classes>
         </elementSpec>
         
@@ -855,7 +865,6 @@
           <classes mode="change">
             <memberOf key="att.global.rendition" mode="delete"/><!-- deleted -->
             <memberOf key="att.global.linking" mode="delete"/><!-- not deleted -->
-            <memberOf key="att.global.analytic" mode="delete"/><!-- deleted -->
             <memberOf key="att.global.facs" mode="delete"/><!-- deleted -->
             <memberOf key="att.global.change" mode="delete"/><!-- deleted -->
             <memberOf key="att.global.responsibility" mode="delete"/>
@@ -903,7 +912,6 @@
           <classes mode="change">
             <memberOf key="att.global.rendition" mode="delete"/><!-- deleted -->
             <memberOf key="att.global.linking" mode="delete"/><!-- not deleted -->
-            <memberOf key="att.global.analytic" mode="delete"/><!-- deleted -->
             <memberOf key="att.global.facs" mode="delete"/><!-- deleted -->
             <memberOf key="att.global.change" mode="delete"/><!-- deleted -->
             <memberOf key="att.global.responsibility" mode="delete"/><!-- not deleted -->
