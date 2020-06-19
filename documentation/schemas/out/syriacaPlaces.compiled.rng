@@ -6,7 +6,7 @@
          xmlns="http://relaxng.org/ns/structure/1.0"
          datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
          ns="http://www.tei-c.org/ns/1.0"><!--
-Schema generated from ODD source 2020-06-19T14:35:17Z. .
+Schema generated from ODD source 2020-06-19T20:52:28Z. .
 TEI Edition: Version 4.0.0. Last updated on
 	13th February 2020, revision ccd19b0ba
 TEI Edition Location: http://www.tei-c.org/Vault/P5/Version 4.0.0/
@@ -2337,25 +2337,7 @@ attributes @target and @cRef may be supplied on <name/>.</report>
                   have an @xml:lang attribute. </sch:assert>
             </sch:rule>
          </pattern>
-         <ref name="tei_att.global.attribute.srophetags"/>
-         <ref name="tei_att.global.attribute.n"/>
-         <ref name="tei_att.global.attribute.xmllang"/>
-         <ref name="tei_att.global.attribute.xmlbase"/>
-         <ref name="tei_att.global.attribute.xmlspace"/>
-         <ref name="tei_att.global.rendition.attribute.rend"/>
-         <ref name="tei_att.global.rendition.attribute.style"/>
-         <ref name="tei_att.global.rendition.attribute.rendition"/>
-         <ref name="tei_att.global.linking.attribute.corresp"/>
-         <ref name="tei_att.global.linking.attribute.synch"/>
-         <ref name="tei_att.global.linking.attribute.sameAs"/>
-         <ref name="tei_att.global.linking.attribute.copyOf"/>
-         <ref name="tei_att.global.linking.attribute.next"/>
-         <ref name="tei_att.global.linking.attribute.prev"/>
-         <ref name="tei_att.global.linking.attribute.exclude"/>
-         <ref name="tei_att.global.linking.attribute.select"/>
-         <ref name="tei_att.global.responsibility.attribute.cert"/>
-         <ref name="tei_att.global.responsibility.attribute.resp"/>
-         <ref name="tei_att.global.source.attribute.source"/>
+         <ref name="tei_att.global.attributes"/>
          <ref name="tei_att.pointing.attributes"/>
          <attribute name="type">
             <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">Describes the function of the note. This attribute is recommended and determines how the note is displayed on the page.</a:documentation>
@@ -4531,6 +4513,7 @@ Suggested values include: 1] main; 2] sub (subordinate); 3] alt (alternate); 4] 
                        test="@passive and not(@active)">the attribute 'passive' may be supplied only if the attribute 'active' is supplied</report>
             </rule>
          </pattern>
+         <ref name="tei_att.global.source.attributes"/>
          <ref name="tei_att.datable.attributes"/>
          <ref name="tei_att.canonical.attributes"/>
          <attribute name="mutual">
@@ -4627,7 +4610,6 @@ Suggested values include: 1] main; 2] sub (subordinate); 3] alt (alternate); 4] 
                </sch:assert>
             </sch:rule>
          </pattern>
-         <ref name="tei_att.canonical.attributes"/>
          <ref name="tei_att.global.attributes"/>
          <ref name="tei_att.datable.attribute.srophecomputed-start"/>
          <ref name="tei_att.datable.attribute.srophecomputed-end"/>
@@ -4647,6 +4629,7 @@ Suggested values include: 1] main; 2] sub (subordinate); 3] alt (alternate); 4] 
          <ref name="tei_att.datable.custom.attribute.datingPoint"/>
          <ref name="tei_att.datable.custom.attribute.datingMethod"/>
          <ref name="tei_att.typed.attribute.subtype"/>
+         <ref name="tei_att.naming.attributes"/>
          <attribute name="type">
             <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">characterizes the element in some sense, using any convenient classification scheme or typology.</a:documentation>
             <choice>

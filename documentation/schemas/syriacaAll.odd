@@ -26,13 +26,17 @@
         <moduleRef key="certainty" include="precision"/>
         <moduleRef key="core"
           include="abbr author bibl biblScope choice citedRange corr date desc editor expan foreign label listBibl measure name note orig p ptr quote reg ref resp respStmt sic title"/>
+        <moduleRef key="dictionaries" include="entryFree"/>
         <moduleRef key="header"
-          include="authority availability catDesc category change classDecl edition editionStmt editorialDecl encodingDesc fileDesc funder idno langUsage licence principal profileDesc publicationStmt revisionDesc seriesStmt sourceDesc sponsor taxonomy teiHeader titleStmt"/>
+          include="authority availability catDesc category change classDecl edition editionStmt editorialDecl encodingDesc fileDesc funder idno interpretation langUsage licence principal profileDesc publicationStmt revisionDesc seriesStmt sourceDesc sponsor taxonomy teiHeader titleStmt"/>
         <moduleRef key="linking" include="link"/>
+        <moduleRef key="msdescription"/>
         <moduleRef key="namesdates"
           include="addName bloc country death district event forename geo listPerson listPlace listRelation location offset persName person place placeName region relation roleName settlement sex state surname"/>
         <moduleRef key="tagdocs" include="gi"/>
-        <moduleRef key="textstructure" include="TEI body text"/>
+        <moduleRef key="textcrit"/>
+        <moduleRef key="transcr"/>
+        <moduleRef key="textstructure" include="back body div front TEI text"/>
         
         <classSpec type="atts" ident="att.global.analytic" mode="add">
           <desc>I have needed to include this because it somehow disappeared from this
@@ -936,11 +940,7 @@
           </constraintSpec>
         </elementSpec>
                
-        
       </schemaSpec>
-    
     </body>
-    
-    
   </text>
 </TEI>
