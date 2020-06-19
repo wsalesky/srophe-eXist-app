@@ -3446,6 +3446,19 @@ expliquer d'autres parties d'un document.</desc>
     <p> 当該要素クラスは，クラス<ident type="class">model.inter</ident>の メンバーを含まないことに注意すること． クラス<ident type="class">model.inter</ident>は，段落レベル項目内 または間にのみ出現可能である． </p>
   </remarks>
   
+</classSpec><classSpec rend="add" predeclare="true" type="model" module="tei" ident="model.personLike">
+  <desc versionDate="2007-10-03" xml:lang="en">groups elements which provide information about people and their relationships.</desc>
+  <desc versionDate="2007-12-20" xml:lang="ko">사람과 그들의 친족관계에 관한 정보를 제공하는 요소를 모아 놓는다.</desc>
+  <desc versionDate="2007-05-02" xml:lang="zh-TW">該元素集提供人物及人物關係的資訊。</desc>
+  <desc versionDate="2008-04-05" xml:lang="ja">人々やその関係を表す情報を示す要素をまとめる．</desc>
+  <desc versionDate="2009-10-06" xml:lang="fr">regroupe des éléments qui donnent des informations
+    sur des personnes et leurs relations.</desc>
+  <desc versionDate="2007-05-04" xml:lang="es">clase de elementos utilizados para proporcionar
+    informaciones relativas a personas y a las relaciones entre estas.</desc>
+  <desc versionDate="2007-01-21" xml:lang="it">classe di elementi utilizzati per fornire informazioni
+    relative a persone e relazioni tra le stesse</desc>
+  
+  
 </classSpec><classSpec rend="add" predeclare="true" module="tei" xml:id="PLACPART" type="model" ident="model.placeNamePart">
   <desc versionDate="2007-10-03" xml:lang="en">groups elements which form part of a place name.</desc>
   <desc versionDate="2007-12-20" xml:lang="ko">장소명의 부분을 형성하는 요소를 모아 놓는다.</desc>
@@ -9142,6 +9155,74 @@ langues, registres, dialectes, etc. présents à l’intérieur d’un texte.</d
     </egXML>
   </exemplum><listRef>
     <ref target="http://www.tei-c.org/release/doc/tei-p5-doc/en/html/ND.html#NDPER">13.2.1. Personal Names</ref>
+  </listRef></elementSpec><elementSpec rend="add" module="namesdates" ident="forename"><gloss versionDate="2008-12-09" xml:lang="fr">prénom</gloss><desc versionDate="2005-10-16" xml:lang="en">contains a forename, given or baptismal name.</desc><desc versionDate="2007-12-20" xml:lang="ko">이름 또는 세례명을 포함한다.</desc><desc versionDate="2007-05-02" xml:lang="zh-TW">包含名字或教名。</desc><desc versionDate="2008-04-05" xml:lang="ja">人物に与えられた名前のうち，名の部分，すなわち個人を表す部分を示す．</desc><desc versionDate="2009-03-19" xml:lang="fr">contient un prénom, qu'il soit donné ou un nom de baptême.</desc><desc versionDate="2007-05-04" xml:lang="es">contiene el nombre de pila asignado en el bautismo. </desc><desc versionDate="2007-01-21" xml:lang="it">contiene un prenome assegnato o un nome di battesimo</desc><classes>
+    <memberOf key="att.global"/>
+    <memberOf key="model.persNamePart"/>
+    <memberOf key="att.personal"/>
+    <memberOf key="att.typed"/>
+  </classes><content>
+    <macroRef key="macro.phraseSeq"/>
+  </content><exemplum xml:lang="en">
+    <egXML xmlns="http://www.tei-c.org/ns/Examples">
+      <persName>
+        <roleName>Ex-President</roleName>
+        <forename>George</forename>
+        <surname>Bush</surname>
+      </persName>
+    </egXML>
+  </exemplum><exemplum versionDate="2008-04-06" xml:lang="fr">
+    <egXML xmlns="http://www.tei-c.org/ns/Examples">
+      <persName>
+        <roleName>Ex-Président</roleName>
+        <forename>George</forename>
+        <surname>Bush</surname>
+      </persName>
+    </egXML>
+  </exemplum><exemplum xml:lang="zh-TW">
+    <egXML xmlns="http://www.tei-c.org/ns/Examples">
+      <persName>
+        <roleName>先總統</roleName>
+        <forename>中正</forename>
+        <surname>蔣</surname>
+      </persName>
+    </egXML>
+  </exemplum><listRef>
+    <ref target="http://www.tei-c.org/release/doc/tei-p5-doc/en/html/ND.html#NDPER">13.2.1. Personal Names</ref>
+  </listRef></elementSpec><elementSpec rend="add" module="namesdates" ident="addName"><gloss versionDate="2005-01-14" xml:lang="en">additional name</gloss><gloss versionDate="2007-12-20" xml:lang="ko">부가명</gloss><gloss versionDate="2007-05-02" xml:lang="zh-TW">附加名稱</gloss><gloss versionDate="2008-12-09" xml:lang="fr">nom additionnel</gloss><gloss versionDate="2007-05-04" xml:lang="es">nombre adicional</gloss><gloss versionDate="2007-01-21" xml:lang="it">nome aggiuntivo</gloss><gloss versionDate="2018-12-28" xml:lang="ja">追加的名称</gloss><desc versionDate="2005-01-14" xml:lang="en">contains an additional name component, such as a nickname, epithet, or alias, or any other descriptive phrase used within a personal
+    name.</desc><desc versionDate="2007-12-20" xml:lang="ko">별명, 통명, 가명, 또는 개인 이름 내에서 사용되는 다른 기술적 구와 같이 부가적 이름 성분을 포함한다.</desc><desc versionDate="2007-05-02" xml:lang="zh-TW">附加的名稱，例如綽號、稱號、或別名，或是在人名中出現的其他描述性措辭。</desc><desc versionDate="2008-04-05" xml:lang="ja">付加的な名前要素を示す．例えば，愛称，渾名，別名などの個人名．</desc><desc versionDate="2008-12-09" xml:lang="fr">contient une composante de nom additionnelle, comme un surnom, une épithète, un alias ou toute autre
+    expression descriptive utilisée dans un nom de personne.</desc><desc versionDate="2007-05-04" xml:lang="es">contiene un componente añadido al nombre, como un sobrenombre, un epíteto, alias u otras eventuales
+    expresiones utilizadas al interno de un nombre propio de persona.</desc><desc versionDate="2007-01-21" xml:lang="it">contiene una componente aggiuntiva del nome, come un soprannome, un epiteto, o eventuali altre
+    espressioni utilizzate all'interno di un nome proprio di persona</desc><classes>
+    <memberOf key="att.global"/>
+    <memberOf key="model.persNamePart"/>
+    <memberOf key="att.personal"/>
+    <memberOf key="att.typed"/>
+  </classes><content>
+    <macroRef key="macro.phraseSeq"/>
+  </content><exemplum xml:lang="en">
+    <egXML xmlns="http://www.tei-c.org/ns/Examples" source="#NONE">
+      <persName>
+        <forename>Frederick</forename>
+        <addName type="epithet">the Great</addName>
+        <roleName>Emperor of Prussia</roleName>
+      </persName>
+    </egXML>
+  </exemplum><exemplum versionDate="2008-04-06" xml:lang="fr">
+    <egXML xmlns="http://www.tei-c.org/ns/Examples" source="#NONE">
+      <persName><forename>Catherine</forename><genName>II</genName>, <addName type="epithet"> la
+          Grande</addName>, <roleName>impératrice de Russie</roleName></persName>
+    </egXML>
+  </exemplum><exemplum xml:lang="zh-TW" source="#NONE">
+    <egXML xmlns="http://www.tei-c.org/ns/Examples" source="#NONE">
+      <persName>
+        <forename>政</forename>
+        <surname>嬴</surname>
+        <addName type="epithet">趙政</addName>
+        <roleName>秦始皇</roleName>
+      </persName>
+    </egXML>
+  </exemplum><listRef>
+    <ref target="http://www.tei-c.org/release/doc/tei-p5-doc/en/html/ND.html#NDPER">13.2.1. Personal Names</ref>
   </listRef></elementSpec><elementSpec rend="add" module="namesdates" ident="placeName"><gloss versionDate="2008-12-09" xml:lang="fr">nom de lieu</gloss><desc versionDate="2005-01-14" xml:lang="en">contains an absolute or relative place name.</desc><desc versionDate="2007-12-20" xml:lang="ko">절대적 또는 상대적 위치명을 포함한다.</desc><desc versionDate="2007-05-02" xml:lang="zh-TW">包含一個確切位置或相對位置的名稱。</desc><desc versionDate="2008-04-05" xml:lang="ja">絶対的，相対的場所名を示す．</desc><desc versionDate="2009-03-19" xml:lang="fr">contient un nom de lieu absolu ou relatif.</desc><desc versionDate="2007-05-04" xml:lang="es">contiene la indicación absoluta o relativa de un nombre de lugar.</desc><desc versionDate="2007-01-21" xml:lang="it">contiene l'indicazione assoluta o relativa di un nome di luogo</desc><classes><memberOf key="att.datable"/><memberOf key="att.editLike"/><memberOf key="att.global"/><memberOf key="att.personal"/><memberOf key="att.typed"/><memberOf key="model.placeNamePart"/></classes><content><macroRef key="macro.phraseSeq"/></content><constraintSpec ident="ref-on-placeName" scheme="schematron">
             <constraint>
               <sch:rule context="//tei:text//tei:placeName/@ref">
@@ -9550,6 +9631,61 @@ langues, registres, dialectes, etc. présents à l’intérieur d’un texte.</d
     World Geodetic System.</p>
   </remarks><listRef>
     <ref target="http://www.tei-c.org/release/doc/tei-p5-doc/en/html/ND.html#NDGEOGva">13.3.4.1. Varieties of Location</ref>
+  </listRef></elementSpec><elementSpec rend="add" module="namesdates" ident="listPerson"><gloss versionDate="2007-07-04" xml:lang="en">list of persons</gloss><gloss versionDate="2007-12-20" xml:lang="ko">개인 목록</gloss><gloss versionDate="2008-04-06" xml:lang="es">lista de personas</gloss><gloss versionDate="2008-12-09" xml:lang="fr">liste de personnes</gloss><gloss versionDate="2007-11-06" xml:lang="it">elenco delle persone</gloss><desc versionDate="2006-10-08" xml:lang="en">contains a list of descriptions, each of which provides information about an identifiable
+    person or a group of people, for example the participants in a language interaction, or the
+    people referred to in a historical source.</desc><desc versionDate="2007-12-20" xml:lang="ko">기술 목록을 포함하며, 그 개별 기술 각각은, 언어 상호작용 참여자 또는 역사적 원전에서 언급되는
+    사람과 같이, 식별 가능한 사람 또는 사람군에 관한 정보를 제공한다.</desc><desc versionDate="2007-05-02" xml:lang="zh-TW">人物描述清單，其中每個項目包含一個已知人物的相關資料，例如語言互動中的參與者、或是歷史來源中提及的人物。</desc><desc versionDate="2008-04-05" xml:lang="ja">特定可能な個人やグループに関する情報のリストを示す．例えば，言語交流
+    の参加者や，歴史資料中で参照される人物など．</desc><desc versionDate="2008-12-09" xml:lang="fr">contient une liste d'éléments, chacun d'entre eux
+    apportant des informations sur une personne précise ou sur un groupe de personnes, par exemple
+    les participants à une interaction linguistique, ou les personnes citées dans une source
+    historique.</desc><desc versionDate="2007-05-04" xml:lang="es">contiene una lista de descripciones, y cada una de las
+    cuales proporciona información relativa a una persona específica o a un grupo de personas, p.ej,
+    los participantes de una interacción verbal o las personas referidas en una fuente histórica.</desc><desc versionDate="2007-01-21" xml:lang="it">contiene una lista di descrizioni, ciascuna delle quali
+    fornisce informazioni relative a una persona specifica o a un gruppo di persone, per esempio i
+    partecipanti a un'interazione verbale o le persone identificate da una fonte storica</desc><classes>
+    <memberOf key="att.global"/>
+    <memberOf key="att.typed"/>
+    <memberOf key="att.declarable"/>
+    <memberOf key="att.sortable"/>
+    <memberOf key="model.listLike"/>
+    
+  </classes><content>
+    <sequence minOccurs="1" maxOccurs="1"><classRef key="model.headLike" minOccurs="0" maxOccurs="unbounded"/><elementRef key="desc" minOccurs="0" maxOccurs="unbounded"/><alternate minOccurs="1" maxOccurs="unbounded"><classRef key="model.personLike"/><elementRef key="listPerson"/></alternate><alternate minOccurs="0" maxOccurs="unbounded"><elementRef key="relation"/><elementRef key="listRelation"/></alternate></sequence>
+  </content><exemplum xml:lang="en">
+    <egXML xmlns="http://www.tei-c.org/ns/Examples" source="#UND">
+      <listPerson type="respondents">
+        <personGrp xml:id="PXXX"/>
+        <person xml:id="P1234" sex="2" age="mid"/>
+        <person xml:id="P4332" sex="1" age="mid"/>
+        <listRelation>
+          <relation type="personal" name="spouse" mutual="#P1234 #P4332"/>
+        </listRelation>
+      </listPerson>
+    </egXML>
+  </exemplum><exemplum versionDate="2008-04-06" xml:lang="fr">
+    <egXML xmlns="http://www.tei-c.org/ns/Examples" source="#UND">
+      <listPerson type="respondents">
+        <personGrp xml:id="fr_PXXX"/>
+        <person xml:id="fr_P1234" sex="2" age="mid"/>
+        <person xml:id="fr_P4332" sex="1" age="mid"/>
+        <listRelation>
+          <relation type="personal" name="spouse" mutual="#fr_P1234 #fr_P4332"/>
+        </listRelation>
+      </listPerson>
+    </egXML>
+  </exemplum><remarks versionDate="2019-12-25" xml:lang="en">
+    <p rend="dataDesc">The <att>type</att> attribute may be used to distinguish lists of people of a particular
+      type if convenient.</p>
+  </remarks><remarks versionDate="2008-12-09" xml:lang="fr">
+    <p rend="dataDesc"> L'attribut type peut être utilisé pour établir des listes par type de
+      personne si cela présente un intérêt.</p>
+  </remarks><remarks xml:lang="ja" versionDate="2008-04-05">
+    <p rend="dataDesc"> 属性typeは，特別な種類の人物を区別するために使われるかもしれない． </p>
+  </remarks><listRef>
+    <ref target="http://www.tei-c.org/release/doc/tei-p5-doc/en/html/ND.html#NDPERSE">13.3.2. The Person Element</ref>
+    <ref target="http://www.tei-c.org/release/doc/tei-p5-doc/en/html/CC.html#CCAH">15.2. Contextual Information</ref>
+    <ref target="http://www.tei-c.org/release/doc/tei-p5-doc/en/html/HD.html#HD4">2.4. The Profile Description</ref>
+    <ref target="http://www.tei-c.org/release/doc/tei-p5-doc/en/html/CC.html#CCAS2">15.3.2. Declarable Elements</ref>
   </listRef></elementSpec><elementSpec rend="add" module="namesdates" ident="listPlace"><gloss versionDate="2007-07-04" xml:lang="en">list of places</gloss><gloss versionDate="2007-12-20" xml:lang="ko">장소 목록</gloss><gloss versionDate="2008-04-06" xml:lang="es">lista de lugares</gloss><gloss versionDate="2008-12-09" xml:lang="fr">liste de lieux</gloss><gloss versionDate="2007-11-06" xml:lang="it">elenco dei luoghi</gloss><desc versionDate="2007-06-14" xml:lang="en">contains a list of places, optionally followed by a list of relationships (other than
         containment) defined amongst them.</desc><desc versionDate="2007-12-20" xml:lang="ko">장소 목록을 포함하며, 그 뒤에 수의적으로 그들 사이에 정의된 (포함 외의) 관련성 목록을
         제시한다.</desc><desc versionDate="2008-04-06" xml:lang="es">contiene una lista de lugares, seguida opcionalmente
@@ -10147,7 +10283,7 @@ langues, registres, dialectes, etc. présents à l’intérieur d’un texte.</d
           </constraintSpec><constraintSpec ident="source-in-text" scheme="schematron">
             <constraint>
               <sch:rule context="//tei:text//@source">
-                <sch:let name="biblIDs" value="//tei:body//tei:bibl/@xml:id | //tei:body//tei:bibl/@xml:id"/>
+                <sch:let name="biblIDs" value="//tei:body//tei:bibl/@xml:id | //tei:body//tei:listBibl/@xml:id"/>
                 <sch:let name="sourceValues" value="for $i in $biblIDs return concat('#', $i)"/>
                 <sch:assert test="                   every $i in (tokenize(., ' '))                   satisfies $i = $sourceValues"> A @source attribute must point to an @xml:id attribute on a &lt;bibl&gt;
                   element or a &lt;listBibl&gt; element. Multiple values are allowed and must be separated by a blank space.

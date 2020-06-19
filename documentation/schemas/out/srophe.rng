@@ -6,7 +6,7 @@
          xmlns="http://relaxng.org/ns/structure/1.0"
          datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
          ns="http://www.tei-c.org/ns/1.0"><!--
-Schema generated from ODD source 2020-06-18T18:45:23Z. .
+Schema generated from ODD source 2020-06-19T14:31:32Z. .
 TEI Edition: Version 4.0.0. Last updated on
 	13th February 2020, revision ccd19b0ba
 TEI Edition Location: http://www.tei-c.org/Vault/P5/Version 4.0.0/
@@ -1566,21 +1566,27 @@ Suggested values include: 1] below; 2] bottom; 3] margin; 4] top; 5] opposite; 6
    </define>
    <define name="tei_model.listLike">
       <choice>
+         <ref name="tei_listPerson"/>
          <ref name="tei_listPlace"/>
          <ref name="tei_listRelation"/>
       </choice>
    </define>
    <define name="tei_model.listLike_alternation">
       <choice>
+         <ref name="tei_listPerson"/>
          <ref name="tei_listPlace"/>
          <ref name="tei_listRelation"/>
       </choice>
    </define>
    <define name="tei_model.listLike_sequence">
+      <ref name="tei_listPerson"/>
       <ref name="tei_listPlace"/>
       <ref name="tei_listRelation"/>
    </define>
    <define name="tei_model.listLike_sequenceOptional">
+      <optional>
+         <ref name="tei_listPerson"/>
+      </optional>
       <optional>
          <ref name="tei_listPlace"/>
       </optional>
@@ -1590,6 +1596,9 @@ Suggested values include: 1] below; 2] bottom; 3] margin; 4] top; 5] opposite; 6
    </define>
    <define name="tei_model.listLike_sequenceOptionalRepeatable">
       <zeroOrMore>
+         <ref name="tei_listPerson"/>
+      </zeroOrMore>
+      <zeroOrMore>
          <ref name="tei_listPlace"/>
       </zeroOrMore>
       <zeroOrMore>
@@ -1597,6 +1606,9 @@ Suggested values include: 1] below; 2] bottom; 3] margin; 4] top; 5] opposite; 6
       </zeroOrMore>
    </define>
    <define name="tei_model.listLike_sequenceRepeatable">
+      <oneOrMore>
+         <ref name="tei_listPerson"/>
+      </oneOrMore>
       <oneOrMore>
          <ref name="tei_listPlace"/>
       </oneOrMore>
@@ -1686,6 +1698,9 @@ Suggested values include: 1] below; 2] bottom; 3] margin; 4] top; 5] opposite; 6
          <ref name="tei_model.lLike"/>
          <ref name="tei_model.pLike"/>
       </choice>
+   </define>
+   <define name="tei_model.personLike">
+      <notAllowed/>
    </define>
    <define name="tei_model.placeNamePart">
       <choice>
@@ -3623,22 +3638,44 @@ Suggested values include: 1] ISBN; 2] ISSN; 3] DOI; 4] URI; 5] VIAF; 6] ESTC; 7]
       </optional>
    </define>
    <define name="tei_model.persNamePart">
-      <notAllowed/>
+      <choice>
+         <ref name="tei_forename"/>
+         <ref name="tei_addName"/>
+      </choice>
    </define>
    <define name="tei_model.persNamePart_alternation">
-      <notAllowed/>
+      <choice>
+         <ref name="tei_forename"/>
+         <ref name="tei_addName"/>
+      </choice>
    </define>
    <define name="tei_model.persNamePart_sequence">
-      <empty/>
+      <ref name="tei_forename"/>
+      <ref name="tei_addName"/>
    </define>
    <define name="tei_model.persNamePart_sequenceOptional">
-      <empty/>
+      <optional>
+         <ref name="tei_forename"/>
+      </optional>
+      <optional>
+         <ref name="tei_addName"/>
+      </optional>
    </define>
    <define name="tei_model.persNamePart_sequenceOptionalRepeatable">
-      <empty/>
+      <zeroOrMore>
+         <ref name="tei_forename"/>
+      </zeroOrMore>
+      <zeroOrMore>
+         <ref name="tei_addName"/>
+      </zeroOrMore>
    </define>
    <define name="tei_model.persNamePart_sequenceRepeatable">
-      <notAllowed/>
+      <oneOrMore>
+         <ref name="tei_forename"/>
+      </oneOrMore>
+      <oneOrMore>
+         <ref name="tei_addName"/>
+      </oneOrMore>
    </define>
    <define name="tei_att.datable.iso.attributes">
       <ref name="tei_att.datable.iso.attribute.when-iso"/>
@@ -3754,6 +3791,26 @@ Suggested values include: 1] ISBN; 2] ISSN; 3] DOI; 4] URI; 5] VIAF; 6] ESTC; 7]
          <ref name="tei_att.global.attributes"/>
          <ref name="tei_att.datable.attributes"/>
          <ref name="tei_att.editLike.attributes"/>
+         <ref name="tei_att.personal.attributes"/>
+         <ref name="tei_att.typed.attributes"/>
+         <empty/>
+      </element>
+   </define>
+   <define name="tei_forename">
+      <element name="forename">
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">contains a forename, given or baptismal name. [13.2.1. Personal Names]</a:documentation>
+         <ref name="tei_macro.phraseSeq"/>
+         <ref name="tei_att.global.attributes"/>
+         <ref name="tei_att.personal.attributes"/>
+         <ref name="tei_att.typed.attributes"/>
+         <empty/>
+      </element>
+   </define>
+   <define name="tei_addName">
+      <element name="addName">
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(additional name) contains an additional name component, such as a nickname, epithet, or alias, or any other descriptive phrase used within a personal name. [13.2.1. Personal Names]</a:documentation>
+         <ref name="tei_macro.phraseSeq"/>
+         <ref name="tei_att.global.attributes"/>
          <ref name="tei_att.personal.attributes"/>
          <ref name="tei_att.typed.attributes"/>
          <empty/>
@@ -3891,6 +3948,36 @@ Suggested values include: 1] ISBN; 2] ISSN; 3] DOI; 4] URI; 5] VIAF; 6] ESTC; 7]
          <text/>
          <ref name="tei_att.global.attributes"/>
          <ref name="tei_att.declaring.attributes"/>
+         <empty/>
+      </element>
+   </define>
+   <define name="tei_listPerson">
+      <element name="listPerson">
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(list of persons) contains a list of descriptions, each of which provides information about an identifiable person or a group of people, for example the participants in a language interaction, or the people referred to in a historical source. [13.3.2. The Person Element 15.2. Contextual Information 2.4. The Profile Description 15.3.2. Declarable Elements]</a:documentation>
+         <group>
+            <zeroOrMore>
+               <ref name="tei_model.headLike"/>
+            </zeroOrMore>
+            <zeroOrMore>
+               <ref name="tei_desc"/>
+            </zeroOrMore>
+            <oneOrMore>
+               <choice>
+                  <ref name="tei_model.personLike"/>
+                  <ref name="tei_listPerson"/>
+               </choice>
+            </oneOrMore>
+            <zeroOrMore>
+               <choice>
+                  <ref name="tei_relation"/>
+                  <ref name="tei_listRelation"/>
+               </choice>
+            </zeroOrMore>
+         </group>
+         <ref name="tei_att.global.attributes"/>
+         <ref name="tei_att.typed.attributes"/>
+         <ref name="tei_att.declarable.attributes"/>
+         <ref name="tei_att.sortable.attributes"/>
          <empty/>
       </element>
    </define>

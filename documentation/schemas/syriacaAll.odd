@@ -29,7 +29,8 @@
         <moduleRef key="header"
           include="authority availability catDesc category change classDecl edition editionStmt editorialDecl encodingDesc fileDesc funder idno langUsage licence principal profileDesc publicationStmt revisionDesc seriesStmt sourceDesc sponsor taxonomy teiHeader titleStmt"/>
         <moduleRef key="linking" include="link"/>
-        <moduleRef key="namesdates" include="bloc country district event geo listPlace listRelation location offset persName place placeName region relation settlement state"/>
+        <moduleRef key="namesdates"
+          include="addName bloc country district event forename geo listPerson listPlace listRelation location offset persName place placeName region relation settlement state"/>
         <moduleRef key="tagdocs" include="gi"/>
         <moduleRef key="textstructure" include="TEI body text"/>
         

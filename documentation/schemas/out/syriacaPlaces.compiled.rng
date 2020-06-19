@@ -6,7 +6,7 @@
          xmlns="http://relaxng.org/ns/structure/1.0"
          datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
          ns="http://www.tei-c.org/ns/1.0"><!--
-Schema generated from ODD source 2020-06-18T14:42:56Z. .
+Schema generated from ODD source 2020-06-19T14:35:17Z. .
 TEI Edition: Version 4.0.0. Last updated on
 	13th February 2020, revision ccd19b0ba
 TEI Edition Location: http://www.tei-c.org/Vault/P5/Version 4.0.0/
@@ -4748,7 +4748,7 @@ Sample values include: 1] TEI; 2] DBK (docbook); 3] XX (unknown); 4] Schematron;
                       xmlns="http://www.tei-c.org/ns/1.0"
                       context="//tei:text//@source">
                <sch:let name="biblIDs"
-                        value="//tei:body//tei:bibl/@xml:id | //tei:body//tei:bibl/@xml:id"/>
+                        value="//tei:body//tei:bibl/@xml:id | //tei:body//tei:listBibl/@xml:id"/>
                <sch:let name="sourceValues" value="for $i in $biblIDs return concat('#', $i)"/>
                <sch:assert test="                   every $i in (tokenize(., ' '))                   satisfies $i = $sourceValues"> A @source attribute must point to an @xml:id attribute on a &lt;bibl&gt;
                   element or a &lt;listBibl&gt; element. Multiple values are allowed and must be separated by a blank space.
