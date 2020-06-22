@@ -11,6 +11,7 @@ import module namespace facet="http://expath.org/ns/facet" at "facet.xqm";
 import module namespace sf="http://srophe.org/srophe/facets" at "facets.xql";
 import module namespace functx="http://www.functx.com";
 
+declare namespace srophe="https://srophe.app";
 declare namespace tei="http://www.tei-c.org/ns/1.0";
 
 (:~
