@@ -8530,6 +8530,12 @@ langues, registres, dialectes, etc. présents à l’intérieur d’un texte.</d
                 <sch:assert test="./@xml:lang">A &lt;placeName&gt; element that is the direct child of the &lt;place&gt; element must have an @xml:lang attribute.</sch:assert>
               </sch:rule>
             </constraint>
+          </constraintSpec><constraintSpec ident="placeName-content" scheme="schematron">
+            <constraint>
+              <sch:rule context="//tei:text//tei:place/tei:placeName">
+                <sch:assert test="string-length(.) gt 0">The &lt;placeName&gt; element cannot be empty.</sch:assert>
+              </sch:rule>
+            </constraint>
           </constraintSpec><constraintSpec ident="ref-on-placeName" scheme="schematron">
             <constraint>
               <sch:rule context="//tei:text//tei:placeName/@ref">
