@@ -2286,9 +2286,6 @@
         </elementSpec>
 
         <elementSpec ident="relation" module="namesdates" mode="change">
-          <classes mode="replace">
-            <memberOf/>
-          </classes>
           <content>
             <elementRef key="desc" minOccurs="0" maxOccurs="1"/>
           </content>
@@ -2403,7 +2400,7 @@
                 </constraint>
               </constraintSpec>
             </attDef>
-            <attDef ident="type" mode="add" usage="opt">
+            <attDef ident="type" mode="change" usage="opt">
               <datatype minOccurs="1" maxOccurs="unbounded">
                 <dataRef key="teidata.enumerated"/>
               </datatype>
@@ -2433,7 +2430,7 @@
                 </constraint>
               </constraintSpec>
             </attDef>
-            <attDef ident="ana" mode="add" usage="rec">
+            <attDef ident="ana" mode="change" usage="rec">
               <!-- I cannot remember why I require this attribute or why I need to indicate that a relationship is an element relationship. -->
               <datatype minOccurs="0" maxOccurs="unbounded">
                 <dataRef key="teidata.enumerated"/>
