@@ -38,7 +38,7 @@ declare %templates:wrap function person:h1($node as node(), $model as map(*)){
     let $title-nodes := 
             <srophe-title xmlns="http://www.tei-c.org/ns/1.0">
                 {(
-                    $model("hits")//tei:persName[@srophe:tags],
+                    $model("hits")//tei:persName,
                     $model("hits")//tei:seriesStmt,
                     $model("hits")//tei:person/descendant::tei:birth,
                     $model("hits")//tei:person/descendant::tei:death,
