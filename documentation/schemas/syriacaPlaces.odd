@@ -303,6 +303,13 @@
               </sch:rule>
             </constraint>
           </constraintSpec>
+          <constraintSpec ident="placeName-content" scheme="schematron">
+            <constraint>
+              <sch:rule context="//tei:text//tei:place/tei:placeName">
+                <sch:assert test="string-length(.) gt 0">The &lt;placeName&gt; element cannot be empty.</sch:assert>
+              </sch:rule>
+            </constraint>
+          </constraintSpec>
           <!-- This works in the schematron but not when placed into the ODD and converted to RelaxNG. There is a namespace issue I will try to troubleshoot.
             <constraintSpec ident="langHeadword" scheme="schematron">
             <constraint>

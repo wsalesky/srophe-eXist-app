@@ -189,12 +189,18 @@ declare function tei2html:summary-view($nodes as node()*, $lang as xs:string?, $
 declare function tei2html:summary-view-persons($nodes as node()*, $id as xs:string?) as item()* {
     let $title := if($nodes/descendant-or-self::*[@srophe:tags='#syriaca-headword'][@xml:lang='en']) then 
                     $nodes/descendant-or-self::*[@srophe:tags='#syriaca-headword'][@xml:lang='en'][1]
+                  else if($nodes/descendant-or-self::*[@syriaca-tags='#syriaca-headword'][@xml:lang='en']) then 
+                    $nodes/descendant-or-self::*[@syriaca-tags='#syriaca-headword'][@xml:lang='en'][1]                    
                   else $nodes/descendant-or-self::tei:title[1]/text()
     let $syr-title := 
                 if($nodes/descendant::*[contains(@srophe:tags,'#syriaca-headword')][matches(@xml:lang,'^syr')][1]) then
                      <span xml:lang="syr" lang="syr" dir="rtl">{string-join($nodes/descendant::*[contains(@srophe:tags,'#syriaca-headword')][matches(@xml:lang,'^syr')][1]//text(),' ')}</span>
+                else if($nodes/descendant-or-self::*[@syriaca-tags='#syriaca-headword'][matches(@xml:lang,'^syr')]) then 
+                    $nodes/descendant-or-self::*[@syriaca-tags='#syriaca-headword'][matches(@xml:lang,'^syr')]                     
                 else if($nodes/descendant::*[contains(@srophe:tags,'#syriaca-headword')]) then 
                     '[Syriac Not Available]'
+                else if($nodes/descendant::*[contains(@syriaca-tags,'#syriaca-headword')]) then 
+                    '[Syriac Not Available]'                    
                 else () 
     let $ana := for $a in distinct-values($nodes/descendant::tei:seriesStmt/tei:biblScope/tei:title)
                 return tei2html:translate-series($a)

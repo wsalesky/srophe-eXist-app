@@ -31,7 +31,7 @@ declare %templates:wrap function place:h1($node as node(), $model as map(*)){
     let $title := $model("hits")//tei:place
     let $title-nodes := 
             <srophe-title xmlns="http://www.tei-c.org/ns/1.0">
-                {($title//tei:placeName[@srophe:tags='#syriaca-headword'],$title/descendant::tei:idno, $title/descendant::tei:location)}
+                {($title//tei:placeName,$title/descendant::tei:idno, $title/descendant::tei:location)}
             </srophe-title>
     return global:tei2html($title-nodes)
 };
