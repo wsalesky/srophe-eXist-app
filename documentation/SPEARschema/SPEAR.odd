@@ -1,27 +1,38 @@
-<?xml version="1.0" encoding="utf-8"?>
-<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_customization.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
-<TEI xmlns="http://www.tei-c.org/ns/1.0" 
-  xmlns:sch="http://purl.oclc.org/dsdl/schematron" 
-  xmlns:srophe="https://srophe.app">
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI 
+  xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+  xmlns:srophe="https://srophe.app"
+  xmlns="http://www.tei-c.org/ns/1.0">
+  
   <teiHeader>
     <fileDesc>
       <titleStmt>
-        <title>SPEAR ODD</title>
-        <author><persName ref="http://syriaca.org/documentation/editors.xml#dschwartz">Daniel L.
-            Schwartz</persName></author>
+        <title>TEI Customization for SPEAR: Syriaca Persons, Events, and Relations</title>
+        <editor role="creator"><name ref="http://syriaca.org/documentation/editors.xml#dschwartz">Daniel L.
+            Schwartz</name></editor>
       </titleStmt>
+      <editionStmt>
+        <edition n="1.0"/>
+      </editionStmt>
       <publicationStmt>
         <publisher>Syriaca.org: The Syriac Reference Portal</publisher>
         <availability>
           <licence target="http://creativecommons.org/licenses/by/3.0/">
             <p>Distributed under a Creative Commons Attribution 3.0 Unported License.</p>
+            <p>The code examples contained in <gi>exemplum</gi> elements below come from 
+              Syriaca.org projects that have been distributed under a Creative Commons Attribution 
+              3.0 Unported License. Used by permission.</p>
+            <p>The comments on element and attribute use contained in <gi>remarks</gi> elements below 
+              share some text with other Syriaca.org documentation distributed under a Creative Commons 
+              Attributiion 3.0 Unported License. This documentation can be found at various links available here:
+              <ref target="http://syriaca.org/documentation/index.html">http://syriaca.org/documentation/index.html</ref>
+              Used by permission.
+            </p>
           </licence>
         </availability>
       </publicationStmt>
       <sourceDesc>
-        <p>
-          
-        </p>
+        <p>This ODD provides a customization of the TEI P5 All.</p>
       </sourceDesc>
     </fileDesc>
     <revisionDesc>
@@ -2044,16 +2055,16 @@
               </datatype>
               <constraintSpec ident="ref-on-persName" scheme="schematron">
                 <constraint>
-                  <sch:assert test="starts-with(., 'http://syriaca.org/person/')">@ref attributes on
-                    &lt;persName&gt; elements must contain a properly formatted Syriaca.org person
-                    URI that starts with 'http://syriaca.org/person/'.</sch:assert>
-                  <sch:report test="matches(substring-after(., 'person/'), '\D')">A properly
-                    formatted Syriaca.org person URI cannot end with anything other than a
-                    number.</sch:report>
-                  <sch:assert test="matches(substring-after(., 'person/'), '\d')">A properly
-                    formatted Syriaca.org person URI ends with a number.</sch:assert>
-                  <!-- These schematron rules ensure that the persName element has a @ref attribute that conforms to Syriaca.org URIs. -->
-                  <!-- They do not ensure that the URI chosen is an actual Syriaca.org URI. If URI's were not in the data yet, they would show an error.-->
+                  <sch:rule context="//tei:text//tei:persName/@ref" role="warning">
+                    <sch:let name="personIndex" value="doc('https://raw.githubusercontent.com/srophe/srophe-eXist-app/master/documentation/indexes/persons.xml')"></sch:let>
+                    <sch:let name="personURIs" value="$personIndex//tei:person/@ref"/>
+                    <sch:assert test="
+                      every $i in .
+                      satisfies $i = $personURIs">
+                      This @ref attribute is not a person URI in use in Syriaca.org data. If a URI is not current available, replace the number portion of the URI with a letter and use it consistently when encoding information about a person. Note that all person URIs take the form 'http://syriaca.org/person/{\d+}' (where {\d+} is a number).
+                    </sch:assert>
+                    <sch:report test="contains(., ' ')">This @ref may contain only one URI.</sch:report>
+                  </sch:rule>
                 </constraint>
               </constraintSpec>
             </attDef>
@@ -2112,15 +2123,16 @@
               </datatype>
               <constraintSpec ident="ref-on-placeName" scheme="schematron">
                 <constraint>
-                  <sch:assert test="starts-with(., 'http://syriaca.org/place/')">@ref attributes on
-                    &lt;placeName&gt; elements must contain a properly formatted Syriaca.org place
-                    URI that starts with 'http://syriaca.org/place/'.</sch:assert>
-                  <sch:report test="matches(substring-after(., 'place/'), '\D')">A properly
-                    formatted Syriaca.org place URI ends with a number.</sch:report>
-                  <sch:assert test="matches(substring-after(., 'place/'), '\d')">A properly
-                    formatted Syriaca.org person URI ends with a number.</sch:assert>
-                  <!-- These schematron rules ensure that the placeName element has a @ref attribute that conforms to Syriaca.org URIs. -->
-                  <!-- They do not ensure that the URI chosen is an actual Syriaca.org URI. If URI's were not in the data yet, they would show an error.-->
+                  <sch:rule context="//tei:text//tei:placeName/@ref" role="warning">
+                    <sch:let name="placeIndex" value="doc('https://raw.githubusercontent.com/srophe/srophe-eXist-app/master/documentation/indexes/places.xml')"/>
+                    <sch:let name="placeURIs" value="$placeIndex//tei:place/@ref"/>
+                    <sch:assert test="
+                      every $i in .
+                      satisfies $i = $placeURIs">
+                      This @ref attribute is not a place URI in use in Syriaca.org data. Note that all place URIs take the form 'http://syriaca.org/place/{\d+}' (where {\d+} is a number).
+                    </sch:assert>
+                    <sch:report test="contains(., ' ')">This @ref may contain only one URI.</sch:report>
+                  </sch:rule>
                 </constraint>
               </constraintSpec>
             </attDef>
@@ -2337,20 +2349,14 @@
                 <sch:report test="@passive">@passive attributes are not allowed on &lt;relation&gt;
                   elements in event factoids.</sch:report>
               </sch:rule>
-              <sch:rule context="//tei:relation/@active">
-                <sch:report test="contains(., ',') or contains(., ';')">
-                  Multiple attribute values should appear separated by a blank space.
-                </sch:report>
-              </sch:rule>
-              <sch:rule context="//tei:relation/@mutual">
-                <sch:report test="contains(., ',') or contains(., ';')">
-                  Multiple attribute values should appear separated by a blank space.
-                </sch:report>
-              </sch:rule>
-              <sch:rule context="//tei:relation/@passive">
-                <sch:report test="contains(., ',') or contains(., ';')">
-                  Multiple attribute values should appear separated by a blank space.
-                </sch:report>
+              <sch:rule context="tei:div/tei:listRelation/tei:relation/@mutual | tei:div/tei:listRelation/tei:relation/@active | tei:div/tei:listRelation/tei:relation/@passive" role="warning">
+                <sch:let name="personIndex" value="doc('https://raw.githubusercontent.com/srophe/srophe-eXist-app/master/documentation/indexes/persons.xml')"></sch:let>
+                <sch:let name="personURIs" value="$personIndex//tei:person/@ref"/>
+                <sch:assert test="
+                  every $i in (tokenize(., ' '))
+                  satisfies $i = $personURIs">
+                  The @active, @passive, and @mutual attributes on &lt;relation&gt; must contain a person URI in use in Syriaca.org data. If a URI is not current available, replace the number portion of the URI with a letter and use it consistently when encoding information about a person. Note that all person URIs take the form 'http://syriaca.org/person/{\d+}' (where {\d+} is a number).
+                </sch:assert>
               </sch:rule>
             </constraint>
           </constraintSpec>
@@ -2457,7 +2463,7 @@
               <datatype minOccurs="1" maxOccurs="unbounded">
                 <dataRef key="teidata.pointer"/>
               </datatype>
-              <constraintSpec ident="mutual-on-relation-in-eventFactoid" scheme="schematron">
+              <!--<constraintSpec ident="mutual-on-relation-in-eventFactoid" scheme="schematron">
                 <constraint>
                   <sch:rule context="tei:div/tei:listRelation/tei:relation/@mutual">
                     <sch:assert
@@ -2476,15 +2482,15 @@
                   </sch:rule>
                   <sch:assert test="count(distinct-values(tokenize(., ' '))) = count(tokenize(., ' '))">
                     The same person URI may not appear twice as the value of the @mutual attribute. </sch:assert>
-                  <!-- I need to test this further. I'm not certain it's working correctly. -->
+                  <!-\- I need to test this further. I'm not certain it's working correctly. -\->
                 </constraint>
-              </constraintSpec>
+              </constraintSpec>-->
             </attDef>
             <attDef ident="active" mode="change" usage="opt">
               <datatype minOccurs="1" maxOccurs="unbounded">
                 <dataRef key="teidata.pointer"/>
               </datatype>
-              <constraintSpec ident="active-on-relation-in-context" scheme="schematron">
+              <!--<constraintSpec ident="active-on-relation-in-context" scheme="schematron">
                 <constraint>
                   <sch:rule context="tei:div/tei:listRelation/tei:relation/@active">
                     <sch:assert
@@ -2501,7 +2507,7 @@
                       >This @active attribute requires a properly formatted Syriaca.org person URI
                       ends with a number.</sch:assert>
                   </sch:rule>
-                  <!-- I need to test this further. I'm not certain it's working correctly. -->
+                  <!-\- I need to test this further. I'm not certain it's working correctly. -\->
                   
                   <sch:rule context="//tei:sourceDesc/tei:listRelation/tei:relation/@active">
                     <sch:let name="docURIno"
@@ -2511,13 +2517,13 @@
                     </sch:assert>
                   </sch:rule>
                 </constraint>
-              </constraintSpec>
+              </constraintSpec>-->
             </attDef>
             <attDef ident="passive" mode="change" usage="opt">
               <datatype minOccurs="1" maxOccurs="unbounded">
                 <dataRef key="teidata.pointer"/>
               </datatype>
-              <constraintSpec ident="passive-on-relation-in-context" scheme="schematron">
+              <!--<constraintSpec ident="passive-on-relation-in-context" scheme="schematron">
                 <constraint>
                   <sch:rule context="tei:div/tei:listRelation/tei:relation/@passive">
                     <sch:assert
@@ -2534,7 +2540,7 @@
                       >This @passive attribute requires a properly formatted Syriaca.org person URI
                       ends with a number.</sch:assert>
                   </sch:rule>
-                  <!-- I need to test this further. I'm not certain it's working correctly. -->
+                  <!-\- I need to test this further. I'm not certain it's working correctly. -\->
                   <sch:rule context="tei:sourceDesc/tei:listRelation/tei:relation">
                     <sch:assert test="@passive">
                       This &lt;relation&gt; element must have a @passive attribute.
@@ -2551,7 +2557,7 @@
                     </sch:report>
                   </sch:rule>
                 </constraint>
-              </constraintSpec>
+              </constraintSpec>-->
             </attDef>
           </attList>
           <exemplum>
