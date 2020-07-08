@@ -1,5 +1,7 @@
 xquery version "3.0";
-(:~ 
+(:~
+ : @depreciated, use facets.xql for eXist v5+ to take advantage of built in Lucene facets and fields
+ : 
  : Partial facet implementation for eXist-db based on the EXPath specifications (http://expath.org/spec/facet)
  : 
  : Uses the following eXist-db specific functions:

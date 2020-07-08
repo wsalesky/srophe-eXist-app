@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <facets xmlns="http://expath.org/ns/facet">
     <facet-definition name="series" label="Type">
-        <group-by>
-            <sub-path>ancestor::tei:TEI/descendant::tei:seriesStmt/tei:title</sub-path>
+        <group-by function="type">
+            <sub-path>descendant::tei:person/@type</sub-path>
         </group-by>
         <max-values show="5">10</max-values>
-        <order-by direction="ascending">value</order-by>
+        <order-by direction="descending">value</order-by>
     </facet-definition>
     <facet-definition name="syriacaComputedStart" label="Century">
         <range type="xs:year">
@@ -36,56 +36,56 @@
             <sub-path>descendant::*/@syriaca-computed-start</sub-path>
         </group-by>
         <max-values show="25">40</max-values>
-        <order-by direction="descending">order</order-by>
+        <order-by direction="ascending">order</order-by>
     </facet-definition>
     <facet-definition name="sex" label="Sex or Gender">
         <group-by>
             <sub-path>descendant::tei:person/tei:sex</sub-path>
         </group-by>
         <max-values show="5">40</max-values>
-        <order-by direction="ascending">count</order-by>
+        <order-by direction="descending">count</order-by>
     </facet-definition>
     <facet-definition name="persNameLang" label="Has name in">
         <group-by function="persNameLang">
             <sub-path>descendant::tei:person/tei:persName/@xml:lang</sub-path>
         </group-by>
         <max-values show="5">40</max-values>
-        <order-by direction="ascending">count</order-by>
+        <order-by direction="descending">count</order-by>
     </facet-definition>
     <facet-definition name="bornAt" label="Born">
         <group-by>
             <sub-path>descendant::tei:relation[@name="born-at"]/@passive</sub-path>
         </group-by>
         <max-values show="5">40</max-values>
-        <order-by direction="ascending">count</order-by>
+        <order-by direction="descending">count</order-by>
     </facet-definition>
     <facet-definition name="diedAt" label="Died">
         <group-by>
             <sub-path>descendant::tei:relation[@name="died-at"]/@passive</sub-path>
         </group-by>
         <max-values show="5">40</max-values>
-        <order-by direction="ascending">count</order-by>
+        <order-by direction="descending">count</order-by>
     </facet-definition>
     <facet-definition name="literaryConnection" label="Literary Connection">
         <group-by function="group-by-array">
             <sub-path>descendant::tei:relation[@name="has-literary-connection-to-place"]/@passive</sub-path>
         </group-by>
         <max-values show="5">40</max-values>
-        <order-by direction="ascending">count</order-by>
+        <order-by direction="descending">count</order-by>
     </facet-definition>        
     <facet-definition name="unspecifiedConnection" label="Unspecified Connection">
         <group-by function="group-by-array">
             <sub-path>descendant::tei:relation[@name="has-relation-to-place"]/@passive</sub-path>
         </group-by>
         <max-values show="5">40</max-values>
-        <order-by direction="ascending">count</order-by>
+        <order-by direction="descending">count</order-by>
     </facet-definition>            
     <facet-definition name="office" label="Office">
         <group-by>
             <sub-path>descendant::tei:person/tei:state[@type="office"]/@role</sub-path>
         </group-by>
         <max-values show="5">40</max-values>
-        <order-by direction="ascending">count</order-by>
+        <order-by direction="descending">count</order-by>
     </facet-definition>
     <!--
     <facet-definition name="saintType" label="Saint type">

@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<TEI 
-  xmlns:sch="http://purl.oclc.org/dsdl/schematron"
-  xmlns:srophe="https://srophe.app"
-  xmlns="http://www.tei-c.org/ns/1.0">
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns:srophe="https://srophe.app">
   
   <teiHeader>
     <fileDesc>
@@ -24,10 +21,8 @@
       <schemaSpec ident="syriacaPlaces" prefix="tei_" source="syriacaAll.compiled.odd" xml:lang="en" defaultExceptions="http://www.tei-c.org/ns/1.0 teix:egXML​ http://www.example.org/ns/">
         <moduleRef key="tei"/>
         <moduleRef key="certainty" include="precision"/>
-        <moduleRef key="core"
-          include="abbr author bibl biblScope choice citedRange corr date desc editor expan foreign label listBibl measure name note orig p ptr quote reg ref resp respStmt sic title"/>
-        <moduleRef key="header"
-          include="authority availability catDesc category change classDecl edition editionStmt editorialDecl encodingDesc fileDesc funder idno langUsage licence principal profileDesc publicationStmt revisionDesc seriesStmt sourceDesc sponsor taxonomy teiHeader titleStmt"/>
+        <moduleRef key="core" include="abbr author bibl biblScope choice citedRange corr date desc editor expan foreign label listBibl measure name note orig p ptr quote reg ref resp respStmt sic title"/>
+        <moduleRef key="header" include="authority availability catDesc category change classDecl edition editionStmt editorialDecl encodingDesc fileDesc funder idno langUsage licence principal profileDesc publicationStmt revisionDesc seriesStmt sourceDesc sponsor taxonomy teiHeader titleStmt"/>
         <moduleRef key="linking" include="link"/>
         <moduleRef key="namesdates" include="bloc country district event geo listPlace listRelation location offset persName place placeName region relation settlement state"/>
         <moduleRef key="tagdocs" include="gi"/>
@@ -58,9 +53,7 @@
                 <sch:let name="docURI" value="//tei:publicationStmt/tei:idno/substring-before(., '/tei')"/>
                 <sch:let name="placeIndex" value="doc('https://raw.githubusercontent.com/srophe/srophe-eXist-app/master/documentation/indexes/places.xml')"/>
                 <sch:let name="placeURIs" value="$placeIndex//tei:place/@ref"/>
-                <sch:assert test="
-                  every $i in tokenize(., ' ')
-                  satisfies $i = $placeURIs">
+                <sch:assert test="                   every $i in tokenize(., ' ')                   satisfies $i = $placeURIs">
                   This @mutual attribute contains one or more place URIs not in use in Syriaca.org data. Note that all place URIs take the form 'http://syriaca.org/place/{\d+?}' (where {\d+?} is a number).
                 </sch:assert>
                 <sch:assert test="contains(., ' ')">
@@ -366,9 +359,7 @@
               <sch:rule context="//tei:body//tei:note[@type='deprecation']/@target">
                 <sch:let name="nameIDs" value="//tei:place/tei:placeName/@xml:id"/>
                 <sch:let name="IDvalues" value="for $i in $nameIDs return concat('#', $i)"/>
-                <sch:assert test="
-                  every $i in tokenize(., ' ')
-                  satisfies $i = $IDvalues">
+                <sch:assert test="                   every $i in tokenize(., ' ')                   satisfies $i = $IDvalues">
                   This @target attribute on &lt;note&gt; of @type="deprecation" can take one or more of the following value 
                   separated by a space: 
                   <sch:value-of select="string-join($IDvalues, ' | ')"/>.
@@ -781,11 +772,10 @@
                 <sch:let name="confessionIDs" value="$confessionDoc//tei:text//tei:item/@xml:id"/>
                 <sch:let name="confessionPtrs" value="for $i in $confessionIDs return concat('#', $i)"/>
                 <sch:let name="confessionRefValues" value="for $i in $confessionPtrs return concat('http://syriaca.org/documentation/confessions.xml', $i)"/>
-                <sch:assert test="
-                  every $i in .
-                  satisfies $i = $confessionRefValues">
+                <sch:assert test="                   every $i in .                   satisfies $i = $confessionRefValues">
                   The acceptable values of @ref are 'http://syriaca.org/documentation/confessions.xml' followed by one of the following:
-                  <sch:value-of select="string-join($confessionPtrs, '; ')"/></sch:assert>
+                  <sch:value-of select="string-join($confessionPtrs, '; ')"/>
+                                </sch:assert>
               </sch:rule>
             </constraint>
           </constraintSpec>
@@ -831,15 +821,11 @@
                 <sch:let name="spaceTo-" value="for $i in . return(replace($i, ' ', '-'))"/>
                 <sch:let name="labelToRef" value="for $i in $spaceTo- return lower-case($spaceTo-)"/>
                 <sch:assert test="parent::tei:state/@type='confession'">A &lt;label&gt; element can only be used when parent &lt;state&gt; element has @type="confession"</sch:assert>
-                <sch:assert test="
-                  every $i in $labelToRef
-                  satisfies $i = $stateRefPart">
+                <sch:assert test="                   every $i in $labelToRef                   satisfies $i = $stateRefPart">
                   The text node in the &lt;label&gt; element must correspond to the @ref attribute on the parent &lt;state&gt;: 
                   <sch:value-of select="parent::tei:state/@ref"/>.
                 </sch:assert>
-                <sch:assert test="
-                  every $i in .
-                  satisfies $i = $confessionLabels">
+                <sch:assert test="                   every $i in .                   satisfies $i = $confessionLabels">
                   The text node in the &lt;label&gt; element must be one of the following: <sch:value-of select="string-join($confessionLabels, '; ')"/>.
                 </sch:assert>
               </sch:rule>

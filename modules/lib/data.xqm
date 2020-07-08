@@ -22,46 +22,48 @@ declare namespace tei="http://www.tei-c.org/ns/1.0";
  : @param $doc return document path relative to data-root
 :)
 declare function data:get-document() {
-    let $id := request:get-parameter('id', '')
-    return 
-        if($id != '') then
-            if(contains($id,'/spear/')) then
-                for $rec in collection($config:data-root)//tei:div[@uri = $id]
+    if(request:get-parameter('id', '') != '') then  
+        if(contains(request:get-parameter('id', ''),'/spear/')) then
+                for $rec in collection($config:data-root)//tei:div[@uri = request:get-parameter('id', '')]
                 return <tei:TEI xmlns="http://www.tei-c.org/ns/1.0">{$rec}</tei:TEI>   
-            else if(contains($id,'/manuscript/')) then
-                for $rec in collection($config:data-root)//tei:idno[@type='URI'][. = $id]
+            else if(contains(request:get-parameter('id', ''),'/manuscript/')) then
+                for $rec in collection($config:data-root)//tei:idno[@type='URI'][. = request:get-parameter('id', '')]
                 return 
                     if($rec/ancestor::tei:msPart) then
                        <tei:TEI xmlns="http://www.tei-c.org/ns/1.0">{$rec/ancestor::tei:msPart}</tei:TEI>
                     else $rec/ancestor::tei:TEI
-            else collection($config:data-root)//tei:TEI[.//tei:idno[@type='URI'][. = concat($id,'/tei')]][1]
-        else if(request:get-parameter('doc', '') != '') then 
-            if(starts-with(request:get-parameter('doc', ''),$config:data-root)) then 
-                doc(xmldb:encode-uri(request:get-parameter('doc', '') || '.xml'))
-            else doc(xmldb:encode-uri($config:data-root || "/" || request:get-parameter('doc', '') || '.xml'))
-        else ()           
+        else if($config:document-id) then 
+           collection($config:data-root)//tei:idno[. = request:get-parameter('id', '')]/ancestor::tei:TEI
+        else collection($config:data-root)/id(request:get-parameter('id', ''))/ancestor::tei:TEI
+    (: Get document by document path. :)
+    else if(request:get-parameter('doc', '') != '') then 
+        if(starts-with(request:get-parameter('doc', ''),$config:data-root)) then 
+            doc(xmldb:encode-uri(request:get-parameter('doc', '') || '.xml'))
+        else doc(xmldb:encode-uri($config:data-root || "/" || request:get-parameter('doc', '') || '.xml'))
+    else ()          
 };
 
 declare function data:get-document($id as xs:string?) {
-        if($id != '') then
-            if(contains($id,'/spear/')) then
-                for $rec in collection($config:data-root)//tei:div[@uri = $id]
-                return <tei:TEI xmlns="http://www.tei-c.org/ns/1.0">{$rec}</tei:TEI>   
-            else if(contains($id,'/manuscript/')) then
-                for $rec in collection($config:data-root)//tei:idno[@type='URI'][. = $id]
-                return 
-                    if($rec/ancestor::tei:msPart) then
-                       <tei:TEI xmlns="http://www.tei-c.org/ns/1.0">{$rec/ancestor::tei:msPart}</tei:TEI>
-                    else $rec/ancestor::tei:TEI
-            else collection($config:data-root)//tei:TEI[.//tei:idno[@type='URI'][. = concat($id,'/tei')]][1]
-        else if(request:get-parameter('doc', '') != '') then 
-            if(starts-with(request:get-parameter('doc', ''),$config:data-root)) then 
-                doc(xmldb:encode-uri(request:get-parameter('doc', '') || '.xml'))
-            else doc(xmldb:encode-uri($config:data-root || "/" || request:get-parameter('doc', '') || '.xml'))
-        else () 
+    if(contains($id,'/spear/')) then
+        for $rec in collection($config:data-root)//tei:div[@uri = $id]
+        return <tei:TEI xmlns="http://www.tei-c.org/ns/1.0">{$rec}</tei:TEI>   
+    else if(contains($id,'/manuscript/')) then
+        for $rec in collection($config:data-root)//tei:idno[@type='URI'][. = $id]
+        return 
+            if($rec/ancestor::tei:msPart) then
+                <tei:TEI xmlns="http://www.tei-c.org/ns/1.0">{$rec/ancestor::tei:msPart}</tei:TEI>
+            else $rec/ancestor::tei:TEI
+    else if(starts-with($id,'http')) then
+        if($config:document-id) then 
+            collection($config:data-root)//tei:idno[. = $id]/ancestor::tei:TEI
+        else collection($config:data-root)/id($id)/ancestor::tei:TEI
+    else if(starts-with($id,$config:data-root)) then 
+            doc(xmldb:encode-uri($id || '.xml'))
+    else doc(xmldb:encode-uri($config:data-root || "/" || $id || '.xml'))
 };
 
 (:~
+  : @depreciated
   : Select correct tei element to base browse list on. 
   : Places use tei:place/tei:placeName
   : Persons use tei:person/tei:persName
@@ -75,6 +77,7 @@ declare function data:element($element as xs:string?) as xs:string?{
 };
 
 (:~
+ : @depreciated
  : Make XPath language filter. 
  : @param $element used to select browse element: persName/placeName/title
 :)
@@ -105,94 +108,92 @@ declare function data:build-collection-path($collection as xs:string?) as xs:str
             if(config:collection-vars($collection)/@collection-URI != '') then string(config:collection-vars($collection)/@collection-URI)
             else ()                             
     let $series-path := 
-            if($get-series != '') then concat("//tei:idno[. = '",$get-series,"'][ancestor::tei:seriesStmt]/ancestor::tei:TEI")
+            if($collection = 'bhse' or $collection = 'bible') then
+                concat("//tei:title[@level='m'][. = '",config:collection-vars($collection)/@title,"']/ancestor::tei:TEI")
+            else if($collection = 'nhsl') then 
+                "//tei:TEI"
+            else if($get-series != '') then concat("//tei:idno[. = '",$get-series,"'][ancestor::tei:seriesStmt]/ancestor::tei:TEI")
             else "//tei:TEI"
-    return concat("collection('",$config:data-root,$collection-path,"')",$series-path,'[descendant::tei:body[ft:query(., (),sf:facet-query())]]')
+    return concat("collection('",$config:data-root,$collection-path,"')",$series-path)
 };
 
 (:~
- : Get all data
+ : Get all data for browse pages 
  : @param $collection collection to limit results set by
  : @param $element TEI element to base sort order on. 
 :)
 declare function data:get-records($collection as xs:string*, $element as xs:string?){
-    let $element := data:element($element)
     let $sort := 
         if(request:get-parameter('sort', '') != '') then request:get-parameter('sort', '') 
         else if(request:get-parameter('sort-element', '') != '') then request:get-parameter('sort-element', '')
-        else ()     
-    let $eval-string := concat(data:build-collection-path($collection),data:element-filter($element))   
-    let $hits := util:eval($eval-string)
+        else ()         
+    let $hits := util:eval(data:build-collection-path($collection))[descendant::tei:body[ft:query(., (),sf:facet-query())]]                        
     return 
-        (: Syriaca.org specific browse functions :)
-        if($collection = ('places','geo') and request:get-parameter('view', '') = 'type') then  
+        (:if(request:get-parameter('view', '') = 'map') then 
             for $hit in $hits
-            let $root := $hit/ancestor-or-self::tei:TEI
-            let $title := global:build-sort-string($root/descendant::tei:titleStmt/tei:title[1],'')
-            let $id := $root/descendant::tei:publicationStmt/tei:idno[1]
-            group by $facet-grp := $id
-            order by $title[1] collation 'http://www.w3.org/2013/collation/UCA'
-            where $root/descendant::tei:place[contains(@type, request:get-parameter('type', ''))]
-            return <browse xmlns="http://www.tei-c.org/ns/1.0" sort="{$sort}">{$root}</browse>
+            let $sort-element := data:sort-element($hit, $element, request:get-parameter('lang', ''))    
+            let $sort := global:build-sort-string($sort-element,request:get-parameter('lang', ''))
+            order by $sort ascending collation 'http://www.w3.org/2013/collation/UCA'
+            where $hit//tei:geo
+            return $hit  
+          :)  
         (: Bibl browse :)
-        else if($collection = 'bibl' and not(request:get-parameter('view', ''))) then
-            for $hit in $hits[matches(.,'\p{IsBasicLatin}|\p{IsLatin-1Supplement}|\p{IsLatinExtended-A}|\p{IsLatinExtended-B}','i')]
-            let $root := $hit/ancestor-or-self::tei:TEI
-            where $hit[matches(substring(global:build-sort-string(.,''),1,1),global:get-alpha-filter(),'i')]
-            order by global:build-sort-string(data:add-sort-options-bibl($root, request:get-parameter('sort-element', '')),'') collation 'http://www.w3.org/2013/collation/UCA'
-            return $root
+        if($collection = 'bibl' and not(request:get-parameter('view', ''))) then
+            for $hit in $hits
+            let $sort-element := data:sort-element($hit, $element, request:get-parameter('lang', ''))    
+            let $sort := global:build-sort-string($sort-element,request:get-parameter('lang', ''))
+            order by $sort ascending collation 'http://www.w3.org/2013/collation/UCA'    
+            where $sort-element[matches(.,'\p{IsBasicLatin}|\p{IsLatin-1Supplement}|\p{IsLatinExtended-A}|\p{IsLatinExtended-B}','i')][matches(substring(global:build-sort-string(.,''),1,1),global:get-alpha-filter(),'i')]
+            return $hit
         else if(request:get-parameter('view', '') = 'A-Z') then 
-            for $hit in $hits[matches(.,'\p{IsBasicLatin}|\p{IsLatin-1Supplement}|\p{IsLatinExtended-A}|\p{IsLatinExtended-B}','i')]
-            let $root := $hit/ancestor-or-self::tei:TEI
-            let $sort := global:build-sort-string(data:add-sort-options-bibl($root, request:get-parameter('sort-element', '')),'')
-            where $hit[matches(substring(global:build-sort-string($root,''),1,1),global:get-alpha-filter(),'i')]
-            order by $sort collation 'http://www.w3.org/2013/collation/UCA'
-            return <browse xmlns="http://www.tei-c.org/ns/1.0" sort="{$sort}">{$root}</browse>
+            for $hit in $hits
+            let $sort-element := data:sort-element($hit, $element, request:get-parameter('lang', ''))    
+            let $sort := global:build-sort-string($sort-element,request:get-parameter('lang', ''))
+            order by $sort ascending collation 'http://www.w3.org/2013/collation/UCA'    
+            where $sort-element[matches(.,'\p{IsBasicLatin}|\p{IsLatin-1Supplement}|\p{IsLatinExtended-A}|\p{IsLatinExtended-B}','i')][matches(substring(global:build-sort-string(.,''),1,1),global:get-alpha-filter(),'i')]
+            return $hit
         else if(request:get-parameter('view', '') = 'ܐ-ܬ') then
-            for $hit in $hits[matches(.,'\p{IsSyriac}','i')]
-            let $root := $hit/ancestor-or-self::tei:TEI
-            order by global:build-sort-string(data:add-sort-options-bibl($root, request:get-parameter('sort-element', '')),'') collation 'http://www.w3.org/2013/collation/UCA'
-            return $root                            
+            for $hit in $hits
+            let $sort-element := data:sort-element($hit, $element, 'syr')    
+            let $sort := global:build-sort-string($sort-element,'syr')
+            order by $sort ascending collation 'http://www.w3.org/2013/collation/UCA'
+            where $sort-element[matches(.,'\p{IsSyriac}','i')][matches(substring(global:build-sort-string(.,''),1,1),global:get-alpha-filter(),'i')]
+            return $hit                            
         else if(request:get-parameter('view', '') = 'ا-ي') then
-            for $hit in $hits[matches(.,'\p{IsArabic}','i')]
-            let $root := $hit/ancestor-or-self::tei:TEI
-            order by global:build-sort-string(data:add-sort-options-bibl($root, request:get-parameter('sort-element', '')),'ar') collation 'http://www.w3.org/2013/collation/UCA'
-            return $root 
+            for $hit in $hits
+            let $sort-element := data:sort-element($hit, $element, 'ar')    
+            let $sort := global:build-sort-string($sort-element,'ar')
+            order by $sort ascending collation 'http://www.w3.org/2013/collation/UCA'
+            where $sort-element[matches(.,'\p{IsArabic}','i')][matches(substring(global:build-sort-string(.,''),1,1),global:get-alpha-filter(),'i')]
+            return $hit
         else if(request:get-parameter('view', '') = 'other') then
-            for $hit in $hits[not(matches(substring(global:build-sort-string(.,''),1,1),'\p{IsSyriac}|\p{IsArabic}|\p{IsBasicLatin}|\p{IsLatin-1Supplement}|\p{IsLatinExtended-A}|\p{IsLatinExtended-B}|\p{IsLatinExtendedAdditional}','i'))]
-            let $root := $hit/ancestor-or-self::tei:TEI
-            order by global:build-sort-string(data:add-sort-options-bibl($root, request:get-parameter('sort-element', '')),'') collation 'http://www.w3.org/2013/collation/UCA'
-            return $root         
-        else if(request:get-parameter('view', '') = 'all') then
             for $hit in $hits
-            let $root := $hit/ancestor-or-self::tei:TEI
-            order by global:build-sort-string(data:add-sort-options-bibl($root, request:get-parameter('sort-element', '')),'') collation 'http://www.w3.org/2013/collation/UCA'
-            return $root             
-        (: Generic :)             
-        else if(request:get-parameter('view', '') = 'map') then 
+            let $sort-element := data:sort-element($hit, $element, '')    
+            let $sort := global:build-sort-string($sort-element,'')
+            order by $sort ascending collation 'http://www.w3.org/2013/collation/UCA'
+            where $sort-element[not(matches(substring(global:build-sort-string(.,''),1,1),'\p{IsSyriac}|\p{IsArabic}|\p{IsBasicLatin}|\p{IsLatin-1Supplement}|\p{IsLatinExtended-A}|\p{IsLatinExtended-B}|\p{IsLatinExtendedAdditional}','i'))][matches(substring(global:build-sort-string(.,''),1,1),global:get-alpha-filter(),'i')]
+            return $hit
+        (:Generic :)            
+        else if(request:get-parameter('alpha-filter', '') = ('ALL','all')) then 
             for $hit in $hits
-            let $root := $hit/ancestor-or-self::tei:TEI
-            let $id := $root/descendant::tei:publicationStmt/tei:idno[1]
-            group by $facet-grp := $id
-            (:where $root[1]//tei:geo:)
-            return <browse xmlns="http://www.tei-c.org/ns/1.0" sort="{$sort[1]}">{$root[1]}</browse>  
-        else if(request:get-parameter('alpha-filter', '') != '' and request:get-parameter('alpha-filter', '') != 'ALL') then 
+            let $sort-element := data:sort-element($hit, $element, request:get-parameter('lang', ''))    
+            let $sort := global:build-sort-string($sort-element,request:get-parameter('lang', ''))
+            order by $sort ascending collation 'http://www.w3.org/2013/collation/UCA'
+            return $hit[1]              
+        else if(request:get-parameter('alpha-filter', '') != '') then 
             for $hit in $hits
-            let $root := $hit/ancestor-or-self::tei:TEI
-            let $sort := global:build-sort-string($hit,'')
-            (:let $id := $root/descendant::tei:publicationStmt/tei:idno[1]
-              group by $facet-grp := $id:)
-            order by $sort collation 'http://www.w3.org/2013/collation/UCA'
+            let $sort-element := data:sort-element($hit, $element, request:get-parameter('lang', ''))    
+            let $sort := global:build-sort-string($sort-element,request:get-parameter('lang', ''))
+            order by $sort ascending collation 'http://www.w3.org/2013/collation/UCA'
             where matches($sort,global:get-alpha-filter())
-            return <browse xmlns="http://www.tei-c.org/ns/1.0" sort="{$sort}">{$root}</browse>              
-        else 
+            return $hit             
+        else
             for $hit in $hits
-            let $root := $hit/ancestor-or-self::tei:TEI
-            let $sort := global:build-sort-string($hit,'')
-            let $id := $root/descendant::tei:publicationStmt/tei:idno[1]
-            group by $facet-grp := $id
-            order by $sort[1] collation 'http://www.w3.org/2013/collation/UCA'
-            return <browse xmlns="http://www.tei-c.org/ns/1.0" sort="{$sort[1]}">{$root[1]}</browse>           
+            let $sort-element := data:sort-element($hit, $element, request:get-parameter('lang', ''))    
+            let $sort := global:build-sort-string($sort-element,request:get-parameter('lang', ''))
+            order by $sort ascending collation 'http://www.w3.org/2013/collation/UCA' 
+            return $hit
+        
 };
 
 (:~
@@ -465,6 +466,49 @@ declare function data:mentioned() as xs:string?{
         else 
             concat("[descendant::*[ft:query(tei:title,'",data:clean-string(request:get-parameter('mentioned', '')),"',data:search-options())]]")
     else ()  
+};
+
+
+(:~ 
+ : Adds sort filter based on sort prameter
+ : Currently supports sort on title, author, publication date and person dates
+ : @param $sort-option
+:)
+declare function data:sort-element($hit, $sort-element as xs:string*, $lang as xs:string?){
+    if($sort-element != '') then
+        if($sort-element = "tei:place/tei:placeName[@srophe:tags='#headword']") then 
+            if($lang != '') then
+                $hit/descendant::tei:place/tei:placeName[@srophe:tags='#headword'][@xml:lang=$lang][1]
+            else $hit/descendant::tei:place/tei:placeName[@srophe:tags='#headword'][1]
+        else if($sort-element = "tei:place/tei:placeName") then 
+            if($lang != '') then
+                $hit/descendant::tei:place/tei:placeName[@xml:lang=$lang][1]
+            else $hit/descendant::tei:place/tei:placeName[1]            
+        else if($sort-element = "tei:person/tei:persName[@srophe:tags='#headword']") then 
+            if($lang != '') then
+                $hit/descendant::tei:person/tei:pers[@srophe:tags='#headword'][@xml:lang=$lang][1]
+            else $hit/descendant::tei:person/tei:pers[@srophe:tags='#headword'][1]
+        else if($sort-element = "tei:person/tei:persName") then 
+            if($lang != '') then
+                $hit/descendant::tei:person/tei:persName[@xml:lang=$lang][1]
+            else $hit/descendant::tei:person/tei:persName[1]
+        else if($sort-element = "tei:titleStmt/tei:title[@level='a']") then 
+            if($lang != '') then
+                $hit/descendant::tei:titleStmt/tei:title[@level='a'][@xml:lang=$lang][1]
+            else $hit/descendant::tei:titleStmt/tei:title[@level='a'][1]
+        else if($sort-element = "tei:titleStmt/tei:title") then 
+            if($lang != '') then
+                $hit/descendant::tei:titleStmt/tei:title[@xml:lang=$lang][1]
+            else $hit/descendant::tei:titleStmt/tei:title[1]
+        else if($sort-element = "tei:title") then 
+            if($lang != '') then
+                $hit/descendant::tei:title[@xml:lang=$lang][1]
+            else $hit/descendant::tei:title[1]
+        else 
+            if($lang != '') then
+                util:eval(concat('$hit/descendant::',$sort-element,'[@xml:lang="',$lang,'"][1]'))
+            else util:eval(concat('$hit/descendant::',$sort-element,'[1]'))            
+    else $hit/descendant::tei:titleStmt/tei:title[1]
 };
 
 (:~ 
