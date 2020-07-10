@@ -235,7 +235,7 @@ declare function app:external-relationships($node as node(), $model as map(*), $
     let $recid := replace($rec/descendant::tei:idno[@type='URI'][starts-with(.,$config:base-uri)][1],'/tei','')
     let $title := if(contains($rec/descendant::tei:title[1]/text(),' — ')) then 
                         substring-before($rec/descendant::tei:title[1],' — ') 
-                   else $rec/descendant::tei:title[1]/text()
+                   else string-join($rec/descendant::tei:title[1],'')
     return rel:external-relationships($recid, $title, $relationship-type, $sort, $count)
 };
 

@@ -354,7 +354,7 @@ declare %templates:wrap function person:display-persons-map($node as node(), $mo
     let $pers-id := string($p/ancestor::tei:TEI/descendant::tei:idno[1])
     let $relation := string($p/@name)
     let $places := for $p in tokenize(string-join(($p/@passive,$p/@active,$p/@mutual),' '),' ')[contains(.,'/place/')] return <placeName xmlns="http://www.tei-c.org/ns/1.0">{$p}</placeName>
-                    return 
+                   return 
                         <person xmlns="http://www.tei-c.org/ns/1.0">
                             <persName xmlns="http://www.tei-c.org/ns/1.0" name="{$relation}" id="{replace($pers-id,'/tei','')}">{$name}</persName>
                             {$places}

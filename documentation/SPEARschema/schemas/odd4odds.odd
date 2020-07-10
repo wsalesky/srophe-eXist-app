@@ -9497,7 +9497,7 @@
           <macroSpec ident="anyISOSchematron" mode="add">
             <content>
               <rng:element>
-                <rng:nsName ns="http://purl.oclc.org/dsdl/schematron"/>
+                <nsName xmlns="http://relaxng.org/ns/structure/1.0" ns="http://purl.oclc.org/dsdl/schematron"/>
                 <rng:zeroOrMore>
                   <rng:choice>
                     <rng:attribute>
