@@ -37,7 +37,7 @@ declare variable $sf:QUERY_OPTIONS := map {
 :)
 declare function sf:build-index(){
 <collection xmlns="http://exist-db.org/collection-config/1.0">
-    <index xmlns="http://exist-db.org/collection-config/1.0" xmlns:tei="http://www.tei-c.org/ns/1.0">
+    <index xmlns="http://exist-db.org/collection-config/1.0" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:srophe="https://srophe.app">
         <lucene diacritics="no">
             <module uri="http://srophe.org/srophe/facets" prefix="sf" at="xmldb:exist:///{$config:app-root}/modules/lib/facets.xql"/>
             <text qname="tei:body">{
@@ -85,6 +85,7 @@ declare function sf:build-index(){
             <create qname="@type" type="xs:string"/>
             <create qname="@ana" type="xs:string"/>
             <create qname="@syriaca-tags" type="xs:string"/>
+            <create qname="@srophe:tags" type="xs:string"/>
             <create qname="@when" type="xs:string"/>
             <create qname="@target" type="xs:string"/>
             <create qname="@who" type="xs:string"/>
@@ -96,6 +97,7 @@ declare function sf:build-index(){
             <create qname="@mutual" type="xs:string"/>
             <create qname="@name" type="xs:string"/>
             <create qname="@xml:lang" type="xs:string"/>
+            <create qname="@level" type="xs:string"/>
             <create qname="@status" type="xs:string"/>
             <create qname="tei:idno" type="xs:string"/>
             <create qname="tei:title" type="xs:string"/>

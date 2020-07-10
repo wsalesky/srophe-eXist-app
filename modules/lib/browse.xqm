@@ -62,7 +62,6 @@ declare function browse:show-hits($node as node(), $model as map(*), $collection
         <div class="col-md-12 map-lg" xmlns="http://www.w3.org/1999/xhtml">
             {browse:get-map($hits)}
         </div>
-    (: Syriaca.org function :)    
     else if($browse:view = 'type' or $browse:view = 'date' or $browse:view = 'facets') then   
         browse:by-type($hits, $collection, $sort-options)
     else
