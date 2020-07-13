@@ -502,7 +502,8 @@ declare function sf:facet-type($element as item()*, $facet-definition as item(),
     if($element/descendant-or-self::tei:place/@type) then
         lower-case($element/descendant-or-self::tei:place/@type)    
     else if($element/descendant-or-self::tei:person/@ana) then
-        tokenize(lower-case($element/descendant-or-self::tei:person/@ana),' ')
+        for $type in tokenize(lower-case($element/descendant-or-self::tei:person/@ana),' ')
+        return functx:capitalize-first(replace($type,'#syriaca-',''))
     else ()
 };
 
