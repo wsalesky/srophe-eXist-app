@@ -19,8 +19,9 @@ xquery version "3.0";
  : @since April, 2010
  : @version 1.4
  :)
-import module namespace tei2="http://syriaca.org/tei2dc" at "lib/tei2dc.xqm";
-import module namespace global="http://syriaca.org/global" at "lib/global.xqm";
+import module namespace tei2="http://syriaca.org/srophe/tei2dc" at "content-negotiation/tei2dc.xqm";
+import module namespace config="http://syriaca.org/srophe/config" at "config.xqm";
+import module namespace data="http://syriaca.org/srophe/data" at "lib/data.xqm";
 (: declare namespaces for each metadata schema we care about :)
 declare namespace rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#";
 declare namespace xlink = "http://www.w3.org/1999/xlink";
@@ -39,7 +40,7 @@ declare variable $repository-name    := 'Syriaca.org';
 declare variable $admin-email        := 'david.a.michelson@vanderbilt.edu';
 declare variable $hits-per-page      := 25;
 declare variable $earliest-datestamp := '2012-01-01';
-declare variable $_docs              := collection($global:data-root)//tei:TEI;
+declare variable $_docs              := collection($config:data-root)//tei:TEI;
 declare variable $oai-domain         := 'syriaca.org';
 declare variable $id-scheme          := 'oai';
 
@@ -456,7 +457,7 @@ return
 declare function local:oai-list-sets() {
     <ListSets xmlns="http://www.openarchives.org/OAI/2.0/">
        {
-        for $set in $global:get-config//*:collections/*:collection
+        for $set in $config:get-config//*:collections/*:collection
         return
             <set>
                 <setSpec>{string($set/@name)}</setSpec>

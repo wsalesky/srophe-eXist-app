@@ -1,27 +1,38 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-model href="http://www.tei-c.org/release/xml/tei/custom/schema/relaxng/tei_customization.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?>
-<TEI xmlns="http://www.tei-c.org/ns/1.0" xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns:srophe="https://srophe.app">
+<TEI 
+  xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+  xmlns:srophe="https://srophe.app"
+  xmlns="http://www.tei-c.org/ns/1.0">
+  
   <teiHeader>
     <fileDesc>
       <titleStmt>
-        <title>SPEAR ODD</title>
-        <author>
-                    <persName ref="http://syriaca.org/documentation/editors.xml#dschwartz">Daniel L.
-            Schwartz</persName>
-                </author>
+        <title>TEI Customization for SPEAR: Syriaca Persons, Events, and Relations</title>
+        <editor role="creator"><name ref="http://syriaca.org/documentation/editors.xml#dschwartz">Daniel L.
+            Schwartz</name></editor>
       </titleStmt>
+      <editionStmt>
+        <edition n="1.0"/>
+      </editionStmt>
       <publicationStmt>
         <publisher>Syriaca.org: The Syriac Reference Portal</publisher>
         <availability>
           <licence target="http://creativecommons.org/licenses/by/3.0/">
             <p>Distributed under a Creative Commons Attribution 3.0 Unported License.</p>
+            <p>The code examples contained in <gi>exemplum</gi> elements below come from 
+              Syriaca.org projects that have been distributed under a Creative Commons Attribution 
+              3.0 Unported License. Used by permission.</p>
+            <p>The comments on element and attribute use contained in <gi>remarks</gi> elements below 
+              share some text with other Syriaca.org documentation distributed under a Creative Commons 
+              Attributiion 3.0 Unported License. This documentation can be found at various links available here:
+              <ref target="http://syriaca.org/documentation/index.html">http://syriaca.org/documentation/index.html</ref>
+              Used by permission.
+            </p>
           </licence>
         </availability>
       </publicationStmt>
       <sourceDesc>
-        <p>
-          
-        </p>
+        <p>This ODD provides a customization of the TEI P5 All.</p>
       </sourceDesc>
     </fileDesc>
     <revisionDesc>
@@ -41,11 +52,13 @@
       <schemaSpec ident="SPEAR" start="TEI">
 
         <desc/>
-        <moduleRef key="core" include="author bibl biblScope choice citedRange corr date desc editor head listBibl name note num orig p ptr publisher pubPlace ref reg resp respStmt rs sic title"/>
+        <moduleRef key="core"
+          include="author bibl biblScope choice citedRange corr date desc editor head listBibl name note num orig p ptr publisher pubPlace ref reg resp respStmt rs sic title"/>
         <moduleRef key="tei"/>
         <moduleRef key="header" include="authority availability catDesc category change classDecl edition editionStmt editorialDecl encodingDesc fileDesc funder idno licence profileDesc publicationStmt revisionDesc seriesStmt sourceDesc sponsor taxonomy teiHeader titleStmt"/>
         <moduleRef key="textstructure" include="back body div TEI text"/>
-        <moduleRef key="namesdates" include="birth death education event langKnowledge langKnown listEvent listPerson listRelation nationality occupation orgName persName person personGrp placeName relation residence socecStatus state trait"/>
+        <moduleRef key="namesdates"
+          include="birth death education event langKnowledge langKnown listEvent listPerson listRelation nationality occupation orgName persName person personGrp placeName relation residence socecStatus state trait"/>
 
         <classSpec ident="att.datable.w3c" type="atts" mode="change" module="tei">
           <attList>
@@ -102,7 +115,7 @@
           <remarks>
             <p> Every <gi>teiHeader</gi> element contains a <gi>fileDesc</gi> element (information
               about the creation of a file), an <gi>encodingDesc</gi> element (editorial rules), a
-              <gi>profileDesc</gi>&gt; element (non-bibliographic aspects of a text), and a
+              <gi>profileDesc</gi>> element (non-bibliographic aspects of a text), and a
               <gi>revisionDesc</gi> element (history of revisions). </p>
           </remarks>
         </elementSpec>
@@ -163,7 +176,8 @@
                 <title level="m" type="main">Chronicle of Edessa</title>
                 <title type="sub">A SPEAR Prosopography</title>
                 <sponsor>Syriaca.org: The Syriac Reference Portal</sponsor>
-                <editor role="creator" ref="http://syriaca.org/documentation/editors.xml#dschwartz">Daniel L. Schwartz</editor>
+                <editor role="creator" ref="http://syriaca.org/documentation/editors.xml#dschwartz"
+                  >Daniel L. Schwartz</editor>
                 <respStmt>
                   <resp>Data architecture, data entry, editing, proofreading, and revision
                     by</resp>
@@ -227,10 +241,13 @@
                 </sch:assert>
               </sch:rule>
               <sch:rule context="//tei:titleStmt/tei:respStmt/tei:name/@ref">
-                <sch:let name="edsDoc" value="doc('https://raw.githubusercontent.com/srophe/srophe-eXist-app/master/documentation/editors.xml')"/>
+                <sch:let name="edsDoc"
+                  value="doc('https://raw.githubusercontent.com/srophe/srophe-eXist-app/master/documentation/editors.xml')"/>
                 <sch:let name="eds" value="$edsDoc//tei:text/tei:body/tei:listPerson/tei:person/@xml:id"/>
                 <sch:let name="refValues" value="for $i in $eds return concat('http://syriaca.org/documentation/editors.xml#', $i)"/>
-                <sch:assert test="                   every $i in .                   satisfies $i = $refValues">
+                <sch:assert test="
+                  every $i in .
+                  satisfies $i = $refValues">
                   Acceptable values for this @ref attribute include: 
                   <sch:value-of select="string-join($refValues, ' | ')"/>.
                 </sch:assert>
@@ -309,10 +326,9 @@
                 <authority>Syriaca.org: The Syriac Reference Portal</authority>
                 <idno type="URI">http://syriaca.org/spear/847/tei</idno>
                 <availability>
-                  <licence target="http://creativecommons.org/licenses/by/3.0/">
-                                        <p>Distributed under a Creative Commons Attribution 3.0 Unported
-                    License.</p>
-                                    </licence>
+                  <licence target="http://creativecommons.org/licenses/by/3.0/"><p
+                    >Distributed under a Creative Commons Attribution 3.0 Unported
+                    License.</p></licence>
                 </availability>
                 <date when="2019-09-30">30 September 2019</date>
               </publicationStmt>
@@ -343,10 +359,9 @@
                 <authority>Syriaca.org: The Syriac Reference Portal</authority>
                 <idno type="URI">http://syriaca.org/spear/847/tei</idno>
                 <availability>
-                  <licence target="http://creativecommons.org/licenses/by/3.0/">
-                                        <p>Distributed under a Creative Commons Attribution 3.0 Unported
-                    License.</p>
-                                    </licence>
+                  <licence target="http://creativecommons.org/licenses/by/3.0/"><p
+                    >Distributed under a Creative Commons Attribution 3.0 Unported
+                    License.</p></licence>
                 </availability>
                 <date when="2019-09-30">30 September 2019</date>
               </publicationStmt>
@@ -376,10 +391,9 @@
                 <authority>Syriaca.org: The Syriac Reference Portal</authority>
                 <idno type="URI">http://syriaca.org/spear/847/tei</idno>
                 <availability>
-                  <licence target="http://creativecommons.org/licenses/by/3.0/">
-                                        <p>Distributed under a Creative Commons Attribution 3.0 Unported
-                    License.</p>
-                                    </licence>
+                  <licence target="http://creativecommons.org/licenses/by/3.0/"><p
+                    >Distributed under a Creative Commons Attribution 3.0 Unported
+                    License.</p></licence>
                 </availability>
                 <date when="2019-09-30">30 September 2019</date>
               </publicationStmt>
@@ -419,7 +433,10 @@
                 <sch:assert test="@level='m'">
                   The &lt;title&gt; element requires a @level attribute with a value of "m".
                 </sch:assert>
-                <sch:assert test="                   . = 'The Lives of the Eastern Saints' or                    . = 'The Letters of Severus of Antioch'                   ">
+                <sch:assert test="
+                  . = 'The Lives of the Eastern Saints' or 
+                  . = 'The Letters of Severus of Antioch'
+                  ">
                   This &lt;title&gt; element must be "The Lives of the Eastern Saints"
                   or "The Letters of Severus of Antioch".
                 </sch:assert>
@@ -510,7 +527,8 @@
             <egXML xmlns="http://www.tei-c.org/ns/Examples">
               <seriesStmt>
                 <title level="s">SPEAR: Syriac Persons, Events, and Relations</title>
-                <editor role="general" ref="http://syriaca.org/documentation/editors.xml#dschwartz">Daniel L. Schwartz</editor>
+                <editor role="general" ref="http://syriaca.org/documentation/editors.xml#dschwartz"
+                  >Daniel L. Schwartz</editor>
                 <idno type="URI">http://syriaca.org/spear</idno>
               </seriesStmt>
             </egXML>
@@ -520,7 +538,8 @@
               <seriesStmt>
                 <title level="m" xml:lang="en">The Lives of the Eastern Saints</title>
                 <title type="sub">A SPEAR Prosopography</title>
-                <editor role="general" ref="http://syriaca.org/documentation/editors.xml#dschwartz">Daniel L. Schwartz</editor>
+                <editor role="general" ref="http://syriaca.org/documentation/editors.xml#dschwartz"
+                  >Daniel L. Schwartz</editor>
                 <idno type="URI">http://syriaca.org/spear/lives-eastern-saints</idno>
                 <biblScope unit="volume">
                   <title level="s">SPEAR: Syriac Persons, Events, and Relations</title>
@@ -544,30 +563,20 @@
               <sourceDesc>
                 <listBibl>
                   <head>Sources for the Data in this Born Digital Prosopography</head>
-                  <bibl type="primary">
-                                        <title>Lives of the Eastern Saints III</title>
-                                        <title>Peter
-                    and Photius</title>
-                                        <author>
-                                            <persName ref="http://syriaca.org/person/74">John of Ephesus</persName>
-                                        </author>
-                                        <editor>
-                                            <persName ref="http://syriaca.org/person/403">E. W.
-                        Brooks</persName>
-                                        </editor>
-                                        <ptr target="http://syriaca.org/bibl/2033"/>
-                                    </bibl>
-                  <bibl type="primary">
-                                        <title>Peter and Photius</title>
-                                        <author>
-                                            <persName ref="http://syriaca.org/person/74">John of
-                    Ephesus</persName>
-                                        </author>
-                                        <ptr target="http://syriaca.org/work/847"/>
-                                    </bibl>
+                  <bibl type="primary"><title>Lives of the Eastern Saints III</title><title>Peter
+                    and Photius</title><author><persName ref="http://syriaca.org/person/74"
+                      >John of Ephesus</persName></author><editor><persName
+                        ref="http://syriaca.org/person/403">E. W.
+                        Brooks</persName></editor><ptr target="http://syriaca.org/bibl/2033"
+                        /></bibl>
+                  <bibl type="primary"><title>Peter and Photius</title><author><persName
+                    ref="http://syriaca.org/person/74">John of
+                    Ephesus</persName></author><ptr target="http://syriaca.org/work/847"
+                    /></bibl>
                 </listBibl>
                 <listRelation>
-                  <relation type="part" active="http://syriaca.org/work/847" ref="dcterms:isPartOf" passive="http://syriaca.org/work/9501"/>
+                  <relation type="part" active="http://syriaca.org/work/847"
+                    ref="dcterms:isPartOf" passive="http://syriaca.org/work/9501"/>
                 </listRelation>
               </sourceDesc>
             </egXML>
@@ -684,7 +693,9 @@
           <exemplum>
             <egXML xmlns="http://www.tei-c.org/ns/Examples">
               <revisionDesc status="draft">
-                <change who="http://syriaca.org/documentation/editors.xml#dmichelson http://syriaca.org/documentation/editors.xml#ekeogh http://syriaca.org/documentation/editors.xml#egarret http://syriaca.org/documentation/editors.xml#egibes http://syriaca.org/documentation/editors.xml#mdebie http://syriaca.org/documentation/editors.xml#sgross http://syriaca.org/documentation/editors.xml #upossekel" status="draft">Initial data collected by David A. Michelson, Muriel Debie, Eric
+                <change
+                  who="http://syriaca.org/documentation/editors.xml#dmichelson http://syriaca.org/documentation/editors.xml#ekeogh http://syriaca.org/documentation/editors.xml#egarret http://syriaca.org/documentation/editors.xml#egibes http://syriaca.org/documentation/editors.xml#mdebie http://syriaca.org/documentation/editors.xml#sgross http://syriaca.org/documentation/editors.xml #upossekel"
+                  status="draft">Initial data collected by David A. Michelson, Muriel Debie, Eric
                   Garret, Elizabeth Gibes, Simcha Gross, and Ute Possekel at "Mapping Ancient Lives
                   &amp; Social Networks: A Digital Workshop," held at Marquette University, 23-24 May
                   2017.</change>
@@ -712,7 +723,9 @@
               <div type="factoid" xml:id="factoid-9" resp="#upossekel #mdebie #egarret">
                 <idno type="URI">http://syriaca.org/spear/847-9</idno>
                 <listRelation>
-                  <relation ref="syriaca:FellowMonastics" mutual="http://syriaca.org/person/2011 http://syriaca.org/person/3014 http://syriaca.org/person/3693"/>
+                  <relation ref="syriaca:FellowMonastics"
+                    mutual="http://syriaca.org/person/2011 http://syriaca.org/person/3014 http://syriaca.org/person/3693"
+                  />
                 </listRelation>
                 <bibl>
                   ...
@@ -752,11 +765,14 @@
                   @xml:id attribute.</sch:assert>
               </sch:rule>
               <sch:rule context="tei:back//tei:bibl/@xml:id">
-                <sch:let name="docURIno" value="//tei:publicationStmt/tei:idno[@type]/substring-after(substring-before(., '/tei'), 'spear/')"/>
+                <sch:let name="docURIno"
+                  value="//tei:publicationStmt/tei:idno[@type]/substring-after(substring-before(., '/tei'), 'spear/')"/>
                 <sch:assert test="contains(., concat('bibl', $docURIno, '-'))">The @xml:id on the
                   &lt;bibl&gt; element in the back matter must take the following form: 'bibl' +
                     '<sch:value-of select="$docURIno"/>' + '-' + a unique number.</sch:assert>
-                <sch:assert test="count(distinct-values(//tei:back//tei:bibl/@xml:id)) eq count(//tei:back//tei:bibl/@xml:id)">Each @xml:id attribute on a &lt;bibl&gt; element must have a unique
+                <sch:assert
+                  test="count(distinct-values(//tei:back//tei:bibl/@xml:id)) eq count(//tei:back//tei:bibl/@xml:id)"
+                  >Each @xml:id attribute on a &lt;bibl&gt; element must have a unique
                   value.</sch:assert>
                 <sch:report test="matches(substring-after(., '-'), '\D')">A properly formatted
                   Syriaca.org person URI ends with a number.</sch:report>
@@ -802,14 +818,10 @@
                 <listPerson>
                   ...
                 </listPerson>
-                <bibl type="primary">
-                                    <ptr target="http://syriaca.org/work/10510"/>
-                                    <citedRange unit="pp">552</citedRange>
-                                </bibl>
-                <bibl type="primary">
-                                    <ptr target="http://syriaca.org/bibl/2033"/>
-                                    <citedRange unit="pp">206</citedRange>
-                                </bibl>
+                <bibl type="primary"><ptr target="http://syriaca.org/work/10510"/><citedRange
+                  unit="pp">552</citedRange></bibl>
+                <bibl type="primary"><ptr target="http://syriaca.org/bibl/2033"/><citedRange
+                  unit="pp">206</citedRange></bibl>
               </div>
             </egXML>
           </exemplum>
@@ -908,14 +920,10 @@
                 <listPerson>
                   ...
                 </listPerson>
-                <bibl type="primary">
-                                    <ptr target="http://syriaca.org/work/10510"/>
-                                    <citedRange unit="pp">552</citedRange>
-                                </bibl>
-                <bibl type="primary">
-                                    <ptr target="http://syriaca.org/bibl/2033"/>
-                                    <citedRange unit="pp">206</citedRange>
-                                </bibl>
+                <bibl type="primary"><ptr target="http://syriaca.org/work/10510"/><citedRange
+                  unit="pp">552</citedRange></bibl>
+                <bibl type="primary"><ptr target="http://syriaca.org/bibl/2033"/><citedRange
+                  unit="pp">206</citedRange></bibl>
               </div>
             </egXML>
           </exemplum>
@@ -936,15 +944,12 @@
               <event ana="http://syriaca.org/keyword/monasteries">
                 <desc> The<placeName ref="http://syriaca.org/place/399">Convent of John
                   Urtaya</placeName>was founded in <choice>
-                    <reg>
-                                            <date notBefore="0388-10" notAfter="0389-09" calendar="Gregorian" srophe:computed-end="0388-09-01" srophe:computed-start="0389-10-01">388/9</date>
-                                        </reg>
-                    <orig>
-                                            <date when-custom="0700" datingMethod="Seleucid">A. Gr.
-                      700</date>
-                                        </orig>
-                  </choice>
-                                </desc>
+                    <reg><date notBefore="0388-10" notAfter="0389-09"
+                      calendar="Gregorian" srophe:computed-end="0388-09-01"
+                      srophe:computed-start="0389-10-01">388/9</date></reg>
+                    <orig><date when-custom="0700" datingMethod="Seleucid">A. Gr.
+                      700</date></orig>
+                  </choice></desc>
               </event>
             </egXML>
           </exemplum>
@@ -953,22 +958,20 @@
               <div type="factoid" xml:id="factoid-147" resp="#dschwartz">
                 <idno type="URI">http://syriaca.org/spear/8559-147</idno>
                 <listEvent>
-                  <event ana="http://syriaca.org/keyword/emperors http://syriaca.org/keyword/accession">
+                  <event
+                    ana="http://syriaca.org/keyword/emperors http://syriaca.org/keyword/accession">
                     <desc> In <choice>
-                      <corr>
-                                                    <date when="0364-03" calendar="Gregorian" srophe:computed-start="0364-03-01">March 364</date>
-                                                </corr>
-                      <sic>
-                                                    <date when="0364-02" calendar="Gregorian" srophe:computed-start="0364-02-01">February A. D.
-                        364</date>
-                                                </sic>
-                      <orig>
-                                                    <date when-custom="0675-05" datingMethod="Seleucid-SyriacMonths">Shebāṭ A. Gr.
-                        675</date>
-                                                </orig>
-                    </choice>
-                                            <persName ref="http://syriaca.org/person/2309"> Valens
-                    </persName> became King of <placeName ref="http://syriaca.org/place/166"> Rome </placeName>. </desc>
+                      <corr><date when="0364-03" calendar="Gregorian"
+                        srophe:computed-start="0364-03-01">March 364</date></corr>
+                      <sic><date when="0364-02" calendar="Gregorian"
+                        srophe:computed-start="0364-02-01">February A. D.
+                        364</date></sic>
+                      <orig><date when-custom="0675-05"
+                        datingMethod="Seleucid-SyriacMonths">Shebāṭ A. Gr.
+                        675</date></orig>
+                    </choice><persName ref="http://syriaca.org/person/2309"> Valens
+                    </persName> became King of <placeName ref="http://syriaca.org/place/166"
+                      > Rome </placeName>. </desc>
                   </event>
                 </listEvent>
                 <bibl> ... </bibl>
@@ -1033,26 +1036,24 @@
               <event ana="http://syriaca.org/keyword/monasteries">
                 <desc> The<placeName ref="http://syriaca.org/place/399">Convent of John
                   Urtaya</placeName>was founded in <choice>
-                    <reg>
-                                            <date notBefore="0388-10" notAfter="0389-09" calendar="Gregorian" srophe:computed-end="0388-09-01" srophe:computed-start="0389-10-01">388/9</date>
-                                        </reg>
-                    <orig>
-                                            <date when-custom="0700" datingMethod="Seleucid">A. Gr.
-                      700</date>
-                                        </orig>
-                  </choice>
-                                </desc>
+                    <reg><date notBefore="0388-10" notAfter="0389-09"
+                      calendar="Gregorian" srophe:computed-end="0388-09-01"
+                      srophe:computed-start="0389-10-01">388/9</date></reg>
+                    <orig><date when-custom="0700" datingMethod="Seleucid">A. Gr.
+                      700</date></orig>
+                  </choice></desc>
               </event>
             </egXML>
           </exemplum>
           <exemplum>
             <egXML xmlns="http://www.tei-c.org/ns/Examples">
               <event ana="http://syriaca.org/keyword/prayer http://syriaca.org/keyword/canon-law">
-                <desc>
-                                    <date notBefore="0513" notAfter="0518" calendar="Gregorian"> Sometime
-                  between 513 and 518 </date>, <persName ref="http://syriaca.org/person/3075"> prominent men in <placeName ref="http://syriaca.org/place/10"> Antioch
-                    </placeName>
-                                    </persName> petitioned <persName ref="http://syriaca.org/person/51"> Severus </persName> to allow
+                <desc><date notBefore="0513" notAfter="0518" calendar="Gregorian"> Sometime
+                  between 513 and 518 </date>, <persName
+                    ref="http://syriaca.org/person/3075"> prominent men in <placeName
+                      ref="http://syriaca.org/place/10"> Antioch
+                    </placeName></persName> petitioned <persName
+                      ref="http://syriaca.org/person/51"> Severus </persName> to allow
                   <persName ref="http://syriaca.org/person/2575"> Romulus </persName>
                   to conduct prayers in <placeName ref="http://syriaca.org/place/10">
                     Antioch </placeName> even though he was under the authority of
@@ -1064,48 +1065,46 @@
           </exemplum>
           <exemplum>
             <egXML xmlns="http://www.tei-c.org/ns/Examples">
-              <event ana="http://syriaca.org/keyword/bishops http://syriaca.org/keyword/accession">
+              <event
+                ana="http://syriaca.org/keyword/bishops http://syriaca.org/keyword/accession">
                 <desc> In <choice>
-                  <reg>
-                                            <date notBefore="0511-04-11" notAfter="0512-04-10" calendar="Gregorian" srophe:computed-end="0512-04-10" srophe:computed-start="0511-04-11">511/2</date>
-                                            <note ana="calculated">This regularized date was calculated by the
+                  <reg><date notBefore="0511-04-11" notAfter="0512-04-10"
+                    calendar="Gregorian" srophe:computed-end="0512-04-10"
+                    srophe:computed-start="0511-04-11">511/2</date><note
+                      ana="calculated">This regularized date was calculated by the
                       SPEAR editor from a non-calendrical dating system such as
-                      regnal years, etc.</note>
-                                        </reg>
-                  <orig>
-                                            <date datingMethod="regnalYear">the 21st year of the reign of
-                    Anastasios</date>
-                                        </orig>
-                </choice>
-                                    <persName ref="http://syriaca.org/person/790"> Timotheos
-                </persName> became Bishop of <placeName ref="http://syriaca.org/place/2290"> Constantinople </placeName>.
+                      regnal years, etc.</note></reg>
+                  <orig><date datingMethod="regnalYear">the 21st year of the reign of
+                    Anastasios</date></orig>
+                </choice><persName ref="http://syriaca.org/person/790"> Timotheos
+                </persName> became Bishop of <placeName
+                  ref="http://syriaca.org/place/2290"> Constantinople </placeName>.
                 </desc>
               </event>
             </egXML>
           </exemplum>
           <exemplum>
             <egXML xmlns="http://www.tei-c.org/ns/Examples">
-              <event ana="http://syriaca.org/keyword/bishops http://syriaca.org/keyword/accession">
+              <event
+                ana="http://syriaca.org/keyword/bishops http://syriaca.org/keyword/accession">
                 <desc> In <choice>
-                  <reg>
-                                            <date notBefore="0511-04-11" notAfter="0512-04-10" calendar="Gregorian" srophe:computed-end="0512-04-10" srophe:computed-start="0511-04-11">511/2</date>
-                                            <note ana="calculated">This regularized date was calculated by the
+                  <reg><date notBefore="0511-04-11" notAfter="0512-04-10"
+                    calendar="Gregorian" srophe:computed-end="0512-04-10"
+                    srophe:computed-start="0511-04-11">511/2</date><note
+                      ana="calculated">This regularized date was calculated by the
                       SPEAR editor from a non-calendrical dating system such as
-                      regnal years, etc.</note>
-                                        </reg>
-                  <orig>
-                                            <date datingMethod="regnalYear">the 21st year of the reign of
-                    Anastasios</date>
-                                        </orig>
-                </choice>
-                                    <persName ref="http://syriaca.org/person/790"> Timotheos
-                </persName> became Bishop of <placeName ref="http://syriaca.org/place/2290"> Constantinople </placeName>.
+                      regnal years, etc.</note></reg>
+                  <orig><date datingMethod="regnalYear">the 21st year of the reign of
+                    Anastasios</date></orig>
+                </choice><persName ref="http://syriaca.org/person/790"> Timotheos
+                </persName> became Bishop of <placeName
+                  ref="http://syriaca.org/place/2290"> Constantinople </placeName>.
                 </desc>
               </event>
             </egXML>
           </exemplum>
           <remarks>
-            <p/>
+            <p></p>
             <!-- I need to deal with an inconsistency in my encoding. Calendar and datingMethod currently offer two different ways to refer to something like the Seleucid Calendar. -->
           </remarks>
         </elementSpec>
@@ -1207,10 +1206,13 @@
                 </sch:assert>
               </sch:rule>
               <sch:rule context="//tei:titleStmt//tei:editor/@ref">
-                <sch:let name="edsDoc" value="doc('https://raw.githubusercontent.com/srophe/srophe-eXist-app/master/documentation/editors.xml')"/>
+                <sch:let name="edsDoc"
+                  value="doc('https://raw.githubusercontent.com/srophe/srophe-eXist-app/master/documentation/editors.xml')"/>
                 <sch:let name="eds" value="$edsDoc//tei:text/tei:body/tei:listPerson/tei:person/@xml:id"/>
                 <sch:let name="refValues" value="for $i in $eds return concat('http://syriaca.org/documentation/editors.xml#', $i)"/>
-                <sch:assert test="                   every $i in .                   satisfies $i = $refValues">
+                <sch:assert test="
+                  every $i in .
+                  satisfies $i = $refValues">
                   Acceptable values for this @ref attribute include: 
                   <sch:value-of select="string-join($refValues, ' | ')"/>.
                 </sch:assert>
@@ -1256,22 +1258,20 @@
               <div type="factoid" xml:id="factoid-147" resp="#dschwartz">
                 <idno type="URI">http://syriaca.org/spear/8559-147</idno>
                 <listEvent>
-                  <event ana="http://syriaca.org/keyword/emperors http://syriaca.org/keyword/accession">
+                  <event
+                    ana="http://syriaca.org/keyword/emperors http://syriaca.org/keyword/accession">
                     <desc> In <choice>
-                      <corr>
-                                                    <date when="0364-03" calendar="Gregorian" srophe:computed-start="0364-03-01">March 364</date>
-                                                </corr>
-                      <sic>
-                                                    <date when="0364-02" calendar="Gregorian" srophe:computed-start="0364-02-01">February A. D.
-                        364</date>
-                                                </sic>
-                      <orig>
-                                                    <date when-custom="0675-05" datingMethod="Seleucid-SyriacMonths">Shebāṭ A. Gr.
-                        675</date>
-                                                </orig>
-                    </choice>
-                                            <persName ref="http://syriaca.org/person/2309"> Valens
-                    </persName> became King of <placeName ref="http://syriaca.org/place/166"> Rome </placeName>. </desc>
+                      <corr><date when="0364-03" calendar="Gregorian"
+                        srophe:computed-start="0364-03-01">March 364</date></corr>
+                      <sic><date when="0364-02" calendar="Gregorian"
+                        srophe:computed-start="0364-02-01">February A. D.
+                        364</date></sic>
+                      <orig><date when-custom="0675-05"
+                        datingMethod="Seleucid-SyriacMonths">Shebāṭ A. Gr.
+                        675</date></orig>
+                    </choice><persName ref="http://syriaca.org/person/2309"> Valens
+                    </persName> became King of <placeName ref="http://syriaca.org/place/166"
+                      > Rome </placeName>. </desc>
                   </event>
                 </listEvent>
                 <bibl> ... </bibl>
@@ -1281,7 +1281,7 @@
             </egXML>
           </exemplum>
           <remarks>
-            <p/>
+            <p></p>
           </remarks>
         </elementSpec>
 
@@ -1291,7 +1291,7 @@
             <elementRef key="listRelation" minOccurs="0" maxOccurs="1"/>
           </content>
           <remarks>
-            <p/>
+            <p></p>
           </remarks>
         </elementSpec>
 
@@ -1303,7 +1303,7 @@
             </alternate>
           </content>
           <remarks>
-            <p/>
+            <p></p>
           </remarks>
         </elementSpec>
 
@@ -1313,7 +1313,7 @@
             <memberOf key="model.pPart.transcriptional"/>
           </classes>
           <remarks>
-            <p/>
+            <p></p>
           </remarks>
         </elementSpec>
 
@@ -1433,7 +1433,9 @@
               <sch:rule context="tei:div[ancestor::tei:body]/@resp">
                 <sch:let name="contributorRefs" value="//tei:name[ancestor::tei:respStmt]/@ref"/>
                 <sch:let name="respPtrs" value="for $i in $contributorRefs return substring-after($i, '.xml')"/>
-                <sch:assert test="                   every $i in (tokenize(., ' '))                   satisfies $i = $respPtrs">
+                <sch:assert test="
+                  every $i in (tokenize(., ' '))
+                  satisfies $i = $respPtrs">
                   Acceptable values for this @resp attribute include: 
                   <sch:value-of select="string-join($respPtrs, '; ')"/>.
                 </sch:assert>
@@ -1453,7 +1455,8 @@
                     SPEAR factoid URI ends with a hyphen followed by a number.</sch:report>
                   <sch:assert test="matches(substring-after(., '-'), '\d')">A properly formatted
                     SPEAR factoid URI ends with a number.</sch:assert>
-                  <sch:assert test="count(distinct-values(//tei:div/@xml:id)) eq count(//tei:div/@xml:id)">Each &lt;div&gt; element @uri attribute must end with a unique number following
+                  <sch:assert test="count(distinct-values(//tei:div/@xml:id)) eq count(//tei:div/@xml:id)"
+                    >Each &lt;div&gt; element @uri attribute must end with a unique number following
                     the "-".</sch:assert>
                 </constraint>
               </constraintSpec>
@@ -1555,14 +1558,10 @@
                     <persName ref="http://syriaca.org/person/3192"> Mar Afwrsm </persName>
                   </person>
                 </listPerson>
-                <bibl type="primary">
-                                    <ptr target="http://syriaca.org/work/10510"/>
-                                    <citedRange unit="pp">554</citedRange>
-                                </bibl>
-                <bibl type="primary">
-                                    <ptr target="http://syriaca.org/bibl/2033"/>
-                                    <citedRange unit="pp">208</citedRange>
-                                </bibl>
+                <bibl type="primary"><ptr target="http://syriaca.org/work/10510"/><citedRange
+                  unit="pp">554</citedRange></bibl>
+                <bibl type="primary"><ptr target="http://syriaca.org/bibl/2033"/><citedRange
+                  unit="pp">208</citedRange></bibl>
               </div>
             </egXML>
           </exemplum>
@@ -1574,19 +1573,14 @@
                   <personGrp>
                     <persName ref="http://syriaca.org/person/3669"> The monks who resided in
                       <placeName ref="http://syriaca.org/place/399"> the Convent of John
-                        Urtaya in <placeName ref="http://syriaca.org/place/8">Amida</placeName>
-                                            </placeName>
-                                        </persName>
+                        Urtaya in <placeName ref="http://syriaca.org/place/8"
+                          >Amida</placeName></placeName></persName>
                   </personGrp>
                 </listPerson>
-                <bibl type="primary">
-                                    <ptr target="http://syriaca.org/work/10510"/>
-                                    <citedRange unit="pp">555</citedRange>
-                                </bibl>
-                <bibl type="primary">
-                                    <ptr target="http://syriaca.org/bibl/2033"/>
-                                    <citedRange unit="pp">209</citedRange>
-                                </bibl>
+                <bibl type="primary"><ptr target="http://syriaca.org/work/10510"/><citedRange
+                  unit="pp">555</citedRange></bibl>
+                <bibl type="primary"><ptr target="http://syriaca.org/bibl/2033"/><citedRange
+                  unit="pp">209</citedRange></bibl>
               </div>
             </egXML>
           </exemplum>
@@ -1596,21 +1590,21 @@
                 <idno type="URI">http://syriaca.org/spear/8559-545</idno>
                 <listEvent>
                   <event ana="http://syriaca.org/keyword/natural-disasters">
-                    <desc> The first time the walls of <placeName ref="http://syriaca.org/place/78"> Edessa </placeName> were broken
+                    <desc> The first time the walls of <placeName
+                      ref="http://syriaca.org/place/78"> Edessa </placeName> were broken
                       down was in <choice>
-                        <reg>
-                                                    <date when="0201-11" calendar="Gregorian" srophe:computed-start="0201-11-01">November A. D.
-                          201</date>
-                                                </reg>
-                        <orig>
-                                                    <date when-custom="0513-02" datingMethod="Seleucid-SyriacMonths">Teshri II A. Gr.
-                          513</date>
-                                                </orig>
-                      </choice>
-                                        </desc>
+                        <reg><date when="0201-11" calendar="Gregorian"
+                          srophe:computed-start="0201-11-01">November A. D.
+                          201</date></reg>
+                        <orig><date when-custom="0513-02"
+                          datingMethod="Seleucid-SyriacMonths">Teshri II A. Gr.
+                          513</date></orig>
+                      </choice></desc>
                   </event>
                   <listRelation>
-                    <relation ref="syriaca:SameEvent" ana="event" mutual="http://syriaca.org/spear/8559-18 http://syriaca.org/spear/8559-545"/>
+                    <relation ref="syriaca:SameEvent" ana="event"
+                      mutual="http://syriaca.org/spear/8559-18 http://syriaca.org/spear/8559-545"
+                    />
                   </listRelation>
                 </listEvent>
                 <bibl type="primary">
@@ -1632,20 +1626,16 @@
               <div type="factoid" xml:id="factoid-3" resp="#mdoerfler #jnsaint-laurent">
                 <idno type="URI">http://syriaca.org/spear/814-3</idno>
                 <listRelation>
-                  <relation ref="snap:SiblingOf" type="snap:MaternalFamilyRelationship snap:HalfFamilyRelationship" mutual="http://syriaca.org/person/1117 http://syriaca.org/person/1548"/>
+                  <relation ref="snap:SiblingOf"
+                    type="snap:MaternalFamilyRelationship snap:HalfFamilyRelationship"
+                    mutual="http://syriaca.org/person/1117 http://syriaca.org/person/1548"/>
                 </listRelation>
-                <bibl type="primary">
-                                    <ptr target="http://syriaca.org/work/814"/>
-                                    <citedRange unit="pp">299</citedRange>
-                                </bibl>
-                <bibl type="primary">
-                                    <ptr target="http://syriaca.org/work/814"/>
-                                    <citedRange unit="pp">299</citedRange>
-                                </bibl>
-                <bibl type="primary">
-                                    <ptr target="http://syriaca.org/bibl/1409"/>
-                                    <citedRange unit="pp">299</citedRange>
-                                </bibl>
+                <bibl type="primary"><ptr target="http://syriaca.org/work/814"/><citedRange
+                  unit="pp">299</citedRange></bibl>
+                <bibl type="primary"><ptr target="http://syriaca.org/work/814"/><citedRange
+                  unit="pp">299</citedRange></bibl>
+                <bibl type="primary"><ptr target="http://syriaca.org/bibl/1409"/><citedRange
+                  unit="pp">299</citedRange></bibl>
               </div>
             </egXML>
           </exemplum>
@@ -1698,14 +1688,18 @@
             <constraint>
               <sch:rule context="tei:div[ancestor::tei:body]/tei:idno">
                 <sch:let name="factoidNo" value="parent::tei:div/@xml:id/substring-after(., 'factoid')"/>
-                <sch:assert test="contains(., concat(//tei:publicationStmt/tei:idno[@type]/substring-before(., '/tei'), $factoidNo))">This factoid URI must be: "<sch:value-of select="concat(//tei:publicationStmt/tei:idno[@type]/substring-before(., '/tei'), $factoidNo)"/>.</sch:assert>
+                <sch:assert
+                  test="contains(., concat(//tei:publicationStmt/tei:idno[@type]/substring-before(., '/tei'), $factoidNo))"
+                  >This factoid URI must be: "<sch:value-of
+                    select="concat(//tei:publicationStmt/tei:idno[@type]/substring-before(., '/tei'), $factoidNo)"
+                  />.</sch:assert>
               </sch:rule>
             </constraint>
           </constraintSpec>
           <attList>
             <attDef ident="type">
               <datatype>
-                <dataRef key="teidata.enumerated"/>
+                <dataRef key="teidata.enumerated"></dataRef>
               </datatype>
             </attDef>
           </attList>
@@ -1715,10 +1709,9 @@
                 <authority>Syriaca.org: The Syriac Reference Portal</authority>
                 <idno type="URI">http://syriaca.org/spear/794/tei</idno>
                 <availability>
-                  <licence target="http://creativecommons.org/licenses/by/3.0/">
-                                        <p>Distributed under a Creative Commons Attribution 3.0 Unported
-                    License.</p>
-                                    </licence>
+                  <licence target="http://creativecommons.org/licenses/by/3.0/"><p
+                    >Distributed under a Creative Commons Attribution 3.0 Unported
+                    License.</p></licence>
                 </availability>
                 <date/>
               </publicationStmt>
@@ -1728,7 +1721,8 @@
             <egXML xmlns="http://www.tei-c.org/ns/Examples">
               <seriesStmt>
                 <title level="s">SPEAR: Syriac Persons, Events, and Relations</title>
-                <editor role="general" ref="http://syriaca.org/documentation/editors.xml#dschwartz">Daniel L. Schwartz</editor>
+                <editor role="general" ref="http://syriaca.org/documentation/editors.xml#dschwartz"
+                  >Daniel L. Schwartz</editor>
                 <idno type="URI">http://syriaca.org/spear</idno>
               </seriesStmt>
             </egXML>
@@ -1743,14 +1737,10 @@
                       Zeʿora </persName>
                   </person>
                 </listPerson>
-                <bibl type="primary">
-                                    <ptr target="http://syriaca.org/work/794"/>
-                                    <citedRange unit="pp">18</citedRange>
-                                </bibl>
-                <bibl type="primary">
-                                    <ptr target="http://syriaca.org/bibl/1409"/>
-                                    <citedRange unit="pp">18</citedRange>
-                                </bibl>
+                <bibl type="primary"><ptr target="http://syriaca.org/work/794"/><citedRange
+                  unit="pp">18</citedRange></bibl>
+                <bibl type="primary"><ptr target="http://syriaca.org/bibl/1409"/><citedRange
+                  unit="pp">18</citedRange></bibl>
               </div>
             </egXML>
           </exemplum>
@@ -1764,7 +1754,9 @@
             <constraint>
               <sch:rule context="tei:event/@ana">
                 <sch:let name="anaValues" value="tokenize(., ' ')"/>
-                <sch:assert test="                   every $i in $anaValues                   satisfies starts-with($i, 'http://syriaca.org/keyword/')">
+                <sch:assert test="
+                  every $i in $anaValues
+                  satisfies starts-with($i, 'http://syriaca.org/keyword/')">
                   Each @ana attribute value must start with "http://syriaca.org/keyword/" and multiple 
                   values must be space separated.
                 </sch:assert>
@@ -1773,14 +1765,22 @@
                 <sch:report test="contains(., ',') or contains(., ';')">
                   Multiple @ana attributes should be separated with one blank space
                 </sch:report>
-                <sch:report test="                   every $i in $anaValues                   satisfies contains(substring-after($i, 'http://syriaca.org/keyword'), 'http:')">
+                <sch:report test="
+                  every $i in $anaValues
+                  satisfies contains(substring-after($i, 'http://syriaca.org/keyword'), 'http:')">
                   Multiple @ana attributes should be separated with one blank space
                 </sch:report>
               </sch:rule>
               <sch:rule context="tei:event/@ana" role="warning">
-                <sch:let name="ti" value="doc('https://raw.githubusercontent.com/srophe/srophe-app-data/dev/data/subjects/taxonomyIndex.xml')"/>
-                <sch:let name="taxonomyAllURIs" value="$ti//listURI[@type = 'taxonomyAllURIs']/uri"/>
-                <sch:assert test="                   every $i in (tokenize(., ' '))                   satisfies $i = $taxonomyAllURIs">SPEAR has a strong preference for using established URIs when possible but
+                <sch:let name="ti"
+                  value="doc('https://raw.githubusercontent.com/srophe/srophe-app-data/dev/data/subjects/taxonomyIndex.xml')"/>
+                <sch:let name="taxonomyAllURIs"
+                  value="$ti//listURI[@type = 'taxonomyAllURIs']/uri"/>
+                <sch:assert
+                  test="
+                  every $i in (tokenize(., ' '))
+                  satisfies $i = $taxonomyAllURIs"
+                  >SPEAR has a strong preference for using established URIs when possible but
                   appropriate URIs are not always available in the Syriaca.org taxonomy. Please
                   consult the taxonomy before choosing a keyword of your own.
                 </sch:assert>
@@ -1793,11 +1793,12 @@
                 <idno type="URI">http://syriaca.org/spear/3056-7</idno>
                 <listEvent>
                   <event ana="http://syriaca.org/keyword/prayer http://syriaca.org/keyword/canon-law">
-                    <desc>
-                                            <date notBefore="0513" notAfter="0518" calendar="Gregorian"> Sometime
-                      between 513 and 518 </date>, <persName ref="http://syriaca.org/person/3075"> prominent men in <placeName ref="http://syriaca.org/place/10"> Antioch
-                        </placeName>
-                                            </persName> petitioned <persName ref="http://syriaca.org/person/51"> Severus </persName> to allow
+                    <desc><date notBefore="0513" notAfter="0518" calendar="Gregorian"> Sometime
+                      between 513 and 518 </date>, <persName
+                        ref="http://syriaca.org/person/3075"> prominent men in <placeName
+                          ref="http://syriaca.org/place/10"> Antioch
+                        </placeName></persName> petitioned <persName
+                          ref="http://syriaca.org/person/51"> Severus </persName> to allow
                       <persName ref="http://syriaca.org/person/2575"> Romulus </persName>
                       to conduct prayers in <placeName ref="http://syriaca.org/place/10">
                         Antioch </placeName> even though he was under the authority of
@@ -1836,7 +1837,8 @@
                 <sch:assert test="tei:persName">The &lt;note&gt; element in a birth date factoid
                   must contain a &lt;persName&gt; element.</sch:assert>
               </sch:rule>
-              <sch:rule context="tei:note[parent::tei:nationality and preceding-sibling::tei:placeName]">
+              <sch:rule
+                context="tei:note[parent::tei:nationality and preceding-sibling::tei:placeName]">
                 <sch:assert test="tei:persName">The &lt;note&gt; element in a citizenship factoid
                   must contain a &lt;persName&gt; element.</sch:assert>
                 <sch:assert test="tei:placeName">The &lt;note&gt; element in a citizenship factoid
@@ -1860,7 +1862,8 @@
                 <sch:assert test="tei:persName">The &lt;note&gt; element in an occupation factoid
                   must contain a &lt;persName&gt; element.</sch:assert>
               </sch:rule>
-              <sch:rule context="tei:note[parent::tei:residence and preceding-sibling::tei:placeName]">
+              <sch:rule
+                context="tei:note[parent::tei:residence and preceding-sibling::tei:placeName]">
                 <sch:assert test="tei:persName">The &lt;note&gt; element in a residence factoid must
                   contain a &lt;persName&gt; element.</sch:assert>
                 <sch:assert test="tei:placeName">The &lt;note&gt; element in a residence factoid
@@ -1870,7 +1873,8 @@
                 <sch:assert test="tei:persName">The &lt;note&gt; element in a socioeconomic status
                   factoid must contain a &lt;persName&gt; element.</sch:assert>
               </sch:rule>
-              <sch:rule context="tei:note[parent::tei:langKnowledge and preceding-sibling::tei:langKnown]">
+              <sch:rule
+                context="tei:note[parent::tei:langKnowledge and preceding-sibling::tei:langKnown]">
                 <sch:assert test="tei:persName">The &lt;note&gt; element in a language-known factoid
                   must contain a &lt;persName&gt; element.</sch:assert>
               </sch:rule>
@@ -1891,7 +1895,9 @@
           <constraintSpec ident="date-note-content" scheme="schematron">
             <constraint>
               <sch:rule context="tei:note[parent::tei:reg and preceding-sibling::tei:date]">
-                <sch:assert test="normalize-space(.) = 'This regularized date was calculated by the SPEAR editor from a non-calendrical dating system such as regnal years, etc.'"> The only note allowed in this context must contain the following text: "This
+                <sch:assert
+                  test="normalize-space(.) = 'This regularized date was calculated by the SPEAR editor from a non-calendrical dating system such as regnal years, etc.'"
+                  > The only note allowed in this context must contain the following text: "This
                   regularized date was calculated by the SPEAR editor from a non-calendrical dating
                   system such as regnal years, etc." </sch:assert>
               </sch:rule>
@@ -1922,7 +1928,8 @@
               </constraintSpec>
               <constraintSpec ident="notes-type-desc" scheme="schematron">
                 <constraint>
-                  <sch:rule context="tei:note[parent::tei:birth or parent::tei:death or parent::tei:education or parent::tei:langKnowledge or parent::tei:nationality or parent::occupation or parent::tei:residence or parent::tei:socecStatus or parent::tei:state or parent::tei:trait]">
+                  <sch:rule
+                    context="tei:note[parent::tei:birth or parent::tei:death or parent::tei:education or parent::tei:langKnowledge or parent::tei:nationality or parent::occupation or parent::tei:residence or parent::tei:socecStatus or parent::tei:state or parent::tei:trait]">
                     <sch:assert test="@type = 'desc'">Elements of type &lt;note&gt; must contain the
                       attribute @type="desc" and other &lt;note&gt; types are not allowed in this context.
                       Other types of notes ("incerta", "dubia", and "errata") may appear as children of
@@ -1951,21 +1958,18 @@
               <div type="factoid" xml:id="factoid-52" resp="#dschwartz">
                 <idno type="URI">http://syriaca.org/spear/8559-52</idno>
                 <listEvent>
-                  <event ana="http://syriaca.org/keyword/emperors http://syriaca.org/keyword/accession">
+                  <event
+                    ana="http://syriaca.org/keyword/emperors http://syriaca.org/keyword/accession">
                     <desc> In <choice>
-                      <corr>
-                                                    <date when="-0044" calendar="Gregorian" srophe:computed-start="-0044-01-01">44 B.C.</date>
-                                                </corr>
-                      <sic>
-                                                    <date notBefore="-0046-10" notAfter="-0045-09" calendar="Gregorian">46/5 B.C.</date>
-                                                </sic>
-                      <orig>
-                                                    <date when-custom="0266" datingMethod="Seleucid">A. Gr.
-                        266</date>
-                                                </orig>
-                    </choice>
-                                            <persName ref="http://syriaca.org/person/2238"> Augustus
-                    </persName> became King of <placeName ref="http://syriaca.org/place/166"> Rome </placeName>. </desc>
+                      <corr><date when="-0044" calendar="Gregorian"
+                        srophe:computed-start="-0044-01-01">44 B.C.</date></corr>
+                      <sic><date notBefore="-0046-10" notAfter="-0045-09"
+                        calendar="Gregorian">46/5 B.C.</date></sic>
+                      <orig><date when-custom="0266" datingMethod="Seleucid">A. Gr.
+                        266</date></orig>
+                    </choice><persName ref="http://syriaca.org/person/2238"> Augustus
+                    </persName> became King of <placeName ref="http://syriaca.org/place/166"
+                      > Rome </placeName>. </desc>
                   </event>
                 </listEvent>
                 <bibl> ... </bibl>
@@ -1979,20 +1983,19 @@
               <div type="factoid" xml:id="factoid-96" resp="#dschwartz">
                 <idno type="URI">http://syriaca.org/spear/8559-96</idno>
                 <listEvent>
-                  <event ana="http://syriaca.org/keyword/holy-places http://syriaca.org/keyword/architecture">
-                    <desc>
-                                            <persName ref="http://syriaca.org/person/326"> Aitalaha </persName>
+                  <event
+                    ana="http://syriaca.org/keyword/holy-places http://syriaca.org/keyword/architecture">
+                    <desc><persName ref="http://syriaca.org/person/326"> Aitalaha </persName>
                       built <placeName ref="http://syriaca.org/place/2589"> the cemetery
-                      </placeName> and the eastern side of the <placeName ref="http://syriaca.org/place/2588"> Church of <placeName ref="http://syriaca.org/place/78"> Edessa
-                        </placeName>
-                                            </placeName> in <choice>
-                          <reg>
-                                                    <date notBefore="0324-10" notAfter="0325-09" calendar="Gregorian" srophe:computed-end="0325-09-01" srophe:computed-start="0324-10-01">324/5</date>
-                                                </reg>
-                          <orig>
-                                                    <date when-custom="0636" datingMethod="Seleucid">A. Gr.
-                            636</date>
-                                                </orig>
+                      </placeName> and the eastern side of the <placeName
+                        ref="http://syriaca.org/place/2588"> Church of <placeName
+                          ref="http://syriaca.org/place/78"> Edessa
+                        </placeName></placeName> in <choice>
+                          <reg><date notBefore="0324-10" notAfter="0325-09"
+                            calendar="Gregorian" srophe:computed-end="0325-09-01"
+                            srophe:computed-start="0324-10-01">324/5</date></reg>
+                          <orig><date when-custom="0636" datingMethod="Seleucid">A. Gr.
+                            636</date></orig>
                         </choice>. </desc>
                   </event>
                 </listEvent>
@@ -2012,21 +2015,20 @@
               <div type="factoid" xml:id="factoid-440" resp="#dschwartz">
                 <idno type="URI">http://syriaca.org/spear/8559-440</idno>
                 <listEvent>
-                  <event ana="http://syriaca.org/keyword/bishops http://syriaca.org/keyword/accession">
+                  <event
+                    ana="http://syriaca.org/keyword/bishops http://syriaca.org/keyword/accession">
                     <desc> In <choice>
-                      <reg>
-                                                    <date notBefore="0511-04-11" notAfter="0512-04-10" calendar="Gregorian" srophe:computed-end="0512-04-10" srophe:computed-start="0511-04-11">511/2</date>
-                                                    <note ana="calculated">This regularized date was calculated by the
+                      <reg><date notBefore="0511-04-11" notAfter="0512-04-10"
+                        calendar="Gregorian" srophe:computed-end="0512-04-10"
+                        srophe:computed-start="0511-04-11">511/2</date><note
+                          ana="calculated">This regularized date was calculated by the
                           SPEAR editor from a non-calendrical dating system such as
-                          regnal years, etc.</note>
-                                                </reg>
-                      <orig>
-                                                    <date datingMethod="regnalYear">the 21st year of the reign of
-                        Anastasios</date>
-                                                </orig>
-                    </choice>
-                                            <persName ref="http://syriaca.org/person/790"> Timotheos
-                    </persName> became Bishop of <placeName ref="http://syriaca.org/place/2290"> Constantinople </placeName>.
+                          regnal years, etc.</note></reg>
+                      <orig><date datingMethod="regnalYear">the 21st year of the reign of
+                        Anastasios</date></orig>
+                    </choice><persName ref="http://syriaca.org/person/790"> Timotheos
+                    </persName> became Bishop of <placeName
+                      ref="http://syriaca.org/place/2290"> Constantinople </placeName>.
                     </desc>
                   </event>
                 </listEvent>
@@ -2053,16 +2055,16 @@
               </datatype>
               <constraintSpec ident="ref-on-persName" scheme="schematron">
                 <constraint>
-                  <sch:assert test="starts-with(., 'http://syriaca.org/person/')">@ref attributes on
-                    &lt;persName&gt; elements must contain a properly formatted Syriaca.org person
-                    URI that starts with 'http://syriaca.org/person/'.</sch:assert>
-                  <sch:report test="matches(substring-after(., 'person/'), '\D')">A properly
-                    formatted Syriaca.org person URI cannot end with anything other than a
-                    number.</sch:report>
-                  <sch:assert test="matches(substring-after(., 'person/'), '\d')">A properly
-                    formatted Syriaca.org person URI ends with a number.</sch:assert>
-                  <!-- These schematron rules ensure that the persName element has a @ref attribute that conforms to Syriaca.org URIs. -->
-                  <!-- They do not ensure that the URI chosen is an actual Syriaca.org URI. If URI's were not in the data yet, they would show an error.-->
+                  <sch:rule context="//tei:text//tei:persName/@ref" role="warning">
+                    <sch:let name="personIndex" value="doc('https://raw.githubusercontent.com/srophe/srophe-eXist-app/master/documentation/indexes/persons.xml')"></sch:let>
+                    <sch:let name="personURIs" value="$personIndex//tei:person/@ref"/>
+                    <sch:assert test="
+                      every $i in .
+                      satisfies $i = $personURIs">
+                      This @ref attribute is not a person URI in use in Syriaca.org data. If a URI is not current available, replace the number portion of the URI with a letter and use it consistently when encoding information about a person. Note that all person URIs take the form 'http://syriaca.org/person/{\d+}' (where {\d+} is a number).
+                    </sch:assert>
+                    <sch:report test="contains(., ' ')">This @ref may contain only one URI.</sch:report>
+                  </sch:rule>
                 </constraint>
               </constraintSpec>
             </attDef>
@@ -2090,15 +2092,12 @@
                     <persName ref="http://syriaca.org/person/2224"> The Huns who entered
                       <placeName ref="http://syriaca.org/place/166"> Roman territory
                       </placeName> in <choice>
-                        <reg>
-                                                    <date when="0395-07" calendar="Gregorian" srophe:computed-start="0395-07-01">July, 395</date>
-                                                </reg>
-                        <orig>
-                                                    <date when-custom="0706-10" datingMethod="Seleucid-SyriacMonths">Tammuz A. Gr.
-                          706</date>
-                                                </orig>
-                      </choice>
-                                        </persName>
+                        <reg><date when="0395-07" calendar="Gregorian"
+                          srophe:computed-start="0395-07-01">July, 395</date></reg>
+                        <orig><date when-custom="0706-10"
+                          datingMethod="Seleucid-SyriacMonths">Tammuz A. Gr.
+                          706</date></orig>
+                      </choice></persName>
                     <ptr target="http://syriaca.org/keyword/huns"/>
                   </personGrp>
                 </listPerson>
@@ -2124,15 +2123,16 @@
               </datatype>
               <constraintSpec ident="ref-on-placeName" scheme="schematron">
                 <constraint>
-                  <sch:assert test="starts-with(., 'http://syriaca.org/place/')">@ref attributes on
-                    &lt;placeName&gt; elements must contain a properly formatted Syriaca.org place
-                    URI that starts with 'http://syriaca.org/place/'.</sch:assert>
-                  <sch:report test="matches(substring-after(., 'place/'), '\D')">A properly
-                    formatted Syriaca.org place URI ends with a number.</sch:report>
-                  <sch:assert test="matches(substring-after(., 'place/'), '\d')">A properly
-                    formatted Syriaca.org person URI ends with a number.</sch:assert>
-                  <!-- These schematron rules ensure that the placeName element has a @ref attribute that conforms to Syriaca.org URIs. -->
-                  <!-- They do not ensure that the URI chosen is an actual Syriaca.org URI. If URI's were not in the data yet, they would show an error.-->
+                  <sch:rule context="//tei:text//tei:placeName/@ref" role="warning">
+                    <sch:let name="placeIndex" value="doc('https://raw.githubusercontent.com/srophe/srophe-eXist-app/master/documentation/indexes/places.xml')"/>
+                    <sch:let name="placeURIs" value="$placeIndex//tei:place/@ref"/>
+                    <sch:assert test="
+                      every $i in .
+                      satisfies $i = $placeURIs">
+                      This @ref attribute is not a place URI in use in Syriaca.org data. Note that all place URIs take the form 'http://syriaca.org/place/{\d+}' (where {\d+} is a number).
+                    </sch:assert>
+                    <sch:report test="contains(., ' ')">This @ref may contain only one URI.</sch:report>
+                  </sch:rule>
                 </constraint>
               </constraintSpec>
             </attDef>
@@ -2143,8 +2143,8 @@
                 <idno type="URI">http://syriaca.org/spear/3004-46</idno>
                 <listPerson>
                   <person>
-                    <persName ref="http://syriaca.org/person/680"> Peter of <placeName ref="http://syriaca.org/place/2674"> Iberia </placeName>
-                                        </persName>
+                    <persName ref="http://syriaca.org/person/680"> Peter of <placeName
+                      ref="http://syriaca.org/place/2674"> Iberia </placeName></persName>
                   </person>
                 </listPerson>
                 <bibl> ... </bibl>
@@ -2157,9 +2157,10 @@
                 <idno type="URI">http://syriaca.org/spear/804-37</idno>
                 <listEvent>
                   <event ana="http://syriaca.org/keyword/charity">
-                    <desc>
-                                            <persName ref="http://syriaca.org/person/3025">Euphemia</persName>
-                      helped those outside of <placeName ref="http://syriaca.org/place/8">Amida</placeName> as well and took the sick to <persName ref="http://syriaca.org/person/3613">the superintendents of the
+                    <desc><persName ref="http://syriaca.org/person/3025">Euphemia</persName>
+                      helped those outside of <placeName ref="http://syriaca.org/place/8"
+                        >Amida</placeName> as well and took the sick to <persName
+                          ref="http://syriaca.org/person/3613">the superintendents of the
                           hospitals</persName> for care. </desc>
                   </event>
                 </listEvent>
@@ -2186,30 +2187,42 @@
               <constraintSpec ident="ptr-targets-in-context" scheme="schematron">
                 <constraint>
                   <sch:rule context="tei:sourceDesc//tei:bibl[@type = 'primary']/tei:ptr/@target">
-                    <sch:let name="docURIno" value="//tei:publicationStmt/tei:idno[@type]/substring-after(substring-before(., '/tei'), 'spear/')"/>
-                    <sch:assert test=". = concat('http://syriaca.org/work/', $docURIno) or starts-with(., 'http://syriaca.org/bibl/')"> The @target attribute on a &lt;ptr&gt; element inside a &lt;bibl&gt; element
+                    <sch:let name="docURIno"
+                      value="//tei:publicationStmt/tei:idno[@type]/substring-after(substring-before(., '/tei'), 'spear/')"/>
+                    <sch:assert
+                      test=". = concat('http://syriaca.org/work/', $docURIno) or starts-with(., 'http://syriaca.org/bibl/')"
+                      > The @target attribute on a &lt;ptr&gt; element inside a &lt;bibl&gt; element
                       with @type="primary" takes limited values. It either must be
                         "http://syriaca.org/work/<sch:value-of select="$docURIno"/>" or
                       "http://syriaca.org/bibl/" followed by the corresponding Syriaca.org bibl URI
                       number. </sch:assert>
                   </sch:rule>
                   <sch:rule context="tei:sourceDesc//tei:bibl[@type = 'urn']/tei:ptr/@target">
-                    <sch:let name="docURIno" value="//tei:publicationStmt/tei:idno[@type]/substring-after(substring-before(., '/tei'), 'spear/')"/>
-                    <sch:assert test="starts-with(., concat('urn:cts:syriacLit:nhsl', $docURIno, '.syriacCorpus'))"> The @target attribute on a &lt;ptr&gt; element inside a &lt;bibl&gt; element
-                      with @type="urn" must begin either with "urn:cts:syriacLit:nhsl<sch:value-of select="$docURIno"/>.syriacCorpus" followed by the corresponding Syriac
+                    <sch:let name="docURIno"
+                      value="//tei:publicationStmt/tei:idno[@type]/substring-after(substring-before(., '/tei'), 'spear/')"/>
+                    <sch:assert
+                      test="starts-with(., concat('urn:cts:syriacLit:nhsl', $docURIno, '.syriacCorpus'))"
+                      > The @target attribute on a &lt;ptr&gt; element inside a &lt;bibl&gt; element
+                      with @type="urn" must begin either with "urn:cts:syriacLit:nhsl<sch:value-of
+                        select="$docURIno"/>.syriacCorpus" followed by the corresponding Syriac
                       Corpus URI number. </sch:assert>
                   </sch:rule>
                   <sch:rule context="//tei:body/tei:div/tei:bibl[@type = 'urn']/tei:ptr/@target">
-                    <sch:let name="urnBase" value="//tei:sourceDesc//tei:bibl[@type = 'urn']/tei:ptr/@target"/>
+                    <sch:let name="urnBase"
+                      value="//tei:sourceDesc//tei:bibl[@type = 'urn']/tei:ptr/@target"/>
                     <sch:assert test="starts-with(., concat($urnBase, ':'))">URN in a &lt;bibl&gt;
                       element inside a SPEAR factoid must begin with URN in the &lt;sourceDesc&gt;
-                      element of the &lt;teiHeader&gt;: "<sch:value-of select="$urnBase"/>:".</sch:assert>
+                      element of the &lt;teiHeader&gt;: "<sch:value-of select="$urnBase"
+                      />:".</sch:assert>
                   </sch:rule>
                   <sch:rule context="//tei:body//tei:bibl[@type = 'primary']/tei:ptr/@target">
-                    <sch:assert test=". = //tei:sourceDesc//tei:bibl[@type = 'primary']/tei:ptr/@target"> The
+                    <sch:assert
+                      test=". = //tei:sourceDesc//tei:bibl[@type = 'primary']/tei:ptr/@target"> The
                       @target attribute on the &lt;ptr&gt; element, "<sch:value-of select="."/>," is
                       not among the valid options contained in the &lt;sourceDesc&gt; element of the
-                      &lt;teiHeader&gt;: (<sch:value-of select="string-join(//tei:sourceDesc//tei:bibl[@type = 'primary']/tei:ptr/@target, ';  ')"/>) </sch:assert>
+                      &lt;teiHeader&gt;: (<sch:value-of
+                        select="string-join(//tei:sourceDesc//tei:bibl[@type = 'primary']/tei:ptr/@target, ';  ')"
+                      />) </sch:assert>
                   </sch:rule>
                 </constraint>
               </constraintSpec>
@@ -2225,20 +2238,15 @@
                       Patriarch of Antioch in the Syriac Version of Athanasius of
                       Nisibis</title>
                     <title type="sub">Translation, I.1 - II.3</title>
-                    <author>
-                                            <persName ref="http://syriaca.org/person/51">Severus of
-                      Antioch</persName>
-                                        </author>
-                    <editor>
-                                            <persName ref="http://syriaca.org/person/403">E. W.
-                      Brooks</persName>
-                                        </editor>
+                    <author><persName ref="http://syriaca.org/person/51">Severus of
+                      Antioch</persName></author>
+                    <editor><persName ref="http://syriaca.org/person/403">E. W.
+                      Brooks</persName></editor>
                     <ptr target="http://syriaca.org/bibl/668"/>
                   </bibl>
                   <bibl type="primary">
                     <title>To Theodore, Archimandrite of the Monastery of Romanus</title>
-                    <author>
-                                            <persName ref="http://syriaca.org/person/51"/>Severus of
+                    <author><persName ref="http://syriaca.org/person/51"/>Severus of
                       Antioch</author>
                     <ptr target="http://syriaca.org/work/3112"/>
                   </bibl>
@@ -2310,16 +2318,23 @@
           <constraintSpec ident="name-mutual-act-pass-in-relation" scheme="schematron">
             <constraint>
               <sch:rule context="tei:div/tei:listRelation/tei:relation">
-                <sch:let name="ti" value="doc('https://raw.githubusercontent.com/srophe/srophe-app-data/dev/data/subjects/taxonomyIndex.xml')"/>
-                <sch:let name="mutual" value="$ti//listURI[@ref = 'http://syriaca.org/keyword/relationships']//uri[@ana = 'mutual']"/>
-                <sch:let name="reciprocal" value="$ti//listURI[@ref = 'http://syriaca.org/keyword/relationships']//uri[@ana = 'reciprocal']"/>
-                <sch:assert test=".[@name = $mutual]/@mutual or .[@name = $reciprocal]/@active">Elements of type &lt;relation&gt; take either a @mutual attribute with mutual
+                <sch:let name="ti"
+                  value="doc('https://raw.githubusercontent.com/srophe/srophe-app-data/dev/data/subjects/taxonomyIndex.xml')"/>
+                <sch:let name="mutual"
+                  value="$ti//listURI[@ref = 'http://syriaca.org/keyword/relationships']//uri[@ana = 'mutual']"/>
+                <sch:let name="reciprocal"
+                  value="$ti//listURI[@ref = 'http://syriaca.org/keyword/relationships']//uri[@ana = 'reciprocal']"/>
+                <sch:assert test=".[@name = $mutual]/@mutual or .[@name = $reciprocal]/@active"
+                  >Elements of type &lt;relation&gt; take either a @mutual attribute with mutual
                   relationship and both @active and @passive attributes with reciprocal
-                  relationships. Mutual relationships include: <sch:value-of select="string-join($mutual, ';  ')"/>. Reciprocal relationships include:
+                  relationships. Mutual relationships include: <sch:value-of
+                    select="string-join($mutual, ';  ')"/>. Reciprocal relationships include:
                     <sch:value-of select="string-join($reciprocal, ';  ')"/>.</sch:assert>
-                <sch:assert test=".[@name = $mutual]/@mutual or .[@name = $reciprocal]/@passive">Elements of type &lt;relation&gt; take either a @mutual attribute with mutual
+                <sch:assert test=".[@name = $mutual]/@mutual or .[@name = $reciprocal]/@passive"
+                  >Elements of type &lt;relation&gt; take either a @mutual attribute with mutual
                   relationship and both @active and @passive attributes with reciprocal
-                  relationships. Mutual relationships include: <sch:value-of select="string-join($mutual, ';  ')"/>. Reciprocal relationships include:
+                  relationships. Mutual relationships include: <sch:value-of
+                    select="string-join($mutual, ';  ')"/>. Reciprocal relationships include:
                     <sch:value-of select="string-join($reciprocal, ';  ')"/>.</sch:assert>
                 <sch:report test=".[@mutual]/@active">A &lt;relation&gt; element cannot take both
                   @active and @mutual attributes.</sch:report>
@@ -2334,20 +2349,14 @@
                 <sch:report test="@passive">@passive attributes are not allowed on &lt;relation&gt;
                   elements in event factoids.</sch:report>
               </sch:rule>
-              <sch:rule context="//tei:relation/@active">
-                <sch:report test="contains(., ',') or contains(., ';')">
-                  Multiple attribute values should appear separated by a blank space.
-                </sch:report>
-              </sch:rule>
-              <sch:rule context="//tei:relation/@mutual">
-                <sch:report test="contains(., ',') or contains(., ';')">
-                  Multiple attribute values should appear separated by a blank space.
-                </sch:report>
-              </sch:rule>
-              <sch:rule context="//tei:relation/@passive">
-                <sch:report test="contains(., ',') or contains(., ';')">
-                  Multiple attribute values should appear separated by a blank space.
-                </sch:report>
+              <sch:rule context="tei:div/tei:listRelation/tei:relation/@mutual | tei:div/tei:listRelation/tei:relation/@active | tei:div/tei:listRelation/tei:relation/@passive" role="warning">
+                <sch:let name="personIndex" value="doc('https://raw.githubusercontent.com/srophe/srophe-eXist-app/master/documentation/indexes/persons.xml')"></sch:let>
+                <sch:let name="personURIs" value="$personIndex//tei:person/@ref"/>
+                <sch:assert test="
+                  every $i in (tokenize(., ' '))
+                  satisfies $i = $personURIs">
+                  The @active, @passive, and @mutual attributes on &lt;relation&gt; must contain a person URI in use in Syriaca.org data. If a URI is not current available, replace the number portion of the URI with a letter and use it consistently when encoding information about a person. Note that all person URIs take the form 'http://syriaca.org/person/{\d+}' (where {\d+} is a number).
+                </sch:assert>
               </sch:rule>
             </constraint>
           </constraintSpec>
@@ -2370,14 +2379,24 @@
               <constraintSpec ident="name-in-context" scheme="schematron">
                 <constraint>
                   <sch:rule context="tei:div/tei:listRelation/tei:relation/@name">
-                    <sch:let name="ti" value="doc('https://raw.githubusercontent.com/srophe/srophe-app-data/dev/data/subjects/taxonomyIndex.xml')"/>
-                    <sch:assert test=". = $ti//listURI[@ref = 'http://syriaca.org/keyword/relationships']//uri">Value must be one of the following from the Syriaca.org taxonomy:
-                        <sch:value-of select="string-join($ti//listURI[@ref = 'http://syriaca.org/keyword/relationships']//uri, ';  ')"/>.</sch:assert>
+                    <sch:let name="ti"
+                      value="doc('https://raw.githubusercontent.com/srophe/srophe-app-data/dev/data/subjects/taxonomyIndex.xml')"/>
+                    <sch:assert
+                      test=". = $ti//listURI[@ref = 'http://syriaca.org/keyword/relationships']//uri"
+                      >Value must be one of the following from the Syriaca.org taxonomy:
+                        <sch:value-of
+                        select="string-join($ti//listURI[@ref = 'http://syriaca.org/keyword/relationships']//uri, ';  ')"
+                      />.</sch:assert>
                   </sch:rule>
                   <sch:rule context="tei:div/tei:listEvent/tei:listRelation/tei:relation/@name">
-                    <sch:let name="ti" value="doc('https://raw.githubusercontent.com/srophe/srophe-app-data/dev/data/subjects/taxonomyIndex.xml')"/>
-                    <sch:assert test=". = $ti//listURI[@ref = 'http://syriaca.org/keyword/event-relationships']/uri">Value must be one of the following from the Syriaca.org taxonomy:
-                        <sch:value-of select="string-join($ti//listURI[@ref = 'http://syriaca.org/keyword/event-relationships']/uri, ';  ')"/>.</sch:assert>
+                    <sch:let name="ti"
+                      value="doc('https://raw.githubusercontent.com/srophe/srophe-app-data/dev/data/subjects/taxonomyIndex.xml')"/>
+                    <sch:assert
+                      test=". = $ti//listURI[@ref = 'http://syriaca.org/keyword/event-relationships']/uri"
+                      >Value must be one of the following from the Syriaca.org taxonomy:
+                        <sch:value-of
+                        select="string-join($ti//listURI[@ref = 'http://syriaca.org/keyword/event-relationships']/uri, ';  ')"
+                      />.</sch:assert>
                   </sch:rule>
                   <sch:rule context="tei:sourceDesc/tei:listRelation/tei:relation/@name">
                     <sch:assert test=". = 'dcterms:isPartOf'">
@@ -2398,10 +2417,17 @@
                       cannot take a @type attribute.</sch:report>
                   </sch:rule>
                   <sch:rule context="tei:div/tei:listRelation/tei:relation/@type">
-                    <sch:let name="ti" value="doc('https://raw.githubusercontent.com/srophe/srophe-app-data/dev/data/subjects/taxonomyIndex.xml')"/>
-                    <sch:let name="qrURI" value="$ti//listURI[@ref = 'http://syriaca.org/keyword/qualifier-relationships']//uri"/>
-                    <sch:assert test="                       every $i in (tokenize(., ' '))                       satisfies $i = $qrURI">The value(s) of this @type attribute must come from the qualifier
-                      relationships in the Syriaca.org taxonomy: <sch:value-of select="string-join($qrURI, ';  ')"/>.</sch:assert>
+                    <sch:let name="ti"
+                      value="doc('https://raw.githubusercontent.com/srophe/srophe-app-data/dev/data/subjects/taxonomyIndex.xml')"/>
+                    <sch:let name="qrURI"
+                      value="$ti//listURI[@ref = 'http://syriaca.org/keyword/qualifier-relationships']//uri"/>
+                    <sch:assert
+                      test="
+                      every $i in (tokenize(., ' '))
+                      satisfies $i = $qrURI"
+                      >The value(s) of this @type attribute must come from the qualifier
+                      relationships in the Syriaca.org taxonomy: <sch:value-of
+                        select="string-join($qrURI, ';  ')"/>.</sch:assert>
                   </sch:rule>
                   <sch:rule context="tei:sourceDesc/tei:listRelation/tei:relation">
                     <sch:assert test="@type = 'part'">A @type attribute the value
@@ -2437,65 +2463,84 @@
               <datatype minOccurs="1" maxOccurs="unbounded">
                 <dataRef key="teidata.pointer"/>
               </datatype>
-              <constraintSpec ident="mutual-on-relation-in-eventFactoid" scheme="schematron">
+              <!--<constraintSpec ident="mutual-on-relation-in-eventFactoid" scheme="schematron">
                 <constraint>
                   <sch:rule context="tei:div/tei:listRelation/tei:relation/@mutual">
-                    <sch:assert test="every $i in (tokenize(., ' ')) satisfies starts-with($i, 'http://syriaca.org/person/')">@mutual attributes on &lt;relation&gt; elements of relation factoids must
+                    <sch:assert
+                      test="every $i in (tokenize(., ' ')) satisfies starts-with($i, 'http://syriaca.org/person/')"
+                      >@mutual attributes on &lt;relation&gt; elements of relation factoids must
                       contain a properly formatted Syriaca.org person URI that starts with
                       'http://syriaca.org/person/'.</sch:assert>
-                    <sch:report test="every $i in (tokenize(., ' ')) satisfies matches(substring-after($i, 'person/'), '\D')">This @mutual attribute requires a properly formatted Syriaca.org person URI
+                    <sch:report
+                      test="every $i in (tokenize(., ' ')) satisfies matches(substring-after($i, 'person/'), '\D')"
+                      >This @mutual attribute requires a properly formatted Syriaca.org person URI
                       that cannot end with anything other than a number.</sch:report>
-                    <sch:assert test="every $i in (tokenize(., ' ')) satisfies matches(substring-after($i, 'person/'), '\d')">This @mutual attribute requires a properly formatted Syriaca.org person URI
+                    <sch:assert
+                      test="every $i in (tokenize(., ' ')) satisfies matches(substring-after($i, 'person/'), '\d')"
+                      >This @mutual attribute requires a properly formatted Syriaca.org person URI
                       ends with a number.</sch:assert>
                   </sch:rule>
                   <sch:assert test="count(distinct-values(tokenize(., ' '))) = count(tokenize(., ' '))">
                     The same person URI may not appear twice as the value of the @mutual attribute. </sch:assert>
-                  <!-- I need to test this further. I'm not certain it's working correctly. -->
+                  <!-\- I need to test this further. I'm not certain it's working correctly. -\->
                 </constraint>
-              </constraintSpec>
+              </constraintSpec>-->
             </attDef>
             <attDef ident="active" mode="change" usage="opt">
               <datatype minOccurs="1" maxOccurs="unbounded">
                 <dataRef key="teidata.pointer"/>
               </datatype>
-              <constraintSpec ident="active-on-relation-in-context" scheme="schematron">
+              <!--<constraintSpec ident="active-on-relation-in-context" scheme="schematron">
                 <constraint>
                   <sch:rule context="tei:div/tei:listRelation/tei:relation/@active">
-                    <sch:assert test="every $i in (tokenize(., ' ')) satisfies starts-with($i, 'http://syriaca.org/person/')">@active attributes on &lt;relation&gt; elements of relation factoids must
+                    <sch:assert
+                      test="every $i in (tokenize(., ' ')) satisfies starts-with($i, 'http://syriaca.org/person/')"
+                      >@active attributes on &lt;relation&gt; elements of relation factoids must
                       contain a properly formatted Syriaca.org person URI that starts with
                       'http://syriaca.org/person/'.</sch:assert>
-                    <sch:report test="every $i in (tokenize(., ' ')) satisfies matches(substring-after($i, 'person/'), '\D')">This @active attribute requires a properly formatted Syriaca.org person URI
+                    <sch:report
+                      test="every $i in (tokenize(., ' ')) satisfies matches(substring-after($i, 'person/'), '\D')"
+                      >This @active attribute requires a properly formatted Syriaca.org person URI
                       that cannot end with anything other than a number.</sch:report>
-                    <sch:assert test="every $i in (tokenize(., ' ')) satisfies matches(substring-after($i, 'person/'), '\d')">This @active attribute requires a properly formatted Syriaca.org person URI
+                    <sch:assert
+                      test="every $i in (tokenize(., ' ')) satisfies matches(substring-after($i, 'person/'), '\d')"
+                      >This @active attribute requires a properly formatted Syriaca.org person URI
                       ends with a number.</sch:assert>
                   </sch:rule>
-                  <!-- I need to test this further. I'm not certain it's working correctly. -->
+                  <!-\- I need to test this further. I'm not certain it's working correctly. -\->
                   
                   <sch:rule context="//tei:sourceDesc/tei:listRelation/tei:relation/@active">
-                    <sch:let name="docURIno" value="//tei:publicationStmt/tei:idno[@type='URI']/substring-after(substring-before(., '/tei'), 'spear/')"/>
+                    <sch:let name="docURIno"
+                      value="//tei:publicationStmt/tei:idno[@type='URI']/substring-after(substring-before(., '/tei'), 'spear/')"/>
                     <sch:assert test="matches(., concat('http://syriaca.org/work/', $docURIno))">
                       The @active attribute muar be "http://syriaca.org/work/<sch:value-of select="$docURIno"/>".
                     </sch:assert>
                   </sch:rule>
                 </constraint>
-              </constraintSpec>
+              </constraintSpec>-->
             </attDef>
             <attDef ident="passive" mode="change" usage="opt">
               <datatype minOccurs="1" maxOccurs="unbounded">
                 <dataRef key="teidata.pointer"/>
               </datatype>
-              <constraintSpec ident="passive-on-relation-in-context" scheme="schematron">
+              <!--<constraintSpec ident="passive-on-relation-in-context" scheme="schematron">
                 <constraint>
                   <sch:rule context="tei:div/tei:listRelation/tei:relation/@passive">
-                    <sch:assert test="every $i in (tokenize(., ' ')) satisfies starts-with($i, 'http://syriaca.org/person/')">@passive attributes on &lt;relation&gt; elements of relation factoids must
+                    <sch:assert
+                      test="every $i in (tokenize(., ' ')) satisfies starts-with($i, 'http://syriaca.org/person/')"
+                      >@passive attributes on &lt;relation&gt; elements of relation factoids must
                       contain a properly formatted Syriaca.org person URI that starts with
                       'http://syriaca.org/person/'.</sch:assert>
-                    <sch:report test="every $i in (tokenize(., ' ')) satisfies matches(substring-after($i, 'person/'), '\D')">This @active attribute requires a properly formatted Syriaca.org person URI
+                    <sch:report
+                      test="every $i in (tokenize(., ' ')) satisfies matches(substring-after($i, 'person/'), '\D')"
+                      >This @active attribute requires a properly formatted Syriaca.org person URI
                       that cannot end with anything other than a number.</sch:report>
-                    <sch:assert test="every $i in (tokenize(., ' ')) satisfies matches(substring-after($i, 'person/'), '\d')">This @passive attribute requires a properly formatted Syriaca.org person URI
+                    <sch:assert
+                      test="every $i in (tokenize(., ' ')) satisfies matches(substring-after($i, 'person/'), '\d')"
+                      >This @passive attribute requires a properly formatted Syriaca.org person URI
                       ends with a number.</sch:assert>
                   </sch:rule>
-                  <!-- I need to test this further. I'm not certain it's working correctly. -->
+                  <!-\- I need to test this further. I'm not certain it's working correctly. -\->
                   <sch:rule context="tei:sourceDesc/tei:listRelation/tei:relation">
                     <sch:assert test="@passive">
                       This &lt;relation&gt; element must have a @passive attribute.
@@ -2512,7 +2557,7 @@
                     </sch:report>
                   </sch:rule>
                 </constraint>
-              </constraintSpec>
+              </constraintSpec>-->
             </attDef>
           </attList>
           <exemplum>
@@ -2520,7 +2565,8 @@
               <div type="factoid" xml:id="factoid-21" resp="#ktorabi #dschwartz">
                 <idno type="URI">http://syriaca.org/spear/3140-21</idno>
                 <listRelation>
-                  <relation ref="snap:SpouseOf" mutual="http://syriaca.org/person/3121 http://syriaca.org/person/3120"/>
+                  <relation ref="snap:SpouseOf"
+                    mutual="http://syriaca.org/person/3121 http://syriaca.org/person/3120"/>
                 </listRelation>
                 <bibl> ... </bibl>
               </div>
@@ -2531,7 +2577,8 @@
               <div type="factoid" xml:id="factoid-13" resp="#ktorabi #dschwartz">
                 <idno type="URI">http://syriaca.org/spear/3013-13</idno>
                 <listRelation>
-                  <relation ref="syriaca:MonasticHeadOver" active="http://syriaca.org/person/2669" passive="http://syriaca.org/person/3033"/>
+                  <relation ref="syriaca:MonasticHeadOver" active="http://syriaca.org/person/2669"
+                    passive="http://syriaca.org/person/3033"/>
                 </listRelation>
                 <bibl> ... </bibl>
               </div>
@@ -2542,7 +2589,8 @@
               <div type="factoid" xml:id="factoid-27" resp="#ktorabi #dschwartz">
                 <idno type="URI">http://syriaca.org/spear/3046-27</idno>
                 <listRelation>
-                  <relation ref="syriaca:CommuneTogether" mutual="http://syriaca.org/person/2458 http://syriaca.org/person/3065"/>
+                  <relation ref="syriaca:CommuneTogether"
+                    mutual="http://syriaca.org/person/2458 http://syriaca.org/person/3065"/>
                 </listRelation>
                 <bibl> ... </bibl>
               </div>
@@ -2554,22 +2602,22 @@
                 <idno type="URI">http://syriaca.org/spear/8559-555</idno>
                 <listEvent>
                   <event ana="http://syriaca.org/keyword/emperors http://syriaca.org/keyword/bishops http://syriaca.org/keyword/natural-disasters">
-                    <desc> The fourth time the walls of <placeName ref="http://syriaca.org/place/78"> Edessa </placeName> were broken
-                      down was in the days of the king <persName ref="http://syriaca.org/person/2268"> Justin </persName> and of the
+                    <desc> The fourth time the walls of <placeName
+                      ref="http://syriaca.org/place/78"> Edessa </placeName> were broken
+                      down was in the days of the king <persName
+                        ref="http://syriaca.org/person/2268"> Justin </persName> and of the
                       bishop <persName ref="http://syriaca.org/person/2236"> Asclepius
                       </persName> in <choice>
-                        <reg>
-                                                    <date notBefore="0524-10" notAfter="0525-09" calendar="Gregorian" srophe:computed-end="0525-09-01" srophe:computed-start="0524-10-01">424/5</date>
-                                                </reg>
-                        <orig>
-                                                    <date when-custom="0836" datingMethod="Seleucid">A. Gr.
-                          836</date>
-                                                </orig>
-                      </choice>
-                                        </desc>
+                        <reg><date notBefore="0524-10" notAfter="0525-09"
+                          calendar="Gregorian" srophe:computed-end="0525-09-01"
+                          srophe:computed-start="0524-10-01">424/5</date></reg>
+                        <orig><date when-custom="0836" datingMethod="Seleucid">A. Gr.
+                          836</date></orig>
+                      </choice></desc>
                   </event>
                   <listRelation>
-                    <relation ref="syriaca:SameEvent" ana="event" mutual="http://syriaca.org/spear/8559-476 http://syriaca.org/spear/8559-555"/>
+                    <relation ref="syriaca:SameEvent" ana="event"
+                      mutual="http://syriaca.org/spear/8559-476 http://syriaca.org/spear/8559-555"/>
                   </listRelation>
                 </listEvent>
                 <bibl> ... </bibl>
@@ -2583,23 +2631,23 @@
                 <listEvent>
                   <event ana="http://syriaca.org/keyword/war http://syriaca.org/keyword/violence">
                     <desc> In <choice>
-                      <reg>
-                                                    <date when="0540-05" calendar="Gregorian" srophe:computed-start="0540-05-01">May 540</date>
-                                                </reg>
-                      <orig>
-                                                    <date when-custom="0851-08" datingMethod="Seleucid-SyriacMonths">Iyār A. Gr.
-                        851</date>
-                                                </orig>
-                    </choice>
-                                            <persName ref="http://syriaca.org/person/2244"> Chosroes
-                    </persName> broke the peace and invaded <placeName ref="http://syriaca.org/place/166"> Roman territory </placeName>. He
+                      <reg><date when="0540-05" calendar="Gregorian"
+                        srophe:computed-start="0540-05-01">May 540</date></reg>
+                      <orig><date when-custom="0851-08"
+                        datingMethod="Seleucid-SyriacMonths">Iyār A. Gr.
+                        851</date></orig>
+                    </choice><persName ref="http://syriaca.org/person/2244"> Chosroes
+                    </persName> broke the peace and invaded <placeName
+                      ref="http://syriaca.org/place/166"> Roman territory </placeName>. He
                       laid waste <placeName ref="http://syriaca.org/place/185"> Shura
                       </placeName>, <placeName ref="http://syriaca.org/place/18"> Aleppo
                       </placeName>, and <placeName ref="http://syriaca.org/place/10"> Antioch
                       </placeName>. </desc>
                   </event>
                   <listRelation>
-                    <relation ref="syriaca:ProximateEvent" ana="event" mutual="http://syriaca.org/spear/8559-542 http://syriaca.org/spear/8559-538"/>
+                    <relation ref="syriaca:ProximateEvent" ana="event"
+                      mutual="http://syriaca.org/spear/8559-542 http://syriaca.org/spear/8559-538"
+                    />
                   </listRelation>
                 </listEvent>
                 <bibl> ... </bibl>
@@ -2669,13 +2717,11 @@
                 <persName ref="http://syriaca.org/person/2245"/>
                 <birth>
                   <choice>
-                    <reg>
-                                            <date notBefore="-0003-10" notAfter="-0002-09" calendar="Gregorian" srophe:computed-start="-0003-10-01" srophe:computed-end="-0002-09-01">3/2 B.C.</date>
-                                        </reg>
-                    <orig>
-                                            <date when-custom="0309" datingMethod="Seleucid">A. Gr.
-                      309</date>
-                                        </orig>
+                    <reg><date notBefore="-0003-10" notAfter="-0002-09"
+                      calendar="Gregorian" srophe:computed-start="-0003-10-01"
+                      srophe:computed-end="-0002-09-01">3/2 B.C.</date></reg>
+                    <orig><date when-custom="0309" datingMethod="Seleucid">A. Gr.
+                      309</date></orig>
                   </choice>
                   <note type="desc"> Jesus was born in 3/2 B.C. </note>
                 </birth>
@@ -2686,12 +2732,9 @@
             <egXML xmlns="http://www.tei-c.org/ns/Examples">
               <person>
                 <persName ref="http://syriaca.org/person/3263"/>
-                <death>
-                                    <date when="0529"/>
-                                    <note type="desc">
-                                        <persName ref="http://syriaca.org/person/3263">Symy</persName> died in
-                  529. </note>
-                                </death>
+                <death><date when="0529"/><note type="desc"><persName
+                  ref="http://syriaca.org/person/3263">Symy</persName> died in
+                  529. </note></death>
               </person>
             </egXML>
           </exemplum>
@@ -2699,13 +2742,10 @@
             <egXML xmlns="http://www.tei-c.org/ns/Examples">
               <person>
                 <persName ref="http://syriaca.org/person/1788"/>
-                <death>
-                                    <placeName ref="http://syriaca.org/place/586"/>
-                                    <note type="desc">
-                                        <persName ref="http://syriaca.org/person/1788">Isaac of Dara</persName> died in
+                <death><placeName ref="http://syriaca.org/place/586"/><note type="desc"><persName
+                  ref="http://syriaca.org/person/1788">Isaac of Dara</persName> died in
                   <placeName ref="http://syriaca.org/place/586">Constantinople</placeName>.
-                </note>
-                                </death>
+                </note></death>
               </person>
             </egXML>
           </exemplum>
@@ -2713,14 +2753,12 @@
             <egXML xmlns="http://www.tei-c.org/ns/Examples">
               <person>
                 <persName ref="http://syriaca.org/person/2032"/>
-                <birth>
-                                    <placeName ref="http://syriaca.org/place/2865"/>
-                                    <note type="desc">
-                                        <persName ref="http://syriaca.org/person/2032">Kashish</persName> was born in <placeName ref="http://syriaca.org/place/2865">Ê¿Aina da Frakha which is
+                <birth><placeName ref="http://syriaca.org/place/2865"/><note type="desc"
+                  ><persName ref="http://syriaca.org/person/2032"
+                    >Kashish</persName> was born in <placeName
+                      ref="http://syriaca.org/place/2865">Ê¿Aina da Frakha which is
                       beyond <placeName ref="http://syriaca.org/place/2825">Nirba d
-                        Å kwÅ¡</placeName>.</placeName>
-                                    </note>
-                                </birth>
+                        Å kwÅ¡</placeName>.</placeName></note></birth>
               </person>
             </egXML>
           </exemplum>
@@ -2728,14 +2766,13 @@
             <egXML xmlns="http://www.tei-c.org/ns/Examples">
               <person>
                 <persName ref="http://syriaca.org/person/2032"/>
-                <education ana="http://syriaca.org/keyword/bible http://syriaca.org/keyword/exegesis">
-                                    <note type="desc">
-                                        <persName ref="http://syriaca.org/person/2032">Kashish</persName> studied the reading of the Holy Scriptures
+                <education ana="http://syriaca.org/keyword/bible http://syriaca.org/keyword/exegesis"><note type="desc"
+                  ><persName ref="http://syriaca.org/person/2032"
+                    >Kashish</persName> studied the reading of the Holy Scriptures
                   at the <placeName ref="http://syriaca.org/place/399"> Monastery of
-                    John Urtraya </placeName> in the city of <placeName ref="http://syriaca.org/place/8"> Amida.
-                    </placeName>
-                                    </note>
-                                </education>
+                    John Urtraya </placeName> in the city of <placeName
+                      ref="http://syriaca.org/place/8"> Amida.
+                    </placeName></note></education>
               </person>
             </egXML>
           </exemplum>
@@ -2745,8 +2782,8 @@
                 <persName ref="http://syriaca.org/person/3218"/>
                 <langKnowledge>
                   <langKnown ana="http://syriaca.org/keyword/urtaye"/>
-                  <note type="desc">
-                                        <persName ref="http://syriaca.org/person/3218">John</persName>spoke Urtaye.</note>
+                  <note type="desc"><persName ref="http://syriaca.org/person/3218"
+                    >John</persName>spoke Urtaye.</note>
                 </langKnowledge>
               </person>
             </egXML>
@@ -2755,12 +2792,11 @@
             <egXML xmlns="http://www.tei-c.org/ns/Examples">
               <person>
                 <persName ref="http://syriaca.org/person/2562"/>
-                <nationality>
-                                    <placeName ref="http://syriaca.org/place/1469"/>
-                                    <note type="desc">
-                                        <persName ref="http://syriaca.org/person/2562">Epiphanius</persName> was a citizen of <placeName ref="http://syriaca.org/place/1469">Perga</placeName>.
-                </note>
-                                </nationality>
+                <nationality><placeName ref="http://syriaca.org/place/1469"/><note
+                  type="desc"><persName ref="http://syriaca.org/person/2562"
+                    >Epiphanius</persName> was a citizen of <placeName
+                      ref="http://syriaca.org/place/1469">Perga</placeName>.
+                </note></nationality>
               </person>
             </egXML>
           </exemplum>
@@ -2768,10 +2804,11 @@
             <egXML xmlns="http://www.tei-c.org/ns/Examples">
               <person>
                 <persName ref="http://syriaca.org/person/2606"/>
-                <occupation ana="http://syriaca.org/keyword/readers">
-                                    <note type="desc">
-                                        <persName ref="http://syriaca.org/person/2606">Archelaus</persName> was a reader in <placeName ref="http://syriaca.org/place/195">Tyre</placeName>.</note>
-                                </occupation>
+                <occupation ana="http://syriaca.org/keyword/readers"><note type="desc"
+                  ><persName ref="http://syriaca.org/person/2606"
+                    >Archelaus</persName> was a reader in <placeName
+                      ref="http://syriaca.org/place/195"
+                      >Tyre</placeName>.</note></occupation>
               </person>
             </egXML>
           </exemplum>
@@ -2779,12 +2816,10 @@
             <egXML xmlns="http://www.tei-c.org/ns/Examples">
               <person>
                 <persName ref="http://syriaca.org/person/3183"/>
-                <residence>
-                                    <placeName ref="http://syriaca.org/place/2826"/>
-                                    <note type="desc">
-                                        <persName ref="http://syriaca.org/person/3183">Abba</persName>
-                  resided in the <placeName ref="http://syriaca.org/place/2826">Convent of Nut</placeName>. </note>
-                                </residence>
+                <residence><placeName ref="http://syriaca.org/place/2826"/><note type="desc"
+                  ><persName ref="http://syriaca.org/person/3183">Abba</persName>
+                  resided in the <placeName ref="http://syriaca.org/place/2826"
+                    >Convent of Nut</placeName>. </note></residence>
               </person>
             </egXML>
           </exemplum>
@@ -2806,8 +2841,8 @@
               <person>
                 <persName ref="http://syriaca.org/person/1524"/>
                 <state type="sanctity" ana="http://syriaca.org/keyword/saints">
-                  <note type="desc">
-                                        <persName ref="http://syriaca.org/person/1524">ZeÊ¿ora</persName> was a saint.</note>
+                  <note type="desc"><persName ref="http://syriaca.org/person/1524"
+                    >ZeÊ¿ora</persName> was a saint.</note>
                 </state>
               </person>
             </egXML>
@@ -2817,8 +2852,8 @@
               <person>
                 <persName ref="http://syriaca.org/person/2416"/>
                 <trait type="gender" ana="http://syriaca.org/keyword/female">
-                  <note type="desc">
-                                        <persName ref="http://syriaca.org/person/2416">Thecla</persName> was female.</note>
+                  <note type="desc"><persName ref="http://syriaca.org/person/2416"
+                    >Thecla</persName> was female.</note>
                 </trait>
               </person>
             </egXML>
@@ -2828,8 +2863,8 @@
               <person>
                 <persName ref="http://syriaca.org/person/3154"/>
                 <trait type="physical" ana="http://syriaca.org/keyword/hair">
-                  <note type="desc">
-                                        <persName ref="http://syriaca.org/person/3154">Sergius</persName> had long hair that marked his ascetic
+                  <note type="desc"><persName ref="http://syriaca.org/person/3154"
+                    >Sergius</persName> had long hair that marked his ascetic
                     profession and wore a habit that marked him as an anchorite. </note>
                 </trait>
               </person>
@@ -2840,8 +2875,7 @@
               <person>
                 <persName ref="http://syriaca.org/person/3218"/>
                 <trait type="ethnicLabel" ana="http://syriaca.org/keyword/syrian">
-                  <note type="desc">
-                                        <persName ref="http://syriaca.org/person/3218">John
+                  <note type="desc"><persName ref="http://syriaca.org/person/3218">John
                     Urtaya</persName>was Syrian.</note>
                 </trait>
               </person>
@@ -2887,14 +2921,12 @@
                 <listPerson>
                   <person>
                     <persName ref="http://syriaca.org/person/2032"/>
-                    <birth>
-                                            <placeName ref="http://syriaca.org/place/2865"/>
-                                            <note type="desc">
-                                                <persName ref="http://syriaca.org/person/2032">Kashish</persName> was born in <placeName ref="http://syriaca.org/place/2865">ʿAina da Frakha which is
+                    <birth><placeName ref="http://syriaca.org/place/2865"/><note type="desc"
+                      ><persName ref="http://syriaca.org/person/2032"
+                        >Kashish</persName> was born in <placeName
+                          ref="http://syriaca.org/place/2865">ʿAina da Frakha which is
                           beyond <placeName ref="http://syriaca.org/place/2825">Nirba d
-                            Škwš</placeName>.</placeName>
-                                            </note>
-                                        </birth>
+                            Škwš</placeName>.</placeName></note></birth>
                   </person>
                 </listPerson>
                 <bibl> ... </bibl>
@@ -2910,13 +2942,11 @@
                     <persName ref="http://syriaca.org/person/2245"/>
                     <birth>
                       <choice>
-                        <reg>
-                                                    <date notBefore="-0003-10" notAfter="-0002-09" calendar="Gregorian" srophe:computed-start="-0003-10-01" srophe:computed-end="-0002-09-01">3/2 B.C.</date>
-                                                </reg>
-                        <orig>
-                                                    <date when-custom="0309" datingMethod="Seleucid">A. Gr.
-                          309</date>
-                                                </orig>
+                        <reg><date notBefore="-0003-10" notAfter="-0002-09"
+                          calendar="Gregorian" srophe:computed-start="-0003-10-01"
+                          srophe:computed-end="-0002-09-01">3/2 B.C.</date></reg>
+                        <orig><date when-custom="0309" datingMethod="Seleucid">A. Gr.
+                          309</date></orig>
                       </choice>
                       <note type="desc"> Jesus was born in 3/2 B.C. </note>
                     </birth>
@@ -2967,12 +2997,9 @@
                 <listPerson>
                   <person>
                     <persName ref="http://syriaca.org/person/3263"/>
-                    <death>
-                                            <date when="0529"/>
-                                            <note type="desc">
-                                                <persName ref="http://syriaca.org/person/3263">Symy</persName> died in
-                      529. </note>
-                                        </death>
+                    <death><date when="0529"/><note type="desc"><persName
+                      ref="http://syriaca.org/person/3263">Symy</persName> died in
+                      529. </note></death>
                   </person>
                 </listPerson>
                 <bibl> ... </bibl>
@@ -2986,13 +3013,10 @@
                 <listPerson>
                   <person>
                     <persName ref="http://syriaca.org/person/1788"/>
-                    <death>
-                                            <placeName ref="http://syriaca.org/place/586"/>
-                                            <note type="desc">
-                                                <persName ref="http://syriaca.org/person/1788">Isaac of Dara</persName> died in
+                    <death><placeName ref="http://syriaca.org/place/586"/><note type="desc"><persName
+                      ref="http://syriaca.org/person/1788">Isaac of Dara</persName> died in
                       <placeName ref="http://syriaca.org/place/586">Constantinople</placeName>.
-                    </note>
-                                        </death>
+                    </note></death>
                   </person>
                 </listPerson>
                 <bibl> ... </bibl>
@@ -3023,7 +3047,9 @@
                 <constraint>
                   <sch:rule context="//tei:education/@ana">
                     <sch:let name="anaValues" value="tokenize(., ' ')"/>
-                    <sch:assert test="                       every $i in $anaValues                       satisfies starts-with($i, 'http://syriaca.org/keyword/')">
+                    <sch:assert test="
+                      every $i in $anaValues
+                      satisfies starts-with($i, 'http://syriaca.org/keyword/')">
                       Each @ana attribute value must start with "http://syriaca.org/keyword/" and multiple 
                       values must be space separated.
                     </sch:assert>
@@ -3032,17 +3058,26 @@
                     <sch:report test="contains(., ',') or contains(., ';')">
                       Multiple @ana attributes should be separated with one blank space
                     </sch:report>
-                    <sch:report test="                       every $i in $anaValues                       satisfies contains(substring-after($i, 'http://syriaca.org/keyword'), 'http:')">
+                    <sch:report test="
+                      every $i in $anaValues
+                      satisfies contains(substring-after($i, 'http://syriaca.org/keyword'), 'http:')">
                       Multiple @ana attributes should be separated with one blank space
                     </sch:report>
                   </sch:rule>
                   <sch:rule context="tei:education/@ana" role="warning">
-                    <sch:let name="ti" value="doc('https://raw.githubusercontent.com/srophe/srophe-app-data/dev/data/subjects/taxonomyIndex.xml')"/>
-                    <sch:let name="fieldsOfStudy" value="$ti//listURI[@ref = 'http://syriaca.org/keyword/fields-of-study']/uri"/>
-                    <sch:assert test="                       every $i in (tokenize(., ' '))                       satisfies $i = $fieldsOfStudy">SPEAR has a strong preference for using established URIs when possible but
+                    <sch:let name="ti"
+                      value="doc('https://raw.githubusercontent.com/srophe/srophe-app-data/dev/data/subjects/taxonomyIndex.xml')"/>
+                    <sch:let name="fieldsOfStudy"
+                      value="$ti//listURI[@ref = 'http://syriaca.org/keyword/fields-of-study']/uri"/>
+                    <sch:assert
+                      test="
+                      every $i in (tokenize(., ' '))
+                      satisfies $i = $fieldsOfStudy"
+                      >SPEAR has a strong preference for using established URIs when possible but
                       appropriate URIs are not always available in the Syriaca.org taxonomy. Please
                       consider the following options from the taxonomy before using your own
-                      preferred descriptive term: <sch:value-of select="string-join($fieldsOfStudy, ';  ')"/>.</sch:assert>
+                      preferred descriptive term: <sch:value-of
+                        select="string-join($fieldsOfStudy, ';  ')"/>.</sch:assert>
                   </sch:rule>
                 </constraint>
               </constraintSpec>
@@ -3055,14 +3090,13 @@
                 <listPerson>
                   <person>
                     <persName ref="http://syriaca.org/person/2032"/>
-                    <education ana="http://syriaca.org/keyword/bible http://syriaca.org/keyword/exegesis">
-                                            <note type="desc">
-                                                <persName ref="http://syriaca.org/person/2032">Kashish</persName> studied the reading of the Holy Scriptures
+                    <education ana="http://syriaca.org/keyword/bible http://syriaca.org/keyword/exegesis"><note type="desc"
+                      ><persName ref="http://syriaca.org/person/2032"
+                        >Kashish</persName> studied the reading of the Holy Scriptures
                       at the <placeName ref="http://syriaca.org/place/399"> Monastery of
-                        John Urtraya </placeName> in the city of <placeName ref="http://syriaca.org/place/8"> Amida.
-                        </placeName>
-                                            </note>
-                                        </education>
+                        John Urtraya </placeName> in the city of <placeName
+                          ref="http://syriaca.org/place/8"> Amida.
+                        </placeName></note></education>
                   </person>
                 </listPerson>
                 <bibl> ... </bibl>
@@ -3095,12 +3129,11 @@
                 <listPerson>
                   <person>
                     <persName ref="http://syriaca.org/person/2562"/>
-                    <nationality>
-                                            <placeName ref="http://syriaca.org/place/1469"/>
-                                            <note type="desc">
-                                                <persName ref="http://syriaca.org/person/2562">Epiphanius</persName> was a citizen of <placeName ref="http://syriaca.org/place/1469">Perga</placeName>.
-                    </note>
-                                        </nationality>
+                    <nationality><placeName ref="http://syriaca.org/place/1469"/><note
+                      type="desc"><persName ref="http://syriaca.org/person/2562"
+                        >Epiphanius</persName> was a citizen of <placeName
+                          ref="http://syriaca.org/place/1469">Perga</placeName>.
+                    </note></nationality>
                   </person>
                 </listPerson>
                 <bibl> ... </bibl>
@@ -3138,18 +3171,14 @@
                 <listPerson>
                   <person>
                     <persName ref="http://syriaca.org/person/3183"/>
-                    <residence>
-                                            <placeName ref="http://syriaca.org/place/2826"/>
-                                            <note type="desc">
-                                                <persName ref="http://syriaca.org/person/3183">Abba</persName>
-                      resided in the <placeName ref="http://syriaca.org/place/2826">Convent of Nut</placeName>. </note>
-                                        </residence>
+                    <residence><placeName ref="http://syriaca.org/place/2826"/><note type="desc"
+                      ><persName ref="http://syriaca.org/person/3183">Abba</persName>
+                      resided in the <placeName ref="http://syriaca.org/place/2826"
+                        >Convent of Nut</placeName>. </note></residence>
                   </person>
                 </listPerson>
-                <bibl type="primary">
-                                    <ptr target="http://syriaca.org/work/10510"/>
-                                    <citedRange unit="pp">570</citedRange>
-                                </bibl>
+                <bibl type="primary"><ptr target="http://syriaca.org/work/10510"/><citedRange
+                  unit="pp">570</citedRange></bibl>
                 <bibl> ... </bibl>
               </div>
             </egXML>
@@ -3174,7 +3203,9 @@
                 <constraint>
                   <sch:rule context="//tei:occupation/@ana">
                     <sch:let name="anaValues" value="tokenize(., ' ')"/>
-                    <sch:assert test="                       every $i in $anaValues                       satisfies starts-with($i, 'http://syriaca.org/keyword/')">
+                    <sch:assert test="
+                      every $i in $anaValues
+                      satisfies starts-with($i, 'http://syriaca.org/keyword/')">
                       Each @ana attribute value must start with "http://syriaca.org/keyword/" and multiple 
                       values must be space separated.
                     </sch:assert>
@@ -3183,17 +3214,26 @@
                     <sch:report test="contains(., ',') or contains(., ';')">
                       Multiple @ana attributes should be separated with one blank space
                     </sch:report>
-                    <sch:report test="                       every $i in $anaValues                       satisfies contains(substring-after($i, 'http://syriaca.org/keyword'), 'http:')">
+                    <sch:report test="
+                      every $i in $anaValues
+                      satisfies contains(substring-after($i, 'http://syriaca.org/keyword'), 'http:')">
                       Multiple @ana attributes should be separated with one blank space
                     </sch:report>
                   </sch:rule>
                   <sch:rule context="tei:occupation/@ana" role="warning">
-                    <sch:let name="ti" value="doc('https://raw.githubusercontent.com/srophe/srophe-app-data/dev/data/subjects/taxonomyIndex.xml')"/>
-                    <sch:let name="occupations" value="$ti//listURI[@ref = 'http://syriaca.org/keyword/occupations']/uri"/>
-                    <sch:assert test="                       every $i in (tokenize(., ' '))                       satisfies $i = $occupations">SPEAR has a strong preference for using established URIs when possible but
+                    <sch:let name="ti"
+                      value="doc('https://raw.githubusercontent.com/srophe/srophe-app-data/dev/data/subjects/taxonomyIndex.xml')"/>
+                    <sch:let name="occupations"
+                      value="$ti//listURI[@ref = 'http://syriaca.org/keyword/occupations']/uri"/>
+                    <sch:assert
+                      test="
+                      every $i in (tokenize(., ' '))
+                      satisfies $i = $occupations"
+                      >SPEAR has a strong preference for using established URIs when possible but
                       appropriate URIs are not always available in the Syriaca.org taxonomy. Please
                       consider the following options from the taxonomy before using your own
-                      preferred descriptive term: <sch:value-of select="string-join($occupations, ';  ')"/>.</sch:assert>
+                      preferred descriptive term: <sch:value-of
+                        select="string-join($occupations, ';  ')"/>.</sch:assert>
                   </sch:rule>
                 </constraint>
               </constraintSpec>
@@ -3206,10 +3246,11 @@
                 <listPerson>
                   <person>
                     <persName ref="http://syriaca.org/person/2606"/>
-                    <occupation ana="http://syriaca.org/keyword/readers">
-                                            <note type="desc">
-                                                <persName ref="http://syriaca.org/person/2606">Archelaus</persName> was a reader in <placeName ref="http://syriaca.org/place/195">Tyre</placeName>.</note>
-                                        </occupation>
+                    <occupation ana="http://syriaca.org/keyword/readers"><note type="desc"
+                      ><persName ref="http://syriaca.org/person/2606"
+                        >Archelaus</persName> was a reader in <placeName
+                          ref="http://syriaca.org/place/195"
+                          >Tyre</placeName>.</note></occupation>
                   </person>
                 </listPerson>
                 <bibl> ... </bibl>
@@ -3223,10 +3264,11 @@
                 <listPerson>
                   <person>
                     <persName ref="http://syriaca.org/person/2606"/>
-                    <occupation ana="http://syriaca.org/keyword/readers">
-                                            <note type="desc">
-                                                <persName ref="http://syriaca.org/person/2606">Archelaus</persName> was a reader in <placeName ref="http://syriaca.org/place/195">Tyre</placeName>.</note>
-                                        </occupation>
+                    <occupation ana="http://syriaca.org/keyword/readers"><note type="desc"
+                      ><persName ref="http://syriaca.org/person/2606"
+                        >Archelaus</persName> was a reader in <placeName
+                          ref="http://syriaca.org/place/195"
+                          >Tyre</placeName>.</note></occupation>
                   </person>
                 </listPerson>
                 <bibl> ... </bibl>
@@ -3240,11 +3282,10 @@
                 <listPerson>
                   <person>
                     <persName ref="http://syriaca.org/person/2568"/>
-                    <occupation ana="http://syriaca.org/keyword/physicians">
-                                            <note type="desc">
-                                                <persName ref="http://syriaca.org/person/2568">Theotecnus</persName> was an archiatros or chief
-                      physician.</note>
-                                        </occupation>
+                    <occupation ana="http://syriaca.org/keyword/physicians"><note type="desc"
+                      ><persName ref="http://syriaca.org/person/2568"
+                        >Theotecnus</persName> was an archiatros or chief
+                      physician.</note></occupation>
                   </person>
                 </listPerson>
                 <bibl> ... </bibl>
@@ -3275,8 +3316,8 @@
                     <persName ref="http://syriaca.org/person/3218"/>
                     <langKnowledge>
                       <langKnown ana="http://syriaca.org/keyword/urtaye"/>
-                      <note type="desc">
-                                                <persName ref="http://syriaca.org/person/3218">John</persName>spoke Urtaye.</note>
+                      <note type="desc"><persName ref="http://syriaca.org/person/3218"
+                        >John</persName>spoke Urtaye.</note>
                     </langKnowledge>
                   </person>
                 </listPerson>
@@ -3296,7 +3337,9 @@
             <constraint>
               <sch:rule context="//tei:langKnown/@ana">
                 <sch:let name="anaValues" value="tokenize(., ' ')"/>
-                <sch:assert test="                   every $i in $anaValues                   satisfies starts-with($i, 'http://syriaca.org/keyword/')">
+                <sch:assert test="
+                  every $i in $anaValues
+                  satisfies starts-with($i, 'http://syriaca.org/keyword/')">
                   Each @ana attribute value must start with "http://syriaca.org/keyword/" and multiple 
                   values must be space separated.
                 </sch:assert>
@@ -3305,17 +3348,26 @@
                 <sch:report test="contains(., ',') or contains(., ';')">
                   Multiple @ana attributes should be separated with one blank space
                 </sch:report>
-                <sch:report test="                   every $i in $anaValues                   satisfies contains(substring-after($i, 'http://syriaca.org/keyword'), 'http:')">
+                <sch:report test="
+                  every $i in $anaValues
+                  satisfies contains(substring-after($i, 'http://syriaca.org/keyword'), 'http:')">
                   Multiple @ana attributes should be separated with one blank space
                 </sch:report>
               </sch:rule>
               <sch:rule context="tei:langKnown/@ana" role="warning">
-                <sch:let name="ti" value="doc('https://raw.githubusercontent.com/srophe/srophe-app-data/dev/data/subjects/taxonomyIndex.xml')"/>
-                <sch:let name="languages" value="$ti//listURI[@ref = 'http://syriaca.org/keyword/languages']/uri"/>
-                <sch:assert test="                   every $i in (tokenize(., ' '))                   satisfies $i = $languages">SPEAR has a strong preference for using established URIs when possible but
+                <sch:let name="ti"
+                  value="doc('https://raw.githubusercontent.com/srophe/srophe-app-data/dev/data/subjects/taxonomyIndex.xml')"/>
+                <sch:let name="languages"
+                  value="$ti//listURI[@ref = 'http://syriaca.org/keyword/languages']/uri"/>
+                <sch:assert
+                  test="
+                  every $i in (tokenize(., ' '))
+                  satisfies $i = $languages"
+                  >SPEAR has a strong preference for using established URIs when possible but
                   appropriate URIs are not always available in the Syriaca.org taxonomy. Please
                   consider the following options from the taxonomy before using your own
-                  preferred descriptive term: <sch:value-of select="string-join($languages, ';  ')"/>.
+                  preferred descriptive term: <sch:value-of
+                    select="string-join($languages, ';  ')"/>.
                 </sch:assert>
               </sch:rule>
             </constraint>
@@ -3342,8 +3394,8 @@
                     <persName ref="http://syriaca.org/person/3218"/>
                     <langKnowledge>
                       <langKnown ana="http://syriaca.org/keyword/urtaye"/>
-                      <note type="desc">
-                                                <persName ref="http://syriaca.org/person/3218">John</persName>spoke Urtaye.</note>
+                      <note type="desc"><persName ref="http://syriaca.org/person/3218"
+                        >John</persName>spoke Urtaye.</note>
                     </langKnowledge>
                   </person>
                 </listPerson>
@@ -3371,7 +3423,9 @@
                 <constraint>
                   <sch:rule context="tei:socecStatus/@ana">
                     <sch:let name="anaValues" value="tokenize(., ' ')"/>
-                    <sch:assert test="                       every $i in $anaValues                       satisfies starts-with($i, 'http://syriaca.org/keyword/')">
+                    <sch:assert test="
+                      every $i in $anaValues
+                      satisfies starts-with($i, 'http://syriaca.org/keyword/')">
                       Each @ana attribute value must start with "http://syriaca.org/keyword/" and multiple 
                       values must be space separated.
                     </sch:assert>
@@ -3380,17 +3434,26 @@
                     <sch:report test="contains(., ',') or contains(., ';')">
                       Multiple @ana attributes should be separated with one blank space
                     </sch:report>
-                    <sch:report test="                       every $i in $anaValues                       satisfies contains(substring-after($i, 'http://syriaca.org/keyword'), 'http:')">
+                    <sch:report test="
+                      every $i in $anaValues
+                      satisfies contains(substring-after($i, 'http://syriaca.org/keyword'), 'http:')">
                       Multiple @ana attributes should be separated with one blank space
                     </sch:report>
                   </sch:rule>
                   <sch:rule context="tei:socecStatus/@ana" role="warning">
-                    <sch:let name="ti" value="doc('https://raw.githubusercontent.com/srophe/srophe-app-data/dev/data/subjects/taxonomyIndex.xml')"/>
-                    <sch:let name="socioeconomicStatus" value="$ti//listURI[@ref = 'http://syriaca.org/keyword/socioeconomic-status']/uri"/>
-                    <sch:assert test="                       every $i in (tokenize(., ' '))                       satisfies $i = $socioeconomicStatus">SPEAR has a strong preference for using established URIs when possible but
+                    <sch:let name="ti"
+                      value="doc('https://raw.githubusercontent.com/srophe/srophe-app-data/dev/data/subjects/taxonomyIndex.xml')"/>
+                    <sch:let name="socioeconomicStatus"
+                      value="$ti//listURI[@ref = 'http://syriaca.org/keyword/socioeconomic-status']/uri"/>
+                    <sch:assert
+                      test="
+                      every $i in (tokenize(., ' '))
+                      satisfies $i = $socioeconomicStatus"
+                      >SPEAR has a strong preference for using established URIs when possible but
                       appropriate URIs are not always available in the Syriaca.org taxonomy. Please
                       consider the following options from the taxonomy before using your own
-                      preferred descriptive term: <sch:value-of select="string-join($socioeconomicStatus, ';  ')"/>.</sch:assert>
+                      preferred descriptive term: <sch:value-of
+                        select="string-join($socioeconomicStatus, ';  ')"/>.</sch:assert>
                   </sch:rule>
                 </constraint>
               </constraintSpec>
@@ -3457,7 +3520,9 @@
                 <constraint>
                   <sch:rule context="tei:trait/@ana">
                     <sch:let name="anaValues" value="tokenize(., ' ')"/>
-                    <sch:assert test="                       every $i in $anaValues                       satisfies starts-with($i, 'http://syriaca.org/keyword/')">
+                    <sch:assert test="
+                      every $i in $anaValues
+                      satisfies starts-with($i, 'http://syriaca.org/keyword/')">
                       Each @ana attribute value must start with "http://syriaca.org/keyword/" and multiple 
                       values must be space separated.
                     </sch:assert>
@@ -3466,20 +3531,33 @@
                     <sch:report test="contains(., ',') or contains(., ';')">
                       Multiple @ana attributes should be separated with one blank space
                     </sch:report>
-                    <sch:report test="                       every $i in $anaValues                       satisfies contains(substring-after($i, 'http://syriaca.org/keyword'), 'http:')">
+                    <sch:report test="
+                      every $i in $anaValues
+                      satisfies contains(substring-after($i, 'http://syriaca.org/keyword'), 'http:')">
                       Multiple @ana attributes should be separated with one blank space
                     </sch:report>
                   </sch:rule>
                   <sch:rule context="tei:trait[@type = 'ethnicLabel']/@ana" role="warning">
-                    <sch:let name="ti" value="doc('https://raw.githubusercontent.com/srophe/srophe-app-data/dev/data/subjects/taxonomyIndex.xml')"/>
-                    <sch:let name="ethnicLabels" value="$ti//listURI[@ref = 'http://syriaca.org/keyword/ethnicity']/uri"/>
-                    <sch:assert test="                       every $i in (tokenize(., ' '))                       satisfies $i = $ethnicLabels">SPEAR has a strong preference for using established URIs when possible but
+                    <sch:let name="ti"
+                      value="doc('https://raw.githubusercontent.com/srophe/srophe-app-data/dev/data/subjects/taxonomyIndex.xml')"/>
+                    <sch:let name="ethnicLabels"
+                      value="$ti//listURI[@ref = 'http://syriaca.org/keyword/ethnicity']/uri"/>
+                    <sch:assert
+                      test="
+                      every $i in (tokenize(., ' '))
+                      satisfies $i = $ethnicLabels"
+                      >SPEAR has a strong preference for using established URIs when possible but
                       appropriate URIs are not always available in the Syriaca.org taxonomy. Please
                       consider the following options from the taxonomy before using your own
-                      preferred descriptive term: <sch:value-of select="string-join($ethnicLabels, ';  ')"/>.</sch:assert>
+                      preferred descriptive term: <sch:value-of
+                        select="string-join($ethnicLabels, ';  ')"/>.</sch:assert>
                   </sch:rule>
                   <sch:rule context="tei:trait[@type = 'gender']/@ana" role="warning">
-                    <sch:assert test="                       every $i in (tokenize(., ' '))                       satisfies $i = 'http://syriaca.org/keyword/eunuch' or $i = 'http://syriaca.org/keyword/female' or $i = 'http://syriaca.org/keyword/male' or $i = 'http://syriaca.org/keyword/nun-as-monk'">Preferred values for the @ana attribute on a &lt;trait&gt; element
+                    <sch:assert
+                      test="
+                      every $i in (tokenize(., ' '))
+                      satisfies $i = 'http://syriaca.org/keyword/eunuch' or $i = 'http://syriaca.org/keyword/female' or $i = 'http://syriaca.org/keyword/male' or $i = 'http://syriaca.org/keyword/nun-as-monk'"
+                      >Preferred values for the @ana attribute on a &lt;trait&gt; element
                       @type="gender" are:
                       "http://syriaca.org/keyword/eunuch"; "http://syriaca.org/keyword/female";
                       "http://syriaca.org/keyword/male"; and
@@ -3500,8 +3578,8 @@
                   <person>
                     <persName ref="http://syriaca.org/person/3154"/>
                     <trait type="physical" ana="http://syriaca.org/keyword/hair">
-                      <note type="desc">
-                                                <persName ref="http://syriaca.org/person/3154">Sergius</persName> had long hair that marked his ascetic
+                      <note type="desc"><persName ref="http://syriaca.org/person/3154"
+                        >Sergius</persName> had long hair that marked his ascetic
                         profession and wore a habit that marked him as an anchorite. </note>
                     </trait>
                   </person>
@@ -3518,8 +3596,8 @@
                   <person>
                     <persName ref="http://syriaca.org/person/2416"/>
                     <trait type="gender" ana="http://syriaca.org/keyword/female">
-                      <note type="desc">
-                                                <persName ref="http://syriaca.org/person/2416">Thecla</persName> was female.</note>
+                      <note type="desc"><persName ref="http://syriaca.org/person/2416"
+                        >Thecla</persName> was female.</note>
                     </trait>
                   </person>
                 </listPerson>
@@ -3535,8 +3613,7 @@
                   <person>
                     <persName ref="http://syriaca.org/person/3218"/>
                     <trait type="ethnicLabel" ana="http://syriaca.org/keyword/syrian">
-                      <note type="desc">
-                                                <persName ref="http://syriaca.org/person/3218">John
+                      <note type="desc"><persName ref="http://syriaca.org/person/3218">John
                         Urtaya</persName>was Syrian.</note>
                     </trait>
                   </person>
@@ -3563,14 +3640,10 @@
               <back>
                 <listBibl>
                   <head>Works Cited</head>
-                  <bibl type="primary" xml:id="bibl3033-1">
-                                        <title xml:lang="en">The Sixth Book of the
+                  <bibl type="primary" xml:id="bibl3033-1"><title xml:lang="en">The Sixth Book of the
                     Select Letters of Severus, Patriarch of Antioch in the Syriac Version of
-                    Athanasius of Nisibis</title>
-                                        <title type="sub">Translation, I.1 -
-                      II.3</title>
-                                        <ptr target="http://syriaca.org/bibl/668"/>
-                                    </bibl>
+                    Athanasius of Nisibis</title><title type="sub">Translation, I.1 -
+                      II.3</title><ptr target="http://syriaca.org/bibl/668"/></bibl>
                 </listBibl>
               </back>
             </egXML>
@@ -3587,14 +3660,10 @@
               <back>
                 <listBibl>
                   <head>Works Cited</head>
-                  <bibl type="primary" xml:id="bibl3033-1">
-                                        <title xml:lang="en">The Sixth Book of the
+                  <bibl type="primary" xml:id="bibl3033-1"><title xml:lang="en">The Sixth Book of the
                     Select Letters of Severus, Patriarch of Antioch in the Syriac Version of
-                    Athanasius of Nisibis</title>
-                                        <title type="sub">Translation, I.1 -
-                      II.3</title>
-                                        <ptr target="http://syriaca.org/bibl/668"/>
-                                    </bibl>
+                    Athanasius of Nisibis</title><title type="sub">Translation, I.1 -
+                      II.3</title><ptr target="http://syriaca.org/bibl/668"/></bibl>
                 </listBibl>
               </back>
             </egXML>
@@ -3605,7 +3674,9 @@
           <constraintSpec ident="head-in-listBibl" scheme="schematron">
             <constraint>
               <sch:rule context="tei:sourceDesc//tei:head">
-                <sch:assert test="normalize-space(.) = 'Sources for the Data in this Born Digital Prosopography'"> A &lt;head&gt; element inside the &lt;sourceDesc&gt; must contain the text node:
+                <sch:assert
+                  test="normalize-space(.) = 'Sources for the Data in this Born Digital Prosopography'"
+                  > A &lt;head&gt; element inside the &lt;sourceDesc&gt; must contain the text node:
                   "Sources for the Data in this Born Digital Prosopography". </sch:assert>
               </sch:rule>
               <sch:rule context="tei:back//tei:head">
@@ -3619,14 +3690,10 @@
               <back>
                 <listBibl>
                   <head>Works Cited</head>
-                  <bibl type="primary" xml:id="bibl3033-1">
-                                        <title xml:lang="en">The Sixth Book of the
+                  <bibl type="primary" xml:id="bibl3033-1"><title xml:lang="en">The Sixth Book of the
                     Select Letters of Severus, Patriarch of Antioch in the Syriac Version of
-                    Athanasius of Nisibis</title>
-                                        <title type="sub">Translation, I.1 -
-                      II.3</title>
-                                        <ptr target="http://syriaca.org/bibl/668"/>
-                                    </bibl>
+                    Athanasius of Nisibis</title><title type="sub">Translation, I.1 -
+                      II.3</title><ptr target="http://syriaca.org/bibl/668"/></bibl>
                 </listBibl>
               </back>
             </egXML>
@@ -3646,7 +3713,9 @@
                 <constraint>
                   <sch:rule context="tei:state/@ana">
                     <sch:let name="anaValues" value="tokenize(., ' ')"/>
-                    <sch:assert test="                       every $i in $anaValues                       satisfies starts-with($i, 'http://syriaca.org/keyword/')">
+                    <sch:assert test="
+                      every $i in $anaValues
+                      satisfies starts-with($i, 'http://syriaca.org/keyword/')">
                       Each @ana attribute value must start with "http://syriaca.org/keyword/" and multiple 
                       values must be space separated.
                     </sch:assert>
@@ -3655,25 +3724,41 @@
                     <sch:report test="contains(., ',') or contains(., ';')">
                       Multiple @ana attributes should be separated with one blank space
                     </sch:report>
-                    <sch:report test="                       every $i in $anaValues                       satisfies contains(substring-after($i, 'http://syriaca.org/keyword'), 'http:')">
+                    <sch:report test="
+                      every $i in $anaValues
+                      satisfies contains(substring-after($i, 'http://syriaca.org/keyword'), 'http:')">
                       Multiple @ana attributes should be separated with one blank space
                     </sch:report>
                   </sch:rule>
                   <sch:rule context="tei:state[@type = 'mental']/@ana" role="warning">
-                    <sch:let name="ti" value="doc('https://raw.githubusercontent.com/srophe/srophe-app-data/dev/data/subjects/taxonomyIndex.xml')"/>
-                    <sch:let name="mentalStates" value="$ti//listURI[@ref = 'http://syriaca.org/keyword/mental-states']/uri"/>
-                    <sch:assert test="                       every $i in (tokenize(., ' '))                       satisfies $i = $mentalStates">SPEAR has a strong preference for using established URIs when possible but
+                    <sch:let name="ti"
+                      value="doc('https://raw.githubusercontent.com/srophe/srophe-app-data/dev/data/subjects/taxonomyIndex.xml')"/>
+                    <sch:let name="mentalStates"
+                      value="$ti//listURI[@ref = 'http://syriaca.org/keyword/mental-states']/uri"/>
+                    <sch:assert
+                      test="
+                      every $i in (tokenize(., ' '))
+                      satisfies $i = $mentalStates"
+                      >SPEAR has a strong preference for using established URIs when possible but
                       appropriate URIs are not always available in the Syriaca.org taxonomy. Please
                       consider the following options from the taxonomy before using your own
-                      preferred descriptive term: <sch:value-of select="string-join($mentalStates, ';  ')"/>.</sch:assert>
+                      preferred descriptive term: <sch:value-of
+                        select="string-join($mentalStates, ';  ')"/>.</sch:assert>
                   </sch:rule>
                   <sch:rule context="tei:state[@type = 'sanctity']/@ana" role="warning">
-                    <sch:let name="ti" value="doc('https://raw.githubusercontent.com/srophe/srophe-app-data/dev/data/subjects/taxonomyIndex.xml')"/>
-                    <sch:let name="sanctity" value="$ti//listURI[@ref = 'http://syriaca.org/keyword/sanctity']/uri"/>
-                    <sch:assert test="                       every $i in (tokenize(., ' '))                       satisfies $i = $sanctity">SPEAR has a strong preference for using established URIs when possible but
+                    <sch:let name="ti"
+                      value="doc('https://raw.githubusercontent.com/srophe/srophe-app-data/dev/data/subjects/taxonomyIndex.xml')"/>
+                    <sch:let name="sanctity"
+                      value="$ti//listURI[@ref = 'http://syriaca.org/keyword/sanctity']/uri"/>
+                    <sch:assert
+                      test="
+                      every $i in (tokenize(., ' '))
+                      satisfies $i = $sanctity"
+                      >SPEAR has a strong preference for using established URIs when possible but
                       appropriate URIs are not always available in the Syriaca.org taxonomy. Please
                       consider the following options from the taxonomy before using your own
-                      preferred descriptive term: <sch:value-of select="string-join($sanctity, ';  ')"/>.</sch:assert>
+                      preferred descriptive term: <sch:value-of
+                        select="string-join($sanctity, ';  ')"/>.</sch:assert>
                   </sch:rule>
                 </constraint>
               </constraintSpec>
@@ -3701,8 +3786,8 @@
                   <person>
                     <persName ref="http://syriaca.org/person/1524"/>
                     <state type="sanctity" ana="http://syriaca.org/keyword/saints">
-                      <note type="desc">
-                                                <persName ref="http://syriaca.org/person/1524">ZeÊ¿ora</persName> was a saint.</note>
+                      <note type="desc"><persName ref="http://syriaca.org/person/1524"
+                        >ZeÊ¿ora</persName> was a saint.</note>
                     </state>
                   </person>
                 </listPerson>

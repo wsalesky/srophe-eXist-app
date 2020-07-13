@@ -3,13 +3,31 @@
   <teiHeader>
     <fileDesc>
       <titleStmt>
-        <title>Title</title>
+        <title>TEI Customization for the Srophé Application</title>
+        <editor role="creator" ref="http://syriaca.org/documentation/editors.xml#dschwartz">Daniel L. Schwartz</editor>
       </titleStmt>
+      <editionStmt>
+        <edition n="0.9"/>
+      </editionStmt>
       <publicationStmt>
-        <p>Publication Information</p>
+        <authority>Syriaca.org: The Syriac Reference Portal</authority>
+        <availability>
+          <licence target="http://creativecommons.org/licenses/by/3.0/">
+            <p>Distributed under a Creative Commons Attribution 3.0 Unported License.</p>
+            <p>The code examples contained in <gi>exemplum</gi> elements below come from 
+              Syriaca.org projects that have been distributed under a Creative Commons Attribution 
+              3.0 Unported License. Used by permission.</p>
+            <p>The comments on element and attribute use contained in <gi>remarks</gi> elements below 
+              share some text with other Syriaca.org documentation distributed under a Creative Commons 
+              Attributiion 3.0 Unported License. This documentation can be found at various links available here:
+              <ref target="http://syriaca.org/documentation/index.html">http://syriaca.org/documentation/index.html</ref>
+              Used by permission.
+            </p>
+          </licence>
+        </availability>
       </publicationStmt>
       <sourceDesc>
-        <p>Information about the source</p>
+        <p>This ODD provides a customization of the TEI P5 All.</p>
       </sourceDesc>
     </fileDesc>
   </teiHeader>
