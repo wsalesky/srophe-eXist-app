@@ -513,6 +513,10 @@ declare function data:sort-element($hit, $sort-element as xs:string*, $lang as x
             if($lang != '') then
                 $hit/descendant::tei:titleStmt/tei:title[@xml:lang=$lang]
             else $hit/descendant::tei:titleStmt/tei:title[1]
+        else if($sort-element = "tei:body/tei:bibl/tei:title[@srophe:tags='#headword']") then 
+            if($lang != '') then
+                $hit/descendant::tei:body/tei:bibl/tei:title[@srophe:tags='#headword'][@xml:lang=$lang]
+            else $hit/descendant::tei:body/tei:bibl/tei:title[@srophe:tags='#headword']
         else if($sort-element = "tei:body/tei:bibl/tei:title") then 
             if($lang != '') then
                 $hit/descendant::tei:body/tei:bibl/tei:title[@xml:lang=$lang]
