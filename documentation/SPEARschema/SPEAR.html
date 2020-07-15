@@ -1101,9 +1101,11 @@ element editorialDecl { <a class="link_ref" href="#TEI.att.global" title="att.gl
  value="doc('https://raw.githubusercontent.com/srophe/srophe-app-data/dev/data/subjects/taxonomyIndex.xml')"/&gt;
 &lt;sch:let name="fieldsOfStudy"
  value="$ti//listURI[@ref = 'http://syriaca.org/keyword/fields-of-study']/uri"/&gt;
-&lt;sch:assert test=" every $i in (tokenize(., ' ')) satisfies $i = $fieldsOfStudy"&gt;SPEAR has a strong preference for using established URIs when possible but
- appropriate URIs are not always available in the Syriaca.org taxonomy. Please
- consider the following options from the taxonomy before using your own
+&lt;sch:let name="error" value="."/&gt;
+&lt;sch:assert test=" every $i in (tokenize(., ' ')) satisfies $i = $fieldsOfStudy"&gt;
+ &lt;sch:value-of select="$error"/&gt; is not currently in use. SPEAR has a strong preference for using established
+ URIs when possible but appropriate URIs are not always available in the Syriaca.org taxonomy. Please
+ consult the taxonomy. If no appropriate keyword exists in the following list, please use your own
  preferred descriptive term: &lt;sch:value-of select="string-join($fieldsOfStudy, '; ')"/&gt;.&lt;/sch:assert&gt;
 &lt;/sch:rule&gt;</div></td></tr></table></div></td></tr></table></div></td></tr><tr><td class="wovenodd-col1"><span lang="en" class="label">Contained by</span></td><td class="wovenodd-col2"><div class="parent"><div class="specChildren"><div class="specChild"><span class="specChildModule">namesdates: </span><span class="specChildElements"><a class="link_odd_elementSpec" href="#TEI.person" title="&lt;person&gt;">person</a> <a class="link_odd_elementSpec" href="#TEI.personGrp" title="&lt;personGrp&gt;">personGrp</a></span></div></div></div></td></tr><tr><td class="wovenodd-col1"><span lang="en" class="label">May contain</span></td><td class="wovenodd-col2"><div class="specChildren"><div class="specChild"><span class="specChildModule">core: </span><span class="specChildElements"><a class="link_odd_elementSpec" href="#TEI.note" title="&lt;note&gt;">note</a></span></div></div></td></tr><tr><td class="wovenodd-col1"><span lang="en" class="label">Note</span></td><td class="wovenodd-col2"><p>This customization restricts the attribute classes of the <a class="link_ref" href="#TEI.education" title="&lt;education&gt;">&lt;education&gt;</a> element to att.datable.w3c and the @ana attribute. If more precise dating is required for a SPEAR factoid, encoder should use the <a class="link_ref" href="#TEI.date" title="&lt;date&gt;">&lt;date&gt;</a> element.</p></td></tr><tr><td class="wovenodd-col1"><span lang="en" class="label">Example</span></td><td class="wovenodd-col2"><div id="index.xml-egXML-d29e6193" class="pre egXML_valid"><span class="element">&lt;div <span class="attribute">type</span>="<span class="attributevalue">factoid</span>" <span class="attribute">xml:id</span>="<span class="attributevalue">factoid-5</span>"
  <span class="attribute">resp</span>="<span class="attributevalue">#jwickes</span>"&gt;</span>
@@ -1150,7 +1152,8 @@ element education
       " "
       " "
       " "
-      "SPEAR has a strong preference for using established URIs when possible but appropriate URIs are not always available in the Syriaca.org taxonomy. Please consider the following options from the taxonomy before using your own preferred descriptive term: "
+      " "
+      " is not currently in use. SPEAR has a strong preference for using established URIs when possible but appropriate URIs are not always available in the Syriaca.org taxonomy. Please consult the taxonomy. If no appropriate keyword exists in the following list, please use your own preferred descriptive term: "
       "."
    ],
    <a class="link_ref" href="#TEI.note" title="&lt;note&gt;">note</a>
@@ -1206,9 +1209,11 @@ element encodingDesc { <a class="link_ref" href="#TEI.att.global" title="att.glo
  value="doc('https://raw.githubusercontent.com/srophe/srophe-app-data/dev/data/subjects/taxonomyIndex.xml')"/&gt;
 &lt;sch:let name="taxonomyAllURIs"
  value="$ti//listURI[@type = 'taxonomyAllURIs']/uri"/&gt;
-&lt;sch:assert test=" every $i in (tokenize(., ' ')) satisfies $i = $taxonomyAllURIs"&gt;SPEAR has a strong preference for using established URIs when possible but
- appropriate URIs are not always available in the Syriaca.org taxonomy. Please
- consult the taxonomy before choosing a keyword of your own.
+&lt;sch:let name="error" value="."/&gt;
+&lt;sch:assert test=" every $i in (tokenize(., ' ')) satisfies $i = $taxonomyAllURIs"&gt;
+ &lt;sch:value-of select="$error"/&gt; is not currently in use. SPEAR has a strong preference for using established
+ URIs when possible but appropriate URIs are not always available in the Syriaca.org taxonomy. Please
+ consult the taxonomy. If no appropriate keyword exists please choosing a keyword of your own.
 &lt;/sch:assert&gt;
 &lt;/sch:rule&gt;</div></td></tr><tr><td class="wovenodd-col1"><span lang="en" class="label">Content model</span></td><td class="wovenodd-col2"><pre class="pre_eg cdata">
 &lt;content&gt;
@@ -1440,9 +1445,11 @@ element langKnowledge { <a class="link_ref" href="#TEI.langKnown" title="&lt;lan
  value="doc('https://raw.githubusercontent.com/srophe/srophe-app-data/dev/data/subjects/taxonomyIndex.xml')"/&gt;
 &lt;sch:let name="languages"
  value="$ti//listURI[@ref = 'http://syriaca.org/keyword/languages']/uri"/&gt;
-&lt;sch:assert test=" every $i in (tokenize(., ' ')) satisfies $i = $languages"&gt;SPEAR has a strong preference for using established URIs when possible but
- appropriate URIs are not always available in the Syriaca.org taxonomy. Please
- consider the following options from the taxonomy before using your own
+&lt;sch:let name="error" value="."/&gt;
+&lt;sch:assert test=" every $i in (tokenize(., ' ')) satisfies $i = $languages"&gt;
+ &lt;sch:value-of select="$error"/&gt; is not currently in use. SPEAR has a strong preference for using established
+ URIs when possible but appropriate URIs are not always available in the Syriaca.org taxonomy. Please
+ consult the taxonomy. If no appropriate keyword exists in the following list, please use your own
  preferred descriptive term: &lt;sch:value-of select="string-join($languages, '; ')"/&gt;.
 &lt;/sch:assert&gt;
 &lt;/sch:rule&gt;</div></td></tr><tr><td class="wovenodd-col1"><span lang="en" class="label">Content model</span></td><td class="wovenodd-col2"><pre class="pre_eg cdata">
@@ -1846,9 +1853,11 @@ element num
  value="doc('https://raw.githubusercontent.com/srophe/srophe-app-data/dev/data/subjects/taxonomyIndex.xml')"/&gt;
 &lt;sch:let name="occupations"
  value="$ti//listURI[@ref = 'http://syriaca.org/keyword/occupations']/uri"/&gt;
-&lt;sch:assert test=" every $i in (tokenize(., ' ')) satisfies $i = $occupations"&gt;SPEAR has a strong preference for using established URIs when possible but
- appropriate URIs are not always available in the Syriaca.org taxonomy. Please
- consider the following options from the taxonomy before using your own
+&lt;sch:let name="error" value="."/&gt;
+&lt;sch:assert test=" every $i in (tokenize(., ' ')) satisfies $i = $occupations"&gt;
+ &lt;sch:value-of select="$error"/&gt; is not currently in use. SPEAR has a strong preference for using established
+ URIs when possible but appropriate URIs are not always available in the Syriaca.org taxonomy. Please
+ consult the taxonomy. If no appropriate keyword exists in the following list, please use your own
  preferred descriptive term: &lt;sch:value-of select="string-join($occupations, '; ')"/&gt;.&lt;/sch:assert&gt;
 &lt;/sch:rule&gt;</div></td></tr></table></div></td></tr></table></div></td></tr><tr><td class="wovenodd-col1"><span lang="en" class="label">Contained by</span></td><td class="wovenodd-col2"><div class="parent"><div class="specChildren"><div class="specChild"><span class="specChildModule">namesdates: </span><span class="specChildElements"><a class="link_odd_elementSpec" href="#TEI.person" title="&lt;person&gt;">person</a> <a class="link_odd_elementSpec" href="#TEI.personGrp" title="&lt;personGrp&gt;">personGrp</a></span></div></div></div></td></tr><tr><td class="wovenodd-col1"><span lang="en" class="label">May contain</span></td><td class="wovenodd-col2"><div class="specChildren"><div class="specChild"><span class="specChildModule">core: </span><span class="specChildElements"><a class="link_odd_elementSpec" href="#TEI.note" title="&lt;note&gt;">note</a></span></div></div></td></tr><tr><td class="wovenodd-col1"><span lang="en" class="label">Note</span></td><td class="wovenodd-col2"><p>This customization removes the <a class="link_ref" href="#TEI.occupation" title="&lt;occupation&gt;">&lt;occupation&gt;</a> element from all attribute and member classes. It makes the <a class="link_ref" href="#TEI.note" title="&lt;note&gt;">&lt;note&gt;</a> element the only acceptable child of the <a class="link_ref" href="#TEI.occupation" title="&lt;occupation&gt;">&lt;occupation&gt;</a> element. It also requires a @ref attribute on the <a class="link_ref" href="#TEI.occupation" title="&lt;occupation&gt;">&lt;occupation&gt;</a> element.</p></td></tr><tr><td class="wovenodd-col1"><span lang="en" class="label">Example</span></td><td class="wovenodd-col2"><div id="index.xml-egXML-d29e10885" class="pre egXML_valid"><span class="element">&lt;div <span class="attribute">type</span>="<span class="attributevalue">factoid</span>" <span class="attribute">xml:id</span>="<span class="attributevalue">factoid-3</span>"
  <span class="attribute">resp</span>="<span class="attributevalue">#ktorabi #dschwartz</span>"&gt;</span>
@@ -1917,7 +1926,8 @@ element occupation
       " "
       " "
       " "
-      "SPEAR has a strong preference for using established URIs when possible but appropriate URIs are not always available in the Syriaca.org taxonomy. Please consider the following options from the taxonomy before using your own preferred descriptive term: "
+      " "
+      " is not currently in use. SPEAR has a strong preference for using established URIs when possible but appropriate URIs are not always available in the Syriaca.org taxonomy. Please consult the taxonomy. If no appropriate keyword exists in the following list, please use your own preferred descriptive term: "
       "."
    ],
    <a class="link_ref" href="#TEI.note" title="&lt;note&gt;">note</a>
@@ -1988,7 +1998,9 @@ element p
  value="doc('https://raw.githubusercontent.com/srophe/srophe-eXist-app/master/documentation/indexes/persons.xml')"/&gt;
 &lt;sch:let name="personURIs"
  value="$personIndex//tei:person/@ref"/&gt;
-&lt;sch:assert test=" every $i in . satisfies $i = $personURIs"&gt; This @ref attribute is not a person URI in use in Syriaca.org data. If a URI is not current available, replace the number portion of the URI with a letter and use it consistently when encoding information about a person. Note that all person URIs take the form 'http://syriaca.org/person/{\d+}' (where {\d+} is a number).
+&lt;sch:let name="error" value="."/&gt;
+&lt;sch:assert test=" every $i in . satisfies $i = $personURIs"&gt;
+ &lt;sch:value-of select="$error"/&gt; is not currently in Syriaca.org person data. If a URI is not current available, replace the number portion of the URI with a letter and use it consistently when encoding information about a person. Note that all person URIs take the form 'http://syriaca.org/person/{\d+}' (where {\d+} is a number).
 &lt;/sch:assert&gt;
 &lt;sch:report test="contains(., ' ')"&gt;This @ref may contain only one URI.&lt;/sch:report&gt;
 &lt;/sch:rule&gt;</div></td></tr></table></div></td></tr></table></div></td></tr><tr><td class="wovenodd-col1"><span lang="en" class="label">Member of</span></td><td class="wovenodd-col2"><div class="parent"><a class="link_odd_classSpec" href="#TEI.model.nameLike.agent" title="model.nameLike.agent">model.nameLike.agent</a> </div></td></tr><tr><td class="wovenodd-col1"><span lang="en" class="label">Contained by</span></td><td class="wovenodd-col2"><div class="parent"><div class="specChildren"><div class="specChild"><span class="specChildModule">core: </span><span class="specChildElements"><a class="link_odd_elementSpec" href="#TEI.author" title="&lt;author&gt;">author</a> <a class="link_odd_elementSpec" href="#TEI.corr" title="&lt;corr&gt;">corr</a> <a class="link_odd_elementSpec" href="#TEI.date" title="&lt;date&gt;">date</a> <a class="link_odd_elementSpec" href="#TEI.desc" title="&lt;desc&gt;">desc</a> <a class="link_odd_elementSpec" href="#TEI.editor" title="&lt;editor&gt;">editor</a> <a class="link_odd_elementSpec" href="#TEI.head" title="&lt;head&gt;">head</a> <a class="link_odd_elementSpec" href="#TEI.name" title="&lt;name&gt;">name</a> <a class="link_odd_elementSpec" href="#TEI.note" title="&lt;note&gt;">note</a> <a class="link_odd_elementSpec" href="#TEI.num" title="&lt;num&gt;">num</a> <a class="link_odd_elementSpec" href="#TEI.orig" title="&lt;orig&gt;">orig</a> <a class="link_odd_elementSpec" href="#TEI.p" title="&lt;p&gt;">p</a> <a class="link_odd_elementSpec" href="#TEI.pubPlace" title="&lt;pubPlace&gt;">pubPlace</a> <a class="link_odd_elementSpec" href="#TEI.publisher" title="&lt;publisher&gt;">publisher</a> <a class="link_odd_elementSpec" href="#TEI.ref" title="&lt;ref&gt;">ref</a> <a class="link_odd_elementSpec" href="#TEI.reg" title="&lt;reg&gt;">reg</a> <a class="link_odd_elementSpec" href="#TEI.resp" title="&lt;resp&gt;">resp</a> <a class="link_odd_elementSpec" href="#TEI.respStmt" title="&lt;respStmt&gt;">respStmt</a> <a class="link_odd_elementSpec" href="#TEI.sic" title="&lt;sic&gt;">sic</a> <a class="link_odd_elementSpec" href="#TEI.title" title="&lt;title&gt;">title</a></span></div><div class="specChild"><span class="specChildModule">header: </span><span class="specChildElements"><a class="link_odd_elementSpec" href="#TEI.change" title="&lt;change&gt;">change</a> <a class="link_odd_elementSpec" href="#TEI.edition" title="&lt;edition&gt;">edition</a></span></div><div class="specChild"><span class="specChildModule">namesdates: </span><span class="specChildElements"><a class="link_odd_elementSpec" href="#TEI.langKnown" title="&lt;langKnown&gt;">langKnown</a> <a class="link_odd_elementSpec" href="#TEI.orgName" title="&lt;orgName&gt;">orgName</a> <a class="link_odd_elementSpec" href="#TEI.persName" title="&lt;persName&gt;">persName</a> <a class="link_odd_elementSpec" href="#TEI.person" title="&lt;person&gt;">person</a> <a class="link_odd_elementSpec" href="#TEI.personGrp" title="&lt;personGrp&gt;">personGrp</a> <a class="link_odd_elementSpec" href="#TEI.placeName" title="&lt;placeName&gt;">placeName</a></span></div></div></div></td></tr><tr><td class="wovenodd-col1"><span lang="en" class="label">May contain</span></td><td class="wovenodd-col2"><div class="specChildren"><div class="specChild"><span class="specChildModule">core: </span><span class="specChildElements"><a class="link_odd_elementSpec" href="#TEI.choice" title="&lt;choice&gt;">choice</a> <a class="link_odd_elementSpec" href="#TEI.corr" title="&lt;corr&gt;">corr</a> <a class="link_odd_elementSpec" href="#TEI.date" title="&lt;date&gt;">date</a> <a class="link_odd_elementSpec" href="#TEI.name" title="&lt;name&gt;">name</a> <a class="link_odd_elementSpec" href="#TEI.note" title="&lt;note&gt;">note</a> <a class="link_odd_elementSpec" href="#TEI.num" title="&lt;num&gt;">num</a> <a class="link_odd_elementSpec" href="#TEI.orig" title="&lt;orig&gt;">orig</a> <a class="link_odd_elementSpec" href="#TEI.ptr" title="&lt;ptr&gt;">ptr</a> <a class="link_odd_elementSpec" href="#TEI.ref" title="&lt;ref&gt;">ref</a> <a class="link_odd_elementSpec" href="#TEI.reg" title="&lt;reg&gt;">reg</a> <a class="link_odd_elementSpec" href="#TEI.rs" title="&lt;rs&gt;">rs</a> <a class="link_odd_elementSpec" href="#TEI.sic" title="&lt;sic&gt;">sic</a> <a class="link_odd_elementSpec" href="#TEI.title" title="&lt;title&gt;">title</a></span></div><div class="specChild"><span class="specChildModule">namesdates: </span><span class="specChildElements"><a class="link_odd_elementSpec" href="#TEI.orgName" title="&lt;orgName&gt;">orgName</a> <a class="link_odd_elementSpec" href="#TEI.persName" title="&lt;persName&gt;">persName</a> <a class="link_odd_elementSpec" href="#TEI.placeName" title="&lt;placeName&gt;">placeName</a></span></div><div class="specChild">character data</div></div></td></tr><tr><td class="wovenodd-col1"><span lang="en" class="label">Note</span></td><td class="wovenodd-col2"><p> </p></td></tr><tr><td class="wovenodd-col1"><span lang="en" class="label">Example</span></td><td class="wovenodd-col2"><div id="index.xml-egXML-d29e12325" class="pre egXML_valid"><span class="element">&lt;div <span class="attribute">type</span>="<span class="attributevalue">factoid</span>" <span class="attribute">xml:id</span>="<span class="attributevalue">factoid-6</span>"
@@ -2041,7 +2053,9 @@ element persName
       " "
       " "
       " "
-      """ This @ref attribute is not a person URI in use in Syriaca.org data. If a URI is not current available, replace the number portion of the URI with a letter and use it consistently when encoding information about a person. Note that all person URIs take the form 'http://syriaca.org/person/{\d+}' (where {\d+} is a number)."""
+      " "
+      " "
+      """ is not currently in Syriaca.org person data. If a URI is not current available, replace the number portion of the URI with a letter and use it consistently when encoding information about a person. Note that all person URIs take the form 'http://syriaca.org/person/{\d+}' (where {\d+} is a number)."""
       " "
       "This @ref may contain only one URI."
    ],
@@ -2336,7 +2350,9 @@ element personGrp
  value="doc('https://raw.githubusercontent.com/srophe/srophe-eXist-app/master/documentation/indexes/places.xml')"/&gt;
 &lt;sch:let name="placeURIs"
  value="$placeIndex//tei:place/@ref"/&gt;
-&lt;sch:assert test=" every $i in . satisfies $i = $placeURIs"&gt; This @ref attribute is not a place URI in use in Syriaca.org data. Note that all place URIs take the form 'http://syriaca.org/place/{\d+}' (where {\d+} is a number).
+&lt;sch:let name="error" value="."/&gt;
+&lt;sch:assert test=" every $i in . satisfies $i = $placeURIs"&gt;
+ &lt;sch:value-of select="$error"/&gt; is not currently in Syriaca.org place data. Note that all place URIs take the form 'http://syriaca.org/place/{\d+}' (where {\d+} is a number).
 &lt;/sch:assert&gt;
 &lt;sch:report test="contains(., ' ')"&gt;This @ref may contain only one URI.&lt;/sch:report&gt;
 &lt;/sch:rule&gt;</div></td></tr></table></div></td></tr></table></div></td></tr><tr><td class="wovenodd-col1"><span lang="en" class="label">Member of</span></td><td class="wovenodd-col2"><div class="parent"><a class="link_odd_classSpec" href="#TEI.model.placeNamePart" title="model.placeNamePart">model.placeNamePart</a> </div></td></tr><tr><td class="wovenodd-col1"><span lang="en" class="label">Contained by</span></td><td class="wovenodd-col2"><div class="parent"><div class="specChildren"><div class="specChild"><span class="specChildModule">core: </span><span class="specChildElements"><a class="link_odd_elementSpec" href="#TEI.author" title="&lt;author&gt;">author</a> <a class="link_odd_elementSpec" href="#TEI.corr" title="&lt;corr&gt;">corr</a> <a class="link_odd_elementSpec" href="#TEI.date" title="&lt;date&gt;">date</a> <a class="link_odd_elementSpec" href="#TEI.desc" title="&lt;desc&gt;">desc</a> <a class="link_odd_elementSpec" href="#TEI.editor" title="&lt;editor&gt;">editor</a> <a class="link_odd_elementSpec" href="#TEI.head" title="&lt;head&gt;">head</a> <a class="link_odd_elementSpec" href="#TEI.name" title="&lt;name&gt;">name</a> <a class="link_odd_elementSpec" href="#TEI.note" title="&lt;note&gt;">note</a> <a class="link_odd_elementSpec" href="#TEI.num" title="&lt;num&gt;">num</a> <a class="link_odd_elementSpec" href="#TEI.orig" title="&lt;orig&gt;">orig</a> <a class="link_odd_elementSpec" href="#TEI.p" title="&lt;p&gt;">p</a> <a class="link_odd_elementSpec" href="#TEI.pubPlace" title="&lt;pubPlace&gt;">pubPlace</a> <a class="link_odd_elementSpec" href="#TEI.publisher" title="&lt;publisher&gt;">publisher</a> <a class="link_odd_elementSpec" href="#TEI.ref" title="&lt;ref&gt;">ref</a> <a class="link_odd_elementSpec" href="#TEI.reg" title="&lt;reg&gt;">reg</a> <a class="link_odd_elementSpec" href="#TEI.resp" title="&lt;resp&gt;">resp</a> <a class="link_odd_elementSpec" href="#TEI.sic" title="&lt;sic&gt;">sic</a> <a class="link_odd_elementSpec" href="#TEI.title" title="&lt;title&gt;">title</a></span></div><div class="specChild"><span class="specChildModule">header: </span><span class="specChildElements"><a class="link_odd_elementSpec" href="#TEI.change" title="&lt;change&gt;">change</a> <a class="link_odd_elementSpec" href="#TEI.edition" title="&lt;edition&gt;">edition</a></span></div><div class="specChild"><span class="specChildModule">namesdates: </span><span class="specChildElements"><a class="link_odd_elementSpec" href="#TEI.birth" title="&lt;birth&gt;">birth</a> <a class="link_odd_elementSpec" href="#TEI.death" title="&lt;death&gt;">death</a> <a class="link_odd_elementSpec" href="#TEI.langKnown" title="&lt;langKnown&gt;">langKnown</a> <a class="link_odd_elementSpec" href="#TEI.nationality" title="&lt;nationality&gt;">nationality</a> <a class="link_odd_elementSpec" href="#TEI.orgName" title="&lt;orgName&gt;">orgName</a> <a class="link_odd_elementSpec" href="#TEI.persName" title="&lt;persName&gt;">persName</a> <a class="link_odd_elementSpec" href="#TEI.placeName" title="&lt;placeName&gt;">placeName</a> <a class="link_odd_elementSpec" href="#TEI.residence" title="&lt;residence&gt;">residence</a></span></div></div></div></td></tr><tr><td class="wovenodd-col1"><span lang="en" class="label">May contain</span></td><td class="wovenodd-col2"><div class="specChildren"><div class="specChild"><span class="specChildModule">core: </span><span class="specChildElements"><a class="link_odd_elementSpec" href="#TEI.choice" title="&lt;choice&gt;">choice</a> <a class="link_odd_elementSpec" href="#TEI.corr" title="&lt;corr&gt;">corr</a> <a class="link_odd_elementSpec" href="#TEI.date" title="&lt;date&gt;">date</a> <a class="link_odd_elementSpec" href="#TEI.name" title="&lt;name&gt;">name</a> <a class="link_odd_elementSpec" href="#TEI.note" title="&lt;note&gt;">note</a> <a class="link_odd_elementSpec" href="#TEI.num" title="&lt;num&gt;">num</a> <a class="link_odd_elementSpec" href="#TEI.orig" title="&lt;orig&gt;">orig</a> <a class="link_odd_elementSpec" href="#TEI.ptr" title="&lt;ptr&gt;">ptr</a> <a class="link_odd_elementSpec" href="#TEI.ref" title="&lt;ref&gt;">ref</a> <a class="link_odd_elementSpec" href="#TEI.reg" title="&lt;reg&gt;">reg</a> <a class="link_odd_elementSpec" href="#TEI.rs" title="&lt;rs&gt;">rs</a> <a class="link_odd_elementSpec" href="#TEI.sic" title="&lt;sic&gt;">sic</a> <a class="link_odd_elementSpec" href="#TEI.title" title="&lt;title&gt;">title</a></span></div><div class="specChild"><span class="specChildModule">namesdates: </span><span class="specChildElements"><a class="link_odd_elementSpec" href="#TEI.orgName" title="&lt;orgName&gt;">orgName</a> <a class="link_odd_elementSpec" href="#TEI.persName" title="&lt;persName&gt;">persName</a> <a class="link_odd_elementSpec" href="#TEI.placeName" title="&lt;placeName&gt;">placeName</a></span></div><div class="specChild">character data</div></div></td></tr><tr><td class="wovenodd-col1"><span lang="en" class="label">Note</span></td><td class="wovenodd-col2"><p> </p></td></tr><tr><td class="wovenodd-col1"><span lang="en" class="label">Example</span></td><td class="wovenodd-col2"><div id="index.xml-egXML-d29e13529" class="pre egXML_valid"><span class="element">&lt;div <span class="attribute">type</span>="<span class="attributevalue">factoid</span>" <span class="attribute">xml:id</span>="<span class="attributevalue">factoid-46</span>"
@@ -2377,7 +2393,9 @@ element placeName
       " "
       " "
       " "
-      """ This @ref attribute is not a place URI in use in Syriaca.org data. Note that all place URIs take the form 'http://syriaca.org/place/{\d+}' (where {\d+} is a number)."""
+      " "
+      " "
+      """ is not currently in Syriaca.org place data. Note that all place URIs take the form 'http://syriaca.org/place/{\d+}' (where {\d+} is a number)."""
       " "
       "This @ref may contain only one URI."
    ],
@@ -2797,7 +2815,9 @@ element reg { <a class="link_ref" href="#TEI.macro.paraContent" title="macro.par
  value="doc('https://raw.githubusercontent.com/srophe/srophe-eXist-app/master/documentation/indexes/persons.xml')"/&gt;
 &lt;sch:let name="personURIs"
  value="$personIndex//tei:person/@ref"/&gt;
-&lt;sch:assert test=" every $i in (tokenize(., ' ')) satisfies $i = $personURIs"&gt; The @active, @passive, and @mutual attributes on &lt;relation&gt; must contain a person URI in use in Syriaca.org data. If a URI is not current available, replace the number portion of the URI with a letter and use it consistently when encoding information about a person. Note that all person URIs take the form 'http://syriaca.org/person/{\d+}' (where {\d+} is a number).
+&lt;sch:let name="error" value="."/&gt;
+&lt;sch:assert test=" every $i in (tokenize(., ' ')) satisfies $i = $personURIs"&gt;
+ &lt;sch:value-of select="$error"/&gt; is not currently in Syriaca.org person data. If a URI is not current available, replace the number portion of the URI with a letter and use it consistently when encoding information about a person. Note that all person URIs take the form 'http://syriaca.org/person/{\d+}' (where {\d+} is a number).
 &lt;/sch:assert&gt;
 &lt;/sch:rule&gt;</div></td></tr><tr><td class="wovenodd-col1"><span lang="en" class="label">Schematron</span></td><td class="wovenodd-col2"><div class="pre">
 &lt;s:assert test="@ref or @key or @name"&gt;One of the attributes 'name', 'ref' or 'key' must be supplied&lt;/s:assert&gt;</div></td></tr><tr><td class="wovenodd-col1"><span lang="en" class="label">Schematron</span></td><td class="wovenodd-col2"><div class="pre">
@@ -3162,9 +3182,11 @@ element sic { <a class="link_ref" href="#TEI.macro.paraContent" title="macro.par
  value="doc('https://raw.githubusercontent.com/srophe/srophe-app-data/dev/data/subjects/taxonomyIndex.xml')"/&gt;
 &lt;sch:let name="socioeconomicStatus"
  value="$ti//listURI[@ref = 'http://syriaca.org/keyword/socioeconomic-status']/uri"/&gt;
-&lt;sch:assert test=" every $i in (tokenize(., ' ')) satisfies $i = $socioeconomicStatus"&gt;SPEAR has a strong preference for using established URIs when possible but
- appropriate URIs are not always available in the Syriaca.org taxonomy. Please
- consider the following options from the taxonomy before using your own
+&lt;sch:let name="error" value="."/&gt;
+&lt;sch:assert test=" every $i in (tokenize(., ' ')) satisfies $i = $socioeconomicStatus"&gt;
+ &lt;sch:value-of select="$error"/&gt; is not currently in use. SPEAR has a strong preference for using established
+ URIs when possible but appropriate URIs are not always available in the Syriaca.org taxonomy. Please
+ consult the taxonomy. If no appropriate keyword exists in the following list, please use your own
  preferred descriptive term: &lt;sch:value-of select="string-join($socioeconomicStatus, '; ')"/&gt;.&lt;/sch:assert&gt;
 &lt;/sch:rule&gt;</div></td></tr></table></div></td></tr></table></div></td></tr><tr><td class="wovenodd-col1"><span lang="en" class="label">Contained by</span></td><td class="wovenodd-col2"><div class="parent"><div class="specChildren"><div class="specChild"><span class="specChildModule">namesdates: </span><span class="specChildElements"><a class="link_odd_elementSpec" href="#TEI.person" title="&lt;person&gt;">person</a> <a class="link_odd_elementSpec" href="#TEI.personGrp" title="&lt;personGrp&gt;">personGrp</a></span></div></div></div></td></tr><tr><td class="wovenodd-col1"><span lang="en" class="label">May contain</span></td><td class="wovenodd-col2"><div class="specChildren"><div class="specChild"><span class="specChildModule">core: </span><span class="specChildElements"><a class="link_odd_elementSpec" href="#TEI.note" title="&lt;note&gt;">note</a></span></div></div></td></tr><tr><td class="wovenodd-col1"><span lang="en" class="label">Note</span></td><td class="wovenodd-col2"><p>This customization removes the <a class="link_ref" href="#TEI.socecStatus" title="&lt;socecStatus&gt;">&lt;socecStatus&gt;</a> element from all attribute and member classes. It makes the <a class="link_ref" href="#TEI.note" title="&lt;note&gt;">&lt;note&gt;</a> element the only acceptable child of the <a class="link_ref" href="#TEI.socecStatus" title="&lt;socecStatus&gt;">&lt;socecStatus&gt;</a> element. It also requires a @ref attribute on the <a class="link_ref" href="#TEI.socecStatus" title="&lt;socecStatus&gt;">&lt;socecStatus&gt;</a> element.</p></td></tr><tr><td class="wovenodd-col1"><span lang="en" class="label">Example</span></td><td class="wovenodd-col2"><div id="index.xml-egXML-d29e18011" class="pre egXML_valid"><span class="element">&lt;div <span class="attribute">type</span>="<span class="attributevalue">factoid</span>" <span class="attribute">xml:id</span>="<span class="attributevalue">factoid-9</span>"
  <span class="attribute">resp</span>="<span class="attributevalue">#ktorabi #dschwartz</span>"&gt;</span>
@@ -3208,7 +3230,8 @@ element socecStatus
       " "
       " "
       " "
-      "SPEAR has a strong preference for using established URIs when possible but appropriate URIs are not always available in the Syriaca.org taxonomy. Please consider the following options from the taxonomy before using your own preferred descriptive term: "
+      " "
+      " is not currently in use. SPEAR has a strong preference for using established URIs when possible but appropriate URIs are not always available in the Syriaca.org taxonomy. Please consult the taxonomy. If no appropriate keyword exists in the following list, please use your own preferred descriptive term: "
       "."
    ],
    <a class="link_ref" href="#TEI.note" title="&lt;note&gt;">note</a>+
@@ -3287,9 +3310,11 @@ element sponsor { <a class="link_ref" href="#TEI.att.global" title="att.global">
  value="doc('https://raw.githubusercontent.com/srophe/srophe-app-data/dev/data/subjects/taxonomyIndex.xml')"/&gt;
 &lt;sch:let name="mentalStates"
  value="$ti//listURI[@ref = 'http://syriaca.org/keyword/mental-states']/uri"/&gt;
-&lt;sch:assert test=" every $i in (tokenize(., ' ')) satisfies $i = $mentalStates"&gt;SPEAR has a strong preference for using established URIs when possible but
- appropriate URIs are not always available in the Syriaca.org taxonomy. Please
- consider the following options from the taxonomy before using your own
+&lt;sch:let name="error" value="."/&gt;
+&lt;sch:assert test=" every $i in (tokenize(., ' ')) satisfies $i = $mentalStates"&gt;
+ &lt;sch:value-of select="$error"/&gt; is not currently in use. SPEAR has a strong preference for using established
+ URIs when possible but appropriate URIs are not always available in the Syriaca.org taxonomy. Please
+ consult the taxonomy. If no appropriate keyword exists in the following list, please use your own
  preferred descriptive term: &lt;sch:value-of select="string-join($mentalStates, '; ')"/&gt;.&lt;/sch:assert&gt;
 &lt;/sch:rule&gt;
 &lt;sch:rule context="tei:state[@type = 'sanctity']/@ana"
@@ -3298,9 +3323,11 @@ element sponsor { <a class="link_ref" href="#TEI.att.global" title="att.global">
  value="doc('https://raw.githubusercontent.com/srophe/srophe-app-data/dev/data/subjects/taxonomyIndex.xml')"/&gt;
 &lt;sch:let name="sanctity"
  value="$ti//listURI[@ref = 'http://syriaca.org/keyword/sanctity']/uri"/&gt;
-&lt;sch:assert test=" every $i in (tokenize(., ' ')) satisfies $i = $sanctity"&gt;SPEAR has a strong preference for using established URIs when possible but
- appropriate URIs are not always available in the Syriaca.org taxonomy. Please
- consider the following options from the taxonomy before using your own
+&lt;sch:let name="error" value="."/&gt;
+&lt;sch:assert test=" every $i in (tokenize(., ' ')) satisfies $i = $sanctity"&gt;
+ &lt;sch:value-of select="$error"/&gt; is not currently in use. SPEAR has a strong preference for using established
+ URIs when possible but appropriate URIs are not always available in the Syriaca.org taxonomy. Please
+ consult the taxonomy. If no appropriate keyword exists in the following list, please use your own
  preferred descriptive term: &lt;sch:value-of select="string-join($sanctity, '; ')"/&gt;.&lt;/sch:assert&gt;
 &lt;/sch:rule&gt;</div></td></tr></table></div></td></tr><tr><td class="odd_label">type</td><td class="odd_value"><div class="table"><table class="attDef"><tr><td class="odd_label"><span lang="en" class="label">Status</span></td><td class="odd_value"><span lang="en"><span class="required">Required</span></span></td></tr><tr><td class="odd_label"><span lang="en" class="label">Datatype</span></td><td class="odd_value"><a class="link_ref" href="#TEI.teidata.enumerated" title="teidata.enumerated">teidata.enumerated</a></td></tr><tr><td class="odd_label"><span lang="en" class="label">Legal values are:</span></td><td class="odd_value"><dl class="valList"><dt><span class="odd_label">mental</span></dt><dd><span>used for references to a person's mental traits; such as intelligence, mental disability, wisdom, etc.</span></dd><dt><span class="odd_label">sanctity</span></dt><dd><span>used for references to a person's sanctity.</span></dd></dl></td></tr></table></div></td></tr></table></div></td></tr><tr><td class="wovenodd-col1"><span lang="en" class="label">Contained by</span></td><td class="wovenodd-col2"><div class="parent"><div class="specChildren"><div class="specChild"><span class="specChildModule">namesdates: </span><span class="specChildElements"><a class="link_odd_elementSpec" href="#TEI.person" title="&lt;person&gt;">person</a> <a class="link_odd_elementSpec" href="#TEI.personGrp" title="&lt;personGrp&gt;">personGrp</a></span></div></div></div></td></tr><tr><td class="wovenodd-col1"><span lang="en" class="label">May contain</span></td><td class="wovenodd-col2"><div class="specChildren"><div class="specChild"><span class="specChildModule">core: </span><span class="specChildElements"><a class="link_odd_elementSpec" href="#TEI.note" title="&lt;note&gt;">note</a></span></div></div></td></tr><tr><td class="wovenodd-col1"><span lang="en" class="label">Example</span></td><td class="wovenodd-col2"><div id="index.xml-egXML-d29e18522" class="pre egXML_valid"><span class="element">&lt;div <span class="attribute">type</span>="<span class="attributevalue">factoid</span>" <span class="attribute">xml:id</span>="<span class="attributevalue">factoid-4</span>"
  <span class="attribute">resp</span>="<span class="attributevalue">#ktorabi</span>"&gt;</span>
@@ -3343,13 +3370,15 @@ element state
       " "
       " "
       " "
-      "SPEAR has a strong preference for using established URIs when possible but appropriate URIs are not always available in the Syriaca.org taxonomy. Please consider the following options from the taxonomy before using your own preferred descriptive term: "
+      " "
+      " is not currently in use. SPEAR has a strong preference for using established URIs when possible but appropriate URIs are not always available in the Syriaca.org taxonomy. Please consult the taxonomy. If no appropriate keyword exists in the following list, please use your own preferred descriptive term: "
       "."
       " "
       " "
       " "
       " "
-      "SPEAR has a strong preference for using established URIs when possible but appropriate URIs are not always available in the Syriaca.org taxonomy. Please consider the following options from the taxonomy before using your own preferred descriptive term: "
+      " "
+      " is not currently in use. SPEAR has a strong preference for using established URIs when possible but appropriate URIs are not always available in the Syriaca.org taxonomy. Please consult the taxonomy. If no appropriate keyword exists in the following list, please use your own preferred descriptive term: "
       "."
    ],
    attribute type { "mental" | "sanctity" },
@@ -3605,9 +3634,11 @@ element titleStmt
  value="doc('https://raw.githubusercontent.com/srophe/srophe-app-data/dev/data/subjects/taxonomyIndex.xml')"/&gt;
 &lt;sch:let name="ethnicLabels"
  value="$ti//listURI[@ref = 'http://syriaca.org/keyword/ethnicity']/uri"/&gt;
-&lt;sch:assert test=" every $i in (tokenize(., ' ')) satisfies $i = $ethnicLabels"&gt;SPEAR has a strong preference for using established URIs when possible but
- appropriate URIs are not always available in the Syriaca.org taxonomy. Please
- consider the following options from the taxonomy before using your own
+&lt;sch:let name="error" value="."/&gt;
+&lt;sch:assert test=" every $i in (tokenize(., ' ')) satisfies $i = $ethnicLabels"&gt;
+ &lt;sch:value-of select="$error"/&gt; is not currently in use. SPEAR has a strong preference for using established
+ URIs when possible but appropriate URIs are not always available in the Syriaca.org taxonomy. Please
+ consult the taxonomy. If no appropriate keyword exists in the following list, please use your own
  preferred descriptive term: &lt;sch:value-of select="string-join($ethnicLabels, '; ')"/&gt;.&lt;/sch:assert&gt;
 &lt;/sch:rule&gt;
 &lt;sch:rule context="tei:trait[@type = 'gender']/@ana"
@@ -3693,7 +3724,8 @@ element trait
       " "
       " "
       " "
-      "SPEAR has a strong preference for using established URIs when possible but appropriate URIs are not always available in the Syriaca.org taxonomy. Please consider the following options from the taxonomy before using your own preferred descriptive term: "
+      " "
+      " is not currently in use. SPEAR has a strong preference for using established URIs when possible but appropriate URIs are not always available in the Syriaca.org taxonomy. Please consult the taxonomy. If no appropriate keyword exists in the following list, please use your own preferred descriptive term: "
       "."
       " "
       " "
@@ -4203,6 +4235,6 @@ teidata.xTruthValue = xsd:boolean | ( "unknown" | "inapplicable" )</pre></td></t
 teidata.xpath = text</pre></td></tr><tr><td class="wovenodd-col1"><span lang="en" class="label">Note</span></td><td class="wovenodd-col2"><p>Any XPath expression using the syntax defined in [[undefined XSLT2]].</p><p>When writing programs that evaluate XPath expressions, programmers should be mindful of the possibility of malicious code injection attacks. For further information about XPath injection attacks, see the <a class="link_ref" href="https://www.owasp.org/index.php/XPATH_Injection">article at OWASP</a>.</p></td></tr></table></div></div></div><!--TEI back--><div class="stdfooter autogenerated"><div class="footer"><!--standard links to project, institution etc--><a class="plain" href="/">Home</a> </div><address>Date: <br /><!--
 	  Generated from index.xml using XSLT stylesheets version 7.49.0
 	       based on http://www.tei-c.org/Stylesheets/
-	       on 2020-07-01T22:23:48Z.
+	       on 2020-07-15T18:08:19Z.
 	       SAXON PE 9.9.1.7.
 		 --></address></div></body></html>

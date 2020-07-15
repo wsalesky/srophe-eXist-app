@@ -1776,13 +1776,14 @@
                   value="doc('https://raw.githubusercontent.com/srophe/srophe-app-data/dev/data/subjects/taxonomyIndex.xml')"/>
                 <sch:let name="taxonomyAllURIs"
                   value="$ti//listURI[@type = 'taxonomyAllURIs']/uri"/>
+                <sch:let name="error" value="."/>
                 <sch:assert
                   test="
                   every $i in (tokenize(., ' '))
                   satisfies $i = $taxonomyAllURIs"
-                  >SPEAR has a strong preference for using established URIs when possible but
-                  appropriate URIs are not always available in the Syriaca.org taxonomy. Please
-                  consult the taxonomy before choosing a keyword of your own.
+                  ><sch:value-of select="$error"/> is not currently in use. SPEAR has a strong preference for using established 
+                  URIs when possible but appropriate URIs are not always available in the Syriaca.org taxonomy. Please
+                  consult the taxonomy. If no appropriate keyword exists please choosing a keyword of your own.
                 </sch:assert>
               </sch:rule>
             </constraint>
@@ -2058,10 +2059,11 @@
                   <sch:rule context="//tei:text//tei:persName/@ref" role="warning">
                     <sch:let name="personIndex" value="doc('https://raw.githubusercontent.com/srophe/srophe-eXist-app/master/documentation/indexes/persons.xml')"></sch:let>
                     <sch:let name="personURIs" value="$personIndex//tei:person/@ref"/>
+                    <sch:let name="error" value="."/>
                     <sch:assert test="
                       every $i in .
                       satisfies $i = $personURIs">
-                      This @ref attribute is not a person URI in use in Syriaca.org data. If a URI is not current available, replace the number portion of the URI with a letter and use it consistently when encoding information about a person. Note that all person URIs take the form 'http://syriaca.org/person/{\d+}' (where {\d+} is a number).
+                      <sch:value-of select="$error"/> is not currently in Syriaca.org person data. If a URI is not current available, replace the number portion of the URI with a letter and use it consistently when encoding information about a person. Note that all person URIs take the form 'http://syriaca.org/person/{\d+}' (where {\d+} is a number).
                     </sch:assert>
                     <sch:report test="contains(., ' ')">This @ref may contain only one URI.</sch:report>
                   </sch:rule>
@@ -2126,10 +2128,11 @@
                   <sch:rule context="//tei:text//tei:placeName/@ref" role="warning">
                     <sch:let name="placeIndex" value="doc('https://raw.githubusercontent.com/srophe/srophe-eXist-app/master/documentation/indexes/places.xml')"/>
                     <sch:let name="placeURIs" value="$placeIndex//tei:place/@ref"/>
+                    <sch:let name="error" value="."/>
                     <sch:assert test="
                       every $i in .
                       satisfies $i = $placeURIs">
-                      This @ref attribute is not a place URI in use in Syriaca.org data. Note that all place URIs take the form 'http://syriaca.org/place/{\d+}' (where {\d+} is a number).
+                      <sch:value-of select="$error"/> is not currently in Syriaca.org place data. Note that all place URIs take the form 'http://syriaca.org/place/{\d+}' (where {\d+} is a number).
                     </sch:assert>
                     <sch:report test="contains(., ' ')">This @ref may contain only one URI.</sch:report>
                   </sch:rule>
@@ -2352,10 +2355,11 @@
               <sch:rule context="tei:div/tei:listRelation/tei:relation/@mutual | tei:div/tei:listRelation/tei:relation/@active | tei:div/tei:listRelation/tei:relation/@passive" role="warning">
                 <sch:let name="personIndex" value="doc('https://raw.githubusercontent.com/srophe/srophe-eXist-app/master/documentation/indexes/persons.xml')"></sch:let>
                 <sch:let name="personURIs" value="$personIndex//tei:person/@ref"/>
+                <sch:let name="error" value="."/>
                 <sch:assert test="
                   every $i in (tokenize(., ' '))
                   satisfies $i = $personURIs">
-                  The @active, @passive, and @mutual attributes on &lt;relation&gt; must contain a person URI in use in Syriaca.org data. If a URI is not current available, replace the number portion of the URI with a letter and use it consistently when encoding information about a person. Note that all person URIs take the form 'http://syriaca.org/person/{\d+}' (where {\d+} is a number).
+                  <sch:value-of select="$error"/> is not currently in Syriaca.org person data. If a URI is not current available, replace the number portion of the URI with a letter and use it consistently when encoding information about a person. Note that all person URIs take the form 'http://syriaca.org/person/{\d+}' (where {\d+} is a number).
                 </sch:assert>
               </sch:rule>
             </constraint>
@@ -3069,13 +3073,14 @@
                       value="doc('https://raw.githubusercontent.com/srophe/srophe-app-data/dev/data/subjects/taxonomyIndex.xml')"/>
                     <sch:let name="fieldsOfStudy"
                       value="$ti//listURI[@ref = 'http://syriaca.org/keyword/fields-of-study']/uri"/>
+                    <sch:let name="error" value="."/>
                     <sch:assert
                       test="
                       every $i in (tokenize(., ' '))
                       satisfies $i = $fieldsOfStudy"
-                      >SPEAR has a strong preference for using established URIs when possible but
-                      appropriate URIs are not always available in the Syriaca.org taxonomy. Please
-                      consider the following options from the taxonomy before using your own
+                      ><sch:value-of select="$error"/> is not currently in use. SPEAR has a strong preference for using established 
+                      URIs when possible but appropriate URIs are not always available in the Syriaca.org taxonomy. Please
+                      consult the taxonomy. If no appropriate keyword exists in the following list, please use your own
                       preferred descriptive term: <sch:value-of
                         select="string-join($fieldsOfStudy, ';  ')"/>.</sch:assert>
                   </sch:rule>
@@ -3225,13 +3230,14 @@
                       value="doc('https://raw.githubusercontent.com/srophe/srophe-app-data/dev/data/subjects/taxonomyIndex.xml')"/>
                     <sch:let name="occupations"
                       value="$ti//listURI[@ref = 'http://syriaca.org/keyword/occupations']/uri"/>
+                    <sch:let name="error" value="."/>
                     <sch:assert
                       test="
                       every $i in (tokenize(., ' '))
                       satisfies $i = $occupations"
-                      >SPEAR has a strong preference for using established URIs when possible but
-                      appropriate URIs are not always available in the Syriaca.org taxonomy. Please
-                      consider the following options from the taxonomy before using your own
+                      ><sch:value-of select="$error"/> is not currently in use. SPEAR has a strong preference for using established 
+                      URIs when possible but appropriate URIs are not always available in the Syriaca.org taxonomy. Please
+                      consult the taxonomy. If no appropriate keyword exists in the following list, please use your own
                       preferred descriptive term: <sch:value-of
                         select="string-join($occupations, ';  ')"/>.</sch:assert>
                   </sch:rule>
@@ -3359,13 +3365,14 @@
                   value="doc('https://raw.githubusercontent.com/srophe/srophe-app-data/dev/data/subjects/taxonomyIndex.xml')"/>
                 <sch:let name="languages"
                   value="$ti//listURI[@ref = 'http://syriaca.org/keyword/languages']/uri"/>
+                <sch:let name="error" value="."/>
                 <sch:assert
                   test="
                   every $i in (tokenize(., ' '))
                   satisfies $i = $languages"
-                  >SPEAR has a strong preference for using established URIs when possible but
-                  appropriate URIs are not always available in the Syriaca.org taxonomy. Please
-                  consider the following options from the taxonomy before using your own
+                  ><sch:value-of select="$error"/> is not currently in use. SPEAR has a strong preference for using established 
+                  URIs when possible but appropriate URIs are not always available in the Syriaca.org taxonomy. Please
+                  consult the taxonomy. If no appropriate keyword exists in the following list, please use your own
                   preferred descriptive term: <sch:value-of
                     select="string-join($languages, ';  ')"/>.
                 </sch:assert>
@@ -3445,13 +3452,14 @@
                       value="doc('https://raw.githubusercontent.com/srophe/srophe-app-data/dev/data/subjects/taxonomyIndex.xml')"/>
                     <sch:let name="socioeconomicStatus"
                       value="$ti//listURI[@ref = 'http://syriaca.org/keyword/socioeconomic-status']/uri"/>
+                    <sch:let name="error" value="."/>
                     <sch:assert
                       test="
                       every $i in (tokenize(., ' '))
                       satisfies $i = $socioeconomicStatus"
-                      >SPEAR has a strong preference for using established URIs when possible but
-                      appropriate URIs are not always available in the Syriaca.org taxonomy. Please
-                      consider the following options from the taxonomy before using your own
+                      ><sch:value-of select="$error"/> is not currently in use. SPEAR has a strong preference for using established 
+                      URIs when possible but appropriate URIs are not always available in the Syriaca.org taxonomy. Please
+                      consult the taxonomy. If no appropriate keyword exists in the following list, please use your own
                       preferred descriptive term: <sch:value-of
                         select="string-join($socioeconomicStatus, ';  ')"/>.</sch:assert>
                   </sch:rule>
@@ -3542,13 +3550,14 @@
                       value="doc('https://raw.githubusercontent.com/srophe/srophe-app-data/dev/data/subjects/taxonomyIndex.xml')"/>
                     <sch:let name="ethnicLabels"
                       value="$ti//listURI[@ref = 'http://syriaca.org/keyword/ethnicity']/uri"/>
+                    <sch:let name="error" value="."/>
                     <sch:assert
                       test="
                       every $i in (tokenize(., ' '))
                       satisfies $i = $ethnicLabels"
-                      >SPEAR has a strong preference for using established URIs when possible but
-                      appropriate URIs are not always available in the Syriaca.org taxonomy. Please
-                      consider the following options from the taxonomy before using your own
+                      ><sch:value-of select="$error"/> is not currently in use. SPEAR has a strong preference for using established 
+                      URIs when possible but appropriate URIs are not always available in the Syriaca.org taxonomy. Please
+                      consult the taxonomy. If no appropriate keyword exists in the following list, please use your own
                       preferred descriptive term: <sch:value-of
                         select="string-join($ethnicLabels, ';  ')"/>.</sch:assert>
                   </sch:rule>
@@ -3735,13 +3744,14 @@
                       value="doc('https://raw.githubusercontent.com/srophe/srophe-app-data/dev/data/subjects/taxonomyIndex.xml')"/>
                     <sch:let name="mentalStates"
                       value="$ti//listURI[@ref = 'http://syriaca.org/keyword/mental-states']/uri"/>
+                    <sch:let name="error" value="."/>
                     <sch:assert
                       test="
                       every $i in (tokenize(., ' '))
                       satisfies $i = $mentalStates"
-                      >SPEAR has a strong preference for using established URIs when possible but
-                      appropriate URIs are not always available in the Syriaca.org taxonomy. Please
-                      consider the following options from the taxonomy before using your own
+                      ><sch:value-of select="$error"/> is not currently in use. SPEAR has a strong preference for using established 
+                      URIs when possible but appropriate URIs are not always available in the Syriaca.org taxonomy. Please
+                      consult the taxonomy. If no appropriate keyword exists in the following list, please use your own
                       preferred descriptive term: <sch:value-of
                         select="string-join($mentalStates, ';  ')"/>.</sch:assert>
                   </sch:rule>
@@ -3750,13 +3760,14 @@
                       value="doc('https://raw.githubusercontent.com/srophe/srophe-app-data/dev/data/subjects/taxonomyIndex.xml')"/>
                     <sch:let name="sanctity"
                       value="$ti//listURI[@ref = 'http://syriaca.org/keyword/sanctity']/uri"/>
+                    <sch:let name="error" value="."/>
                     <sch:assert
                       test="
                       every $i in (tokenize(., ' '))
                       satisfies $i = $sanctity"
-                      >SPEAR has a strong preference for using established URIs when possible but
-                      appropriate URIs are not always available in the Syriaca.org taxonomy. Please
-                      consider the following options from the taxonomy before using your own
+                      ><sch:value-of select="$error"/> is not currently in use. SPEAR has a strong preference for using established 
+                      URIs when possible but appropriate URIs are not always available in the Syriaca.org taxonomy. Please
+                      consult the taxonomy. If no appropriate keyword exists in the following list, please use your own
                       preferred descriptive term: <sch:value-of
                         select="string-join($sanctity, ';  ')"/>.</sch:assert>
                   </sch:rule>
