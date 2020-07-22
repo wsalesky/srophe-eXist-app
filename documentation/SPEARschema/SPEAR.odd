@@ -897,7 +897,7 @@
                 <dataRef key="teidata.enumerated"/>
               </datatype>
               <valList type="closed">
-                <valItem ident="pp">
+                <valItem ident="p">
                   <desc>the element contains a page number or page range.</desc>
                 </valItem>
                 <valItem ident="line">
