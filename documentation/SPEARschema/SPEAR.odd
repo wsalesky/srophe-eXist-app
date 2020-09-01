@@ -990,7 +990,7 @@
                 <elementRef key="idno" minOccurs="1" maxOccurs="1"/>
                 <elementRef key="listPerson" minOccurs="1" maxOccurs="1"/>
                 <elementRef key="bibl" minOccurs="1" maxOccurs="unbounded"/>
-                <elementRef key="note" minOccurs="0" maxOccurs="1"/>
+                <elementRef key="note" minOccurs="0" maxOccurs="unbounded"/>
               </sequence>
 
               <sequence preserveOrder="true">
@@ -998,14 +998,14 @@
                 <elementRef key="listEvent" minOccurs="1" maxOccurs="1"/>
                 <elementRef key="bibl" minOccurs="1" maxOccurs="unbounded"/>
                 <elementRef key="listRelation" minOccurs="0" maxOccurs="1"/>
-                <elementRef key="note" minOccurs="0" maxOccurs="1"/>
+                <elementRef key="note" minOccurs="0" maxOccurs="unbounded"/>
               </sequence>
 
               <sequence preserveOrder="true">
                 <elementRef key="idno" minOccurs="1" maxOccurs="1"/>
                 <elementRef key="listRelation" minOccurs="1" maxOccurs="1"/>
                 <elementRef key="bibl" minOccurs="1" maxOccurs="unbounded"/>
-                <elementRef key="note" minOccurs="0" maxOccurs="1"/>
+                <elementRef key="note" minOccurs="0" maxOccurs="unbounded"/>
               </sequence>
             </alternate>
           </content>
@@ -1250,12 +1250,6 @@
         </elementSpec>
 
         <elementSpec ident="note" module="core" mode="change">
-          <classes mode="replace">
-            <memberOf key="model.correspActionPart"/>
-            <memberOf key="model.correspContextPart"/>
-            <memberOf key="model.correspDescPart"/>
-            <memberOf key="model.noteLike"/>
-          </classes>
           <constraintSpec ident="note-children-in-context" scheme="schematron">
             <constraint>
               <sch:rule context="tei:note[parent::tei:birth and preceding-sibling::tei:placeName]">
@@ -1343,18 +1337,13 @@
               </datatype>
               <constraintSpec ident="type-note-child-ab" scheme="schematron">
                 <constraint>
-                  <sch:rule context="tei:ab/tei:note">
-                    <sch:assert test="@type = 'incerta' or 'dubia' or 'errata'">Only notes of @type "incerta", "dubia", or
-                      "errata" may appear as children of a &lt;ab&gt; element.</sch:assert>
+                  <sch:rule context="//tei:ab/tei:note/@type">
+                    <sch:report test=". = 'desc'">"Desc" not allowed. Only notes of @type "incerta", "dubia", or
+                      "errata" or "relatedEvent" may appear as children of an &lt;ab&gt; element.</sch:report>
                   </sch:rule>
-                  <!--<sch:rule context="tei:ab/tei:note/@type">
-                    <sch:report test=". = 'desc'">Only notes of @type "incerta", "dubia", or
-                      "errata" may appear as children of a &lt;ab&gt; element.</sch:report>
+                  <sch:rule context="//tei:note[@type='relatedEvent']">
+                    <sch:assert test=".[ancestor::tei:ab/@subtype='event']">"relatedEvent" not allowed. This type of note is only allowed as a descendant of &lt;ab&gt; with @type="event".</sch:assert>
                   </sch:rule>
-                  <sch:rule context="tei:ab/tei:note/@type">
-                    <sch:assert test=". = 'incerta' or 'dubia' or 'errata'">Only notes of @type "incerta", "dubia", or
-                      "errata" may appear as children of a &lt;ab&gt; element.</sch:assert>
-                  </sch:rule>-->
                 </constraint>
               </constraintSpec>
               <constraintSpec ident="notes-type-desc" scheme="schematron">
@@ -1373,14 +1362,15 @@
                 <valItem ident="incerta"/>
                 <valItem ident="dubia"/>
                 <valItem ident="errata"/>
+                <valItem ident="relatedEvent"/>
               </valList>
             </attDef>
             <attDef ident="ana" usage="opt" mode="replace">
               <datatype>
-                <dataRef key="teidata.enumerated"/>
+                <dataRef key="teidata.pointer"/>
               </datatype>
               <valList type="closed">
-                <valItem ident="calculated"/>
+                <valItem ident="#calculated"/>
               </valList>
             </attDef>
           </attList>
