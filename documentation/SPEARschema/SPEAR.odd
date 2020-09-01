@@ -514,8 +514,8 @@
             <elementRef key="ab" minOccurs="1" maxOccurs="unbounded"/>
           </content>
           <remarks>
-            <p>The body of a SPEAR file contains factoids, each of which appears in a separate <gi>div</gi> element. 
-              As such,  <gi>div</gi> is the only acceptable child element of <gi>body</gi>.</p>
+            <p>The body of a SPEAR file contains factoids, each of which appears in a separate <gi>ab</gi> element. 
+              As such,  <gi>ab</gi> is the only acceptable child element of <gi>body</gi>.</p>
           </remarks>
         </elementSpec>
 
@@ -526,10 +526,10 @@
           <remarks>
             <p>SPEAR has three basic types of data located in <gi>listPerson</gi>, <gi>listEvent</gi>,
               and <gi>listRelation</gi> elements. The first two are allowed to nest inside a
-              <gi>div</gi> element while the last one is not. For uniformity and ease of encoding,
+              <gi>ab</gi> element while the last one is not. For uniformity and ease of encoding,
               SPEAR makes the <gi>listRelation</gi> element a part of the model class
               model.listLike so that it can function like other list elements and nest directly
-              under the <gi>div</gi> element. SPEAR removes all attributes from the
+              under the <gi>ab</gi> element. SPEAR removes all attributes from the
               <gi>listRelation</gi> element and restricts the child elements to <gi>relation</gi>.</p>
           </remarks>
         </elementSpec>
@@ -792,7 +792,7 @@
             <textNode/>
           </content>
           <constraintSpec ident="rsInRelationDesc" scheme="schematron">
-            <!-- I need to rewrite a rule that will do this this @active, @passive, and @mutual in div/listRelation. -->
+            <!-- I need to rewrite a rule that will do this this @active, @passive, and @mutual in ab/listRelation. -->
             <constraint>
               <sch:rule context="//tei:ab/tei:listEvent/tei:listRelation/tei:relation/tei:desc/tei:rs/@ref">
                 <sch:let name="SameEventURIs" value="tokenize(ancestor::tei:relation/@mutual, ' ')"/>
@@ -1032,7 +1032,7 @@
             </constraint>
           </constraintSpec>
           <attList>
-            <attDef ident="xml:id" usage="opt" mode="add">
+            <attDef ident="xml:id" usage="req" mode="add">
               <datatype>
                 <dataRef name="ID"/>
               </datatype>
@@ -1050,13 +1050,13 @@
                 </constraint>
               </constraintSpec>
             </attDef>
-            <attDef ident="resp" usage="opt" mode="add">
+            <attDef ident="resp" usage="req" mode="add">
               <!-- Take rule from place ODD that will require values to validate against the list. -->
               <datatype minOccurs="1" maxOccurs="unbounded">
                 <dataRef key="teidata.pointer"/>
               </datatype>
             </attDef>
-            <attDef ident="type" usage="opt">
+            <attDef ident="type" usage="req">
               <datatype>
                 <dataRef key="teidata.enumerated"/>
               </datatype>
@@ -1146,14 +1146,14 @@
             <p>
               <!-- Rewrite -->
               This customization requires the basic pattern of SPEAR to be encoded correctly. Each
-              factoid is encoded in a <gi>div</gi> element. Since each factoid contains data of type
-              Person, Event, or Relation, the schema requires that a <gi>div</gi> must then contain a
+              factoid is encoded in a <gi>ab</gi> element. Since each factoid contains data of type
+              Person, Event, or Relation, the schema requires that a <gi>ab</gi> must then contain a
               <gi>listPerson</gi>, <gi>listEvent</gi>, or <gi>listRelation</gi> element. Since every
-              factoid requires a bibliographic reference, every <gi>div</gi> must contain one or more
+              factoid requires a bibliographic reference, every <gi>ab</gi> must contain one or more
               <gi>bibl</gi> elements. The encoder then has the option of adding a <gi>note</gi>
               element to the factoid as well. This customization also requires that every
-              <gi>div</gi> element receives a @uri attribute that identifies the content of the
-              <gi>div</gi> as a SPEAR factoid.</p>
+              <gi>ab</gi> element receives a @uri attribute that identifies the content of the
+              <gi>ab</gi> as a SPEAR factoid.</p>
           </remarks>
         </elementSpec>
         
