@@ -5,10 +5,10 @@
          xmlns:teix="http://www.tei-c.org/ns/Examples"
          datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
          ns="http://www.tei-c.org/ns/1.0"><!--
-Schema generated from ODD source 2018-07-12T15:09:54Z. .
-TEI Edition: Version 3.3.0. Last updated on
-	31st January 2018, revision f4d8439
-TEI Edition Location: http://www.tei-c.org/Vault/P5/Version 3.3.0/
+Schema generated from ODD source 2020-07-01T22:23:43Z. .
+TEI Edition: Version 4.0.0. Last updated on
+	13th February 2020, revision ccd19b0ba
+TEI Edition Location: http://www.tei-c.org/Vault/P5/Version 4.0.0/
   
 --><!--[http://creativecommons.org/licenses/by/3.0/] Distributed under a Creative Commons Attribution 3.0 Unported License.-->
    <define name="macro.paraContent">
@@ -2203,7 +2203,7 @@ Sample values include: 1] main; 2] sub (subordinate) ; 3] alt (alternate) ; 4] s
          <attribute name="unit">
             <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
             <choice>
-               <value>pp</value>
+               <value>p</value>
                <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">the element contains a page number or page range.</a:documentation>
                <value>line</value>
                <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">the element contains a line number or line range.</a:documentation>
@@ -4041,6 +4041,22 @@ Suggested values include: 1] sent; 2] received; 3] transmitted; 4] redirected; 5
             <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
             <data type="anyURI"/>
          </attribute>
+         <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
+                  id="SPEAR-persName-ref-ref-on-persName-constraint-rule-67">
+            <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+                      xmlns:srophe="https://srophe.app"
+                      xmlns="http://www.tei-c.org/ns/1.0"
+                      context="//tei:text//tei:persName/@ref"
+                      role="warning">
+               <sch:let name="personIndex"
+                        value="doc('https://raw.githubusercontent.com/srophe/srophe-eXist-app/master/documentation/indexes/persons.xml')"/>
+               <sch:let name="personURIs" value="$personIndex//tei:person/@ref"/>
+               <sch:assert test="                       every $i in .                       satisfies $i = $personURIs">
+                      This @ref attribute is not a person URI in use in Syriaca.org data. If a URI is not current available, replace the number portion of the URI with a letter and use it consistently when encoding information about a person. Note that all person URIs take the form 'http://syriaca.org/person/{\d+}' (where {\d+} is a number).
+                    </sch:assert>
+               <sch:report test="contains(., ' ')">This @ref may contain only one URI.</sch:report>
+            </sch:rule>
+         </pattern>
          <empty/>
       </element>
    </define>
@@ -4052,6 +4068,22 @@ Suggested values include: 1] sent; 2] received; 3] transmitted; 4] redirected; 5
             <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
             <data type="anyURI"/>
          </attribute>
+         <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
+                  id="SPEAR-placeName-ref-ref-on-placeName-constraint-rule-68">
+            <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+                      xmlns:srophe="https://srophe.app"
+                      xmlns="http://www.tei-c.org/ns/1.0"
+                      context="//tei:text//tei:placeName/@ref"
+                      role="warning">
+               <sch:let name="placeIndex"
+                        value="doc('https://raw.githubusercontent.com/srophe/srophe-eXist-app/master/documentation/indexes/places.xml')"/>
+               <sch:let name="placeURIs" value="$placeIndex//tei:place/@ref"/>
+               <sch:assert test="                       every $i in .                       satisfies $i = $placeURIs">
+                      This @ref attribute is not a place URI in use in Syriaca.org data. Note that all place URIs take the form 'http://syriaca.org/place/{\d+}' (where {\d+} is a number).
+                    </sch:assert>
+               <sch:report test="contains(., ' ')">This @ref may contain only one URI.</sch:report>
+            </sch:rule>
+         </pattern>
          <empty/>
       </element>
    </define>
@@ -4114,6 +4146,41 @@ Suggested values include: 1] sent; 2] received; 3] transmitted; 4] redirected; 5
             <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
             <data type="anyURI"/>
          </attribute>
+         <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
+                  id="SPEAR-education-ana-ref-in-education-constraint-rule-69">
+            <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+                      xmlns:srophe="https://srophe.app"
+                      xmlns="http://www.tei-c.org/ns/1.0"
+                      context="//tei:education/@ana">
+               <sch:let name="anaValues" value="tokenize(., ' ')"/>
+               <sch:assert test="                       every $i in $anaValues                       satisfies starts-with($i, 'http://syriaca.org/keyword/')">
+                      Each @ana attribute value must start with "http://syriaca.org/keyword/" and multiple 
+                      values must be space separated.
+                    </sch:assert>
+               <sch:assert test="count(distinct-values($anaValues)) = count($anaValues)">
+                      The same keyword URI may not appear twice as the value of the @ana attribute. </sch:assert>
+               <sch:report test="contains(., ',') or contains(., ';')">
+                      Multiple @ana attributes should be separated with one blank space
+                    </sch:report>
+               <sch:report test="                       every $i in $anaValues                       satisfies contains(substring-after($i, 'http://syriaca.org/keyword'), 'http:')">
+                      Multiple @ana attributes should be separated with one blank space
+                    </sch:report>
+            </sch:rule>
+            <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+                      xmlns:srophe="https://srophe.app"
+                      xmlns="http://www.tei-c.org/ns/1.0"
+                      context="tei:education/@ana"
+                      role="warning">
+               <sch:let name="ti"
+                        value="doc('https://raw.githubusercontent.com/srophe/srophe-app-data/dev/data/subjects/taxonomyIndex.xml')"/>
+               <sch:let name="fieldsOfStudy"
+                        value="$ti//listURI[@ref = 'http://syriaca.org/keyword/fields-of-study']/uri"/>
+               <sch:assert test="                       every $i in (tokenize(., ' '))                       satisfies $i = $fieldsOfStudy">SPEAR has a strong preference for using established URIs when possible but
+                      appropriate URIs are not always available in the Syriaca.org taxonomy. Please
+                      consider the following options from the taxonomy before using your own
+                      preferred descriptive term: <sch:value-of select="string-join($fieldsOfStudy, ';  ')"/>.</sch:assert>
+            </sch:rule>
+         </pattern>
          <empty/>
       </element>
    </define>
@@ -4121,6 +4188,47 @@ Suggested values include: 1] sent; 2] received; 3] transmitted; 4] redirected; 5
       <element name="event">
          <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
          <ref name="desc"/>
+         <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
+                  id="SPEAR-event-ana-on-event-constraint-rule-71">
+            <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+                      xmlns:srophe="https://srophe.app"
+                      xmlns="http://www.tei-c.org/ns/1.0"
+                      context="tei:event/@ana">
+               <sch:let name="anaValues" value="tokenize(., ' ')"/>
+               <sch:assert test="                   every $i in $anaValues                   satisfies starts-with($i, 'http://syriaca.org/keyword/')">
+                  Each @ana attribute value must start with "http://syriaca.org/keyword/" and multiple 
+                  values must be space separated.
+                </sch:assert>
+               <sch:assert test="count(distinct-values($anaValues)) = count($anaValues)">
+                  The same keyword URI may not appear twice as the value of the @ana attribute. </sch:assert>
+               <sch:report test="contains(., ',') or contains(., ';')">
+                  Multiple @ana attributes should be separated with one blank space
+                </sch:report>
+               <sch:report test="                   every $i in $anaValues                   satisfies contains(substring-after($i, 'http://syriaca.org/keyword'), 'http:')">
+                  Multiple @ana attributes should be separated with one blank space
+                </sch:report>
+            </sch:rule>
+            <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+                      xmlns:srophe="https://srophe.app"
+                      xmlns="http://www.tei-c.org/ns/1.0"
+                      context="tei:event/@ana"
+                      role="warning">
+               <sch:let name="ti"
+                        value="doc('https://raw.githubusercontent.com/srophe/srophe-app-data/dev/data/subjects/taxonomyIndex.xml')"/>
+               <sch:let name="taxonomyAllURIs"
+                        value="$ti//listURI[@type = 'taxonomyAllURIs']/uri"/>
+               <sch:assert test="                   every $i in (tokenize(., ' '))                   satisfies $i = $taxonomyAllURIs">SPEAR has a strong preference for using established URIs when possible but
+                  appropriate URIs are not always available in the Syriaca.org taxonomy. Please
+                  consult the taxonomy before choosing a keyword of your own.
+                </sch:assert>
+            </sch:rule>
+         </pattern>
+         <ref name="att.global.attributes"/>
+         <ref name="att.datable.attributes"/>
+         <ref name="att.editLike.attributes"/>
+         <ref name="att.typed.attributes"/>
+         <ref name="att.naming.attributes"/>
+         <ref name="att.sortable.attributes"/>
          <optional>
             <ref name="ptr"/>
          </optional>
@@ -4137,12 +4245,47 @@ Suggested values include: 1] sent; 2] received; 3] transmitted; 4] redirected; 5
    </define>
    <define name="langKnown">
       <element name="langKnown">
-         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-         <empty/>
-         <attribute name="ref">
-            <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
-            <data type="anyURI"/>
-         </attribute>
+         <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0">(language known) summarizes the state of a person's linguistic competence, i.e., knowledge of a single language. [15.2.2. The Participant Description]</a:documentation>
+         <ref name="macro.phraseSeq.limited"/>
+         <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
+                  id="SPEAR-langKnown-ana-in-langKnown-constraint-rule-73">
+            <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+                      xmlns:srophe="https://srophe.app"
+                      xmlns="http://www.tei-c.org/ns/1.0"
+                      context="//tei:langKnown/@ana">
+               <sch:let name="anaValues" value="tokenize(., ' ')"/>
+               <sch:assert test="                   every $i in $anaValues                   satisfies starts-with($i, 'http://syriaca.org/keyword/')">
+                  Each @ana attribute value must start with "http://syriaca.org/keyword/" and multiple 
+                  values must be space separated.
+                </sch:assert>
+               <sch:assert test="count(distinct-values($anaValues)) = count($anaValues)">
+                  The same keyword URI may not appear twice as the value of the @ana attribute. </sch:assert>
+               <sch:report test="contains(., ',') or contains(., ';')">
+                  Multiple @ana attributes should be separated with one blank space
+                </sch:report>
+               <sch:report test="                   every $i in $anaValues                   satisfies contains(substring-after($i, 'http://syriaca.org/keyword'), 'http:')">
+                  Multiple @ana attributes should be separated with one blank space
+                </sch:report>
+            </sch:rule>
+            <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+                      xmlns:srophe="https://srophe.app"
+                      xmlns="http://www.tei-c.org/ns/1.0"
+                      context="tei:langKnown/@ana"
+                      role="warning">
+               <sch:let name="ti"
+                        value="doc('https://raw.githubusercontent.com/srophe/srophe-app-data/dev/data/subjects/taxonomyIndex.xml')"/>
+               <sch:let name="languages"
+                        value="$ti//listURI[@ref = 'http://syriaca.org/keyword/languages']/uri"/>
+               <sch:assert test="                   every $i in (tokenize(., ' '))                   satisfies $i = $languages">SPEAR has a strong preference for using established URIs when possible but
+                  appropriate URIs are not always available in the Syriaca.org taxonomy. Please
+                  consider the following options from the taxonomy before using your own
+                  preferred descriptive term: <sch:value-of select="string-join($languages, ';  ')"/>.
+                </sch:assert>
+            </sch:rule>
+         </pattern>
+         <ref name="att.global.attributes"/>
+         <ref name="att.datable.attributes"/>
+         <ref name="att.editLike.attributes"/>
          <optional>
             <attribute name="level">
                <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
@@ -4197,6 +4340,41 @@ Suggested values include: 1] sent; 2] received; 3] transmitted; 4] redirected; 5
             <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
             <data type="anyURI"/>
          </attribute>
+         <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
+                  id="SPEAR-occupation-ana-ana-in-occupation-constraint-rule-75">
+            <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+                      xmlns:srophe="https://srophe.app"
+                      xmlns="http://www.tei-c.org/ns/1.0"
+                      context="//tei:occupation/@ana">
+               <sch:let name="anaValues" value="tokenize(., ' ')"/>
+               <sch:assert test="                       every $i in $anaValues                       satisfies starts-with($i, 'http://syriaca.org/keyword/')">
+                      Each @ana attribute value must start with "http://syriaca.org/keyword/" and multiple 
+                      values must be space separated.
+                    </sch:assert>
+               <sch:assert test="count(distinct-values($anaValues)) = count($anaValues)">
+                      The same keyword URI may not appear twice as the value of the @ana attribute. </sch:assert>
+               <sch:report test="contains(., ',') or contains(., ';')">
+                      Multiple @ana attributes should be separated with one blank space
+                    </sch:report>
+               <sch:report test="                       every $i in $anaValues                       satisfies contains(substring-after($i, 'http://syriaca.org/keyword'), 'http:')">
+                      Multiple @ana attributes should be separated with one blank space
+                    </sch:report>
+            </sch:rule>
+            <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+                      xmlns:srophe="https://srophe.app"
+                      xmlns="http://www.tei-c.org/ns/1.0"
+                      context="tei:occupation/@ana"
+                      role="warning">
+               <sch:let name="ti"
+                        value="doc('https://raw.githubusercontent.com/srophe/srophe-app-data/dev/data/subjects/taxonomyIndex.xml')"/>
+               <sch:let name="occupations"
+                        value="$ti//listURI[@ref = 'http://syriaca.org/keyword/occupations']/uri"/>
+               <sch:assert test="                       every $i in (tokenize(., ' '))                       satisfies $i = $occupations">SPEAR has a strong preference for using established URIs when possible but
+                      appropriate URIs are not always available in the Syriaca.org taxonomy. Please
+                      consider the following options from the taxonomy before using your own
+                      preferred descriptive term: <sch:value-of select="string-join($occupations, ';  ')"/>.</sch:assert>
+            </sch:rule>
+         </pattern>
          <empty/>
       </element>
    </define>
@@ -4361,21 +4539,89 @@ Suggested values include: 1] sent; 2] received; 3] transmitted; 4] redirected; 5
             <ref name="desc"/>
          </optional>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="SPEAR-relation-reforkeyorname-constraint-assert-5">
+                  id="SPEAR-relation-descInRelation-constraint-rule-77">
+            <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+                      xmlns:srophe="https://srophe.app"
+                      xmlns="http://www.tei-c.org/ns/1.0"
+                      context="//tei:body//tei:relation">
+               <sch:assert test="tei:desc">
+                  The &lt;relation&gt; element require a &lt;desc&gt;.
+                </sch:assert>
+            </sch:rule>
+            <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+                      xmlns:srophe="https://srophe.app"
+                      xmlns="http://www.tei-c.org/ns/1.0"
+                      context="//tei:sourceDesc//tei:relation">
+               <sch:report test="tei:desc">
+                  The &lt;desc&gt; element may not appear here.
+                </sch:report>
+            </sch:rule>
+         </pattern>
+         <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
+                  id="SPEAR-relation-name-mutual-act-pass-in-relation-constraint-rule-79">
+            <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+                      xmlns:srophe="https://srophe.app"
+                      xmlns="http://www.tei-c.org/ns/1.0"
+                      context="tei:div/tei:listRelation/tei:relation">
+               <sch:let name="ti"
+                        value="doc('https://raw.githubusercontent.com/srophe/srophe-app-data/dev/data/subjects/taxonomyIndex.xml')"/>
+               <sch:let name="mutual"
+                        value="$ti//listURI[@ref = 'http://syriaca.org/keyword/relationships']//uri[@ana = 'mutual']"/>
+               <sch:let name="reciprocal"
+                        value="$ti//listURI[@ref = 'http://syriaca.org/keyword/relationships']//uri[@ana = 'reciprocal']"/>
+               <sch:assert test=".[@name = $mutual]/@mutual or .[@name = $reciprocal]/@active">Elements of type &lt;relation&gt; take either a @mutual attribute with mutual
+                  relationship and both @active and @passive attributes with reciprocal
+                  relationships. Mutual relationships include: <sch:value-of select="string-join($mutual, ';  ')"/>. Reciprocal relationships include:
+                    <sch:value-of select="string-join($reciprocal, ';  ')"/>.</sch:assert>
+               <sch:assert test=".[@name = $mutual]/@mutual or .[@name = $reciprocal]/@passive">Elements of type &lt;relation&gt; take either a @mutual attribute with mutual
+                  relationship and both @active and @passive attributes with reciprocal
+                  relationships. Mutual relationships include: <sch:value-of select="string-join($mutual, ';  ')"/>. Reciprocal relationships include:
+                    <sch:value-of select="string-join($reciprocal, ';  ')"/>.</sch:assert>
+               <sch:report test=".[@mutual]/@active">A &lt;relation&gt; element cannot take both
+                  @active and @mutual attributes.</sch:report>
+               <sch:report test=".[@mutual]/@passive">A &lt;relation&gt; element cannot take both
+                  @passive and @mutual attributes.</sch:report>
+            </sch:rule>
+            <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+                      xmlns:srophe="https://srophe.app"
+                      xmlns="http://www.tei-c.org/ns/1.0"
+                      context="tei:div/tei:listEvent/tei:listRelation/tei:relation">
+               <sch:assert test="@mutual">A @mutual attribute is required on &lt;relation&gt;
+                  elements in event factoids.</sch:assert>
+               <sch:report test="@active">@active attributes are not allowed on &lt;relation&gt;
+                  elements in event factoids.</sch:report>
+               <sch:report test="@passive">@passive attributes are not allowed on &lt;relation&gt;
+                  elements in event factoids.</sch:report>
+            </sch:rule>
+            <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+                      xmlns:srophe="https://srophe.app"
+                      xmlns="http://www.tei-c.org/ns/1.0"
+                      context="tei:div/tei:listRelation/tei:relation/@mutual | tei:div/tei:listRelation/tei:relation/@active | tei:div/tei:listRelation/tei:relation/@passive"
+                      role="warning">
+               <sch:let name="personIndex"
+                        value="doc('https://raw.githubusercontent.com/srophe/srophe-eXist-app/master/documentation/indexes/persons.xml')"/>
+               <sch:let name="personURIs" value="$personIndex//tei:person/@ref"/>
+               <sch:assert test="                   every $i in (tokenize(., ' '))                   satisfies $i = $personURIs">
+                  The @active, @passive, and @mutual attributes on &lt;relation&gt; must contain a person URI in use in Syriaca.org data. If a URI is not current available, replace the number portion of the URI with a letter and use it consistently when encoding information about a person. Note that all person URIs take the form 'http://syriaca.org/person/{\d+}' (where {\d+} is a number).
+                </sch:assert>
+            </sch:rule>
+         </pattern>
+         <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
+                  id="SPEAR-relation-reforkeyorname-constraint-assert-101">
             <rule context="tei:relation">
                <assert xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                        test="@ref or @key or @name">One of the attributes  'name', 'ref' or 'key' must be supplied</assert>
             </rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="SPEAR-relation-activemutual-constraint-report-11">
+                  id="SPEAR-relation-activemutual-constraint-report-30">
             <rule context="tei:relation">
                <report xmlns:sch="http://purl.oclc.org/dsdl/schematron" test="@active and @mutual">Only one of the attributes
 @active and @mutual may be supplied</report>
             </rule>
          </pattern>
          <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
-                  id="SPEAR-relation-activepassive-constraint-report-12">
+                  id="SPEAR-relation-activepassive-constraint-report-31">
             <rule context="tei:relation">
                <report xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                        test="@passive and not(@active)">the attribute 'passive'
@@ -4418,6 +4664,31 @@ Suggested values include: 1] sent; 2] received; 3] transmitted; 4] redirected; 5
                </list>
             </attribute>
          </optional>
+         <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
+                  id="SPEAR-relation-ana-ana-on-event-relation-constraint-rule-82">
+            <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+                      xmlns:srophe="https://srophe.app"
+                      xmlns="http://www.tei-c.org/ns/1.0"
+                      context="tei:div/tei:listEvent/tei:listRelation/tei:relation">
+               <sch:assert test="@ana">A &lt;relation&gt; element inside an event factoid must
+                      have an @ana attribute.</sch:assert>
+            </sch:rule>
+            <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+                      xmlns:srophe="https://srophe.app"
+                      xmlns="http://www.tei-c.org/ns/1.0"
+                      context="tei:div/tei:listEvent/tei:listRelation/tei:relation/@ana">
+               <sch:assert test=". = 'event'">A &lt;relation&gt; element inside an event
+                      factoid must have an @ana attribute with a value of "event".</sch:assert>
+            </sch:rule>
+            <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+                      xmlns:srophe="https://srophe.app"
+                      xmlns="http://www.tei-c.org/ns/1.0"
+                      context="tei:div/tei:listRelation/tei:relation">
+               <sch:report test="@ana">The @ana attribute cannot appear in a relation factoid.
+                      It may only be used in a &lt;relation&gt; element describing a relationship
+                      between two events. </sch:report>
+            </sch:rule>
+         </pattern>
          <optional>
             <attribute name="ana">
                <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
@@ -4431,7 +4702,35 @@ Suggested values include: 1] sent; 2] received; 3] transmitted; 4] redirected; 5
                </list>
             </attribute>
          </optional>
-         <attribute name="ref">
+         <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
+                  id="SPEAR-relation-type-type-on-relation-constraint-rule-85">
+            <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+                      xmlns:srophe="https://srophe.app"
+                      xmlns="http://www.tei-c.org/ns/1.0"
+                      context="tei:div/tei:listEvent/tei:listRelation/tei:relation">
+               <sch:report test="@type">A &lt;relation&gt; element inside an event factoid
+                      cannot take a @type attribute.</sch:report>
+            </sch:rule>
+            <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+                      xmlns:srophe="https://srophe.app"
+                      xmlns="http://www.tei-c.org/ns/1.0"
+                      context="tei:div/tei:listRelation/tei:relation/@type">
+               <sch:let name="ti"
+                        value="doc('https://raw.githubusercontent.com/srophe/srophe-app-data/dev/data/subjects/taxonomyIndex.xml')"/>
+               <sch:let name="qrURI"
+                        value="$ti//listURI[@ref = 'http://syriaca.org/keyword/qualifier-relationships']//uri"/>
+               <sch:assert test="                       every $i in (tokenize(., ' '))                       satisfies $i = $qrURI">The value(s) of this @type attribute must come from the qualifier
+                      relationships in the Syriaca.org taxonomy: <sch:value-of select="string-join($qrURI, ';  ')"/>.</sch:assert>
+            </sch:rule>
+            <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+                      xmlns:srophe="https://srophe.app"
+                      xmlns="http://www.tei-c.org/ns/1.0"
+                      context="tei:sourceDesc/tei:listRelation/tei:relation">
+               <sch:assert test="@type = 'part'">A @type attribute the value
+                      "part" is required.</sch:assert>
+            </sch:rule>
+         </pattern>
+         <attribute name="name">
             <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
             <choice>
                <value>snap:AllianceWith</value>
@@ -4544,6 +4843,35 @@ Suggested values include: 1] sent; 2] received; 3] transmitted; 4] redirected; 5
                <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
             </choice>
          </attribute>
+         <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
+                  id="SPEAR-relation-name-name-in-context-constraint-rule-88">
+            <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+                      xmlns:srophe="https://srophe.app"
+                      xmlns="http://www.tei-c.org/ns/1.0"
+                      context="tei:div/tei:listRelation/tei:relation/@name">
+               <sch:let name="ti"
+                        value="doc('https://raw.githubusercontent.com/srophe/srophe-app-data/dev/data/subjects/taxonomyIndex.xml')"/>
+               <sch:assert test=". = $ti//listURI[@ref = 'http://syriaca.org/keyword/relationships']//uri">Value must be one of the following from the Syriaca.org taxonomy:
+                        <sch:value-of select="string-join($ti//listURI[@ref = 'http://syriaca.org/keyword/relationships']//uri, ';  ')"/>.</sch:assert>
+            </sch:rule>
+            <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+                      xmlns:srophe="https://srophe.app"
+                      xmlns="http://www.tei-c.org/ns/1.0"
+                      context="tei:div/tei:listEvent/tei:listRelation/tei:relation/@name">
+               <sch:let name="ti"
+                        value="doc('https://raw.githubusercontent.com/srophe/srophe-app-data/dev/data/subjects/taxonomyIndex.xml')"/>
+               <sch:assert test=". = $ti//listURI[@ref = 'http://syriaca.org/keyword/event-relationships']/uri">Value must be one of the following from the Syriaca.org taxonomy:
+                        <sch:value-of select="string-join($ti//listURI[@ref = 'http://syriaca.org/keyword/event-relationships']/uri, ';  ')"/>.</sch:assert>
+            </sch:rule>
+            <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+                      xmlns:srophe="https://srophe.app"
+                      xmlns="http://www.tei-c.org/ns/1.0"
+                      context="tei:sourceDesc/tei:listRelation/tei:relation/@name">
+               <sch:assert test=". = 'dcterms:isPartOf'">
+                      This &lt;relation&gt; element must have a @name attribute with a value of "dcterms:isPartOf".
+                    </sch:assert>
+            </sch:rule>
+         </pattern>
          <choice>
             <optional>
                <attribute name="active">
@@ -4620,6 +4948,41 @@ Suggested values include: 1] sent; 2] received; 3] transmitted; 4] redirected; 5
             <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
             <data type="anyURI"/>
          </attribute>
+         <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
+                  id="SPEAR-socecStatus-ana-ana-in-socecStatus-constraint-rule-91">
+            <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+                      xmlns:srophe="https://srophe.app"
+                      xmlns="http://www.tei-c.org/ns/1.0"
+                      context="tei:socecStatus/@ana">
+               <sch:let name="anaValues" value="tokenize(., ' ')"/>
+               <sch:assert test="                       every $i in $anaValues                       satisfies starts-with($i, 'http://syriaca.org/keyword/')">
+                      Each @ana attribute value must start with "http://syriaca.org/keyword/" and multiple 
+                      values must be space separated.
+                    </sch:assert>
+               <sch:assert test="count(distinct-values($anaValues)) = count($anaValues)">
+                      The same keyword URI may not appear twice as the value of the @ana attribute. </sch:assert>
+               <sch:report test="contains(., ',') or contains(., ';')">
+                      Multiple @ana attributes should be separated with one blank space
+                    </sch:report>
+               <sch:report test="                       every $i in $anaValues                       satisfies contains(substring-after($i, 'http://syriaca.org/keyword'), 'http:')">
+                      Multiple @ana attributes should be separated with one blank space
+                    </sch:report>
+            </sch:rule>
+            <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+                      xmlns:srophe="https://srophe.app"
+                      xmlns="http://www.tei-c.org/ns/1.0"
+                      context="tei:socecStatus/@ana"
+                      role="warning">
+               <sch:let name="ti"
+                        value="doc('https://raw.githubusercontent.com/srophe/srophe-app-data/dev/data/subjects/taxonomyIndex.xml')"/>
+               <sch:let name="socioeconomicStatus"
+                        value="$ti//listURI[@ref = 'http://syriaca.org/keyword/socioeconomic-status']/uri"/>
+               <sch:assert test="                       every $i in (tokenize(., ' '))                       satisfies $i = $socioeconomicStatus">SPEAR has a strong preference for using established URIs when possible but
+                      appropriate URIs are not always available in the Syriaca.org taxonomy. Please
+                      consider the following options from the taxonomy before using your own
+                      preferred descriptive term: <sch:value-of select="string-join($socioeconomicStatus, ';  ')"/>.</sch:assert>
+            </sch:rule>
+         </pattern>
          <empty/>
       </element>
    </define>
@@ -4631,6 +4994,55 @@ Suggested values include: 1] sent; 2] received; 3] transmitted; 4] redirected; 5
             <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
             <data type="anyURI"/>
          </attribute>
+         <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
+                  id="SPEAR-state-ana-ana-in-state-constraint-rule-93">
+            <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+                      xmlns:srophe="https://srophe.app"
+                      xmlns="http://www.tei-c.org/ns/1.0"
+                      context="tei:state/@ana">
+               <sch:let name="anaValues" value="tokenize(., ' ')"/>
+               <sch:assert test="                       every $i in $anaValues                       satisfies starts-with($i, 'http://syriaca.org/keyword/')">
+                      Each @ana attribute value must start with "http://syriaca.org/keyword/" and multiple 
+                      values must be space separated.
+                    </sch:assert>
+               <sch:assert test="count(distinct-values($anaValues)) = count($anaValues)">
+                      The same keyword URI may not appear twice as the value of the @ana attribute. </sch:assert>
+               <sch:report test="contains(., ',') or contains(., ';')">
+                      Multiple @ana attributes should be separated with one blank space
+                    </sch:report>
+               <sch:report test="                       every $i in $anaValues                       satisfies contains(substring-after($i, 'http://syriaca.org/keyword'), 'http:')">
+                      Multiple @ana attributes should be separated with one blank space
+                    </sch:report>
+            </sch:rule>
+            <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+                      xmlns:srophe="https://srophe.app"
+                      xmlns="http://www.tei-c.org/ns/1.0"
+                      context="tei:state[@type = 'mental']/@ana"
+                      role="warning">
+               <sch:let name="ti"
+                        value="doc('https://raw.githubusercontent.com/srophe/srophe-app-data/dev/data/subjects/taxonomyIndex.xml')"/>
+               <sch:let name="mentalStates"
+                        value="$ti//listURI[@ref = 'http://syriaca.org/keyword/mental-states']/uri"/>
+               <sch:assert test="                       every $i in (tokenize(., ' '))                       satisfies $i = $mentalStates">SPEAR has a strong preference for using established URIs when possible but
+                      appropriate URIs are not always available in the Syriaca.org taxonomy. Please
+                      consider the following options from the taxonomy before using your own
+                      preferred descriptive term: <sch:value-of select="string-join($mentalStates, ';  ')"/>.</sch:assert>
+            </sch:rule>
+            <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+                      xmlns:srophe="https://srophe.app"
+                      xmlns="http://www.tei-c.org/ns/1.0"
+                      context="tei:state[@type = 'sanctity']/@ana"
+                      role="warning">
+               <sch:let name="ti"
+                        value="doc('https://raw.githubusercontent.com/srophe/srophe-app-data/dev/data/subjects/taxonomyIndex.xml')"/>
+               <sch:let name="sanctity"
+                        value="$ti//listURI[@ref = 'http://syriaca.org/keyword/sanctity']/uri"/>
+               <sch:assert test="                       every $i in (tokenize(., ' '))                       satisfies $i = $sanctity">SPEAR has a strong preference for using established URIs when possible but
+                      appropriate URIs are not always available in the Syriaca.org taxonomy. Please
+                      consider the following options from the taxonomy before using your own
+                      preferred descriptive term: <sch:value-of select="string-join($sanctity, ';  ')"/>.</sch:assert>
+            </sch:rule>
+         </pattern>
          <attribute name="type">
             <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
             <choice>
@@ -4662,6 +5074,54 @@ Suggested values include: 1] sent; 2] received; 3] transmitted; 4] redirected; 5
             <a:documentation xmlns:a="http://relaxng.org/ns/compatibility/annotations/1.0"/>
             <data type="anyURI"/>
          </attribute>
+         <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
+                  id="SPEAR-trait-ana-ana-in-trait-constraint-rule-96">
+            <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+                      xmlns:srophe="https://srophe.app"
+                      xmlns="http://www.tei-c.org/ns/1.0"
+                      context="tei:trait/@ana">
+               <sch:let name="anaValues" value="tokenize(., ' ')"/>
+               <sch:assert test="                       every $i in $anaValues                       satisfies starts-with($i, 'http://syriaca.org/keyword/')">
+                      Each @ana attribute value must start with "http://syriaca.org/keyword/" and multiple 
+                      values must be space separated.
+                    </sch:assert>
+               <sch:assert test="count(distinct-values($anaValues)) = count($anaValues)">
+                      The same keyword URI may not appear twice as the value of the @ana attribute. </sch:assert>
+               <sch:report test="contains(., ',') or contains(., ';')">
+                      Multiple @ana attributes should be separated with one blank space
+                    </sch:report>
+               <sch:report test="                       every $i in $anaValues                       satisfies contains(substring-after($i, 'http://syriaca.org/keyword'), 'http:')">
+                      Multiple @ana attributes should be separated with one blank space
+                    </sch:report>
+            </sch:rule>
+            <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+                      xmlns:srophe="https://srophe.app"
+                      xmlns="http://www.tei-c.org/ns/1.0"
+                      context="tei:trait[@type = 'ethnicLabel']/@ana"
+                      role="warning">
+               <sch:let name="ti"
+                        value="doc('https://raw.githubusercontent.com/srophe/srophe-app-data/dev/data/subjects/taxonomyIndex.xml')"/>
+               <sch:let name="ethnicLabels"
+                        value="$ti//listURI[@ref = 'http://syriaca.org/keyword/ethnicity']/uri"/>
+               <sch:assert test="                       every $i in (tokenize(., ' '))                       satisfies $i = $ethnicLabels">SPEAR has a strong preference for using established URIs when possible but
+                      appropriate URIs are not always available in the Syriaca.org taxonomy. Please
+                      consider the following options from the taxonomy before using your own
+                      preferred descriptive term: <sch:value-of select="string-join($ethnicLabels, ';  ')"/>.</sch:assert>
+            </sch:rule>
+            <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+                      xmlns:srophe="https://srophe.app"
+                      xmlns="http://www.tei-c.org/ns/1.0"
+                      context="tei:trait[@type = 'gender']/@ana"
+                      role="warning">
+               <sch:assert test="                       every $i in (tokenize(., ' '))                       satisfies $i = 'http://syriaca.org/keyword/eunuch' or $i = 'http://syriaca.org/keyword/female' or $i = 'http://syriaca.org/keyword/male' or $i = 'http://syriaca.org/keyword/nun-as-monk'">Preferred values for the @ana attribute on a &lt;trait&gt; element
+                      @type="gender" are:
+                      "http://syriaca.org/keyword/eunuch"; "http://syriaca.org/keyword/female";
+                      "http://syriaca.org/keyword/male"; and
+                      "http://syriaca.org/keyword/nun-as-monk". Use these if applicable. If one of
+                      these does not apply, please use a descriptive term of your
+                      choosing.</sch:assert>
+            </sch:rule>
+         </pattern>
          <empty/>
       </element>
    </define>
@@ -4676,6 +5136,27 @@ Suggested values include: 1] sent; 2] received; 3] transmitted; 4] redirected; 5
          </attribute>
       </optional>
    </define>
+   <pattern xmlns="http://purl.oclc.org/dsdl/schematron"
+            id="SPEAR-att.global.analytic-ana-anaValues-constraint-rule-93">
+      <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
+                xmlns:srophe="https://srophe.app"
+                xmlns="http://www.tei-c.org/ns/1.0"
+                context="//tei:div/tei:listEvent/tei:event/@ana | //tei:langKnown/@ana | //tei:occupation/@ana | //tei:socecStatus/@ana | //tei:state/@ana | //tei:trait/@ana">
+         <sch:let name="anaValues" value="tokenize(., ' ')"/>
+         <sch:assert test="                       every $i in $anaValues                       satisfies starts-with($i, 'http://syriaca.org/keyword/')">
+                      Each @ana attribute value must start with "http://syriaca.org/keyword/" and multiple 
+                      values must be space separated.
+                    </sch:assert>
+         <sch:assert test="count(distinct-values($anaValues)) = count($anaValues)">
+                      The same keyword URI may not appear twice as the value of the @ana attribute. </sch:assert>
+         <sch:report test="contains(., ',') or contains(., ';')">
+                      Multiple @ana attributes should be separated with one blank space
+                    </sch:report>
+         <sch:report test="                       every $i in $anaValues                       satisfies contains(substring-after($i, 'http://syriaca.org/keyword'), 'http:')">
+                      Multiple @ana attributes should be separated with one blank space
+                    </sch:report>
+      </sch:rule>
+   </pattern>
    <start>
       <choice>
          <ref name="TEI"/>

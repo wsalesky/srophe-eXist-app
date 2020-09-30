@@ -379,9 +379,9 @@ declare function app:wiki-rest-request($wiki-uri as xs:string?){
  : Pulls github wiki data H1.  
 :)
 declare function app:wiki-page-title($node, $model){
-    let $content := $model("hits")//html:div[@id='wiki-body']
-    return $content/descendant::html:h1[1]
+    $model("hits")//html:h1[contains(@class,'gh-header-title')]
 };
+
 (:~
  : Pulls github wiki content.  
 :)
