@@ -3,17 +3,17 @@
  :)
 xquery version "3.0";
 
-module namespace person="http://syriaca.org/srophe/person";
+module namespace person="http://srophe.org/srophe/person";
 
 import module namespace templates="http://exist-db.org/xquery/templates" ;
-import module namespace config="http://syriaca.org/srophe/config" at "config.xqm";
-import module namespace global="http://syriaca.org/srophe/global" at "lib/global.xqm";
-import module namespace app="http://syriaca.org/srophe/templates" at "app.xql";
-import module namespace maps="http://syriaca.org/srophe/maps" at "lib/maps.xqm";
-import module namespace data="http://syriaca.org/srophe/data" at "lib/data.xqm";
-import module namespace rel="http://syriaca.org/srophe/related" at "lib/get-related.xqm";
-import module namespace timeline="http://syriaca.org/srophe/timeline" at "lib/timeline.xqm";
-import module namespace tei2html="http://syriaca.org/srophe/tei2html" at "content-negotiation/tei2html.xqm";
+import module namespace config="http://srophe.org/srophe/config" at "config.xqm";
+import module namespace global="http://srophe.org/srophe/global" at "lib/global.xqm";
+import module namespace app="http://srophe.org/srophe/templates" at "app.xql";
+import module namespace maps="http://srophe.org/srophe/maps" at "lib/maps.xqm";
+import module namespace data="http://srophe.org/srophe/data" at "lib/data.xqm";
+import module namespace rel="http://srophe.org/srophe/related" at "lib/get-related.xqm";
+import module namespace timeline="http://srophe.org/srophe/timeline" at "lib/timeline.xqm";
+import module namespace tei2html="http://srophe.org/srophe/tei2html" at "content-negotiation/tei2html.xqm";
 
 declare namespace srophe="https://srophe.app";
 declare namespace http="http://expath.org/ns/http-client";
@@ -354,7 +354,7 @@ declare %templates:wrap function person:display-persons-map($node as node(), $mo
     let $pers-id := string($p/ancestor::tei:TEI/descendant::tei:idno[1])
     let $relation := string($p/@name)
     let $places := for $p in tokenize(string-join(($p/@passive,$p/@active,$p/@mutual),' '),' ')[contains(.,'/place/')] return <placeName xmlns="http://www.tei-c.org/ns/1.0">{$p}</placeName>
-                    return 
+                   return 
                         <person xmlns="http://www.tei-c.org/ns/1.0">
                             <persName xmlns="http://www.tei-c.org/ns/1.0" name="{$relation}" id="{replace($pers-id,'/tei','')}">{$name}</persName>
                             {$places}

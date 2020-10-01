@@ -3,10 +3,10 @@ xquery version "3.0";
  : Builds search information for persons sub-collection
  : Search string is passed to search.xqm for processing.  
  :)
-module namespace persons="http://syriaca.org/srophe/persons";
-import module namespace config="http://syriaca.org/srophe/config" at "../config.xqm";
-import module namespace data="http://syriaca.org/srophe/data" at "../lib/data.xqm";
-import module namespace global="http://syriaca.org/srophe/global" at "../lib/global.xqm";
+module namespace persons="http://srophe.org/srophe/persons";
+import module namespace config="http://srophe.org/srophe/config" at "../config.xqm";
+import module namespace data="http://srophe.org/srophe/data" at "../lib/data.xqm";
+import module namespace global="http://srophe.org/srophe/global" at "../lib/global.xqm";
 
 declare namespace tei="http://www.tei-c.org/ns/1.0";
 
@@ -30,14 +30,6 @@ declare variable $persons:place-type {request:get-parameter('place-type', '')};
 declare variable $persons:related-persons {request:get-parameter('related-persons', '')};
 declare variable $persons:mentioned {request:get-parameter('mentioned', '')};
 
-(:~
- : Build full-text keyword search over all tei:person data
- : @param $q query string
-:)
-declare function persons:keyword() as xs:string? {
-    if($persons:q != '') then concat("[ft:query(.,'",data:clean-string($persons:q),"',data:search-options()) | ft:query(descendant::tei:persName,'",data:clean-string($persons:q),"',data:search-options()) | ft:query(descendant::tei:placeName,'",data:clean-string($persons:q),"',data:search-options()) | ft:query(ancestor::tei:TEI/descendant::tei:teiHeader/descendant::tei:title,'",data:clean-string($persons:q),"',data:search-options()) | ft:query(descendant::tei:desc,'",data:clean-string($persons:q),"',data:search-options())]")
-    else ()    
-};
 
 (:~
  : Search Name
@@ -73,7 +65,7 @@ let $collection := if($persons:coll = 'sbd' ) then 'The Syriac Biographical Dict
                    else if($coll = 'q' ) then 'Qadishe: A Guide to the Syriac Saints'
                    else if($coll = 'authors' ) then 'A Guide to Syriac Authors'
                    else ()
-return                    
+return    (:     if($collection != '') then 'series': $collection else ():)                
     if($collection != '') then concat("[ancestor::tei:TEI/descendant::tei:title/text() = '",$collection,"']")
     else ()
 };

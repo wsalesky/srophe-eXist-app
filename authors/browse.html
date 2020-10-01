@@ -1,9 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <div xmlns="http://www.w3.org/1999/xhtml" xmlns:xi="http://www.w3.org/2001/XInclude" data-template="templates:surround" data-template-with="templates/authors.html" data-template-at="content">
     <!--<xi:include href="banner.html"/>-->
     <h1 class="banner indent">Browse Authors</h1>
     <div class="main-content-block">
-        <div data-template="browse:get-all" data-template-element="tei:person/tei:persName[@srophe:tags='#syriaca-headword']" data-template-collection="authors">
+        <div data-template="browse:get-all" data-template-element="tei:person/tei:persName[@srophe:tags]" data-template-collection="authors">
             <!-- Example limits data to places collection, see example entry in repo-config.xml -->    
             <!--        <div data-template="browse:get-all" data-template-collection="places">-->
             <div class="tabbable"> 
@@ -13,7 +12,7 @@
                         <a href="browse.html" default="default">English</a>
                     </li>
                     <li>
-                        <a href="browse.html?lang=syr&amp;element=tei:person/tei:persName&amp;alpha-filter=ܐ" lang="syr" dir="rtl">
+                        <a href="browse.html?lang=syr&amp;element=tei:person/tei:persName[@srophe:tags]&amp;alpha-filter=ܐ" lang="syr" dir="rtl">
                             ܠܫܢܐ ܣܘܪܝܝܐ
                         </a>
                     </li>

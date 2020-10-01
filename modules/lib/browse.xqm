@@ -3,19 +3,20 @@ xquery version "3.1";
  : Builds HTML browse pages for Srophe Collections and sub-collections 
  : Alphabetical English and Syriac Browse lists, browse by type, browse by date, map browse. 
  :)
-module namespace browse="http://syriaca.org/srophe/browse";
+module namespace browse="http://srophe.org/srophe/browse";
 
 (:eXist templating module:)
 import module namespace templates="http://exist-db.org/xquery/templates" ;
 
 (: Import Srophe application modules. :)
-import module namespace config="http://syriaca.org/srophe/config" at "../config.xqm";
-import module namespace data="http://syriaca.org/srophe/data" at "data.xqm";
+import module namespace config="http://srophe.org/srophe/config" at "../config.xqm";
+import module namespace data="http://srophe.org/srophe/data" at "data.xqm";
 import module namespace facet="http://expath.org/ns/facet" at "facet.xqm";
-import module namespace global="http://syriaca.org/srophe/global" at "lib/global.xqm";
-import module namespace maps="http://syriaca.org/srophe/maps" at "maps.xqm";
-import module namespace page="http://syriaca.org/srophe/page" at "paging.xqm";
-import module namespace tei2html="http://syriaca.org/srophe/tei2html" at "../content-negotiation/tei2html.xqm";
+import module namespace sf="http://srophe.org/srophe/facets" at "facets.xql";
+import module namespace global="http://srophe.org/srophe/global" at "lib/global.xqm";
+import module namespace maps="http://srophe.org/srophe/maps" at "maps.xqm";
+import module namespace page="http://srophe.org/srophe/page" at "paging.xqm";
+import module namespace tei2html="http://srophe.org/srophe/tei2html" at "../content-negotiation/tei2html.xqm";
 
 (: Namespaces :)
 declare namespace srophe="https://srophe.app";
@@ -37,7 +38,16 @@ declare variable $browse:perpage {request:get-parameter('perpage', 25) cast as x
  : @param $facets facet xml file name, relative to collection directory
 :)  
 declare function browse:get-all($node as node(), $model as map(*), $collection as xs:string*, $element as xs:string?, $facets as xs:string?){
-    map{"hits" := data:get-records($collection, $element) }
+   let $collectionPath := 
+            if(config:collection-vars($collection)/@data-root != '') then concat('/',config:collection-vars($collection)/@data-root)
+            else if($collection != '') then concat('/',$collection)
+            else ()
+    let $hits := 
+        if($browse:view = 'facets' or $browse:view = 'date' or ($browse:view = 'type' and $collection != ('geo','places'))) then 
+            collection($config:data-root || $collectionPath)//tei:body[ft:query(., (),sf:facet-query())] 
+        else data:get-records($collection, $element)
+    return 
+        map{"hits" : $hits }
 };
 
 (:
@@ -52,7 +62,6 @@ declare function browse:show-hits($node as node(), $model as map(*), $collection
         <div class="col-md-12 map-lg" xmlns="http://www.w3.org/1999/xhtml">
             {browse:get-map($hits)}
         </div>
-    (: Syriaca.org function :)    
     else if($browse:view = 'type' or $browse:view = 'date' or $browse:view = 'facets') then   
         browse:by-type($hits, $collection, $sort-options)
     else
@@ -74,7 +83,7 @@ declare function browse:show-hits($node as node(), $model as map(*), $collection
                     else if($browse:alpha-filter != '') then $browse:alpha-filter else 'A')}</h3>,
                 <div class="results {if($browse:lang = 'syr' or $browse:lang = 'ar') then 'syr-list' else 'en-list'}">
                     {if(($browse:lang = 'syr') or ($browse:lang = 'ar')) then (attribute dir {"rtl"}) else()}
-                    {browse:display-hits($hits)}
+                    {browse:display-hits($hits, $collection)}
                 </div>
             )}
         </div>
@@ -84,11 +93,19 @@ declare function browse:show-hits($node as node(), $model as map(*), $collection
 (:
  : Page through browse results
 :)
-declare function browse:display-hits($hits){
+declare function browse:display-hits($hits,$collection){
     for $hit in subsequence($hits, $browse:start,$browse:perpage)
     let $sort-title := 
         if($browse:lang != 'en' and $browse:lang != 'syr' and $browse:lang != '') then 
-            <span class="sort-title" lang="{$browse:lang}" xml:lang="{$browse:lang}">{(if($browse:lang='ar') then attribute dir { "rtl" } else (), string($hit/@sort))}</span> 
+            <span class="sort-title" lang="{$browse:lang}" xml:lang="{$browse:lang}">
+            {(if($browse:lang='ar') then attribute dir { "rtl" } else (), 
+                if($collection = 'places') then 
+                    tei2html:tei2html($hit//tei:placeName[@xml:lang = $browse:lang][matches(global:build-sort-string(., $browse:lang),global:get-alpha-filter())])
+                else if($collection = 'persons' or $collection = 'sbd' or $collection = 'q' ) then
+                    tei2html:tei2html($hit//tei:persName[@xml:lang = $browse:lang][matches(global:build-sort-string(., $browse:lang),global:get-alpha-filter())])
+                else tei2html:tei2html($hit//tei:title[@xml:lang = $browse:lang][matches(global:build-sort-string(., $browse:lang),global:get-alpha-filter())])
+                )}
+            </span> 
         else () 
     let $uri := replace($hit/descendant::tei:publicationStmt/tei:idno[1],'/tei','')
     return 
@@ -199,39 +216,43 @@ declare function browse:by-type($hits, $collection, $sort-options){
     (<div class="col-md-4" xmlns="http://www.w3.org/1999/xhtml">
         {if($browse:view='type') then 
             if($collection = ('geo','places')) then 
-                browse:browse-type($collection)
-            else facet:html-list-facets-as-buttons(facet:count($hits, $facet-config/descendant::facet:facet-definition[@name="Type"]))
+                (:browse:browse-type($collection):)
+                sf:display($hits, $facet-config)
+            else sf:display($hits, $facet-config/descendant-or-self::facet:facet-definition[@name="series"])
          else if($browse:view = 'date') then 
-            facet:html-list-facets-as-buttons(facet:count($hits, $facet-config/descendant::facet:facet-definition[@name="Century"]))
-         else facet:html-list-facets-as-buttons(facet:count($hits, $facet-config/descendant::facet:facet-definition))         
+            sf:display($hits, $facet-config/descendant-or-self::facet:facet-definition[@name="syriacaComputedStart"])
+         else 
+           (<h4>Facets</h4>,
+           if(not(empty($facet-config))) then 
+             sf:display($hits, $facet-config)
+           else ()  
+           )
         }</div>,
     <div class="col-md-8" xmlns="http://www.w3.org/1999/xhtml">{
         if($browse:view='type') then
-            if(request:get-parameter('fq', '') and contains(request:get-parameter('fq', ''), 'fq-Type:') or request:get-parameter('type', '') != '') then
                 (page:pages($hits, $collection, $browse:start, $browse:perpage,'', $sort-options),
                 <h3>{concat(upper-case(substring(request:get-parameter('type', ''),1,1)),substring(request:get-parameter('type', ''),2))}</h3>,
                 <div>{(        
                     <div class="col-md-12 map-md">{browse:get-map($hits)}</div>,
-                        browse:display-hits($hits)
+                        browse:display-hits($hits,$collection)
                     )}</div>)
-            else <h3>Select Type</h3>
-        else if($browse:view='date') then 
-            if(request:get-parameter('fq', '') and contains(request:get-parameter('fq', ''), 'fq-Century:')) then 
+            
+        else if($browse:view='date') then  
                 (page:pages($hits, $collection, $browse:start, $browse:perpage,'', $sort-options),
                 <h3>{request:get-parameter('date', '')}</h3>,
-                <div>{browse:display-hits($hits)}</div>)
-            else <h3>Select Date</h3>  
+                <div>{browse:display-hits($hits,$collection)}</div>)
        else (page:pages($hits, $collection, $browse:start, $browse:perpage,'', $sort-options),
             <h3>Results {concat(upper-case(substring(request:get-parameter('type', ''),1,1)),substring(request:get-parameter('type', ''),2))} ({count($hits)})</h3>,
             <div>{(
                 <div class="col-md-12 map-md">{browse:get-map($hits)}</div>,
-                browse:display-hits($hits)
+                browse:display-hits($hits,$collection)
                 )}</div>)
     }</div>)       
 };
 
 (:~
  : Browse Type Menus
+ : @depreciated, use facets 
 :)
 declare function browse:browse-type($collection){  
     <ul class="nav nav-tabs nav-stacked" xmlns="http://www.w3.org/1999/xhtml">

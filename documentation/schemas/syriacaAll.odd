@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<TEI 
-  xmlns:sch="http://purl.oclc.org/dsdl/schematron"
-  xmlns:srophe="https://srophe.app"
-  xmlns="http://www.tei-c.org/ns/1.0">
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns:srophe="https://srophe.app">
   
   <teiHeader>
     <fileDesc>
@@ -45,15 +42,12 @@
       <schemaSpec ident="syriacaAll" prefix="tei_" source="srophe.compiled.odd" xml:lang="en" defaultExceptions="http://www.tei-c.org/ns/1.0 teix:egXML​ http://www.example.org/ns/">
         <moduleRef key="tei"/>
         <moduleRef key="certainty" include="precision"/>
-        <moduleRef key="core"
-          include="abbr author bibl biblScope choice citedRange corr date desc editor expan foreign label listBibl measure name note orig p ptr quote reg ref resp respStmt sic title"/>
+        <moduleRef key="core" include="abbr author bibl biblScope choice citedRange corr date desc editor expan foreign label listBibl measure name note orig p ptr quote reg ref resp respStmt sic title"/>
         <moduleRef key="dictionaries" include="entryFree"/>
-        <moduleRef key="header"
-          include="authority availability catDesc category change classDecl edition editionStmt editorialDecl encodingDesc fileDesc funder idno interpretation langUsage licence principal profileDesc publicationStmt revisionDesc seriesStmt sourceDesc sponsor taxonomy teiHeader titleStmt"/>
+        <moduleRef key="header" include="authority availability catDesc category change classDecl edition editionStmt editorialDecl encodingDesc fileDesc funder idno interpretation langUsage licence principal profileDesc publicationStmt revisionDesc seriesStmt sourceDesc sponsor taxonomy teiHeader titleStmt"/>
         <moduleRef key="linking" include="link"/>
         <moduleRef key="msdescription"/>
-        <moduleRef key="namesdates"
-          include="addName bloc country death district event forename geo listPerson listPlace listRelation location offset persName person place placeName region relation roleName settlement sex state surname"/>
+        <moduleRef key="namesdates" include="addName bloc country death district event forename geo listPerson listPlace listRelation location offset persName person place placeName region relation roleName settlement sex state surname"/>
         <moduleRef key="tagdocs" include="gi"/>
         <moduleRef key="textcrit"/>
         <moduleRef key="transcr"/>
@@ -79,9 +73,7 @@
                 <valItem ident="#syriaca-headword">
                   <desc>The name used by Syriaca.org for document titles, citation, and
                     disambiguation. These names have been created according to the Syriaca.org
-                    guidelines for headwords: <ref
-                      target="http://syriaca.org/documentation/headwords.html"
-                      >http://syriaca.org/documentation/headwords.html</ref>.</desc>
+                    guidelines for headwords: <ref target="http://syriaca.org/documentation/headwords.html">http://syriaca.org/documentation/headwords.html</ref>.</desc>
                 </valItem>
                 <valItem ident="#syriaca-anglicized">
                   <desc>An anglicized version of a name created by Syriaca.org used to facilitate
@@ -261,8 +253,7 @@
               </valList>
               <remarks mode="add">
                 <p>All elements should have an <att>xml:lang</att> value, either inherited from an
-                  ancestor element or declared explicitly. See the <ref
-                    target="http://syriaca.org/documentation/isostandards.html">Syriaca.org
+                  ancestor element or declared explicitly. See the <ref target="http://syriaca.org/documentation/isostandards.html">Syriaca.org
                     documentation</ref> for more information on the usage of particular tags. Note
                   that <att>xml:lang</att> describes the language of the content of the node. For
                   indicating the language of a work or bibliographic resource, see the documentation
@@ -329,13 +320,10 @@
           <constraintSpec ident="ref-on-name" scheme="schematron">
             <constraint>
               <sch:rule context="//tei:teiHeader//tei:name/@ref">
-                <sch:let name="edsDoc"
-                  value="doc('https://raw.githubusercontent.com/srophe/srophe-eXist-app/master/documentation/editors.xml')"/>
+                <sch:let name="edsDoc" value="doc('https://raw.githubusercontent.com/srophe/srophe-eXist-app/master/documentation/editors.xml')"/>
                 <sch:let name="eds" value="$edsDoc//tei:text/tei:body/tei:listPerson/tei:person/@xml:id"/>
                 <sch:let name="refValues" value="for $i in $eds return concat('http://syriaca.org/documentation/editors.xml#', $i)"/>
-                <sch:assert test="
-                  every $i in .
-                  satisfies $i = $refValues">
+                <sch:assert test="                   every $i in .                   satisfies $i = $refValues">
                   Acceptable values for the @ref attribute on a &lt;name&gt; element inside the &lt;teiHeader&gt; include: 
                   <sch:value-of select="string-join($refValues, ' | ')"/>.
                 </sch:assert>
@@ -459,7 +447,8 @@
           <remarks mode="add">
             <p>The <gi>profileDesc</gi> contains a <gi>langUsage</gi> element that contains a <gi>p</gi> element. 
               The text of the <gi>p</gi> should read: Languages codes used in this record follow the Syriaca.org guidelines. Documentation available at: 
-              <ref target="http://syriaca.org/documentation/langusage.xml">http://syriaca.org/documentation/langusage.xml</ref></p>
+              <ref target="http://syriaca.org/documentation/langusage.xml">http://syriaca.org/documentation/langusage.xml</ref>
+                        </p>
           </remarks>
         </elementSpec>
         
@@ -482,7 +471,8 @@
           <remarks mode="add">
             <p>The <gi>langUsage</gi> element contains a <gi>p</gi> element. 
               The text of the <gi>p</gi> should read: Languages codes used in this record follow the Syriaca.org guidelines. Documentation available at: 
-              <ref target="http://syriaca.org/documentation/langusage.xml">http://syriaca.org/documentation/langusage.xml</ref></p>
+              <ref target="http://syriaca.org/documentation/langusage.xml">http://syriaca.org/documentation/langusage.xml</ref>
+                        </p>
           </remarks>
         </elementSpec>
         
@@ -518,13 +508,10 @@
           <constraintSpec ident="who-on-change" scheme="schematron">
             <constraint>
               <sch:rule context="//tei:revisionDesc//tei:change/@who">
-                <sch:let name="edsDoc"
-                  value="doc('https://raw.githubusercontent.com/srophe/srophe-eXist-app/master/documentation/editors.xml')"/>
+                <sch:let name="edsDoc" value="doc('https://raw.githubusercontent.com/srophe/srophe-eXist-app/master/documentation/editors.xml')"/>
                 <sch:let name="eds" value="$edsDoc//tei:text/tei:body/tei:listPerson/tei:person/@xml:id"/>
                 <sch:let name="refValues" value="for $i in $eds return concat('http://syriaca.org/documentation/editors.xml#', $i)"/>
-                <sch:assert test="
-                  every $i in .
-                  satisfies $i = $refValues">
+                <sch:assert test="                   every $i in .                   satisfies $i = $refValues">
                   Acceptable values for the @who attribute on a &lt;change&gt; element inside the &lt;revisionDesc&gt; include: 
                   <sch:value-of select="string-join($refValues, ' | ')"/>.
                 </sch:assert>
@@ -627,11 +614,9 @@
             <egXML xmlns="http://www.tei-c.org/ns/Examples">
               <title xml:id="name1-1" xml:lang="en" srophe:tags="#syriaca-headword">Genesis
                 (Peshitta Version)</title>
-              <title xml:id="name1-2" xml:lang="syr" srophe:tags="#syriaca-headword"
-                source="#bib1-1">ܣܦܪܐ ܕܒܪܝܫܝܬ</title>
+              <title xml:id="name1-2" xml:lang="syr" srophe:tags="#syriaca-headword" source="#bib1-1">ܣܦܪܐ ܕܒܪܝܫܝܬ</title>
               <title xml:id="name1-3" xml:lang="syr" source="#bib1-1">ܣܦܪܐ ܕܒܪܝܬܐ</title>
-              <title xml:id="name1-4" xml:lang="en" type="abbreviation" srophe:tags="#canonical"
-                source="#bib1-9">Gen</title>
+              <title xml:id="name1-4" xml:lang="en" type="abbreviation" srophe:tags="#canonical" source="#bib1-9">Gen</title>
               <title xml:id="name1-5" xml:lang="en" source="#bib1-9">Genesis</title>
               <title xml:id="name1-6" xml:lang="syr" source="#bib1-1">ܐܣ̣ܬܝܟ ܣܦ̣ܪܐ ܗܢܐ ܩܕܡܝܐ ܕܐܘܪܝܬܐ
                 ܒܦ̈ܬܓܡܐ ܐܪ̈ܒܥܐ ܐܠܦ̈ܝܢ ܘܚܡܫ ܡ̈ܠܐ ܘܬܫܥܐ ܕܒܨ̈ܚܚܐ ܠ̅ܕ̅.</title>
@@ -655,11 +640,9 @@
           <constraintSpec ident="ref-on-person" scheme="schematron">
             <constraint>
               <sch:rule context="//tei:text//tei:persName/@ref">
-                <sch:let name="personIndex" value="doc('https://raw.githubusercontent.com/srophe/srophe-eXist-app/master/documentation/indexes/persons.xml')"></sch:let>
+                <sch:let name="personIndex" value="doc('https://raw.githubusercontent.com/srophe/srophe-eXist-app/master/documentation/indexes/persons.xml')"/>
                 <sch:let name="personURIs" value="$personIndex//tei:person/@ref"/>
-                <sch:assert test="
-                  every $i in .
-                  satisfies $i = $personURIs">
+                <sch:assert test="                   every $i in .                   satisfies $i = $personURIs">
                   This @ref attribute is not a person URI in use in Syriaca.org data. Note that all person URIs take the form 'http://syriaca.org/person/{\d+}' (where {\d+} is a number).
                 </sch:assert>
                 <sch:report test="contains(., ' ')">This @ref may contain only one URI.</sch:report>
@@ -675,9 +658,7 @@
               <sch:rule context="//tei:text//tei:placeName/@ref">
                 <sch:let name="placeIndex" value="doc('https://raw.githubusercontent.com/srophe/srophe-eXist-app/master/documentation/indexes/places.xml')"/>
                 <sch:let name="placeURIs" value="$placeIndex//tei:place/@ref"/>
-                <sch:assert test="
-                  every $i in .
-                  satisfies $i = $placeURIs">
+                <sch:assert test="                   every $i in .                   satisfies $i = $placeURIs">
                   This @ref attribute is not a place URI in use in Syriaca.org data. Note that all place URIs take the form 'http://syriaca.org/place/{\d+}' (where {\d+} is a number).
                 </sch:assert>
                 <sch:report test="contains(., ' ')">This @ref may contain only one URI.</sch:report>
@@ -693,9 +674,7 @@
               <sch:rule context="//tei:text//tei:district/@ref">
                 <sch:let name="placeIndex" value="doc('https://raw.githubusercontent.com/srophe/srophe-eXist-app/master/documentation/indexes/places.xml')"/>
                 <sch:let name="placeURIs" value="$placeIndex//tei:place/@ref"/>
-                <sch:assert test="
-                  every $i in .
-                  satisfies $i = $placeURIs">
+                <sch:assert test="                   every $i in .                   satisfies $i = $placeURIs">
                   This @ref attribute is not a place URI in use in Syriaca.org data. Note that all place URIs take the form 'http://syriaca.org/place/{\d+}' (where {\d+} is a number).
                 </sch:assert>
                 <sch:report test="contains(., ' ')">This @ref may contain only one URI.</sch:report>
@@ -711,9 +690,7 @@
               <sch:rule context="//tei:text//tei:settlement/@ref">
                 <sch:let name="placeIndex" value="doc('https://raw.githubusercontent.com/srophe/srophe-eXist-app/master/documentation/indexes/places.xml')"/>
                 <sch:let name="placeURIs" value="$placeIndex//tei:place/@ref"/>
-                <sch:assert test="
-                  every $i in .
-                  satisfies $i = $placeURIs">
+                <sch:assert test="                   every $i in .                   satisfies $i = $placeURIs">
                   This @ref attribute is not a place URI in use in Syriaca.org data. Note that all place URIs take the form 'http://syriaca.org/place/{\d+}' (where {\d+} is a number).
                 </sch:assert>
                 <sch:report test="contains(., ' ')">This @ref may contain only one URI.</sch:report>
@@ -729,9 +706,7 @@
               <sch:rule context="//tei:text//tei:region/@ref">
                 <sch:let name="placeIndex" value="doc('https://raw.githubusercontent.com/srophe/srophe-eXist-app/master/documentation/indexes/places.xml')"/>
                 <sch:let name="placeURIs" value="$placeIndex//tei:place/@ref"/>
-                <sch:assert test="
-                  every $i in .
-                  satisfies $i = $placeURIs">
+                <sch:assert test="                   every $i in .                   satisfies $i = $placeURIs">
                   This @ref attribute is not a place URI in use in Syriaca.org data. Note that all place URIs take the form 'http://syriaca.org/place/{\d+}' (where {\d+} is a number).
                 </sch:assert>
                 <sch:report test="contains(., ' ')">This @ref may contain only one URI.</sch:report>
@@ -747,9 +722,7 @@
               <sch:rule context="//tei:text//tei:country/@ref">
                 <sch:let name="placeIndex" value="doc('https://raw.githubusercontent.com/srophe/srophe-eXist-app/master/documentation/indexes/places.xml')"/>
                 <sch:let name="placeURIs" value="$placeIndex//tei:place/@ref"/>
-                <sch:assert test="
-                  every $i in .
-                  satisfies $i = $placeURIs">
+                <sch:assert test="                   every $i in .                   satisfies $i = $placeURIs">
                   This @ref attribute is not a place URI in use in Syriaca.org data. Note that all place URIs take the form 'http://syriaca.org/place/{\d+}' (where {\d+} is a number).
                 </sch:assert>
                 <sch:report test="contains(., ' ')">This @ref may contain only one URI.</sch:report>
@@ -765,9 +738,7 @@
               <sch:rule context="//tei:text//tei:bloc/@ref">
                 <sch:let name="placeIndex" value="doc('https://raw.githubusercontent.com/srophe/srophe-eXist-app/master/documentation/indexes/places.xml')"/>
                 <sch:let name="placeURIs" value="$placeIndex//tei:place/@ref"/>
-                <sch:assert test="
-                  every $i in .
-                  satisfies $i = $placeURIs">
+                <sch:assert test="                   every $i in .                   satisfies $i = $placeURIs">
                   This @ref attribute is not a place URI in use in Syriaca.org data. Note that all place URIs take the form 'http://syriaca.org/place/{\d+}' (where {\d+} is a number).
                 </sch:assert>
                 <sch:report test="contains(., ' ')">This @ref may contain only one URI.</sch:report>
@@ -817,8 +788,7 @@
             </attDef>
             <attDef ident="notAfter" mode="change">
               <remarks mode="add">
-                <p>Provides a terminus ad quem. Use this when the exact date is not known. See <ref
-                  target="http://syriaca.org/exist/apps/srophe/documentation/dates.html">the
+                <p>Provides a terminus ad quem. Use this when the exact date is not known. See <ref target="http://syriaca.org/exist/apps/srophe/documentation/dates.html">the
                   Syriaca.org documentation</ref> for editorial conventions regarding dates.</p>
               </remarks>
             </attDef>
@@ -832,8 +802,7 @@
           <remarks mode="add">
             <p>A <gi>date</gi> elment includes both a machine-readable version (using attributes like
               <att>when</att>, <att>notBefore</att>, <att>notAfter</att>) and a human-readable
-              version as text in the element content. See <ref
-                target="http://syriaca.org/exist/apps/srophe/documentation/dates.html">the
+              version as text in the element content. See <ref target="http://syriaca.org/exist/apps/srophe/documentation/dates.html">the
                 Syriaca.org documentation</ref> for editorial conventions regarding dates.</p>
           </remarks>
         </elementSpec>

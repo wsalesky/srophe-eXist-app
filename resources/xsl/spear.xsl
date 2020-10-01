@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:s="http://syriaca.org" xmlns:t="http://www.tei-c.org/ns/1.0" xmlns:x="http://www.w3.org/1999/xhtml" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:saxon="http://saxon.sf.net/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:local="http://syriaca.org/ns" exclude-result-prefixes="xs t s saxon" version="2.0">
 
     <!-- ================================================================== 
@@ -233,7 +234,8 @@
                                 </xsl:choose>
                             </xsl:variable>
                             <div class="tei-{$label}">
-                                <strong><xsl:value-of select="$label"/>: </strong>
+                                <strong>
+                            <xsl:value-of select="$label"/>: </strong>
                                 <xsl:apply-templates mode="spear"/>                                
                             </div>
                         </xsl:for-each>
@@ -270,7 +272,12 @@
                                     <xsl:when test="@type='desc'">
                                         <span class="note-label">Description : </span>
                                     </xsl:when>
-                                    <xsl:otherwise><span class="note-label">Note : <xsl:if test="$label != ''"><xsl:value-of select="$label"/></xsl:if></span></xsl:otherwise>
+                                    <xsl:otherwise>
+                                <span class="note-label">Note : <xsl:if test="$label != ''">
+                                        <xsl:value-of select="$label"/>
+                                    </xsl:if>
+                                </span>
+                            </xsl:otherwise>
                                 </xsl:choose>
                                 <br/>
                                 <xsl:apply-templates mode="spear"/>                            
@@ -290,7 +297,9 @@
                                     <xsl:when test="$editorssourcedoc/descendant::t:body/t:listPerson[1]/t:person[@xml:id=$sought][1]">
                                         <xsl:sequence select="$editorssourcedoc/descendant::t:body/t:listPerson[1]/t:person[@xml:id=$sought][1]"/>
                                     </xsl:when>
-                                    <xsl:otherwise><xsl:value-of select="."/></xsl:otherwise>
+                                    <xsl:otherwise>
+                                <xsl:value-of select="."/>
+                            </xsl:otherwise>
                                 </xsl:choose>                            
                             </xsl:for-each>
                         </xsl:variable>
@@ -312,7 +321,8 @@
                             <p class="indent">
                                 <xsl:copy-of select="."/>
 
-                                <a href="factoid.html?id={string(ancestor::t:div[1]/t:idno)}" class="factoid-more"> See factoid page <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"/></a>
+                                <a href="factoid.html?id={string(ancestor::t:div[1]/t:idno)}" class="factoid-more"> See factoid page <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"/>
+                                </a>
                             </p>
                         </xsl:for-each>
                     </xsl:for-each-group>
@@ -402,7 +412,8 @@
                                 <xsl:apply-templates mode="spear"/>
                                 <xsl:text> </xsl:text>
                                 <a href="factoid.html?id={string(t:idno)}" class="factoid-more">See factoid page
-                                        <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"/></a>
+                                        <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"/>
+                                </a>
                             </p>
                         </xsl:for-each>
                     </xsl:for-each-group>
@@ -620,7 +631,9 @@
             <xsl:when test="descendant::t:note">
                 <xsl:apply-templates select="descendant::t:note" mode="spear"/>
             </xsl:when>
-            <xsl:otherwise><xsl:apply-templates mode="spear"/></xsl:otherwise>
+            <xsl:otherwise>
+                <xsl:apply-templates mode="spear"/>
+            </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
     <xsl:template match="t:trait | t:occupation | t:socecStatus" mode="spear">
@@ -641,7 +654,10 @@
         <xsl:choose>
             <xsl:when test="self::t:bibl"/>
             <xsl:otherwise>
-                <span class="tei-{local-name(.)}"><xsl:sequence select="local:attributes(.)"/><xsl:call-template name="rend-spear"/></span>
+                <span class="tei-{local-name(.)}">
+                    <xsl:sequence select="local:attributes(.)"/>
+                    <xsl:call-template name="rend-spear"/>
+                </span>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
@@ -684,10 +700,13 @@
     <xsl:template name="ref-spear">
         <xsl:choose>
             <xsl:when test="contains(@ref,$base-uri) and contains(@ref,'-')">
-                <a href="factoid.html?id={@ref}"><xsl:value-of select="normalize-space(.)"/></a>    
+                <a href="factoid.html?id={@ref}">
+                    <xsl:value-of select="normalize-space(.)"/>
+                </a>    
             </xsl:when>
             <xsl:when test="contains(@ref,$base-uri)">
-                <a href="aggregate.html?id={@ref}"><xsl:value-of select="normalize-space(.)"/>
+                <a href="aggregate.html?id={@ref}">
+                    <xsl:value-of select="normalize-space(.)"/>
                     <!--    <xsl:apply-templates mode="spear"/> -->
                 </a>    
             </xsl:when>

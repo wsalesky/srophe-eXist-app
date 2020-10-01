@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
-<TEI xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns:srophe="https://srophe.app"
-  xmlns="http://www.tei-c.org/ns/1.0">
+<?xml version="1.0" encoding="UTF-8"?>
+<TEI xmlns="http://www.tei-c.org/ns/1.0" xmlns:sch="http://purl.oclc.org/dsdl/schematron" xmlns:srophe="https://srophe.app">
   <teiHeader>
     <fileDesc>
       <titleStmt>
@@ -36,19 +35,15 @@
     <body>
 
 
-      <schemaSpec ident="srophe" prefix="tei_" start="TEI" xml:lang="en"
-        defaultExceptions="http://www.tei-c.org/ns/1.0 teix:egXML​ http://www.example.org/ns/">
+      <schemaSpec ident="srophe" prefix="tei_" start="TEI" xml:lang="en" defaultExceptions="http://www.tei-c.org/ns/1.0 teix:egXML​ http://www.example.org/ns/">
         <moduleRef key="tei"/>
         <moduleRef key="certainty" include="precision"/>
-        <moduleRef key="core"
-          include="abbr author bibl biblScope choice citedRange corr date desc editor expan foreign label listBibl measure name note orig p ptr quote reg ref resp respStmt sic title"/>
+        <moduleRef key="core" include="abbr author bibl biblScope choice citedRange corr date desc editor expan foreign label listBibl measure name note orig p ptr quote reg ref resp respStmt sic title"/>
         <moduleRef key="dictionaries" include="entryFree"/>
-        <moduleRef key="header"
-          include="authority availability catDesc category change classDecl edition editionStmt editorialDecl encodingDesc fileDesc funder idno interpretation langUsage licence principal profileDesc publicationStmt revisionDesc seriesStmt sourceDesc sponsor taxonomy teiHeader titleStmt"/>
+        <moduleRef key="header" include="authority availability catDesc category change classDecl edition editionStmt editorialDecl encodingDesc fileDesc funder idno interpretation langUsage licence principal profileDesc publicationStmt revisionDesc seriesStmt sourceDesc sponsor taxonomy teiHeader titleStmt"/>
         <moduleRef key="linking" include="link"/>
         <moduleRef key="msdescription"/>
-        <moduleRef key="namesdates"
-          include="addName bloc country death district event forename geo listPerson listPlace listRelation location offset persName person place placeName region relation roleName settlement sex state surname"/>
+        <moduleRef key="namesdates" include="addName bloc country death district event forename geo listPerson listPlace listRelation location offset persName person place placeName region relation roleName settlement sex state surname"/>
         <moduleRef key="tagdocs" include="gi"/>
         <moduleRef key="textcrit"/>
         <moduleRef key="transcr"/>
@@ -151,8 +146,7 @@
                 <sponsor>Syriaca.org: The Syriac Reference Portal</sponsor>
                 <funder>The National Endowment for the Humanities</funder>
                 <funder>The International Balzan Prize Foundation</funder>
-                <editor role="creator" ref="http://syriaca.org/documentation/editors.xml#tcarlson"
-                  >Thomas A. Carlson</editor>
+                <editor role="creator" ref="http://syriaca.org/documentation/editors.xml#tcarlson">Thomas A. Carlson</editor>
                 <respStmt>
                   <resp>Data merging, Pleiades and Wikipedia linking, and XML by</resp>
                   <name ref="http://syriaca.org/documentation/editors.xml#tcarlson">Thomas A.
@@ -182,9 +176,7 @@
                   <category xml:id="syriaca-headword">
                     <catDesc>The name used by Syriaca.org for document titles, citation, and
                       disambiguation. These names have been created according to the Syriac.org
-                      guidelines for headwords: <ref
-                        target="http://syriaca.org/documentation/headwords.html"
-                        >http://syriaca.org/documentation/headwords.html</ref>.</catDesc>
+                      guidelines for headwords: <ref target="http://syriaca.org/documentation/headwords.html">http://syriaca.org/documentation/headwords.html</ref>.</catDesc>
                   </category>
                 </taxonomy>
               </classDecl>
@@ -206,9 +198,7 @@
                   <category xml:id="syriaca-headword">
                     <catDesc>The name used by Syriaca.org for document titles, citation, and
                       disambiguation. These names have been created according to the Syriac.org
-                      guidelines for headwords: <ref
-                        target="http://syriaca.org/documentation/headwords.html"
-                        >http://syriaca.org/documentation/headwords.html</ref>.</catDesc>
+                      guidelines for headwords: <ref target="http://syriaca.org/documentation/headwords.html">http://syriaca.org/documentation/headwords.html</ref>.</catDesc>
                   </category>
                 </taxonomy>
               </classDecl>
@@ -230,9 +220,7 @@
                   <category xml:id="syriaca-headword">
                     <catDesc>The name used by Syriaca.org for document titles, citation, and
                       disambiguation. These names have been created according to the Syriac.org
-                      guidelines for headwords: <ref
-                        target="http://syriaca.org/documentation/headwords.html"
-                        >http://syriaca.org/documentation/headwords.html</ref>.</catDesc>
+                      guidelines for headwords: <ref target="http://syriaca.org/documentation/headwords.html">http://syriaca.org/documentation/headwords.html</ref>.</catDesc>
                   </category>
                 </taxonomy>
               </classDecl>
@@ -253,9 +241,7 @@
                   <category xml:id="syriaca-headword">
                     <catDesc>The name used by Syriaca.org for document titles, citation, and
                       disambiguation. These names have been created according to the Syriac.org
-                      guidelines for headwords: <ref
-                        target="http://syriaca.org/documentation/headwords.html"
-                        >http://syriaca.org/documentation/headwords.html</ref>.</catDesc>
+                      guidelines for headwords: <ref target="http://syriaca.org/documentation/headwords.html">http://syriaca.org/documentation/headwords.html</ref>.</catDesc>
                   </category>
                 </taxonomy>
               </classDecl>
@@ -297,19 +283,14 @@
           <exemplum>
             <egXML xmlns="http://www.tei-c.org/ns/Examples">
               <revisionDesc status="published">
-                <change who="http://syriaca.org/documentation/editors.xml#wsalesky"
-                  when="2014-06-30-04:00">CHANGED tei:author element to tei:persName under tei:event
+                <change who="http://syriaca.org/documentation/editors.xml#wsalesky" when="2014-06-30-04:00">CHANGED tei:author element to tei:persName under tei:event
                   element.</change>
-                <change who="http://syriaca.org/documentation/editors.xml#tcarlson"
-                  when="2014-06-12-05:00">ADDED: Yaqut citation and attestation</change>
-                <change who="http://syriaca.org/documentation/editors.xml#wsalesky"
-                  when="2014-01-14">ADDED: relation element with shares-name-with attribute for all
+                <change who="http://syriaca.org/documentation/editors.xml#tcarlson" when="2014-06-12-05:00">ADDED: Yaqut citation and attestation</change>
+                <change who="http://syriaca.org/documentation/editors.xml#wsalesky" when="2014-01-14">ADDED: relation element with shares-name-with attribute for all
                   place headwords that share names</change>
-                <change who="http://syriaca.org/documentation/editors.xml#wsalesky"
-                  when="2014-01-14">ADDED: syriaca-computed-start and syriaca-computed-end
+                <change who="http://syriaca.org/documentation/editors.xml#wsalesky" when="2014-01-14">ADDED: syriaca-computed-start and syriaca-computed-end
                   attributes for searching</change>
-                <change who="http://syriaca.org/documentation/editors.xml#tcarlson"
-                  when="2013-12-18-05:00">CREATED: place</change>
+                <change who="http://syriaca.org/documentation/editors.xml#tcarlson" when="2013-12-18-05:00">CREATED: place</change>
               </revisionDesc>
             </egXML>
           </exemplum>
@@ -331,19 +312,14 @@
           <exemplum>
             <egXML xmlns="http://www.tei-c.org/ns/Examples">
               <revisionDesc>
-                <change when="2013-04-15" who="http://syriaca.org/documentation/editors.xml#ngibson"
-                  n="1.1"> ADDED: Pleiades coordinates</change>
-                <change when="2013-04-01"
-                  who="http://syriaca.org/documentation/editors.xml#dmichelson"> FIXED: Ufra to
+                <change when="2013-04-15" who="http://syriaca.org/documentation/editors.xml#ngibson" n="1.1"> ADDED: Pleiades coordinates</change>
+                <change when="2013-04-01" who="http://syriaca.org/documentation/editors.xml#dmichelson"> FIXED: Ufra to
                   Urfa</change>
-                <change when="2013-03-16"
-                  who="http://syriaca.org/documentation/editors.xml#tcarlson" n="1.0"> ADDED:
+                <change when="2013-03-16" who="http://syriaca.org/documentation/editors.xml#tcarlson" n="1.0"> ADDED:
                   teiHeader/revisionDesc</change>
-                <change when="2013-03-15"
-                  who="http://syriaca.org/documentation/editors.xml#tcarlson"> ADDED:
+                <change when="2013-03-15" who="http://syriaca.org/documentation/editors.xml#tcarlson"> ADDED:
                   teiHeader</change>
-                <change when="2013-03-01"
-                  who="http://syriaca.org/documentation/editors.xml#tcarlson" n="0.1"> CREATED:
+                <change when="2013-03-01" who="http://syriaca.org/documentation/editors.xml#tcarlson" n="0.1"> CREATED:
                   place</change>
               </revisionDesc>
             </egXML>
@@ -390,8 +366,7 @@
             <egXML xmlns="http://www.tei-c.org/ns/Examples">
               <respStmt>
                 <resp>These names were received as a dataset from E-Ktobe : manuscrits syriaques
-                    (<ref target="http://syriac.msscatalog.org/"
-                  >http://syriac.msscatalog.org/</ref>). Née sur l’initiative d'André Binggeli
+                    (<ref target="http://syriac.msscatalog.org/">http://syriac.msscatalog.org/</ref>). Née sur l’initiative d'André Binggeli
                   (IRHT-CNRS), Françoise Briquel-Chatonnet (Orient et Méditerranée-CNRS), Muriel
                   Debié (EPHE) et Alain Desreumaux (Orient et Méditerranée-CNRS) dans le cadre du
                   programme SYRAB de l'ANR (Agence Nationale de la Recherche), la base e-ktobe est
@@ -439,16 +414,12 @@
                   element inside &lt;teiHeader&gt;.</sch:assert>
               </sch:rule>
               <sch:rule context="//tei:teiHeader//tei:titleStmt//tei:editor/@role">
-                <sch:assert
-                  test=". = 'creator' or . = 'code-author' or . = 'content-author' or . = 'contributor'"
-                  > The acceptable attribute values for @role on the &lt;editor&gt; element inside
+                <sch:assert test=". = 'creator' or . = 'code-author' or . = 'content-author' or . = 'contributor'"> The acceptable attribute values for @role on the &lt;editor&gt; element inside
                   the &lt;titleStmt&gt; are: creator, code-author, content-author, or contributor.
                 </sch:assert>
               </sch:rule>
               <sch:rule context="//tei:teiHeader//tei:seriesStmt//tei:editor/@role">
-                <sch:assert
-                  test=". = 'associate' or . = 'general' or . = 'technical' or . = 'past-associate' or . = 'past-general' or . = 'past-technical'"
-                  > The acceptable attribute values for @role on the &lt;editor&gt; element inside
+                <sch:assert test=". = 'associate' or . = 'general' or . = 'technical' or . = 'past-associate' or . = 'past-general' or . = 'past-technical'"> The acceptable attribute values for @role on the &lt;editor&gt; element inside
                   the &lt;seriesStmt&gt; are: associate, general, technical, past-associate,
                   past-general, or past-technical. </sch:assert>
               </sch:rule>
@@ -473,19 +444,11 @@
                   inside &lt;teiHeader&gt;.</sch:assert>
               </sch:rule>
               <sch:rule context="//tei:teiHeader//tei:editor/@ref">
-                <sch:let name="edsDoc"
-                  value="doc('https://raw.githubusercontent.com/srophe/srophe-eXist-app/master/documentation/editors.xml')"/>
-                <sch:let name="eds"
-                  value="$edsDoc//tei:text/tei:body/tei:listPerson/tei:person/@xml:id"/>
-                <sch:let name="refValues"
-                  value="for $i in $eds return concat('http://syriaca.org/documentation/editors.xml#', $i)"/>
-                <sch:assert
-                  test="
-                  every $i in .
-                  satisfies $i = $refValues"
-                  > Acceptable values for the @ref attribute on an &lt;editor&gt; element inside the
-                  &lt;teiHeader&gt; include: <sch:value-of select="string-join($refValues, ' | ')"
-                  />. </sch:assert>
+                <sch:let name="edsDoc" value="doc('https://raw.githubusercontent.com/srophe/srophe-eXist-app/master/documentation/editors.xml')"/>
+                <sch:let name="eds" value="$edsDoc//tei:text/tei:body/tei:listPerson/tei:person/@xml:id"/>
+                <sch:let name="refValues" value="for $i in $eds return concat('http://syriaca.org/documentation/editors.xml#', $i)"/>
+                <sch:assert test="                   every $i in .                   satisfies $i = $refValues"> Acceptable values for the @ref attribute on an &lt;editor&gt; element inside the
+                  &lt;teiHeader&gt; include: <sch:value-of select="string-join($refValues, ' | ')"/>. </sch:assert>
               </sch:rule>
               <sch:rule context="//tei:body//tei:editor">
                 <sch:report test="./@ref">A @ref attribute is not allowed on the &lt;editor&gt;
@@ -495,8 +458,7 @@
           </constraintSpec>
           <attList>
             <attDef ident="ref" mode="change">
-              <desc>Should contain the URI of a Syriaca.org editor from <ref
-                  target="http://syriaca.org/documentation/editors">this list</ref>.</desc>
+              <desc>Should contain the URI of a Syriaca.org editor from <ref target="http://syriaca.org/documentation/editors">this list</ref>.</desc>
             </attDef>
             <attDef ident="role" mode="change">
               <desc>Specifies the connection of the editor to the work, selected from
@@ -549,17 +511,14 @@
           </attList>
           <exemplum>
             <egXML xmlns="http://www.tei-c.org/ns/Examples">
-              <editor ref="http://syriaca.org/person/239"
-                role="http://syriaca.org/documentation/author-editor-roles.xml#translator">
-                <persName xml:lang="en">Gregorius Bar Hebraeus</persName> — <persName xml:lang="syr"
-                  >ܓܪܝܓܘܪܝܘܣ ܒܪ ܥܒܪܝܐ</persName>
+              <editor ref="http://syriaca.org/person/239" role="http://syriaca.org/documentation/author-editor-roles.xml#translator">
+                <persName xml:lang="en">Gregorius Bar Hebraeus</persName> — <persName xml:lang="syr">ܓܪܝܓܘܪܝܘܣ ܒܪ ܥܒܪܝܐ</persName>
               </editor>
             </egXML>
           </exemplum>
           <exemplum>
             <egXML xmlns="http://www.tei-c.org/ns/Examples">
-              <editor role="creator" ref="http://syriaca.org/documentation/editors.xml#tcarlson"
-                >Thomas A. Carlson</editor>
+              <editor role="creator" ref="http://syriaca.org/documentation/editors.xml#tcarlson">Thomas A. Carlson</editor>
             </egXML>
           </exemplum>
           <exemplum>
@@ -583,11 +542,9 @@
             <egXML xmlns="http://www.tei-c.org/ns/Examples">
               <titleStmt>
                 <title level="a" xml:lang="en">Telneshe — <foreign xml:lang="syr">ܬܠܢܫܐ</foreign>
-                </title> ... <editor role="code-author"
-                  ref="http://syriaca.org/documentation/editors.xml#tcarlson">Thomas A.
+                </title> ... <editor role="code-author" ref="http://syriaca.org/documentation/editors.xml#tcarlson">Thomas A.
                   Carlson</editor>
-                <editor role="content-author"
-                  ref="http://syriaca.org/documentation/editors.xml#dboero">Dina Boero</editor>
+                <editor role="content-author" ref="http://syriaca.org/documentation/editors.xml#dboero">Dina Boero</editor>
                 <respStmt>
                   <resp>Initial XML by</resp>
                   <name ref="http://syriaca.org/documentation/editors.xml#tcarlson">Thomas A.
@@ -610,19 +567,13 @@
               <seriesStmt>
                 <title level="s" xml:lang="en">The Syriac Gazetteer</title>
                 <editor role="general" ref="http://syriaca.org/documentation/editors.xml#dmichelson">
-                  <persName>David A. Michelson</persName>, <date from="2014"
-                  >2014-present</date>.</editor>
+                  <persName>David A. Michelson</persName>, <date from="2014">2014-present</date>.</editor>
                 <editor role="general" ref="http://syriaca.org/documentation/editors.xml#wpotter">
-                  <persName>William L. Potter</persName>, <date from="2020"
-                  >2020-present</date>.</editor>
-                <editor role="technical"
-                  ref="http://syriaca.org/documentation/editors.xml#dschwartz">
-                  <persName>Daniel L. Schwartz</persName>, <date from="2019"
-                  >2019-present</date>.</editor>
-                <editor role="past-general"
-                  ref="http://syriaca.org/documentation/editors.xml#tcarlson">
-                  <persName>Thomas A. Carlson</persName>, <date from="2014" to="2018"
-                    >2014-2018</date>
+                  <persName>William L. Potter</persName>, <date from="2020">2020-present</date>.</editor>
+                <editor role="technical" ref="http://syriaca.org/documentation/editors.xml#dschwartz">
+                  <persName>Daniel L. Schwartz</persName>, <date from="2019">2019-present</date>.</editor>
+                <editor role="past-general" ref="http://syriaca.org/documentation/editors.xml#tcarlson">
+                  <persName>Thomas A. Carlson</persName>, <date from="2014" to="2018">2014-2018</date>
                 </editor>
                 <idno type="URI">http://syriaca.org/geo</idno>
               </seriesStmt>
@@ -724,8 +675,7 @@
                       <ptr target="#bib78-5"/>
                     </bibl>
                   </listBibl>
-                  <note>used under a Creative Commons Attribution license <ref
-                      target="http://creativecommons.org/licenses/by/3.0/"/>
+                  <note>used under a Creative Commons Attribution license <ref target="http://creativecommons.org/licenses/by/3.0/"/>
                   </note>
                 </p>
               </license>
@@ -866,15 +816,13 @@
               <encodingDesc>
                 <editorialDecl>
                   <p>This record has been created following the Syriaca.org editorial guidelines.
-                    Documentation is available at: <ref target="http://syriaca.org/documentation"
-                      >http://syriaca.org/documentation</ref>. <title>The Syriac Gazetteer</title>
+                    Documentation is available at: <ref target="http://syriaca.org/documentation">http://syriaca.org/documentation</ref>. <title>The Syriac Gazetteer</title>
                     was encoded using both the general editorial guidelines for all publications of
                     Syriaca.org and an encoding schema specific to <title>The Syriac
                       Gazetteer</title>.</p>
                   <p>Approximate dates described in terms of centuries or partial centuries have
                     been interpreted into quantitative values as documented in the Syriaca.org
-                    guidelines for normalization of dates. See <ref
-                      target="http://syriaca.org/documentation/dates.html">Syriaca.org Guidelines
+                    guidelines for normalization of dates. See <ref target="http://syriaca.org/documentation/dates.html">Syriaca.org Guidelines
                       for Approximate Dates</ref>.</p>
                   <p>The <gi>state</gi> element of @type="existence" indicates the period for which
                     this place was in use as a place of its indicated type (e.g. an inhabited
@@ -890,11 +838,8 @@
                     coordinate data in <title>The Syriac Gazetteer</title>. In two instances, the
                     editors of such print maps provided the digital coordinate data used to prepare
                     the print maps. Specifically, coordinates which are attributed to <title>The
-                      Gorgias Encyclopedic Dictionary of the Syriac Heritage</title> (<ref
-                      target="http://syriaca.org/bibl/1">http://syriaca.org/bibl/1</ref>) or to
-                      <title>The Syriac World</title> (<ref
-                      target="http://syriaca.org/bibl/PUTG99V4"
-                      >http://syriaca.org/bibl/PUTG99V4</ref>) were extracted from the KML files
+                      Gorgias Encyclopedic Dictionary of the Syriac Heritage</title> (<ref target="http://syriaca.org/bibl/1">http://syriaca.org/bibl/1</ref>) or to
+                      <title>The Syriac World</title> (<ref target="http://syriaca.org/bibl/PUTG99V4">http://syriaca.org/bibl/PUTG99V4</ref>) were extracted from the KML files
                     used to create the print maps for those volumes. Because only the print maps
                     were published, the citation for these coordinates refers to the print source.
                     The editors of the <title>The Syriac Gazetteer</title> are grateful to the
@@ -904,18 +849,13 @@
                   <p>The editors have silently normalized data from other sources in some cases. The
                     primary instances are listed below.</p>
                   <p>The capitalization of names from <title>The Gorgias Encyclopedic Dictionary of
-                      the Syriac Heritage</title> (<ref target="http://syriaca.org/bibl/1"
-                      >http://syriaca.org/bibl/1</ref>) was normalized silently (i.e. names in
+                      the Syriac Heritage</title> (<ref target="http://syriaca.org/bibl/1">http://syriaca.org/bibl/1</ref>) was normalized silently (i.e. names in
                     ALL-CAPS were replaced by Proper-noun capitalization).</p>
                   <p>The unchanging parts of alternate names from the editions and translations of
                     Barsoum, <title>The Scattered Pearls: A History of Syriac Literature and
-                      Sciences</title> (<ref target="http://syriaca.org/bibl/2"
-                      >http://syriaca.org/bibl/2</ref>, <ref target="http://syriaca.org/bibl/3"
-                      >http://syriaca.org/bibl/3</ref>, or <ref target="http://syriaca.org/bibl/4"
-                      >http://syriaca.org/bibl/4</ref>) have been supplied silently.</p>
+                      Sciences</title> (<ref target="http://syriaca.org/bibl/2">http://syriaca.org/bibl/2</ref>, <ref target="http://syriaca.org/bibl/3">http://syriaca.org/bibl/3</ref>, or <ref target="http://syriaca.org/bibl/4">http://syriaca.org/bibl/4</ref>) have been supplied silently.</p>
                   <p>Names from the English translation of Barsoum, <title>The Scattered Pearls: A
-                      History of Syriac Literature and Sciences</title> (<ref
-                      target="http://syriaca.org/bibl/4">http://syriaca.org/bibl/4</ref>) were
+                      History of Syriac Literature and Sciences</title> (<ref target="http://syriaca.org/bibl/4">http://syriaca.org/bibl/4</ref>) were
                     silently transformed into sentence word order rather than the headword
                     alphabetization used by Barsoum. Commas were silently removed.</p>
                 </editorialDecl>
@@ -924,9 +864,7 @@
                     <category xml:id="syriaca-headword">
                       <catDesc>The name used by Syriaca.org for document titles, citation, and
                         disambiguation. These names have been created according to the Syriac.org
-                        guidelines for headwords: <ref
-                          target="http://syriaca.org/documentation/headwords.html"
-                          >http://syriaca.org/documentation/headwords.html</ref>.</catDesc>
+                        guidelines for headwords: <ref target="http://syriaca.org/documentation/headwords.html">http://syriaca.org/documentation/headwords.html</ref>.</catDesc>
                     </category>
                   </taxonomy>
                 </classDecl>
@@ -938,15 +876,13 @@
               <encodingDesc>
                 <editorialDecl>
                   <p>This record has been created following the Syriaca.org editorial guidelines.
-                    Documentation is available at: <ref target="http://syriaca.org/documentation"
-                      >http://syriaca.org/documentation</ref>. <title>The Syriac Gazetteer</title>
+                    Documentation is available at: <ref target="http://syriaca.org/documentation">http://syriaca.org/documentation</ref>. <title>The Syriac Gazetteer</title>
                     was encoded using both the general editorial guidelines for all publications of
                     Syriaca.org and an encoding schema specific to <title>The Syriac
                       Gazetteer</title>.</p>
                   <p>Approximate dates described in terms of centuries or partial centuries have
                     been interpreted into quantitative values as documented in the Syriaca.org
-                    guidelines for normalization of dates. See <ref
-                      target="http://syriaca.org/documentation/dates.html">Syriaca.org Guidelines
+                    guidelines for normalization of dates. See <ref target="http://syriaca.org/documentation/dates.html">Syriaca.org Guidelines
                       for Approximate Dates</ref>.</p>
                   <p>The <gi>state</gi> element of @type="existence" indicates the period for which
                     this place was in use as a place of its indicated type (e.g. an inhabited
@@ -962,11 +898,8 @@
                     coordinate data in <title>The Syriac Gazetteer</title>. In two instances, the
                     editors of such print maps provided the digital coordinate data used to prepare
                     the print maps. Specifically, coordinates which are attributed to <title>The
-                      Gorgias Encyclopedic Dictionary of the Syriac Heritage</title> (<ref
-                        target="http://syriaca.org/bibl/1">http://syriaca.org/bibl/1</ref>) or to
-                    <title>The Syriac World</title> (<ref
-                      target="http://syriaca.org/bibl/PUTG99V4"
-                      >http://syriaca.org/bibl/PUTG99V4</ref>) were extracted from the KML files
+                      Gorgias Encyclopedic Dictionary of the Syriac Heritage</title> (<ref target="http://syriaca.org/bibl/1">http://syriaca.org/bibl/1</ref>) or to
+                    <title>The Syriac World</title> (<ref target="http://syriaca.org/bibl/PUTG99V4">http://syriaca.org/bibl/PUTG99V4</ref>) were extracted from the KML files
                     used to create the print maps for those volumes. Because only the print maps
                     were published, the citation for these coordinates refers to the print source.
                     The editors of the <title>The Syriac Gazetteer</title> are grateful to the
@@ -976,18 +909,13 @@
                   <p>The editors have silently normalized data from other sources in some cases. The
                     primary instances are listed below.</p>
                   <p>The capitalization of names from <title>The Gorgias Encyclopedic Dictionary of
-                    the Syriac Heritage</title> (<ref target="http://syriaca.org/bibl/1"
-                      >http://syriaca.org/bibl/1</ref>) was normalized silently (i.e. names in
+                    the Syriac Heritage</title> (<ref target="http://syriaca.org/bibl/1">http://syriaca.org/bibl/1</ref>) was normalized silently (i.e. names in
                     ALL-CAPS were replaced by Proper-noun capitalization).</p>
                   <p>The unchanging parts of alternate names from the editions and translations of
                     Barsoum, <title>The Scattered Pearls: A History of Syriac Literature and
-                      Sciences</title> (<ref target="http://syriaca.org/bibl/2"
-                        >http://syriaca.org/bibl/2</ref>, <ref target="http://syriaca.org/bibl/3"
-                          >http://syriaca.org/bibl/3</ref>, or <ref target="http://syriaca.org/bibl/4"
-                            >http://syriaca.org/bibl/4</ref>) have been supplied silently.</p>
+                      Sciences</title> (<ref target="http://syriaca.org/bibl/2">http://syriaca.org/bibl/2</ref>, <ref target="http://syriaca.org/bibl/3">http://syriaca.org/bibl/3</ref>, or <ref target="http://syriaca.org/bibl/4">http://syriaca.org/bibl/4</ref>) have been supplied silently.</p>
                   <p>Names from the English translation of Barsoum, <title>The Scattered Pearls: A
-                    History of Syriac Literature and Sciences</title> (<ref
-                      target="http://syriaca.org/bibl/4">http://syriaca.org/bibl/4</ref>) were
+                    History of Syriac Literature and Sciences</title> (<ref target="http://syriaca.org/bibl/4">http://syriaca.org/bibl/4</ref>) were
                     silently transformed into sentence word order rather than the headword
                     alphabetization used by Barsoum. Commas were silently removed.</p>
                 </editorialDecl>
@@ -1016,15 +944,10 @@
                   <p>This record created following the Syriaca.org guidelines. Documentation
                     available at: <ref target="http://syriaca.org/documentation">
                       http://syriaca.org/documentation</ref>.</p>
-                  <p>The capitalization of names from GEDSH (<idno type="URI"
-                      >http://syriaca.org/bibl/1</idno>) was normalized (i.e. names in ALL-CAPS were
+                  <p>The capitalization of names from GEDSH (<idno type="URI">http://syriaca.org/bibl/1</idno>) was normalized (i.e. names in ALL-CAPS were
                     replaced by Proper-noun capitalization).</p>
-                  <p>The unchanging parts of alternate names from Barsoum (<idno type="URI"
-                      >http://syriaca.org/bibl/2</idno>, <idno type="URI"
-                      >http://syriaca.org/bibl/3</idno>, or <idno type="URI"
-                      >http://syriaca.org/bibl/4</idno>) have been supplied to each alternate.</p>
-                  <p>Names from the English translation of Barsoum (<idno type="URI"
-                      >http://syriaca.org/bibl/4</idno>) were put in sentence word order rather than
+                  <p>The unchanging parts of alternate names from Barsoum (<idno type="URI">http://syriaca.org/bibl/2</idno>, <idno type="URI">http://syriaca.org/bibl/3</idno>, or <idno type="URI">http://syriaca.org/bibl/4</idno>) have been supplied to each alternate.</p>
+                  <p>Names from the English translation of Barsoum (<idno type="URI">http://syriaca.org/bibl/4</idno>) were put in sentence word order rather than
                     fronting a dictionary headword. Any commas in the Barsoum name in English were
                     removed.</p>
                   <p>The <gi>state</gi> element of @type="existence" indicates the period for which
@@ -1064,14 +987,9 @@
               <sch:rule context="//tei:text//@source">
                 <sch:let name="biblIDs" value="//tei:body//tei:bibl/@xml:id | //tei:body//tei:listBibl/@xml:id"/>
                 <sch:let name="sourceValues" value="for $i in $biblIDs return concat('#', $i)"/>
-                <sch:assert
-                  test="
-                  every $i in (tokenize(., ' '))
-                  satisfies $i = $sourceValues"
-                  > A @source attribute must point to an @xml:id attribute on a &lt;bibl&gt;
+                <sch:assert test="                   every $i in (tokenize(., ' '))                   satisfies $i = $sourceValues"> A @source attribute must point to an @xml:id attribute on a &lt;bibl&gt;
                   element or a &lt;listBibl&gt; element. Multiple values are allowed and must be separated by a blank space.
-                  Acceptable values include: <sch:value-of
-                    select="string-join($sourceValues, ' | ')"/>. </sch:assert>
+                  Acceptable values include: <sch:value-of select="string-join($sourceValues, ' | ')"/>. </sch:assert>
               </sch:rule>
             </constraint>
           </constraintSpec>
@@ -1179,11 +1097,7 @@
               <sch:rule context="//tei:link/@target">
                 <sch:let name="allIDs" value="//@xml:id"/>
                 <sch:let name="targetVals" value="for $i in $allIDs return concat('#', $i)"/>
-                <sch:assert
-                  test="
-                  every $i in (tokenize(., ' '))
-                  satisfies $i = $targetVals"
-                  >A &lt;link&gt; element takes a @target attribute with two or more of the
+                <sch:assert test="                   every $i in (tokenize(., ' '))                   satisfies $i = $targetVals">A &lt;link&gt; element takes a @target attribute with two or more of the
                   following values: <sch:value-of select="string-join($targetVals, ' | ')"/>.
                 </sch:assert>
               </sch:rule>
