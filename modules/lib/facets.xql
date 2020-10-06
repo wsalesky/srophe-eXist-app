@@ -478,18 +478,18 @@ declare function sf:facet-range($element as item()*, $facet-definition as item()
  : TEI Title field, specific to Srophe applications 
  :)
 declare function sf:field-title($element as item()*, $name as xs:string){
-    if($element/descendant-or-self::*[contains(@syriaca-tags,'#syriaca-headword')][contains(@xml:lang,'en')][//text() != '']) then 
-        let $en := $element/descendant-or-self::*[contains(@syriaca-tags,'#syriaca-headword')][contains(@xml:lang,'en')][//text() != ''][1]
-        let $syr := string-join($element/descendant::*[contains(@syriaca-tags,'#syriaca-headword')][matches(@xml:lang,'^syr')][1]//text(),' ')
+    if($element/descendant-or-self::*[contains(@syriaca-tags,'#syriaca-headword')][contains(@xml:lang,'en')][not(empty(node()))]) then 
+        let $en := $element/descendant-or-self::*[contains(@syriaca-tags,'#syriaca-headword')][contains(@xml:lang,'en')][not(empty(node()))][1]
+        let $syr := string-join($element/descendant::*[contains(@syriaca-tags,'#syriaca-headword')][matches(@xml:lang,'^syr')][1],' ')
         return sf:build-sort-string(concat($en, if($syr != '') then  concat(' - ', $syr) else ()))
-    else if($element/descendant-or-self::*[contains(@srophe:tags,'#headword')][contains(@xml:lang,'en')][//text() != '']) then
-        let $en := $element/descendant-or-self::*[contains(@srophe:tags,'#headword')][contains(@xml:lang,'en')][//text() != ''][1]
-        let $syr := string-join($element/descendant::*[contains(@srophe:tags,'#headword')][matches(@xml:lang,'^syr')][1]//text(),' ')
+    else if($element/descendant-or-self::*[contains(@srophe:tags,'#headword')][contains(@xml:lang,'en')][not(empty(node()))]) then
+        let $en := $element/descendant-or-self::*[contains(@srophe:tags,'#headword')][contains(@xml:lang,'en')][not(empty(node()))][1]
+        let $syr := string-join($element/descendant::*[contains(@srophe:tags,'#headword')][matches(@xml:lang,'^syr')][1],' ')
         return sf:build-sort-string(concat($en, if($syr != '') then  concat(' - ', $syr) else ()))
-    else if($element/descendant-or-self::*[contains(@srophe:tags,'#syriaca-headword')][contains(@xml:lang,'en')][//text() != '']) then
-        let $en := $element/descendant-or-self::*[contains(@srophe:tags,'#syriaca-headword')][contains(@xml:lang,'en')][//text() != ''][1]
-        let $syr := string-join($element/descendant::*[contains(@srophe:tags,'#syriaca-headword')][matches(@xml:lang,'^syr')][1]//text(),' ')
-        return sf:build-sort-string(concat($en, if($syr != '') then  concat(' - ', $syr) else ()))        
+    else if($element/descendant-or-self::*[contains(@srophe:tags,'#syriaca-headword')][contains(@xml:lang,'en')][not(empty(node()))]) then
+        let $en := $element/descendant-or-self::*[contains(@srophe:tags,'#syriaca-headword')][contains(@xml:lang,'en')][not(empty(node()))][1]
+        let $syr := string-join($element/descendant::*[contains(@srophe:tags,'#syriaca-headword')][matches(@xml:lang,'^syr')][1],' ')
+        return sf:build-sort-string(concat($en, if($syr != '') then  concat(' - ', $syr) else ()))       
     else if($element/ancestor-or-self::tei:TEI/descendant::tei:biblStruct) then 
         for $title in $element/ancestor-or-self::tei:TEI/descendant::tei:biblStruct/descendant::tei:title
         return sf:build-sort-string($title)
@@ -501,13 +501,13 @@ declare function sf:field-title($element as item()*, $name as xs:string){
  :)
 declare function sf:field-titleSyriac($element as item()*, $name as xs:string){
     if($element/descendant-or-self::*[contains(@syriaca-tags,'#syriaca-headword')][matches(@xml:lang,'^syr')]) then 
-        let $syr := string-join($element/descendant::*[contains(@syriaca-tags,'#syriaca-headword')][matches(@xml:lang,'^syr')][1]//text(),' ')
+        let $syr := string-join($element/descendant::*[contains(@syriaca-tags,'#syriaca-headword')][matches(@xml:lang,'^syr')][not(empty(node()))][1],' ')
         return $syr
     else if($element/descendant-or-self::*[contains(@srophe:tags,'#headword')][matches(@xml:lang,'^syr')]) then
-        let $syr := string-join($element/descendant::*[contains(@srophe:tags,'#headword')][matches(@xml:lang,'^syr')][1]//text(),' ')
+        let $syr := string-join($element/descendant::*[contains(@srophe:tags,'#headword')][matches(@xml:lang,'^syr')][not(empty(node()))][1],' ')
         return $syr
     else if($element/descendant-or-self::*[contains(@srophe:tags,'#syriaca-headword')][matches(@xml:lang,'^syr')]) then
-        let $syr := string-join($element/descendant::*[contains(@srophe:tags,'#syriaca-headword')][matches(@xml:lang,'^syr')][1]//text(),' ')
+        let $syr := string-join($element/descendant::*[contains(@srophe:tags,'#syriaca-headword')][matches(@xml:lang,'^syr')][not(empty(node()))][1],' ')
         return $syr    
     else ()
 };
@@ -518,11 +518,11 @@ declare function sf:field-titleSyriac($element as item()*, $name as xs:string){
 declare function sf:field-titleArabic($element as item()*, $name as xs:string){
     if($element/descendant-or-self::*[contains(@syriaca-tags,'#syriaca-headword')][@xml:lang = 'ar']) then 
         for $title in $element/descendant::*[contains(@syriaca-tags,'#syriaca-headword')][@xml:lang = 'ar']
-        let $ar := string-join($title/descendant::*[contains(@syriaca-tags,'#syriaca-headword')][@xml:lang = 'ar']//text(),' ')
+        let $ar := string-join($title/descendant::*[contains(@syriaca-tags,'#syriaca-headword')][@xml:lang = 'ar'][not(empty(node()))],' ')
         return sf:build-sort-string-arabic($ar)
     else if($element/descendant-or-self::*[contains(@srophe:tags,'#headword')][@xml:lang = 'ar']) then
         for $title in $element/descendant::*[contains(@syriaca-tags,'#syriaca-headword')][@xml:lang = 'ar']
-        let $ar := string-join($element/descendant::*[contains(@srophe:tags,'#headword')][@xml:lang = 'ar']//text(),' ')
+        let $ar := string-join($element/descendant::*[contains(@srophe:tags,'#headword')][@xml:lang = 'ar'][not(empty(node()))],' ')
         return sf:build-sort-string-arabic($ar)
     else if($element/tei:listPerson/tei:person/tei:persName[@xml:lang = 'ar']) then 
          $element/tei:listPerson/tei:person/tei:persName[@xml:lang = 'ar']
@@ -532,21 +532,23 @@ declare function sf:field-titleArabic($element as item()*, $name as xs:string){
     else ()
 };
 
-(:~
- : TEI title facet, specific to Srophe applications 
- :)
+(: Title field :)
 declare function sf:facet-title($element as item()*, $facet-definition as item(), $name as xs:string){
     if($element/ancestor-or-self::tei:TEI/descendant::tei:biblStruct) then 
         $element/ancestor-or-self::tei:TEI/descendant::tei:biblStruct/descendant::tei:title
     else $element/ancestor-or-self::tei:TEI/descendant::tei:titleStmt/tei:title
 };
 
-(:~
- : TEI author field, specific to Srophe applications 
- :)
+(: Author field :)
 declare function sf:field-author($element as item()*, $name as xs:string){
     if($element/ancestor-or-self::tei:TEI/descendant::tei:biblStruct) then 
-        $element/ancestor-or-self::tei:TEI/descendant::tei:biblStruct/descendant::tei:author | $element/ancestor-or-self::tei:TEI/descendant::tei:biblStruct/descendant::tei:editor
+        if($element/ancestor-or-self::tei:TEI/descendant::tei:body/tei:biblStruct/descendant-or-self::tei:author[1]/descendant-or-self::tei:surname) then
+            concat($element/ancestor-or-self::tei:TEI/descendant::tei:body/tei:biblStruct/descendant-or-self::tei:author[1]/descendant-or-self::tei:surname, ',',  
+                $element/ancestor-or-self::tei:TEI/descendant::tei:body/tei:biblStruct/descendant-or-self::tei:author[1]/descendant-or-self::tei:forename)
+        else if($element/ancestor-or-self::tei:TEI/descendant::tei:body/tei:biblStruct/descendant-or-self::tei:editor[1]/descendant-or-self::tei:surname) then 
+               concat($element/ancestor-or-self::tei:TEI/descendant::tei:body/tei:biblStruct/descendant-or-self::tei:author[1]/descendant-or-self::tei:surname, ',',  
+                $element/ancestor-or-self::tei:TEI/descendant::tei:body/tei:biblStruct/descendant-or-self::tei:author[1]/descendant-or-self::tei:forename)
+        else  $element/ancestor-or-self::tei:TEI/descendant::tei:biblStruct/descendant::tei:author
     else $element/ancestor-or-self::tei:TEI/descendant::tei:titleStmt/descendant::tei:author
 };
 
