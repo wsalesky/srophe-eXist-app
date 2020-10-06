@@ -42,10 +42,7 @@ declare function browse:get-all($node as node(), $model as map(*), $collection a
             if(config:collection-vars($collection)/@data-root != '') then concat('/',config:collection-vars($collection)/@data-root)
             else if($collection != '') then concat('/',$collection)
             else ()
-    let $hits := 
-        if($browse:view = 'facets' or $browse:view = 'date' or ($browse:view = 'type' and $collection != ('geo','places'))) then 
-            collection($config:data-root || $collectionPath)//tei:body[ft:query(., (),sf:facet-query())] 
-        else data:get-records($collection, $element)
+    let $hits := data:get-records($collection, $element)
     return 
         map{"hits" : $hits }
 };
@@ -57,7 +54,6 @@ declare function browse:get-all($node as node(), $model as map(*), $collection a
 declare function browse:show-hits($node as node(), $model as map(*), $collection, $sort-options as xs:string*, $facets as xs:string?){
   let $hits := $model("hits")
   return 
-    (
     if($browse:view = 'map') then 
         <div class="col-md-12 map-lg" xmlns="http://www.w3.org/1999/xhtml">
             {browse:get-map($hits)}
@@ -87,7 +83,6 @@ declare function browse:show-hits($node as node(), $model as map(*), $collection
                 </div>
             )}
         </div>
-    )
 };
 
 (:

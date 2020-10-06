@@ -187,10 +187,10 @@ declare function tei2html:summary-view($nodes as node()*, $lang as xs:string?, $
 
 (: Special short view template for Persons :)
 declare function tei2html:summary-view-persons($nodes as node()*, $id as xs:string?) as item()* {
-    let $title := if($nodes/descendant-or-self::*[@srophe:tags='#syriaca-headword'][@xml:lang='en']) then 
-                    $nodes/descendant-or-self::*[@srophe:tags='#syriaca-headword'][@xml:lang='en'][1]
-                  else if($nodes/descendant-or-self::*[@syriaca-tags='#syriaca-headword'][@xml:lang='en']) then 
-                    $nodes/descendant-or-self::*[@syriaca-tags='#syriaca-headword'][@xml:lang='en'][1]                    
+    let $title := if($nodes/descendant-or-self::*[@srophe:tags='#syriaca-headword'][contains(@xml:lang,'en')][descendant::text() != '']) then 
+                    $nodes/descendant-or-self::*[@srophe:tags='#syriaca-headword'][contains(@xml:lang,'en')][descendant::text() != ''][1]
+                  else if($nodes/descendant-or-self::*[@syriaca-tags='#syriaca-headword'][contains(@xml:lang,'en')][descendant::text() != '']) then 
+                    $nodes/descendant-or-self::*[@syriaca-tags='#syriaca-headword'][contains(@xml:lang,'en')][descendant::text() != ''][1]                    
                   else $nodes/descendant-or-self::tei:title[1]/text()
     let $syr-title := 
                 if($nodes/descendant::*[contains(@srophe:tags,'#syriaca-headword')][matches(@xml:lang,'^syr')][1]) then
@@ -257,8 +257,8 @@ declare function tei2html:summary-view-persons($nodes as node()*, $id as xs:stri
 
 (: Special short view template for Places :)
 declare function tei2html:summary-view-places($nodes as node()*, $id as xs:string?) as item()* {
-    let $title := if($nodes/descendant-or-self::*[@srophe:tags='#syriaca-headword'][@xml:lang='en']) then 
-                    $nodes/descendant-or-self::*[@srophe:tags='#syriaca-headword'][@xml:lang='en'][1]
+    let $title := if($nodes/descendant-or-self::*[@srophe:tags='#syriaca-headword'][contains(@xml:lang,'en')][descendant::text() != '']) then 
+                    $nodes/descendant-or-self::*[@srophe:tags='#syriaca-headword'][contains(@xml:lang,'en')][descendant::text() != ''][1]
                   else $nodes/descendant-or-self::tei:title[1]/text()
     let $syr-title := 
                 if($nodes/descendant::*[contains(@srophe:tags,'#syriaca-headword')][matches(@xml:lang,'^syr')][1]) then
@@ -309,8 +309,8 @@ declare function tei2html:summary-view-places($nodes as node()*, $id as xs:strin
 
 (: Special short view template for Keywords/Taxonomy :)
 declare function tei2html:summary-view-keyword($nodes as node()*, $id as xs:string?) as item()* {
-    let $title := if($nodes/descendant-or-self::tei:term[@srophe:tags='#syriaca-headword'][@xml:lang='en']) then 
-                    $nodes/descendant-or-self::tei:term[@srophe:tags='#syriaca-headword'][@xml:lang='en'][1]/text()
+    let $title := if($nodes/descendant-or-self::tei:term[@srophe:tags='#syriaca-headword'][contains(@xml:lang,'en')][descendant::text() != '']) then 
+                    $nodes/descendant-or-self::tei:term[@srophe:tags='#syriaca-headword'][contains(@xml:lang,'en')][descendant::text() != ''][1]/text()
                   else $nodes/descendant-or-self::tei:term[1]/text()                  
     return 
         <div class="short-rec-view">
@@ -343,8 +343,8 @@ declare function tei2html:summary-view-keyword($nodes as node()*, $id as xs:stri
 
 (: Generic short view template :)
 declare function tei2html:summary-view-generic($nodes as node()*, $id as xs:string?) as item()* {
-    let $title := if($nodes/descendant-or-self::tei:title[@srophe:tags='#syriaca-headword'][@xml:lang='en']) then 
-                    $nodes/descendant-or-self::tei:title[@srophe:tags='#syriaca-headword'][@xml:lang='en'][1]/text()
+    let $title := if($nodes/descendant-or-self::tei:title[@srophe:tags='#syriaca-headword'][contains(@xml:lang,'en')][descendant::text() != '']) then 
+                    $nodes/descendant-or-self::tei:title[@srophe:tags='#syriaca-headword'][contains(@xml:lang,'en')][descendant::text() != ''][1]/text()
                   else $nodes/descendant-or-self::tei:title[1]/text()
     let $syr-title := 
                 if($nodes/descendant::*[contains(@srophe:tags,'#syriaca-headword')][matches(@xml:lang,'^syr')][1]) then
@@ -384,8 +384,8 @@ declare function tei2html:summary-view-generic($nodes as node()*, $id as xs:stri
 };
 
 declare function tei2html:summary-view-bibl($nodes as node()*, $id as xs:string?) as item()* {
-    let $title := if($nodes/descendant-or-self::tei:title[@srophe:tags='#syriaca-headword'][@xml:lang='en']) then 
-                    $nodes/descendant-or-self::tei:title[@srophe:tags='#syriaca-headword'][@xml:lang='en'][1]/text()
+    let $title := if($nodes/descendant-or-self::tei:title[@srophe:tags='#syriaca-headword'][contains(@xml:lang,'en')][descendant::text() != '']) then 
+                    $nodes/descendant-or-self::tei:title[@srophe:tags='#syriaca-headword'][contains(@xml:lang,'en')][descendant::text() != ''][1]/text()
                   else $nodes/descendant-or-self::tei:title[1]/text()
     let $series := for $a in distinct-values($nodes/descendant::tei:seriesStmt/tei:biblScope/tei:title)
                    return tei2html:translate-series($a)
@@ -410,8 +410,8 @@ declare function tei2html:summary-view-bibl($nodes as node()*, $id as xs:string?
 };
 
 declare function tei2html:summary-view-spear($nodes as node()*, $id as xs:string?) as item()* {
-    let $title := if($nodes/descendant-or-self::*[@srophe:tags='#syriaca-headword'][@xml:lang='en']) then 
-                    $nodes/descendant-or-self::*[@srophe:tags='#syriaca-headword'][@xml:lang='en'][1]
+    let $title := if($nodes/descendant-or-self::*[@srophe:tags='#syriaca-headword'][contains(@xml:lang,'en')][descendant::text() != '']) then 
+                    $nodes/descendant-or-self::*[@srophe:tags='#syriaca-headword'][contains(@xml:lang,'en')][descendant::text() != ''][1]
                   else $nodes/descendant-or-self::tei:title[1]/text()
     let $syr-title := 
                 if($nodes/descendant::*[contains(@srophe:tags,'#syriaca-headword')][matches(@xml:lang,'^syr')][1]) then

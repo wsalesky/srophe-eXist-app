@@ -82,7 +82,8 @@ declare function data:element($element as xs:string?) as xs:string?{
  : Make XPath language filter. 
  : @param $element used to select browse element: persName/placeName/title
 :)
-declare function data:element-filter($element as xs:string?) as xs:string? {    
+declare function data:element-filter($element as xs:string?) as xs:string? {  
+if($element != '') then
     if(request:get-parameter('lang', '') != '') then 
         if(request:get-parameter('alpha-filter', '') = 'ALL') then 
             concat("/descendant::",$element,"[@xml:lang = '", request:get-parameter('lang', ''),"']")
@@ -91,6 +92,7 @@ declare function data:element-filter($element as xs:string?) as xs:string? {
         if(request:get-parameter('alpha-filter', '') = 'ALL') then 
             concat("/descendant::",$element)
         else concat("/descendant::",$element)
+else ()        
 };
 
 (:~
@@ -136,85 +138,57 @@ declare function data:get-records($collection as xs:string*, $element as xs:stri
     let $get-series-idno :=  
             if(config:collection-vars($collection)/@collection-URI != '') then string(config:collection-vars($collection)/@collection-URI)
             else ()     
-    let $eval-string := concat(data:build-collection-path($collection),'//tei:body[ft:query(., (),map { "fields": ("title","titleSyriac","titleArabic", "author") })]',data:element-filter($element))    
+    let $eval-string := concat(data:build-collection-path($collection),'[descendant::tei:body[ft:query(., (),sf:facet-query())]]', data:element-filter($element))    
     let $hits := util:eval($eval-string)
-    return       
-            if($collection = 'bibl' and not(request:get-parameter('view', ''))) then
+    (:util:eval(data:build-collection-path($collection))[descendant::tei:body[ft:query(., (),sf:facet-query())]]:)                        
+    return 
+        if(request:get-parameter('view', '') = 'map') then $hits  
+        else if(request:get-parameter('view', '') = 'timeline') then $hits
+        else if(request:get-parameter('alpha-filter', '') != '' 
+            and request:get-parameter('alpha-filter', '') != 'All'
+            and request:get-parameter('alpha-filter', '') != 'ALL'
+            and request:get-parameter('alpha-filter', '') != 'all') then
                 for $hit in $hits
-                let $root := $hit/ancestor-or-self::tei:TEI
                 let $s := 
                     if(contains($sort, 'author')) then ft:field($hit, "author")[1]
+                    else if(contains($sort, 'title') or contains($sort, 'headword')) then 
+                         if(request:get-parameter('lang', '') = 'syr') then ft:field($hit, "titleSyriac")[1]
+                         else if(request:get-parameter('lang', '') = 'ar') then ft:field($hit, "titleArabic")[1]
+                         else ft:field($hit, "title")
+                    else if(request:get-parameter('sort', '') != '' and request:get-parameter('sort', '') != 'title' and not(contains($sort, 'author'))) then
+                         if($collection = 'bibl') then
+                            data:add-sort-options-bibl($hit, $sort)
+                         else data:add-sort-options($hit, $sort)                    
                     else if(request:get-parameter('lang', '') = 'syr') then ft:field($hit, "titleSyriac")[1]
                     else if(request:get-parameter('lang', '') = 'ar') then ft:field($hit, "titleArabic")[1]
-                    else ft:field($hit, "title")
+                    else ft:field($hit, "title")                
                 order by $s collation 'http://www.w3.org/2013/collation/UCA'
-                where $s[matches(.,'\p{IsBasicLatin}|\p{IsLatin-1Supplement}|\p{IsLatinExtended-A}|\p{IsLatinExtended-B}','i')]
-                where matches($s,global:get-alpha-filter())
-                return $root  
-            else if(request:get-parameter('view', '') = 'A-Z') then
+                where 
+                    if(request:get-parameter('view', '') = 'A-Z') then 
+                        $s[matches(.,'\p{IsBasicLatin}|\p{IsLatin-1Supplement}|\p{IsLatinExtended-A}|\p{IsLatinExtended-B}','i')] and matches($s,global:get-alpha-filter()) 
+                    else if(request:get-parameter('view', '') = 'ܐ-ܬ') then
+                        $s[matches(.,'\p{IsSyriac}','i')] and matches($s,global:get-alpha-filter()) 
+                    else if(request:get-parameter('view', '') = 'ا-ي') then
+                        $s[matches(.,'\p{IsArabic}','i')] and matches($s,global:get-alpha-filter())
+                    else if(request:get-parameter('view', '') = 'other') then  
+                        $s[not(matches(substring(global:build-sort-string(.,''),1,1),'\p{IsSyriac}|\p{IsArabic}|\p{IsBasicLatin}|\p{IsLatin-1Supplement}|\p{IsLatinExtended-A}|\p{IsLatinExtended-B}|\p{IsLatinExtendedAdditional}','i'))] and matches($s,global:get-alpha-filter())
+                    else matches($s,global:get-alpha-filter())  
+                return $hit/ancestor-or-self::tei:TEI
+        else
                 for $hit in $hits
-                let $root := $hit/ancestor-or-self::tei:TEI
                 let $s := 
-                    if(contains($sort, 'author')) then ft:field($hit, "author")[1]
-                    else if(request:get-parameter('lang', '') = 'syr') then ft:field($hit, "titleSyriac")[1]
-                    else if(request:get-parameter('lang', '') = 'ar') then ft:field($hit, "titleArabic")[1]
-                    else ft:field($hit, "title")
-                order by $s collation 'http://www.w3.org/2013/collation/UCA'
-                where $s[matches(.,'\p{IsBasicLatin}|\p{IsLatin-1Supplement}|\p{IsLatinExtended-A}|\p{IsLatinExtended-B}','i')]
-                where matches($s,global:get-alpha-filter())
-                return $root 
-            else if(request:get-parameter('view', '') = 'ܐ-ܬ') then
-                for $hit in $hits
-                let $root := $hit/ancestor-or-self::tei:TEI
-                let $s := 
-                    if(contains($sort, 'author')) then ft:field($hit, "author")[1]
-                    else if(request:get-parameter('lang', '') = 'syr') then ft:field($hit, "titleSyriac")[1]
-                    else if(request:get-parameter('lang', '') = 'ar') then ft:field($hit, "titleArabic")[1]
-                    else ft:field($hit, "title")
-                order by $s collation 'http://www.w3.org/2013/collation/UCA'
-                where $s[matches(.,'\p{IsSyriac}','i')]
-                where matches($s,global:get-alpha-filter())
-                return $root 
-            else if(request:get-parameter('view', '') = 'ا-ي') then
-                for $hit in $hits
-                let $root := $hit/ancestor-or-self::tei:TEI
-                let $s := 
-                    if(contains($sort, 'author')) then ft:field($hit, "author")[1]
-                    else if(request:get-parameter('lang', '') = 'syr') then ft:field($hit, "titleSyriac")[1]
-                    else if(request:get-parameter('lang', '') = 'ar') then ft:field($hit, "titleArabic")[1]
-                    else ft:field($hit, "title")
-                order by $s collation 'http://www.w3.org/2013/collation/UCA'
-                where $s[matches(.,'\p{IsArabic}','i')]
-                where matches($s,global:get-alpha-filter())
-                return $root 
-            else if(request:get-parameter('view', '') = 'other') then
-                for $hit in $hits
-                let $root := $hit/ancestor-or-self::tei:TEI
-                let $s := 
-                    if(contains($sort, 'author')) then ft:field($hit, "author")[1]
-                    else if(request:get-parameter('lang', '') = 'syr') then ft:field($hit, "titleSyriac")[1]
-                    else if(request:get-parameter('lang', '') = 'ar') then ft:field($hit, "titleArabic")[1]
-                    else ft:field($hit, "title")
-                order by $s collation 'http://www.w3.org/2013/collation/UCA'
-                where $s[not(matches(substring(global:build-sort-string(.,''),1,1),'\p{IsSyriac}|\p{IsArabic}|\p{IsBasicLatin}|\p{IsLatin-1Supplement}|\p{IsLatinExtended-A}|\p{IsLatinExtended-B}|\p{IsLatinExtendedAdditional}','i'))]
-                where matches($s,global:get-alpha-filter())
-                return $root
-            else if(request:get-parameter('alpha-filter', '') != ('','All','ALL','all')) then
-                for $hit in $hits
-                let $root := $hit/ancestor-or-self::tei:TEI
-                let $s := 
-                    if(contains($sort, 'author')) then ft:field($hit, "author")[1]
-                    else if(request:get-parameter('lang', '') = 'syr') then ft:field($hit, "titleSyriac")[1]
-                    else if(request:get-parameter('lang', '') = 'ar') then ft:field($hit, "titleArabic")[1]
-                    else ft:field($hit, "title")
-                order by $s collation 'http://www.w3.org/2013/collation/UCA'
-                where matches($s,global:get-alpha-filter())
-                return $root
-            else
-                for $hit in $hits
-                let $root := $hit/ancestor-or-self::tei:TEI
-                order by ft:field($hit, "title"), ft:field($hit, "author")[1]  collation 'http://www.w3.org/2013/collation/UCA'
-                return $root
+                        if(contains($sort, 'author')) then ft:field($hit, "author")[1]
+                        else if(request:get-parameter('sort', '') = 'title') then 
+                            if(request:get-parameter('lang', '') = 'syr') then ft:field($hit, "titleSyriac")[1]
+                            else if(request:get-parameter('lang', '') = 'ar') then ft:field($hit, "titleArabic")[1]
+                            else ft:field($hit, "title")
+                        else if(request:get-parameter('sort', '') != '' and request:get-parameter('sort', '') != 'title' and not(contains($sort, 'author'))) then
+                            if($collection = 'bibl') then
+                                data:add-sort-options-bibl($hit, $sort)
+                            else data:add-sort-options($hit, $sort)                    
+                        else ft:field($hit, "title")                
+                order by $s collation 'http://www.w3.org/2013/collation/UCA', ft:field($hit, "author")[1]  collation 'http://www.w3.org/2013/collation/UCA'
+                return $hit/ancestor-or-self::tei:TEI 
 };
 
 (:~
