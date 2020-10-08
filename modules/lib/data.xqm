@@ -142,8 +142,8 @@ declare function data:get-records($collection as xs:string*, $element as xs:stri
     let $hits := util:eval($eval-string)
     (:util:eval(data:build-collection-path($collection))[descendant::tei:body[ft:query(., (),sf:facet-query())]]:)                        
     return 
-        if(request:get-parameter('view', '') = 'map') then $hits  
-        else if(request:get-parameter('view', '') = 'timeline') then $hits
+        if(request:get-parameter('view', '') = 'map') then $hits/ancestor-or-self::tei:TEI 
+        else if(request:get-parameter('view', '') = 'timeline') then $hits/ancestor-or-self::tei:TEI
         else if(request:get-parameter('alpha-filter', '') != '' 
             and request:get-parameter('alpha-filter', '') != 'All'
             and request:get-parameter('alpha-filter', '') != 'ALL'
@@ -155,7 +155,7 @@ declare function data:get-records($collection as xs:string*, $element as xs:stri
                          if(request:get-parameter('lang', '') = 'syr') then ft:field($hit, "titleSyriac")[1]
                          else if(request:get-parameter('lang', '') = 'ar') then ft:field($hit, "titleArabic")[1]
                          else ft:field($hit, "title")
-                    else if(request:get-parameter('sort', '') != '' and request:get-parameter('sort', '') != 'title' and not(contains($sort, 'author'))) then
+                    else if($sort != '' and not(contains($sort, 'title') and not(contains($sort, 'author')))) then
                          if($collection = 'bibl') then
                             data:add-sort-options-bibl($hit, $sort)
                          else data:add-sort-options($hit, $sort)                    
@@ -182,7 +182,7 @@ declare function data:get-records($collection as xs:string*, $element as xs:stri
                             if(request:get-parameter('lang', '') = 'syr') then ft:field($hit, "titleSyriac")[1]
                             else if(request:get-parameter('lang', '') = 'ar') then ft:field($hit, "titleArabic")[1]
                             else ft:field($hit, "title")
-                        else if(request:get-parameter('sort', '') != '' and request:get-parameter('sort', '') != 'title' and not(contains($sort, 'author'))) then
+                        else if($sort != '' and not(contains($sort, 'title') and not(contains($sort, 'author')))) then
                             if($collection = 'bibl') then
                                 data:add-sort-options-bibl($hit, $sort)
                             else data:add-sort-options($hit, $sort)                    

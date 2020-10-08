@@ -126,45 +126,39 @@ declare function browse:display-map($node as node(), $model as map(*), $collecti
 declare function browse:get-map($hits as node()*){
     if($hits/descendant::tei:body/tei:listPlace/descendant::tei:geo) then 
             maps:build-map($hits[descendant::tei:geo], count($hits))
-    else if($hits/descendant::tei:relation[contains(@passive,'/place/') or contains(@active,'/place/') or contains(@mutual,'/place/')]) then
-        let $related := 
-                for $r in $hits//tei:relation[contains(@passive,'/place/') or contains(@active,'/place/') or contains(@mutual,'/place/')]
-                let $title := string($r/ancestor::tei:TEI/descendant::tei:title[1])
-                let $rid := string($r/ancestor::tei:TEI/descendant::tei:idno[1])
-                let $relation := string($r/@name)
-                let $places := for $p in tokenize(string-join(($r/@passive,$r/@active,$r/@mutual),' '),' ')[contains(.,'/place/')] return <placeName xmlns="http://www.tei-c.org/ns/1.0">{$p}</placeName>
-                return 
-                    <record xmlns="http://www.tei-c.org/ns/1.0">
-                        <title xmlns="http://www.tei-c.org/ns/1.0" name="{$relation}" id="{replace($rid,'/tei','')}">{$title}</title>
-                            {$places}
-                    </record>
-        let $places := distinct-values($related/descendant::tei:placeName/text()) 
-        let $locations := 
-            for $id in $places
-            for $geo in collection($config:data-root || '/places/tei')//tei:idno[. = $id][ancestor::tei:TEI[descendant::tei:geo]]
-            let $title := $geo/ancestor::tei:TEI/descendant::*[@srophe:tags="#syriaca-headword"][1]
-            let $type := string($geo/ancestor::tei:TEI/descendant::tei:place/@type)
-            let $geo := $geo/ancestor::tei:TEI/descendant::tei:geo
-            return 
-                <place xmlns="http://www.tei-c.org/ns/1.0">
-                    <idno>{$id}</idno>
-                    <title>{concat(normalize-space($title), ' - ', $type)}</title>
-                    <desc>Related:
-                    {
-                        for $p in $related[child::tei:placeName[. = $id]]/tei:title
-                        return concat('<br/><a href="',string($p/@id),'">',normalize-space($p),'</a>')
-                    }
-                    </desc>
-                    <location>{$geo}</location>  
-                </place>
-        return 
-            if(not(empty($locations))) then 
+    else if($hits/descendant::tei:relation[contains(@passive,'/place/')]) then
+       let $relations := $hits/descendant::tei:relation[contains(@passive,'/place/') or contains(@active,'/place/') or contains(@mutual,'/place/')]
+       let $rids := tokenize(string-join(($relations/@passive,$relations/@active,$relations/@mutual),' '),' ')[contains(.,'/place/')]
+       let $places := distinct-values($rids)
+       let $locations := 
+            map {"places" : 
+                        for $id in $places
+                        for $geo in collection($config:data-root || '/places/tei')//tei:idno[. = $id]/ancestor::tei:TEI[descendant::tei:geo]
+                        let $title := normalize-space($geo/descendant::*[@srophe:tags="#syriaca-headword"][1])
+                        let $type := string($geo/descendant::tei:place/@type)
+                        let $geo := $geo/descendant::tei:geo
+                        let $related := 
+                            for $r in $relations
+                            let $regex := concat($id,'(\W.*)?$')
+                            where fn:analyze-string($r/@passive,$regex)//fn:match
+                            return concat('<br/><a href="',replace($r/ancestor::tei:TEI/descendant::tei:idno[1],'/tei',''),'">',normalize-space(string($r/ancestor::tei:TEI/descendant::tei:title[1])),'</a>')
+                        return 
+                            <place xmlns="http://www.tei-c.org/ns/1.0">
+                                <idno>{$id}</idno>
+                                <title>{concat($title, ' - ', $type)}</title>
+                                <desc>Related:{$related}</desc>
+                                <relations>{concat($id,'(\W.*)?$')}</relations>
+                                <location>{$geo}</location>  
+                            </place>
+            }
+       return
+        if(not(empty($locations))) then 
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h3 class="panel-title">Related places</h3>
                     </div>
                     <div class="panel-body">
-                        {maps:build-map($locations,count($places))}
+                        {maps:build-map(map:get($locations, "places"),count($places))}
                     </div>
                 </div>
              else ()

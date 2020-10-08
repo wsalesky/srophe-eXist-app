@@ -348,35 +348,30 @@ return global:tei2html($links)
  : All persons with relationships to places.
 :)
 declare %templates:wrap function person:display-persons-map($node as node(), $model as map(*)){
-    let $persons := 
-    for $p in collection($config:data-root || '/persons/tei')//tei:relation[contains(@passive,'/place/') or contains(@active,'/place/') or contains(@mutual,'/place/')]
-    let $name := string($p/ancestor::tei:TEI/descendant::tei:title[1])
-    let $pers-id := string($p/ancestor::tei:TEI/descendant::tei:idno[1])
-    let $relation := string($p/@name)
-    let $places := for $p in tokenize(string-join(($p/@passive,$p/@active,$p/@mutual),' '),' ')[contains(.,'/place/')] return <placeName xmlns="http://www.tei-c.org/ns/1.0">{$p}</placeName>
-                   return 
-                        <person xmlns="http://www.tei-c.org/ns/1.0">
-                            <persName xmlns="http://www.tei-c.org/ns/1.0" name="{$relation}" id="{replace($pers-id,'/tei','')}">{$name}</persName>
-                            {$places}
-                        </person>
-    let $places := distinct-values($persons/descendant::tei:placeName/text()) 
+    let $hits := collection($config:data-root || '/persons/tei')
+    let $relations := $hits/descendant::tei:relation[contains(@passive,'/place/') or contains(@active,'/place/') or contains(@mutual,'/place/')]
+    let $rids := tokenize(string-join(($relations/@passive,$relations/@active,$relations/@mutual),' '),' ')[contains(.,'/place/')]
+    let $places := distinct-values($rids)
     let $locations := 
-        for $id in $places
-        for $geo in collection($config:data-root || '/places/tei')//tei:idno[. = $id][ancestor::tei:TEI[descendant::tei:geo]]
-        let $title := $geo/ancestor::tei:TEI/descendant::*[@srophe:tags="#syriaca-headword"][1]
-        let $type := string($geo/ancestor::tei:TEI/descendant::tei:place/@type)
-        let $geo := $geo/ancestor::tei:TEI/descendant::tei:geo
-        return 
-            <place xmlns="http://www.tei-c.org/ns/1.0">
-                <idno>{$id}</idno>
-                <title>{concat(normalize-space($title), ' - ', $type)}</title>
-                <desc>Related Persons:
-                {
-                    for $p in $persons[child::tei:placeName[. = $id]]/tei:persName
-                    return concat('<br/><a href="',string($p/@id),'">',normalize-space($p),'</a>')
-                }
-                </desc>
-                <location>{$geo}</location>  
-            </place>
-    return  maps:build-map($locations,count($places))
+            map {"places" : 
+                        for $id in $places
+                        for $geo in collection($config:data-root || '/places/tei')//tei:idno[. = $id]/ancestor::tei:TEI[descendant::tei:geo][descendant::tei:body]
+                        let $title := normalize-space($geo/descendant::*[@srophe:tags="#syriaca-headword"][1])
+                        let $type := string($geo/descendant::tei:place/@type)
+                        let $geo := $geo/descendant::tei:geo
+                        let $related := 
+                            for $r in $relations
+                            let $regex := concat($id,'(\W.*)?$')
+                            where fn:analyze-string($r/@passive,$regex)//fn:match
+                            return concat('<br/><a href="',replace($r/ancestor::tei:TEI/descendant::tei:idno[1],'/tei',''),'">',normalize-space(string($r/ancestor::tei:TEI/descendant::tei:title[1])),'</a>')
+                        return 
+                            <place xmlns="http://www.tei-c.org/ns/1.0">
+                                <idno>{$id}</idno>
+                                <title>{concat($title, ' - ', $type)}</title>
+                                <desc>Related:{$related}</desc>
+                                <relations>{concat($id,'(\W.*)?$')}</relations>
+                                <location>{$geo}</location>  
+                            </place>
+            }
+    return   maps:build-map(map:get($locations, "places"),count($places))
 };
