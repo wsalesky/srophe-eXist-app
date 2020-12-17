@@ -30,22 +30,28 @@ declare function maps:build-leaflet-map($nodes as node()*, $total-count as xs:in
         <script type="text/javascript" src="{$config:nav-base}/resources/leaflet/leaflet.js"/>
         <script type="text/javascript" src="{$config:nav-base}/resources/leaflet/leaflet.awesome-markers.min.js"/>
         <div id="map"/>
-        {
-            if($total-count gt 0) then 
-               <div class="hint map pull-right small">
-                * This map displays {count($nodes)} records. Only places with coordinates are displayed. 
-                     <button class="btn btn-default btn-sm" data-toggle="modal" data-target="#map-selection" id="mapFAQ">See why?</button>
-               </div>
-            else ()
-            }
         <script type="text/javascript">
             <![CDATA[
-            var terrain = L.tileLayer('http://api.tiles.mapbox.com/v3/sgillies.map-ac5eaoks/{z}/{x}/{y}.png', {attribution: "ISAW, 2012"});
-                                
+            //var terrain = L.tileLayer('http://api.tiles.mapbox.com/v3/sgillies.map-ac5eaoks/{z}/{x}/{y}.png', {attribution: "ISAW, 2012"});
+            var terrain =  
+            L.tileLayer(
+                'https://api.mapbox.com/styles/v1/mapbox/outdoors-v11/tiles/{z}/{x}/{y}?access_token=]]>{$config:map-api-key}<![CDATA[', {
+                    attribution: '<a href="http://mapbox.com">Mapbox</a> ', 
+                    id: 'mapbox/outdoors-v11', 
+                    maxZoom: 12, 
+                    accessToken: ']]>{$config:map-api-key}<![CDATA['
+                });
+                
             /* Not added by default, only through user control action */
-            var streets = L.tileLayer('http://api.tiles.mapbox.com/v3/sgillies.map-pmfv2yqx/{z}/{x}/{y}.png', {attribution: "ISAW, 2012"});
+            var streets = L.tileLayer(
+                'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', 
+                {attribution: "OpenStreetMap"});
                                 
-            var imperium = L.tileLayer('http://pelagios.dme.ait.ac.at/tilesets/imperium//{z}/{x}/{y}.png', {attribution: 'Tiles: &lt;a href="http://pelagios-project.blogspot.com/2012/09/a-digital-map-of-roman-empire.html"&gt;Pelagios&lt;/a&gt;, 2012; Data: NASA, OSM, Pleiades, DARMC', maxZoom: 11 });
+            var imperium = L.tileLayer(
+                    'https://dh.gu.se/tiles/imperium/{z}/{x}/{y}.png', {
+                        maxZoom: 10,
+                        attribution: 'Powered by <a href="http://leafletjs.com/">Leaflet</a>. Map base: <a href="https://dh.gu.se/dare/" title="Digital Atlas of the Roman Empire, Department of Archaeology and Ancient History, Lund University, Sweden">DARE</a>, 2015 (cc-by-sa).'
+                    });
                                 
             var placesgeo = ]]>{geojson:geojson($nodes)}
             <![CDATA[                                
@@ -97,14 +103,14 @@ declare function maps:build-leaflet-map($nodes as node()*, $total-count as xs:in
                                  }               
                                 }
                             })
-        var map = L.map('map',{scrollWheelZoom:false}).fitBounds(geojson.getBounds(),{maxZoom: 5}).setZoom(5);    
+        var map = L.map('map').fitBounds(geojson.getBounds(),{maxZoom: 5});     
         terrain.addTo(map);
                                         
         L.control.layers({
                         "Terrain (default)": terrain,
-                        "Streets": streets,
-                        "Imperium": imperium }).addTo(map);
-        geojson.addTo(map);     
+                        "Streets": streets }).addTo(map);
+        geojson.addTo(map);   
+        
         ]]>
         </script>
          <div>

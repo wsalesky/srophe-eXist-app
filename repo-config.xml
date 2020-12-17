@@ -43,7 +43,7 @@
         <maps>
             <!--  <option selected="true" api-key="API_KEY_HERE">google</option> -->
             <option>google</option>
-            <option selected="true">leaflet</option>
+            <option selected="true" api-key="pk.eyJ1Ijoid3NhbGVza3kiLCJhIjoiY2tpc3ducDA4MHhrNjJ0b3puM2xycHVhNCJ9.FeeQlkcvgj0rRF-WN-QZ4Q">leaflet</option>
         </maps>
         <!-- 
             Javascript Keyboard options 

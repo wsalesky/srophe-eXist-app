@@ -30,6 +30,7 @@ declare variable $sf:QUERY_OPTIONS := map {
     "leading-wildcard": "yes",
     "filter-rewrite": "yes"
 };
+
 (: Add sort fields to browse and search options. Used for sorting, add sort fields and functions, add sort function:)
 declare variable $sf:sortFields := map { "fields": ("title", "author","titleSyriac","titleArabic") };
 
