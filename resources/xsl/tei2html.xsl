@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:t="http://www.tei-c.org/ns/1.0" xmlns:x="http://www.w3.org/1999/xhtml" xmlns:srophe="https://srophe.app" xmlns:saxon="http://saxon.sf.net/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:local="http://syriaca.org/ns" exclude-result-prefixes="xs t x saxon local" version="2.0">
 
  <!-- ================================================================== 
@@ -1272,16 +1271,16 @@
                 <xsl:when test="contains($resource-id,'/subject/')">
                     Term:  <xsl:apply-templates select="descendant::*[contains(@srophe:tags,'#syriaca-headword')][starts-with(@xml:lang,'en')][not(empty(node()))][1]" mode="plain"/>
                 </xsl:when>
-                <xsl:when test="descendant::*[contains(@syriaca-tags,'#syriaca-headword') or contains(@srophe:tags,'#headword')]">
-                    <xsl:apply-templates select="descendant::*[contains(@syriaca-tags,'#syriaca-headword') or contains(@srophe:tags,'#headword')][starts-with(@xml:lang,'en')][not(empty(node()))][1]" mode="plain"/>
+                <xsl:when test="descendant::*[contains(@syriaca-tags,'#syriaca-headword') or contains(@srophe:tags,'#headword') or contains(@srophe:tags,'#syriaca-headword')]">
+                    <xsl:apply-templates select="descendant::*[contains(@syriaca-tags,'#syriaca-headword') or contains(@srophe:tags,'#headword') or contains(@srophe:tags,'#syriaca-headword')][starts-with(@xml:lang,'en')][not(empty(node()))][1]" mode="plain"/>
                     <xsl:text> - </xsl:text>
                     <xsl:choose>
                         <xsl:when test="descendant::*[contains(@syriaca-tags,'#anonymous-description') or contains(@srophe:tags,'#anonymous-description')]">
                             <xsl:value-of select="descendant::*[contains(@syriaca-tags,'#anonymous-description') or contains(@srophe:tags,'#anonymous-description')][1]"/>
                         </xsl:when>
-                        <xsl:when test="descendant::*[contains(@syriaca-tags,'#syriaca-headword') or contains(@srophe:tags,'#headword')][starts-with(@xml:lang,'syr')]">
+                        <xsl:when test="descendant::*[contains(@syriaca-tags,'#syriaca-headword') or contains(@srophe:tags,'#headword') or contains(@srophe:tags,'#syriaca-headword')][starts-with(@xml:lang,'syr')]">
                             <span lang="syr" dir="rtl">
-                                <xsl:apply-templates select="descendant::*[contains(@syriaca-tags,'#syriaca-headword') or contains(@srophe:tags,'#headword')][starts-with(@xml:lang,'syr')][1]" mode="plain"/>
+                                <xsl:apply-templates select="descendant::*[contains(@syriaca-tags,'#syriaca-headword') or contains(@srophe:tags,'#headword') or contains(@srophe:tags,'#syriaca-headword')][starts-with(@xml:lang,'syr')][1]" mode="plain"/>
                             </span>
                         </xsl:when>
                         <xsl:otherwise>

@@ -130,12 +130,24 @@ declare function app:display-nodes($node as node(), $model as map(*), $paths as 
 (:~  
  : Default title display, used if no sub-module title function.
  : Used by templating module, not needed if full record is being displayed 
+ if($element/descendant-or-self::*[contains(@syriaca-tags,'#syriaca-headword')][@xml:lang = 'ar']) then 
+        for $title in $element/descendant::*[contains(@syriaca-tags,'#syriaca-headword')][@xml:lang = 'ar']
+        let $ar := string-join($title/descendant::*[contains(@syriaca-tags,'#syriaca-headword')][@xml:lang = 'ar'][not(empty(node()))],' ')
+        return sf:build-sort-string-arabic($ar)
+    else if($element/descendant-or-self::*[contains(@srophe:tags,'#headword')][@xml:lang = 'ar']) then
+        for $title in $element/descendant::*[contains(@syriaca-tags,'#syriaca-headword')][@xml:lang = 'ar']
+        let $ar := string-join($element/descendant::*[contains(@srophe:tags,'#headword')][@xml:lang = 'ar'][not(empty(node()))],' ')
+        return sf:build-sort-string-arabic($ar)
 :)
 declare function app:h1($node as node(), $model as map(*)){
  global:tei2html(
  <srophe-title xmlns="http://www.tei-c.org/ns/1.0">{(
     if($model("hits")/descendant::*[@srophe:tags='#syriaca-headword']) then
         $model("hits")/descendant::*[@srophe:tags='#syriaca-headword']
+    else if($model("hits")/descendant::*[@srophe:tags='#headword']) then
+        $model("hits")/descendant::*[@srophe:tags='#headword']
+    else if($model("hits")/descendant::*[contains(@syriaca-tags,'#syriaca-headword')]) then
+        $model("hits")/descendant::*[contains(@syriaca-tags,'#syriaca-headword')]        
     else $model("hits")/descendant::tei:titleStmt[1]/tei:title[1], 
     $model("hits")/descendant::tei:publicationStmt/tei:idno[@type="URI"][1]
     )}
