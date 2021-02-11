@@ -162,7 +162,7 @@ declare function data:get-records($collection as xs:string*, $element as xs:stri
                     else if(request:get-parameter('lang', '') = 'syr') then ft:field($hit, "titleSyriac")[1]
                     else if(request:get-parameter('lang', '') = 'ar') then ft:field($hit, "titleArabic")[1]
                     else ft:field($hit, "title")                
-                order by $s collation 'http://www.w3.org/2013/collation/UCA'
+                order by $s[1] collation 'http://www.w3.org/2013/collation/UCA'
                 where 
                     if(request:get-parameter('view', '') = 'A-Z') then 
                         $s[matches(.,'\p{IsBasicLatin}|\p{IsLatin-1Supplement}|\p{IsLatinExtended-A}|\p{IsLatinExtended-B}','i')] and matches($s,global:get-alpha-filter()) 
@@ -187,7 +187,7 @@ declare function data:get-records($collection as xs:string*, $element as xs:stri
                                 data:add-sort-options-bibl($hit, $sort)
                             else data:add-sort-options($hit, $sort)                    
                         else ft:field($hit, "title")                
-                order by $s collation 'http://www.w3.org/2013/collation/UCA', ft:field($hit, "author")[1]  collation 'http://www.w3.org/2013/collation/UCA'
+                order by $s[1] collation 'http://www.w3.org/2013/collation/UCA', ft:field($hit, "author")[1]  collation 'http://www.w3.org/2013/collation/UCA'
                 return $hit/ancestor-or-self::tei:TEI 
 };
 
