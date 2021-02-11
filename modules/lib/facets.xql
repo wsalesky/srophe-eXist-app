@@ -524,10 +524,11 @@ declare function sf:field-titleArabic($element as item()*, $name as xs:string){
         for $title in $element/descendant::*[contains(@syriaca-tags,'#syriaca-headword')][@xml:lang = 'ar']
         let $ar := string-join($element/descendant::*[contains(@srophe:tags,'#headword')][@xml:lang = 'ar'][not(empty(node()))],' ')
         return sf:build-sort-string-arabic($ar)
-    else if($element/tei:listPerson/tei:person/tei:persName[@xml:lang = 'ar']) then 
-         $element/tei:listPerson/tei:person/tei:persName[@xml:lang = 'ar']
-    else if($element/tei:listPlace/tei:place/tei:placeName[@xml:lang = 'ar']) then 
-        for $title in $element/tei:listPlace/tei:place/tei:placeName[@xml:lang = 'ar']
+    else if($element/descendant::tei:person/tei:persName[@xml:lang = 'ar']) then 
+        for $title in $element/descendant::tei:person/tei:persName[@xml:lang = 'ar']
+        return sf:build-sort-string-arabic($title) 
+    else if($element/descendant::tei:place/tei:placeName[@xml:lang = 'ar']) then 
+        for $title in $element/descendant::tei:place/tei:placeName[@xml:lang = 'ar']
         return sf:build-sort-string-arabic($title)
     else ()
 };
