@@ -669,6 +669,7 @@
         </elementSpec>
 
         <elementSpec ident="date" module="core" mode="change">
+          <!-- I need a rule stating that when the date element does not have a choice ancestor it must have calendar="Gregorian"-->
           <classes mode="replace">
             <memberOf key="model.dateLike"/>
             <memberOf key="model.publicationStmtPart.detail"/>
