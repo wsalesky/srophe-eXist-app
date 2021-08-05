@@ -1392,7 +1392,7 @@
             <memberOf key="model.persStateLike"/>
           </classes>
           <attList>
-            <attDef ident="ref" mode="change" usage="req">
+            <attDef ident="ref" mode="add" usage="req">
               <datatype minOccurs="1" maxOccurs="1">
                 <dataRef key="teidata.pointer"/>
               </datatype>
