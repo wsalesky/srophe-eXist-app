@@ -1387,11 +1387,12 @@
 
         <elementSpec ident="persName" module="namesdates" mode="change">
           <classes mode="replace">
+            <memberOf key="att.datable.w3c"/>
             <memberOf key="model.nameLike.agent"/>
             <memberOf key="model.persStateLike"/>
           </classes>
           <attList>
-            <attDef ident="ref" usage="req">
+            <attDef ident="ref" mode="change" usage="req">
               <datatype minOccurs="1" maxOccurs="1">
                 <dataRef key="teidata.pointer"/>
               </datatype>
@@ -1918,12 +1919,16 @@
           </remarks>
         </elementSpec>
 
-        <elementSpec ident="occupation" module="namesdates" mode="replace">
+        <elementSpec ident="occupation" module="namesdates" mode="change">
+          <classes mode="replace">
+            <memberOf key="att.datable.w3c"/>
+            <memberOf key="att.global.analytic"/>
+          </classes>
           <content>
             <elementRef key="note" minOccurs="1" maxOccurs="1"/>
           </content>
           <attList>
-            <attDef ident="ana" usage="req">
+            <attDef ident="ana" mode="change" usage="req">
               <datatype minOccurs="1" maxOccurs="unbounded">
                 <dataRef key="teidata.pointer"/>
               </datatype>
@@ -2020,12 +2025,16 @@
           </remarks>
         </elementSpec>
 
-        <elementSpec ident="socecStatus" module="namesdates" mode="replace">
+        <elementSpec ident="socecStatus" module="namesdates" mode="change">
+          <classes mode="replace">
+            <memberOf key="att.datable.w3c"/>
+            <memberOf key="att.global.analytic"/>
+          </classes>
           <content>
             <elementRef key="note" minOccurs="1" maxOccurs="unbounded"/>
           </content>
           <attList>
-            <attDef ident="ana" usage="req">
+            <attDef ident="ana" mode="change" usage="req">
               <datatype minOccurs="1">
                 <dataRef key="teidata.pointer"/>
               </datatype>
@@ -2061,7 +2070,11 @@
           </remarks>
         </elementSpec>
 
-        <elementSpec ident="trait" module="namesdates" mode="replace">
+        <elementSpec ident="trait" module="namesdates" mode="change">
+          <classes mode="replace">
+            <memberOf key="att.datable.w3c"/>
+            <memberOf key="att.global.analytic"/>
+          </classes>
           <content>
             <elementRef key="note" minOccurs="1" maxOccurs="1"/>
           </content>
@@ -2087,7 +2100,7 @@
                 </valItem>
               </valList>
             </attDef>
-            <attDef ident="ana" usage="req">
+            <attDef ident="ana" mode="change" usage="req">
               <datatype minOccurs="1" maxOccurs="unbounded">
                 <dataRef key="teidata.pointer"/>
               </datatype>
