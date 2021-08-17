@@ -2264,6 +2264,11 @@
                   <desc>used for references to a person's mental traits; such as intelligence,
                     mental disability, wisdom, etc.</desc>
                 </valItem>
+                <valItem ident="religious-affiliation">
+                  <desc>used for references to a person's religious affiliation; including but 
+                    not limited to membership in an organization, adhering to a set of beliefs, 
+                    or identifying with a religious community in some way.</desc>
+                </valItem>
                 <valItem ident="sanctity">
                   <desc>used for references to a person's sanctity.</desc>
                 </valItem>
