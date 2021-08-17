@@ -1125,6 +1125,10 @@
                   <gloss>relation</gloss>
                   <desc>Used to designate relation factoids</desc>
                 </valItem>
+                <valItem ident="religiousAffiliation">
+                  <gloss>religious affiliation</gloss>
+                  <desc>Used to designate person factoids taht encode the religious affiliation of a person</desc>
+                </valItem>
                 <valItem ident="residence">
                   <gloss>residence</gloss>
                   <desc>Used to designate person factoids that encode places and dates of residence</desc>
@@ -2217,6 +2221,7 @@
                 <dataRef key="teidata.pointer"/>
               </datatype>
               <constraintSpec ident="ana-in-state" scheme="schematron">
+                <!-- Add schematron rule to validate religious affiliation against the taxonomy. Taxonomy requires updating before this can be done. -->
                 <constraint>
                   <sch:rule context="tei:state[@type='mental']/@ana">
                     <sch:let name="anaValues" value="tokenize(., ' ')"/>
@@ -2264,7 +2269,7 @@
                   <desc>used for references to a person's mental traits; such as intelligence,
                     mental disability, wisdom, etc.</desc>
                 </valItem>
-                <valItem ident="religious-affiliation">
+                <valItem ident="religiousAffiliation">
                   <desc>used for references to a person's religious affiliation; including but 
                     not limited to membership in an organization, adhering to a set of beliefs, 
                     or identifying with a religious community in some way.</desc>
