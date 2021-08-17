@@ -738,6 +738,7 @@
               <elementRef key="placeName" minOccurs="0" maxOccurs="unbounded"/>
               <elementRef key="orgName" minOccurs="0" maxOccurs="unbounded"/>
               <elementRef key="rs" minOccurs="0" maxOccurs="unbounded"/>
+              <elementRef key="bibl" minOccurs="0" maxOccurs="unbounded"/>
               <elementRef key="listRelation" minOccurs="0" maxOccurs="1"/>
             </sequence>
           </content>
