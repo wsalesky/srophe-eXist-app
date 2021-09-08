@@ -1545,7 +1545,7 @@
           </constraintSpec>
           <constraintSpec ident="ref-mutual-act-pass-in-relation" scheme="schematron">
             <constraint>
-              <sch:rule context="tei:ab[@type='relation']/tei:listRelation/tei:relation | tei:ab[@type='event']/tei:listEvent/tei:event/tei:desc/tei:listRelation/tei:relation"><!-- This doesn't currently catch incorrect person URIs on @mutual, @active, and @passive when these are embedded in event factoids. -->
+              <sch:rule context="tei:ab[@subtype='relation']/tei:listRelation/tei:relation | tei:ab[@subtype='event']/tei:listEvent/tei:event/tei:desc/tei:listRelation/tei:relation"><!-- This doesn't currently catch incorrect person URIs on @mutual, @active, and @passive when these are embedded in event factoids. -->
                 <sch:let name="ti"
                   value="doc('https://raw.githubusercontent.com/srophe/srophe-app-data/dev/data/subjects/taxonomyIndex.xml')"/>
                 <sch:let name="mutual"
@@ -1577,7 +1577,7 @@
                 <sch:report test="@passive">@passive attributes are not allowed on &lt;relation&gt;
                   elements in event factoids.</sch:report>
               </sch:rule>
-              <sch:rule context="tei:ab[@subtype='relation']/tei:listRelation/tei:relation/@mutual | tei:ab[@subtype='relation']/tei:listRelation/tei:relation/@active | tei:ab[@subtype='relation']/tei:listRelation/tei:relation/@passive | tei:ab[@type='event']/tei:listEvent/tei:event/tei:desc/tei:listRelation/tei:relation/@mutual | tei:ab[@type='event']/tei:listEvent/tei:event/tei:desc/tei:listRelation/tei:relation/@active | tei:ab[@type='event']/tei:listEvent/tei:event/tei:desc/tei:listRelation/tei:relation/@passive" role="warning">
+              <sch:rule context="tei:ab[@subtype='relation']/tei:listRelation/tei:relation/@mutual | tei:ab[@subtype='relation']/tei:listRelation/tei:relation/@active | tei:ab[@subtype='relation']/tei:listRelation/tei:relation/@passive | tei:ab[@subtype='event']/tei:listEvent/tei:event/tei:desc/tei:listRelation/tei:relation/@mutual | tei:ab[@subtype='event']/tei:listEvent/tei:event/tei:desc/tei:listRelation/tei:relation/@active | tei:ab[@subtype='event']/tei:listEvent/tei:event/tei:desc/tei:listRelation/tei:relation/@passive" role="warning">
                 <sch:let name="personIndex" value="doc('https://raw.githubusercontent.com/srophe/srophe-eXist-app/master/documentation/indexes/persons.xml')"></sch:let>
                 <sch:let name="personURIs" value="$personIndex//tei:person/@ref"/>
                 <sch:let name="error" value="."/>

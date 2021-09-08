@@ -5,7 +5,7 @@
          xmlns="http://relaxng.org/ns/structure/1.0"
          datatypeLibrary="http://www.w3.org/2001/XMLSchema-datatypes"
          ns="http://www.tei-c.org/ns/1.0"><!--
-Schema generated from ODD source 2021-09-08T16:33:02Z. .
+Schema generated from ODD source 2021-09-08T16:39:32Z. .
 TEI Edition: Version 4.1.0. Last updated on
 	19th August 2020, revision b414ba550
 TEI Edition Location: https://www.tei-c.org/Vault/P5/Version 4.1.0/
@@ -4059,7 +4059,7 @@ Sample values include: 1] approved; 2] candidate; 3] cleared; 4] deprecated; 5] 
                   id="SPEAR-relation-ref-mutual-act-pass-in-relation-constraint-rule-77">
             <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns="http://www.tei-c.org/ns/1.0"
-                      context="tei:ab[@type='relation']/tei:listRelation/tei:relation | tei:ab[@type='event']/tei:listEvent/tei:event/tei:desc/tei:listRelation/tei:relation">
+                      context="tei:ab[@subtype='relation']/tei:listRelation/tei:relation | tei:ab[@subtype='event']/tei:listEvent/tei:event/tei:desc/tei:listRelation/tei:relation">
                <sch:let name="ti"
                         value="doc('https://raw.githubusercontent.com/srophe/srophe-app-data/dev/data/subjects/taxonomyIndex.xml')"/>
                <sch:let name="mutual"
@@ -4091,7 +4091,7 @@ Sample values include: 1] approved; 2] candidate; 3] cleared; 4] deprecated; 5] 
             </sch:rule>
             <sch:rule xmlns:sch="http://purl.oclc.org/dsdl/schematron"
                       xmlns="http://www.tei-c.org/ns/1.0"
-                      context="tei:ab[@subtype='relation']/tei:listRelation/tei:relation/@mutual | tei:ab[@subtype='relation']/tei:listRelation/tei:relation/@active | tei:ab[@subtype='relation']/tei:listRelation/tei:relation/@passive | tei:ab[@type='event']/tei:listEvent/tei:event/tei:desc/tei:listRelation/tei:relation/@mutual | tei:ab[@type='event']/tei:listEvent/tei:event/tei:desc/tei:listRelation/tei:relation/@active | tei:ab[@type='event']/tei:listEvent/tei:event/tei:desc/tei:listRelation/tei:relation/@passive"
+                      context="tei:ab[@subtype='relation']/tei:listRelation/tei:relation/@mutual | tei:ab[@subtype='relation']/tei:listRelation/tei:relation/@active | tei:ab[@subtype='relation']/tei:listRelation/tei:relation/@passive | tei:ab[@subtype='event']/tei:listEvent/tei:event/tei:desc/tei:listRelation/tei:relation/@mutual | tei:ab[@subtype='event']/tei:listEvent/tei:event/tei:desc/tei:listRelation/tei:relation/@active | tei:ab[@subtype='event']/tei:listEvent/tei:event/tei:desc/tei:listRelation/tei:relation/@passive"
                       role="warning">
                <sch:let name="personIndex"
                         value="doc('https://raw.githubusercontent.com/srophe/srophe-eXist-app/master/documentation/indexes/persons.xml')"/>
