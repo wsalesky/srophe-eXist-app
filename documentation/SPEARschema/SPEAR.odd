@@ -1544,6 +1544,7 @@
             </constraint>
           </constraintSpec>
           <constraintSpec ident="ref-mutual-act-pass-in-relation" scheme="schematron">
+            <!-- Remove the language of "reciprocal" relationships. Instead use "directed". This will require changing the encoding of the Taxonomy and the taxonomy index. -->
             <constraint>
               <sch:rule context="tei:ab[@subtype='relation']/tei:listRelation/tei:relation | tei:ab[@subtype='event']/tei:listEvent/tei:event/tei:desc/tei:listRelation/tei:relation"><!-- This doesn't currently catch incorrect person URIs on @mutual, @active, and @passive when these are embedded in event factoids. -->
                 <sch:let name="ti"
@@ -1553,15 +1554,13 @@
                 <sch:let name="reciprocal"
                   value="$ti//listURI[@ref = 'http://syriaca.org/keyword/relationships']//uri[@ana = 'reciprocal']"/>
                 <sch:assert test=".[@ref = $mutual]/@mutual or .[@ref = $reciprocal]/@active"
-                  >Elements of type &lt;relation&gt; take either a @mutual attribute with mutual
-                  relationship and both @active and @passive attributes with reciprocal
-                  relationships. Mutual relationships include: <sch:value-of
+                  >A &lt;relation&gt; element takes either a @mutual attribute or both 
+                  @active and @passive attributes. Mutual relationships include: <sch:value-of
                     select="string-join($mutual, ';  ')"/>. Reciprocal relationships include:
                     <sch:value-of select="string-join($reciprocal, ';  ')"/>.</sch:assert>
                 <sch:assert test=".[@ref = $mutual]/@mutual or .[@ref = $reciprocal]/@passive"
-                  >Elements of type &lt;relation&gt; take either a @mutual attribute with mutual
-                  relationship and both @active and @passive attributes with reciprocal
-                  relationships. Mutual relationships include: <sch:value-of
+                  >A &lt;relation&gt; element takes either a @mutual attribute or both 
+                  @active and @passive attributes. Mutual relationships include: <sch:value-of
                     select="string-join($mutual, ';  ')"/>. Reciprocal relationships include:
                     <sch:value-of select="string-join($reciprocal, ';  ')"/>.</sch:assert>
                 <sch:report test=".[@mutual]/@active">A &lt;relation&gt; element cannot take both
