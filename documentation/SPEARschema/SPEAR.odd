@@ -1046,9 +1046,9 @@
                     SPEAR factoid URI ends with a hyphen followed by a number.</sch:report>
                   <sch:assert test="matches(substring-after(., '-'), '\d')">A properly formatted
                     SPEAR factoid URI ends with a number.</sch:assert>
-                  <sch:assert test="count(distinct-values(//tei:ab/@xml:id)) eq count(//tei:ab/@xml:id)"
+                  <!--<sch:assert test="count(distinct-values(//tei:ab/@xml:id)) eq count(//tei:ab/@xml:id)"
                     >Each &lt;ab&gt; element @uri attribute must end with a unique number following
-                    the "-".</sch:assert>
+                    the "-".</sch:assert>-->
                 </constraint>
               </constraintSpec>
             </attDef>
@@ -1545,7 +1545,7 @@
           </constraintSpec>
           <constraintSpec ident="ref-mutual-act-pass-in-relation" scheme="schematron">
             <constraint>
-              <sch:rule context="tei:ab[@type='relation']/tei:listRelation/tei:relation">
+              <sch:rule context="tei:ab[@type='relation']/tei:listRelation/tei:relation"><!-- This doesn't currently catch incorrect person URIs on @mutual, @active, and @passive when these are embedded in event factoids. -->
                 <sch:let name="ti"
                   value="doc('https://raw.githubusercontent.com/srophe/srophe-app-data/dev/data/subjects/taxonomyIndex.xml')"/>
                 <sch:let name="mutual"
